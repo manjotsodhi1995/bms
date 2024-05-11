@@ -59,7 +59,6 @@ input::placeholder {
 
 .swiper-slide img {
   width: 37rem;
-  border-radius: 2rem;
   object-fit: cover;
 }
 
