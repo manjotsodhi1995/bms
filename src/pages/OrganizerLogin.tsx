@@ -1,7 +1,6 @@
 import { useState } from "react";
 import img from "../assets/organizerAuth/OrganizerLogin.png";
 import { observer } from "mobx-react-lite";
-import { useStore } from "../hooks/useStore";
 const OrganizerLogin=observer(()=> {
  const [firstName, setFirstName] = useState(""); // State for first name input
  const [lastName, setLastName] = useState(""); // State for last name input
@@ -9,7 +8,7 @@ const OrganizerLogin=observer(()=> {
  const [phone, setPhone] = useState("");
  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-const {root:{auth}} = useStore();
+// const {root:{auth}} = useStore();
  const handleInputChange = (event: any) => {
    const { name, value } = event.target;
    switch (name) {

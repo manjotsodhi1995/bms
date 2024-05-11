@@ -3,7 +3,7 @@ import { useState } from "react";
 function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   return (
-    <div className="lg:px-[10%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left py-[4vh] 2xl:text-[1.5rem] w-screen bg-white z-20 gap-8">
+    <div className="lg:px-[10%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left py-[4vh] 2xl:text-[1.5rem] w-screen z-20 gap-8">
           <Link to="/">
             <div className="text-[3rem] font-bold">Logo.</div>
           </Link>
@@ -12,7 +12,7 @@ function Navbar() {
         <input
           type="text"
           placeholder="Search for event..."
-          className="w-full px-4 py-3 text-gray-700 bg-transparent outline-none rounded-3xl"
+          className="w-full px-4 py-3 text-gray-700 bg-white bg-opacity-35 outline-none rounded-3xl"
         />
       </div>
       <nav className="flex ">

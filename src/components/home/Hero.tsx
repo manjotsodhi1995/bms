@@ -66,7 +66,7 @@ const data = [
           Discover and enjoy
         </div>
       </div>
-      <div className="px-[10%]">
+      <div className="">
         <Swiper
           effect={"coverflow"}
           grabCursor={true}

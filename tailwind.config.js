@@ -7,6 +7,6 @@ module.exports = {
     fontFamily: {
       sans: ["Poppins", "sans-serif"], // Add Poppins here
     },
-  },
+      },
   // ... other Tailwind configurations
 };
