@@ -1,13 +1,18 @@
 import { useState } from "react";
 import img from "../assets/Auth/register.png";
 import { Link } from "react-router-dom";
-function Register() {
+import { observer } from "mobx-react-lite";
+import { useStore } from "../hooks/useStore";
+import { useNavigate } from "react-router-dom";
+const Register=observer(()=> {
   const [firstName, setFirstName] = useState(""); // State for first name input
   const [lastName, setLastName] = useState(""); // State for last name input
   const [gender, setGender] = useState("male"); // State for gender
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { root: { auth } } = useStore();
+  const navigate = useNavigate();
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
     switch (name) {
@@ -35,8 +40,9 @@ function Register() {
   };
 
   const handleSubmit = (event: any) => {
-    event.preventDefault(); // Prevent default form submission behavior
-    // Implement form submission logic here (e.g., send data to server)
+    event.preventDefault(); 
+    auth.register(email, password, firstName, lastName, gender, phone);
+    navigate('/');
   };
 
   return (
@@ -165,6 +171,6 @@ function Register() {
       </div>
     </>
   );
-}
+})
 
 export default Register;

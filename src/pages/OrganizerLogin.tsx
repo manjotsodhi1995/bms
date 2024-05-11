@@ -1,12 +1,15 @@
 import { useState } from "react";
 import img from "../assets/organizerAuth/OrganizerLogin.png";
-function OrganizerLogin() {
+import { observer } from "mobx-react-lite";
+import { useStore } from "../hooks/useStore";
+const OrganizerLogin=observer(()=> {
  const [firstName, setFirstName] = useState(""); // State for first name input
  const [lastName, setLastName] = useState(""); // State for last name input
  const [gender, setGender] = useState("male"); // State for gender
  const [phone, setPhone] = useState("");
  const [email, setEmail] = useState("");
- const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
+const {root:{auth}} = useStore();
  const handleInputChange = (event: any) => {
    const { name, value } = event.target;
    switch (name) {
@@ -33,9 +36,8 @@ function OrganizerLogin() {
    }
  };
 
- const handleSubmit = (event: any) => {
-   event.preventDefault(); // Prevent default form submission behavior
-   // Implement form submission logic here (e.g., send data to server)
+ const handleSubmit = async(event: any) => {
+   event.preventDefault();
  };
 
  return (
@@ -156,6 +158,6 @@ function OrganizerLogin() {
      </div>
    </>
  );
-}
+})
 
 export default OrganizerLogin;

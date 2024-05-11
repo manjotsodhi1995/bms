@@ -1,11 +1,14 @@
 import { useState } from "react";
 import img from "../assets/Auth/login.png";
 import { GoogleLogin } from "@react-oauth/google";
-import { Link } from "react-router-dom";
-function Login() {
-      const responseMessage = (response:any) => {
-        console.log(response);
-      };
+import { Link, useNavigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../hooks/useStore";
+const Login = observer(() => {
+  const responseGoogle = (response:any) => {
+    console.log("Google login response:", response);
+  };
+  const {root:{auth}} = useStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleInputChange = (event: any) => {
@@ -21,10 +24,11 @@ function Login() {
         break;
     }
   };
-
-  const handleSubmit = (event: any) => {
-    event.preventDefault(); // Prevent default form submission behavior
-    // Implement form submission logic here (e.g., send data to server)
+  const navigate = useNavigate();
+  const handleSubmit = async(event: any) => {
+    event.preventDefault(); 
+    await auth.fetchToken(email, password);
+    navigate('/');
   };
 
   return (
@@ -86,7 +90,7 @@ function Login() {
                 <div className="text-center">or</div>
                 <div className="w-full h-[2px] bg-black"></div>
               </div>
-              <GoogleLogin onSuccess={responseMessage} />
+              <GoogleLogin onSuccess={responseGoogle}/>
               <div className="text-[0.9rem]">
                 Dont have an account?
                 <Link to="/register" className="text-[#8C3E87]">
@@ -105,6 +109,6 @@ function Login() {
       </div>
     </>
   );
-}
+});
 
 export default Login;
