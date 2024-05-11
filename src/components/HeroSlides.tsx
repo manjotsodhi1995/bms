@@ -5,7 +5,7 @@ interface HeroSlidesProps{
 }
 function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
   return (
-    <div className="md:rounded-3xl">
+    <div className="lg:rounded-3xl">
       <div className="w-full lg:rounded-3xl relative">
         <img src={imageUrl} alt="" className="w-full lg:rounded-t-3xl" />
         <div className="bg-white p-4 rounded-t-3xl absolute bottom-[-2rem] z-20 w-full flex flex-col gap-1">
