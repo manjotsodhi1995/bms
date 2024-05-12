@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import EventCard from "../EventCard";
 function Trending() {
  const [selectedLocation, setSelectedLocation] = useState("Bengaluru");
- const [locationOptions, setLocationOptions] = useState([]);
+//  const [locationOptions, setLocationOptions] = useState([]);
 useEffect(() => {
   const fetchLocationOptions = async () => {
     try {
@@ -75,11 +75,11 @@ const handleLocationChange = (event:any) => {
           className="ml-4 py-1 px-4 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
         >
           <option value="Bengaluru">Bengaluru</option>
-          {locationOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
+          {/* {locationOptions.map(() => (
+            // <option key={option.value} value={option.value}>
+            //   {option.label}
+            // </option>
+          ))} */}
         </select>
       </div>
 

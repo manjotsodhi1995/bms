@@ -40,9 +40,6 @@ input::placeholder {
 }
 
 @media (max-width: 500px) {
-  .swiper_container {
-    
-  }
   .swiper-slide {
     width: 37vw !important;
   }

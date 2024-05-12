@@ -1,4 +1,3 @@
-import img from "../../assets/home/img.png"
 function Profile() {
   return (
     <div className="w-full lg:px-[10%] px-[8vw] flex flex-col gap-4 back md:py-[10vw] py-[16vw] text-white bg-cover">
