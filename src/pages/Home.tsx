@@ -1,5 +1,8 @@
 import Navbar from "../components/Navbar";
+import Footer from "../components/home/Footer";
 import Hero from "../components/home/Hero";
+import Profile from "../components/home/Profile";
+import Trending from "../components/home/Trending";
 
 function Home() {
   return (
@@ -9,6 +12,9 @@ function Home() {
       <div className="absolute rounded-full w-[60vw] h-[60vw] bg-[#79AEEC66] bg-opacity-20 backdrop-blur-[80px] animate-float -z-10 top-[50vh] left-[-20vw]"></div>
       <Navbar />
       <Hero />
+      <Trending />
+      <Profile />
+      <Footer/>
     </div>
   );
 }
