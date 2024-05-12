@@ -7,9 +7,9 @@ function Trending() {
 useEffect(() => {
   const fetchLocationOptions = async () => {
     try {
-      const response = await fetch("/api/locations");
-        const data = await response.json();
-      setLocationOptions(data);
+    //   const response = await fetch("/api/locations");
+        // const data = await response.json();
+    //   setLocationOptions(data);
     } catch (error) {
       console.error("Error fetching location options:", error);
     }
