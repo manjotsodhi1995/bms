@@ -5,12 +5,20 @@ interface HeroSlidesProps{
 }
 function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
   return (
-    <div className="lg:rounded-3xl">
-      <div className="w-full lg:rounded-3xl relative">
-        <img src={imageUrl} alt="" className="w-full lg:rounded-t-3xl" />
-        <div className="bg-white p-4 lg:rounded-3xl absolute bottom-[-2rem] z-20 w-full flex flex-col gap-1">
-          <div className="flex justify-center font-medium text-[0.7rem] md:text-[0.9rem] lg:text-[1.1rem] 2xl:text-[1.9rem]">{title}</div>
-          <div className="flex justify-center text-center text-[0.4rem] md:text-[0.7rem] 2xl:text-[1.7rem]">{description}</div>
+    <div className="md:rounded-3xl rounded-xl">
+      <div className="w-full rounded-3xl relative">
+        <img
+          src={imageUrl}
+          alt=""
+          className="w-full md:rounded-3xl rounded-xl"
+        />
+        <div className="bg-[rgb(255,255,255,0.2)] backdrop-blur-xl md:p-4 py-1 absolute bottom-[0rem] z-20 w-full flex flex-col gap-1 md:rounded-b-3xl rounded-b-xl border b-1">
+          <div className="flex justify-center font-medium text-[0.9rem] md:text-[0.9rem] lg:text-[1.4rem] 2xl:text-[1.9rem] text-white">
+            {title}
+          </div>
+          <div className="text-white flex justify-center text-center text-[0.6rem] md:text-[0.9rem] 2xl:text-[1.6rem]">
+            {description}
+          </div>
         </div>
       </div>
     </div>
