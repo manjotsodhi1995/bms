@@ -81,3 +81,8 @@ input::placeholder {
 .back{
   background-image: url('./assets/home/img.png');
 }
+.dec{
+  background-image: url('./assets/img.png');
+  background-repeat: no-repeat;
+  background-size: 100vw;
+}

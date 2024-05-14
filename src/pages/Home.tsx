@@ -14,7 +14,7 @@ function Home() {
       <Hero />
       <Trending />
       <Profile />
-      <Footer/>
+      <Footer />
     </div>
   );
 }
