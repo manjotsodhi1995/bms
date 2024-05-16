@@ -152,6 +152,11 @@ const Navbar = observer(() => {
         display: flex;
         flex-direction: column;
       }
+      @media (max-width: 768px){
+  .showMenuNav {
+    width: 100%;
+  }
+}
     `}</style>
     </div>
   );
