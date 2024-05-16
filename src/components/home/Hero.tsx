@@ -1,6 +1,6 @@
 import HeroSlides from "../HeroSlides";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow,Pagination,Navigation,Autoplay } from "swiper/modules";
+import { EffectCoverflow,Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -120,7 +120,6 @@ const data = [
         >
           {data.map((card, index) => (
             <SwiperSlide>
-              {" "}
               <HeroSlides key={index} {...card} />
             </SwiperSlide>
           ))}

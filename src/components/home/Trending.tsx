@@ -1,31 +1,32 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EventCard from "../EventCard";
+import axios from "../../utils/middleware";
+interface Category {
+  categoryId: number;
+  categoryName: string;
+ 
+}
 function Trending() {
- const [selectedLocation, setSelectedLocation] = useState("Bengaluru");
-//  const [locationOptions, setLocationOptions] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState("Bengaluru");
+  const [categories, setCategories] = useState([]);
 useEffect(() => {
   const fetchLocationOptions = async () => {
     try {
-    //   const response = await fetch("/api/locations");
-        // const data = await response.json();
-    //   setLocationOptions(data);
     } catch (error) {
       console.error("Error fetching location options:", error);
     }
   };
-
+const fetchCategories = async () => {
+    const response = await axios.get(
+      "http://3.253.146.194:3001/api/v1/categories/getallcategories"
+    );
+  setCategories(response.data.data);
+};
+  
+  fetchCategories();
   fetchLocationOptions();
-}, []); // Fetch options only once on component mount
-const categories = [
-  "Movies",
-  "Theater",
-  "Comedy",
-  "Music",
-  "Sports",
-  "Food & Drinks",
-  "Art",
-    ];
+}, []);
     const eventData = [
       {
         title: "Rhythms Live",
@@ -90,12 +91,12 @@ const handleLocationChange = (event:any) => {
         </h2>
 
         <div className="flex space-x-4 overflow-x-auto">
-          {categories.map((category) => (
+          {categories.slice(0, 7).map((category:Category) => (
             <button
-              key={category}
-              className="lg:w-[200px] md:w-[20vw] py-1 min-w-[84px] font-medium md:text-[1rem] text-[0.7rem] rounded-full border-2 hover:bg-[#EBEBEBB2] bg-white text-gray-800 shadow-lg transition-colors duration-200"
+              key={category.categoryId}
+              className="lg:w-[200px] md:w-[20vw] py-1 min-w-[84px] font-medium md:text-[1rem] text-[0.7rem] rounded-full border-2 hover:bg-[#EBEBEBB2] bg-[rgba(235, 235, 235, 0.7)]text-gray-800 transition-colors duration-200"
             >
-              {category}
+              {category.categoryName}
             </button>
           ))}
         </div>

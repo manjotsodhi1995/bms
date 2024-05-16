@@ -1,75 +1,141 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-function Navbar() {
+import { observer } from "mobx-react-lite";
+import { useStore } from "../hooks/useStore";
+import pfp from "../assets/test/Ellipse 89.png"
+import bell from "../assets/test/Vector (2).png"
+const Navbar = observer(() => {
+  const {
+    root: { auth },
+  } = useStore();
+  const isAuthenticated = auth.isAuthenticated;
   const [isNavOpen, setIsNavOpen] = useState(false);
+  console.log(isAuthenticated);
   return (
-    <div className="lg:px-[10%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left py-[4vh] 2xl:text-[1.5rem] w-screen z-20 gap-8">
-          <Link to="/">
-            <div className="text-[3rem] font-bold">Logo.</div>
-          </Link>
-      <div className="flex items-center text-center md:w-[60%]">
-        {" "}
+    <div className="lg:px-[5%] xl:px-[7%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left py-[4vh] 2xl:text-[1.5rem] w-screen z-20 gap-8">
+      <nav className="flex ">
+        <div
+          className="HAMBURGER-ICON space-y-2 flex flex-col justify-center cursor-pointer"
+          onClick={() => setIsNavOpen((prev: boolean) => !prev)}
+        >
+          <span className="block h-1 w-8 bg-black"></span>
+          <span className="block h-1 w-8 bg-black"></span>
+          <span className="block h-1 w-8 bg-black"></span>
+        </div>
+
+        <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
+          <div
+            className="CROSS-ICON absolute top-0 right-0 px-8 py-8"
+            onClick={() => setIsNavOpen(false)}
+          >
+            <div
+              className="HAMBURGER-ICON space-y-2 flex flex-col justify-center cursor-pointer"
+              onClick={() => setIsNavOpen((prev: boolean) => !prev)}
+            >
+              <span className="block h-1 w-8 bg-black"></span>
+              <span className="block h-1 w-8 bg-black"></span>
+              <span className="block h-1 w-8 bg-black"></span>
+            </div>
+          </div>
+          <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-left justify-start min-h-[250px] font-medium">
+            <a href="/" className="top-0 left-0 absolute py-8 px-[10%]"></a>
+            <div className="ml-[10%] mt-[35%] text-[20px] text-black ">
+              {!isAuthenticated && (
+                <li className="underline">
+                  <Link to="/login">Sign up/Log in</Link>
+                </li>
+              )}
+              {isAuthenticated && (
+                <div>
+                  <li className="">
+                    <Link to="/">My Tickets</Link>
+                  </li>
+                  <li className="my-6">
+                    <Link to="/">Following</Link>
+                  </li>
+                  <li className="my-6">
+                    <Link to="/">Organizer Dashboard</Link>
+                  </li>
+                </div>
+              )}
+              <li className="my-6 hover:underline">
+                <Link to="/" onClick={() => setIsNavOpen((prev) => !prev)}>
+                  Host an Event
+                </Link>
+              </li>
+              <li className=" my-6 hover:underline">
+                <Link to="/help" onClick={() => setIsNavOpen((prev) => !prev)}>
+                  Help & Support
+                </Link>
+              </li>
+              <li className=" my-6 hover:underline">
+                <Link to="/terms" onClick={() => setIsNavOpen((prev) => !prev)}>
+                  Terms & Conditions
+                </Link>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+      <Link to="/">
+        <div className="text-[3rem] font-bold items-center flex h-full">
+          Logo.
+        </div>
+      </Link>
+      <div className="flex items-center text-center md:w-full">
         <input
           type="text"
           placeholder="Search for event..."
           className="w-full px-4 py-3 text-gray-700 bg-white bg-opacity-35 outline-none rounded-3xl"
         />
       </div>
-      <nav className="flex ">
-        <section className="MOBILE-MENU flex lg:hidden">
-          <div
-            className="HAMBURGER-ICON space-y-2 absolute top-[6vh] right-[8vw]"
-            onClick={() => setIsNavOpen((prev: boolean) => !prev)}
-          >
-            <span className="block h-1 w-8 animate-pulse bg-gray-600"></span>
-            <span className="block h-1 w-8 animate-pulse bg-gray-600"></span>
-            <span className="block h-1 w-8 animate-pulse bg-gray-600"></span>
+      <ul className="DESKTOP-MENU hidden lg:flex font-medium justify-center gap-10 text-center">
+        <div className="flex items-center text-center hover:underline bg-white ">
+          <Link to="/host" className="w-full whitespace-nowrap">
+            Host an Event
+          </Link>
+        </div>
+        {!isAuthenticated && (
+          <div className="flex items-center text-center hover:underline">
+            <Link to="/login" className="w-full whitespace-nowrap">
+              Login
+            </Link>
           </div>
-
-          <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
-            <div
-              className="CROSS-ICON absolute top-0 right-0 px-8 py-8"
-              onClick={() => setIsNavOpen(false)}
+        )}
+        {isAuthenticated && (
+          <div className="flex items-center text-center hover:underline">
+            <Link
+              to="/events"
+              className="w-full flex justify-between items-center gap-2 whitespace-nowrap"
             >
               <svg
-                className="h-8 w-8 text-gray-600"
-                viewBox="0 0 24 24"
+                width="16"
+                height="17"
+                viewBox="0 0 16 17"
                 fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
+                <path
+                  d="M14.25 1.5H12.375V0.875C12.375 0.70924 12.3092 0.550268 12.1919 0.433058C12.0747 0.315848 11.9158 0.25 11.75 0.25C11.5842 0.25 11.4253 0.315848 11.3081 0.433058C11.1908 0.550268 11.125 0.70924 11.125 0.875V1.5H4.875V0.875C4.875 0.70924 4.80915 0.550268 4.69194 0.433058C4.57473 0.315848 4.41576 0.25 4.25 0.25C4.08424 0.25 3.92527 0.315848 3.80806 0.433058C3.69085 0.550268 3.625 0.70924 3.625 0.875V1.5H1.75C1.41848 1.5 1.10054 1.6317 0.866116 1.86612C0.631696 2.10054 0.5 2.41848 0.5 2.75V15.25C0.5 15.5815 0.631696 15.8995 0.866116 16.1339C1.10054 16.3683 1.41848 16.5 1.75 16.5H14.25C14.5815 16.5 14.8995 16.3683 15.1339 16.1339C15.3683 15.8995 15.5 15.5815 15.5 15.25V2.75C15.5 2.41848 15.3683 2.10054 15.1339 1.86612C14.8995 1.6317 14.5815 1.5 14.25 1.5ZM3.625 2.75V3.375C3.625 3.54076 3.69085 3.69973 3.80806 3.81694C3.92527 3.93415 4.08424 4 4.25 4C4.41576 4 4.57473 3.93415 4.69194 3.81694C4.80915 3.69973 4.875 3.54076 4.875 3.375V2.75H11.125V3.375C11.125 3.54076 11.1908 3.69973 11.3081 3.81694C11.4253 3.93415 11.5842 4 11.75 4C11.9158 4 12.0747 3.93415 12.1919 3.81694C12.3092 3.69973 12.375 3.54076 12.375 3.375V2.75H14.25V5.25H1.75V2.75H3.625ZM14.25 15.25H1.75V6.5H14.25V15.25Z"
+                  fill="black"
+                />
               </svg>
-            </div>
-            <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-left justify-start min-h-[250px] font-bold">
-              <a href="/" className="top-0 left-0 absolute py-8 px-[10%]"></a>
-              <div className="ml-[10%] mt-[25%] text-[25px]">
-                <li className="my-4">
-                  <Link to="/" onClick={() => setIsNavOpen((prev) => !prev)}>
-                    Host an Event
-                  </Link>
-                </li>
-                <li className=" my-4">
-                  <Link
-                    to="/services"
-                    onClick={() => setIsNavOpen((prev) => !prev)}
-                  >
-                    Login
-                  </Link>
-                </li>
-              </div>
-            </ul>
+              <div className="flex items-center">My Event</div>
+            </Link>
           </div>
-        </section>
+        )}
+        {isAuthenticated && (
+          <div className="flex justify-center gap-8 items-center min-w-[6vw]">
+            <div className="cursor-pointer">
+              <img src={bell} alt="" />
+            </div>
+            <div>
+              <img src={pfp} alt="" />
+            </div>
+          </div>
+        )}
+      </ul>
 
-        <ul className="DESKTOP-MENU hidden space-x-14 lg:flex font-medium justify-center text-center">
-          <div className="flex items-center text-center">Host an Event</div>
-          <div className="flex items-center text-center">Login</div>
-        </ul>
-      </nav>
       <style>{`
       .hideMenuNav {
         display: none;
@@ -77,7 +143,7 @@ function Navbar() {
       .showMenuNav {
         display: block;
         position: absolute;
-        width: 100%;
+        width: 30%;
         height: 100vh;
         top: 0;
         left: 0;
@@ -89,6 +155,6 @@ function Navbar() {
     `}</style>
     </div>
   );
-}
+});
 
 export default Navbar;

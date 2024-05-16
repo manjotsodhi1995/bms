@@ -3,7 +3,6 @@ axios.interceptors.request.use(
     async (config) => {
     const accessToken = localStorage.getItem("accessToken");
     const refreshToken = localStorage.getItem("refreshToken");
-
     if (!accessToken && refreshToken) {
       try {
         const response = await axios.post("/refresh", {

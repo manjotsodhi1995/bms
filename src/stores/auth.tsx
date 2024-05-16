@@ -2,20 +2,20 @@ import { makeObservable, observable, action, computed } from "mobx";
 import axios from "../utils/middleware";
 import { Root } from "./root";
 import { iRoot } from "./root";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
 export class Auth {
   accessToken: string = "";
   refreshToken: string = "";
+  isAuthenticated: boolean = false;
   root: iRoot;
   constructor(root: Root) {
     makeObservable(this, {
       accessToken: observable,
       refreshToken: observable,
+      isAuthenticated:observable,
       fetchToken: action,
       logout: action,
-        register: action,
-      orgRegister:action,
+      register: action,
+      orgRegister: action,
       getAccessToken: computed,
       getRefreshToken: computed,
     });
@@ -23,64 +23,107 @@ export class Auth {
   }
   async fetchToken(email: string, password: string) {
     const data = {
-      email:email,
+      email: email,
       password: password,
     };
-    const response = await axios.post("", data);
-    this.accessToken = response.data.accessToken;
-      this.refreshToken = response.data.accessToken;
-        cookies.set("accessToken", this.accessToken);
-        cookies.set("refreshToken", this.refreshToken);
+
+    try {
+      const response = await axios.post(
+        "http://3.253.146.194:3001/api/v1/users/login", // Correct URL
+        data,
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log(response.data.data.accessToken)
+      this.accessToken = response.data.data.accessToken; 
+      this.refreshToken = response.data.data.refreshToken;
+      localStorage.setItem("accessToken", this.accessToken);
+      localStorage.setItem("refreshToken", this.refreshToken);
+      this.isAuthenticated = true;
+      console.log("Login successful:", response.data);
+    } catch (error:any) {
+      if (axios.isAxiosError(error) && error.response) {
+        console.error("Error Response:", error.response.data);
+        console.error("Error Status:", error.response.status);
+        console.error("Error Headers:", error.response.headers);
+      } else if (axios.isAxiosError(error) && error.request) {
+        console.error("No Response Received:", error.request);
+      } else {
+        console.error("Error Message:", error.message);
+      }
+    }
   }
+
   async register(
     email: string,
     password: string,
     firstName: string,
     lastName: string,
     gender: string,
-    phone: string,
+    phone: string
   ) {
     const data = {
-email:email,
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-      gender: gender,
+      fname: firstName,
+      lname: lastName,
+      countryCode: "+91",
       phone: phone,
+      fcmToken:"test token",
+      email: email,
+      gender: gender,
+      password: password,
+      isTnCAccepted: true,
+      isPrivacyPolicyAccepted:true,
     };
-    const response = await axios.post("", data);
-    this.accessToken = response.data.accessToken;
-      this.refreshToken = response.data.accessToken;
-    cookies.set("accessToken", this.accessToken);
-    cookies.set("refreshToken", this.refreshToken);
+    try {
+      const response = await axios.post(
+        "http://3.253.146.194:3001/api/v1/users/signup",
+        data,
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log("Signup successful:", response.data);
+      this.fetchToken(email,password)
+    } catch (error: any) {
+      if (axios.isAxiosError(error) && error.response) {
+        console.error("Error Response:", error.response.data);
+        console.error("Error Status:", error.response.status);
+        console.error("Error Headers:", error.response.headers);
+      } else if (axios.isAxiosError(error) && error.request) {
+        console.error("No Response Received:", error.request);
+      } else {
+        console.error("Error Message:", error.message);
+      }
+    }
   }
   async orgRegister(
-      email:string,
+    email: string,
     password: string,
     firstName: string,
     lastName: string,
     gender: string,
-    phone: string,
+    phone: string
   ) {
-      const data = {
-        email:email,
+    const data = {
+      email: email,
       password: password,
       firstName: firstName,
       lastName: lastName,
       gender: gender,
       phone: phone,
     };
-    const response = await axios.post("", data);
-    this.accessToken = response.data.accessToken;
-      this.refreshToken = response.data.accessToken;
-              cookies.set("accessToken", this.accessToken);
-              cookies.set("refreshToken", this.refreshToken);
+    const response = await axios.post(
+      "http://3.253.146.194:3001/api/v1/users/login",
+      data
+    );
+    this.accessToken = response.data.token;
+    localStorage.setItem("accessToken", this.accessToken);
+    localStorage.setItem("refreshToken", this.refreshToken);
+    this.isAuthenticated = true;
   }
   logout() {
     this.accessToken = "";
-      this.refreshToken = "";
-              cookies.remove("accessToken");
-              cookies.remove("refreshToken");
+    this.refreshToken = "";
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    this.isAuthenticated = false;
   }
   get getAccessToken() {
     return this.accessToken;
