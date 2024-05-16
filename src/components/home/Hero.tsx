@@ -77,7 +77,7 @@ const data = [
             clickable: true,
           }}
           navigation={true}
-          modules={[Autoplay, Pagination, Navigation]}
+          modules={[Autoplay]}
           className="my bg-transparent"
         >
           <SwiperSlide>
@@ -115,11 +115,7 @@ const data = [
             modifier: 2.5,
           }}
           pagination={{ el: ".swiper-pagination", clickable: true }}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
-          modules={[EffectCoverflow, Pagination, Navigation,Autoplay]}
+          modules={[EffectCoverflow,Autoplay]}
           className="swiper_container sw1 py-8"
         >
           {data.map((card, index) => (
