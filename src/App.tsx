@@ -16,7 +16,7 @@ const App = observer(() => {
      if (accessToken && refreshToken) {
        auth.accessToken = accessToken;
        auth.refreshToken = refreshToken; 
-       auth.isAuthenticated = true;
+       auth.setAuthenticated();
      }
    }, []);
   return (

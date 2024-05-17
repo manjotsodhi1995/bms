@@ -11,15 +11,19 @@ export class Auth {
     makeObservable(this, {
       accessToken: observable,
       refreshToken: observable,
-      isAuthenticated:observable,
+      isAuthenticated: observable,
       fetchToken: action,
       logout: action,
       register: action,
       orgRegister: action,
+      setAuthenticated: action,
       getAccessToken: computed,
       getRefreshToken: computed,
     });
     this.root = root;
+  }
+  setAuthenticated(){
+    this.isAuthenticated = true;
   }
   async fetchToken(email: string, password: string) {
     const data = {

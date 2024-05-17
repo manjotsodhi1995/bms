@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import img from "../assets/Auth/login.png";
 import { GoogleLogin } from "@react-oauth/google";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 const Login = observer(() => {
+   const navigate = useNavigate();
   const responseGoogle = (response:any) => {
     console.log("Google login response:", response);
   };
-  const {root:{auth}} = useStore();
+   const {
+     root: { auth },
+   } = useStore();
+  useEffect(() => {
+  if(auth.isAuthenticated)
+navigate('/')
+}, [])
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleInputChange = (event: any) => {
@@ -24,7 +32,8 @@ const Login = observer(() => {
         break;
     }
   };
-  const navigate = useNavigate();
+ 
+  
   const handleSubmit = async(event: any) => {
     event.preventDefault(); 
     await auth.fetchToken(email, password);

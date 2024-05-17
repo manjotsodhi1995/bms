@@ -1,12 +1,13 @@
 interface HeroSlidesProps{
     title: String,
     description: string,
-    imageUrl:string,
+  imageUrl: string,
 }
 function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
   return (
     <div className="md:rounded-3xl rounded-xl">
       <div className="w-full rounded-3xl relative">
+        <div className="absolute bg-white w-[20%] rounded-lg text-center ml-4 mt-4 font-medium text-[1rem]">23 DEC</div>
         <img
           src={imageUrl}
           alt=""

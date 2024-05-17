@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import img from "../assets/Auth/register.png";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
@@ -44,7 +44,9 @@ const Register=observer(()=> {
     auth.register(email, password, firstName, lastName, gender, phone);
     navigate('/');
   };
-
+  useEffect(() => {
+    if (auth.isAuthenticated) navigate("/");
+  }, []);
   return (
     <>
       <div className="md:flex">

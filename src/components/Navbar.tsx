@@ -39,7 +39,7 @@ const Navbar = observer(() => {
           </div>
           <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-left justify-start min-h-[250px] font-medium">
             <a href="/" className="top-0 left-0 absolute py-8 px-[10%]"></a>
-            <div className="ml-[10%] mt-[35%] text-[20px] text-black ">
+            <div className="px-[10%] mt-[35%] text-[20px] text-black ">
               {!isAuthenticated && (
                 <li className="underline">
                   <Link to="/login">Sign up/Log in</Link>
@@ -48,29 +48,59 @@ const Navbar = observer(() => {
               {isAuthenticated && (
                 <div>
                   <li className="">
-                    <Link to="/">My Tickets</Link>
+                    <Link
+                      to="/"
+                      className="flex justify-between"
+                      onClick={() => setIsNavOpen((prev) => !prev)}
+                    >
+                      <div>My Tickets</div> <div>→</div>
+                    </Link>
                   </li>
                   <li className="my-6">
-                    <Link to="/">Following</Link>
+                    <Link
+                      to="/"
+                      className="flex justify-between"
+                      onClick={() => setIsNavOpen((prev) => !prev)}
+                    >
+                      <div>Folowing</div> <div>→</div>
+                    </Link>
                   </li>
                   <li className="my-6">
-                    <Link to="/">Organizer Dashboard</Link>
+                    <Link
+                      to="/"
+                      className="flex justify-between"
+                      onClick={() => setIsNavOpen((prev) => !prev)}
+                    >
+                      <div>Organizer Dashboard</div> <div>→</div>
+                    </Link>
                   </li>
                 </div>
               )}
-              <li className="my-6 hover:underline">
-                <Link to="/" onClick={() => setIsNavOpen((prev) => !prev)}>
-                  Host an Event
+              <li className="my-6">
+                <Link
+                  to="/"
+                  className="flex justify-between"
+                  onClick={() => setIsNavOpen((prev) => !prev)}
+                >
+                  <div>Host an Event</div> <div>→</div>
                 </Link>
               </li>
-              <li className=" my-6 hover:underline">
-                <Link to="/help" onClick={() => setIsNavOpen((prev) => !prev)}>
-                  Help & Support
+              <li className=" my-6">
+                <Link
+                  to="/"
+                  className="flex justify-between"
+                  onClick={() => setIsNavOpen((prev) => !prev)}
+                >
+                  <div>Help & Support</div> <div>→</div>
                 </Link>
               </li>
-              <li className=" my-6 hover:underline">
-                <Link to="/terms" onClick={() => setIsNavOpen((prev) => !prev)}>
-                  Terms & Conditions
+              <li className=" my-6">
+                <Link
+                  to="/"
+                  className="flex justify-between"
+                  onClick={() => setIsNavOpen((prev) => !prev)}
+                >
+                  <div>Terms & Conditions</div> <div>→</div>
                 </Link>
               </li>
             </div>
