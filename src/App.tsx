@@ -7,8 +7,10 @@ import Register from "./pages/Register";
 import { useStore } from "./hooks/useStore";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
+import ContactUs from "./pages/ContactUs";
 import "@fontsource/inter";
 const App = observer(() => {
+
   const {root:{auth}} = useStore();
    useEffect(() => {
      const accessToken = localStorage.getItem("accessToken");
@@ -27,6 +29,7 @@ const App = observer(() => {
         <Route path="/organizer/login" element={<OrganizerLogin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/contactus" element={<ContactUs />} />
       </Routes>
     </BrowserRouter>
   );

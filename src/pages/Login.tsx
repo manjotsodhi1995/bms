@@ -1,7 +1,7 @@
 import { useState,useEffect} from "react";
 import img from "../assets/Auth/login.png";
 import { GoogleLogin } from "@react-oauth/google";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 const Login = observer(() => {
