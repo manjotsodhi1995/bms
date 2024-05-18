@@ -1,7 +1,7 @@
 import msg from "../assets/contact/message.png"
 import phn from "../assets/contact/phone (2).png";
 import lc from "../assets/contact/location.png";
-
+import ExpandableBox from "../components/Expandable";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 const ContactUs = observer(() => {
@@ -138,7 +138,31 @@ const ContactUs = observer(() => {
           </div>
         </div>
       </div>
-      <div className="pl-[5vw] pt-[5vh] w-full flex flex-col items-center gap-8"><div className="font-bold text-4xl">Frequently Asked Questions</div><div></div></div>
+      <div className="pl-[5vw] pt-[5vh] w-full flex flex-col items-center gap-8">
+        <div className="font-bold text-4xl">Frequently Asked Questions</div>
+        <div className="w-[90%] flex flex-col gap-3 py-8">
+          <ExpandableBox
+            title="What is the Yapsody Affiliate Program?"
+            content="lorem ipsum cbajcsaacba asicbascb ascjbascas scbascasc scbajcbas cebf csibcd mvub dvvevbje sdev mejvb ejvbsv bv  ssevube v"
+          />
+          <ExpandableBox
+            title="Who Can Join?"
+            content="lorem ipsum cbajcsaacba asicbascb ascjbascas scbascasc scbajcbas cebf csibcd mvub dvvevbje sdev mejvb ejvbsv bv  ssevube v"
+          />
+          <ExpandableBox
+            title="How do i qualify for the affiliate program?"
+            content="lorem ipsum cbajcsaacba asicbascb ascjbascas scbascasc scbajcbas cebf csibcd mvub dvvevbje sdev mejvb ejvbsv bv  ssevube v"
+          />
+          <ExpandableBox
+            title="I am Yapsody Event Presenter can i apply for the Affiliate Program?"
+            content="lorem ipsum cbajcsaacba asicbascb ascjbascas scbascasc scbajcbas cebf csibcd mvub dvvevbje sdev mejvb ejvbsv bv  ssevube v"
+          />
+          <ExpandableBox
+            title="How are affiliate commissions processed?"
+            content="lorem ipsum cbajcsaacba asicbascb ascjbascas scbascasc scbajcbas cebf csibcd mvub dvvevbje sdev mejvb ejvbsv bv  ssevube v"
+          />
+        </div>
+      </div>
     </div>
   );
 });
