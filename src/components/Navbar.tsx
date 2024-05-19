@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
-import pfp from "../assets/test/Ellipse 89.png"
-import bell from "../assets/test/Vector (2).png"
+import pfp from "../assets/test/pfp.png"
+import bell from "../assets/test/bell.png"
 const Navbar = observer(() => {
   const {
     root: { auth },

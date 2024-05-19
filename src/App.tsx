@@ -8,6 +8,7 @@ import { useStore } from "./hooks/useStore";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import ContactUs from "./pages/ContactUs";
+import Help from "./pages/help";
 import "@fontsource/inter";
 const App = observer(() => {
 
@@ -30,6 +31,7 @@ const App = observer(() => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/help" element={ <Help/>}/>
       </Routes>
     </BrowserRouter>
   );
