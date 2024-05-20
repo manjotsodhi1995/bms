@@ -7,7 +7,7 @@ function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
   return (
     <div className="md:rounded-3xl rounded-xl">
       <div className="w-full rounded-3xl relative">
-        <div className="absolute bg-white w-[20%] rounded-lg text-center ml-4 mt-4 font-medium md:text-[1rem] text-[0.7rem]">23 DEC</div>
+        <div className="absolute bg-white rounded-lg text-center ml-4 mt-4 p-1 font-medium text-[0.8rem] md:text-[1rem] lg:text-[1.2rem] 2xl:text-[1.5rem] 2xl:p-2">23 <br/> DEC</div>
         <img
           src={imageUrl}
           alt=""

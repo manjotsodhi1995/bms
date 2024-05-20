@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import ContactUs from "./pages/ContactUs";
 import Help from "./pages/help";
 import "@fontsource/inter";
+import HelpDetail from "./pages/help/helpDetail";
+import Affiliate from "./pages/Affiliate";
 const App = observer(() => {
 
   const {root:{auth}} = useStore();
@@ -31,7 +33,9 @@ const App = observer(() => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/help" element={ <Help/>}/>
+        <Route path="/help" element={<Help />} />
+        <Route path="/helpdetails" element={<HelpDetail />} />
+        <Route path="/affiliate" element={<Affiliate/>} />
       </Routes>
     </BrowserRouter>
   );

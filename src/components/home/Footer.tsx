@@ -1,7 +1,7 @@
 import p1 from "../../assets/home/partner/shopify.png";
-import gp from "../../assets/home/Google Play Store Button.png"
-import as from "../../assets/home/App Store Button.png"
-import fb from "../../assets/socials/ic_baseline-facebook.png"
+import gp from "../../assets/home/gp.png";
+import as from "../../assets/home/as.png";
+import fb from "../../assets/socials/ic_baseline-facebook.png";
 import ig from "../../assets/socials/mdi_instagram.png";
 import tw from "../../assets/socials/mdi_twitter.png";
 function Footer() {
@@ -32,43 +32,55 @@ function Footer() {
           <img src={p1} alt="" />
         </div>
       </div>
-      <div className="w-[80vw] bg-black h-[2px] mb-16"></div>
-      <div className="w-full lg:px-[10%] px-[8vw] flex flex-col gap-4 items-center align-middle pb-20">
-        <div className="flex justify-between md:flex-row flex-col md:text-left text-center w-full">
+      <div className="w-full lg:px-[10%] px-[8vw] flex md:flex-row flex-col gap-4 justify-between align-middle py-20 bg-black text-white">
+        <div className="flex md:gap-24 gap-8 md:flex-row flex-col md:text-left text-center md:w-[50%]">
           <div className="flex flex-col gap-4">
+            <div className="text-[1.3rem] font-medium">Find Events</div>
+            <div className="font-normal flex flex-col gap-2">
+              <div>Events in Delhi</div>
+              <div>Events in Gujrat</div>
+              <div>Events in Mumbai</div>
+              <div>Events in Ranchi</div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className="text-[1.3rem] font-medium">Find Events</div>
+            <div className="font-normal flex flex-col gap-2">
+              <div>Events in Delhi</div>
+              <div>Events in Gujrat</div>
+              <div>Events in Mumbai</div>
+              <div>Events in Ranchi</div>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-between md:flex-row flex-col md:text-left text-center md:w-[50%]">
+          <div className="flex flex-col gap-4 w-full items-center">
             <div className="md:text-[2.5rem] 2xl:text-[3rem] text-[1.8rem] font-semibold">
               JOIN US
             </div>
-            <div className="flex justify-between md:flex-row flex-col gap-8">
-              <div className="text-[0.9rem] md:text-[1rem] 2xl:text-[1.2rem] md:w-[40%]">
+            <div className="flex justify-between md:flex-row flex-col gap-8 w-full">
+              <div className="text-[0.9rem] md:text-[1rem] 2xl:text-[1.2rem] w-full">
                 Join our growing community of event enthusiasts and let Wave be
                 your ultimate ticketing companion. Your next unforgettable
                 experience is just a tap away!
               </div>
+            </div>
 
-              <div className="text-[0.9rem] md:text-[1rem] 2xl:text-[1.2rem] md:w-[50%]">
-                Don’t miss out on the events that make life memorable! Download
-                Wave now and embark on a hassle-free journey to discover and
-                attend the events you love. Whether you’re a seasoned event-goer
-                or a first-time attendance, our intuitive app will ensure that
-                every ticket purchasing experience is a delightful one.
+            <div className="text-[0.9rem] md:text-[1rem] 2xl:text-[1.2rem] w-full">
+              <div className="w-full">
+                Follow us on social media for exclusive updates and special
+                offers!
+              </div>
+              <div className="flex gap-4 mt-8 justify-center md:justify-start">
+                <img src={fb} alt="" />
+                <img src={ig} alt="" />
+                <img src={tw} alt="" />
               </div>
             </div>
-            <div className="flex justify-between md:flex-row flex-col gap-8 items-center">
-              <div className="text-[0.9rem] md:text-[1rem] 2xl:text-[1.2rem] md:w-[40%]">
-                <div>
-                  Follow us on social media for exclusive updates and special
-                  offers!
-                              </div>
-                              <div className="flex gap-4 mt-8 justify-center md:justify-start">
-                                  <img src={fb} alt="" /><img src={ig} alt="" /><img src={tw} alt="" />
-                              </div>
-              </div>
 
-              <div className="md:pt-12 flex gap-4 justify-around text-[0.9rem] md:text-[1rem] 2xl:text-[1.2rem] md:w-[50%] md:flex-row flex-col">
-                <img src={gp} alt="" />
-                <img src={as} alt="" />
-              </div>
+            <div className="md:pt-12 flex gap-4 md:justify-start text-[0.9rem] md:text-[1rem] 2xl:text-[1.2rem] md:flex-row flex-col items-center align-middle justify-center w-full">
+              <img src={gp} alt="" />
+              <img src={as} alt="" />
             </div>
           </div>
         </div>
