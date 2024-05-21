@@ -30,8 +30,6 @@ export class Auth {
       email: email,
       password: password,
     };
-
-    try {
       const response = await axios.post(
         "http://3.253.146.194:3001/api/v1/users/login", // Correct URL
         data,
@@ -44,17 +42,7 @@ export class Auth {
       localStorage.setItem("refreshToken", this.refreshToken);
       this.isAuthenticated = true;
       console.log("Login successful:", response.data);
-    } catch (error:any) {
-      if (axios.isAxiosError(error) && error.response) {
-        console.error("Error Response:", error.response.data);
-        console.error("Error Status:", error.response.status);
-        console.error("Error Headers:", error.response.headers);
-      } else if (axios.isAxiosError(error) && error.request) {
-        console.error("No Response Received:", error.request);
-      } else {
-        console.error("Error Message:", error.message);
-      }
-    }
+    
   }
 
   async register(
@@ -77,7 +65,6 @@ export class Auth {
       isTnCAccepted: true,
       isPrivacyPolicyAccepted:true,
     };
-    try {
       const response = await axios.post(
         "http://3.253.146.194:3001/api/v1/users/signup",
         data,
@@ -85,17 +72,6 @@ export class Auth {
       );
       console.log("Signup successful:", response.data);
       this.fetchToken(email,password)
-    } catch (error: any) {
-      if (axios.isAxiosError(error) && error.response) {
-        console.error("Error Response:", error.response.data);
-        console.error("Error Status:", error.response.status);
-        console.error("Error Headers:", error.response.headers);
-      } else if (axios.isAxiosError(error) && error.request) {
-        console.error("No Response Received:", error.request);
-      } else {
-        console.error("Error Message:", error.message);
-      }
-    }
   }
   async orgRegister(
     email: string,

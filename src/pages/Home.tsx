@@ -12,11 +12,9 @@ function Home() {
       <div className="absolute rounded-full w-[25vw] h-[25vw] bg-gradient-to-br from-[#8C3E87] via-[#A76169] to-[#964B7D] bg-opacity-20 backdrop-blur-[700px] animate-float -z-10 top-[30vh] right-[-10vw]"></div>
       <div className="absolute rounded-full w-[60vw] h-[60vw] bg-[#79AEEC66] bg-opacity-20 backdrop-blur-[80px] animate-float -z-10 top-[50vh] left-[-20vw]"></div>
       <Navbar />
-      <Suspense fallback={<div>Loading...</div>}>
         <Hero />
         <Trending />
         <Profile />
-      </Suspense>
       <Footer />
     </div>
   );

@@ -5,6 +5,7 @@ import { Link,  useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 const Login = observer(() => {
+    const [error, setError] = useState<string | null>(null);
    const navigate = useNavigate();
   const responseGoogle = (response:any) => {
     console.log("Google login response:", response);
@@ -34,11 +35,20 @@ navigate('/')
   };
  
   
-  const handleSubmit = async(event: any) => {
-    event.preventDefault(); 
-    await auth.fetchToken(email, password);
-    navigate('/');
-  };
+const handleSubmit = async (event: any) => {
+  event.preventDefault();
+  try {
+    await auth.fetchToken(email, password); 
+    navigate("/");
+  } catch (error: any) {
+    if (error.response && error.response.status === 400) {
+      setError("Invalid email or password. Please try again.");
+    } else {
+      setError("An error occurred during login. Please try again later.");
+      console.error("Login error:", error);
+    }
+  }
+};
 
   return (
     <>
@@ -93,6 +103,7 @@ navigate('/')
                 >
                   Sign Up
                 </button>
+                <div className="text-red-600">{error}</div>
               </div>
               <div className="flex w-full justify-around gap-2 items-center">
                 <div className="h-[2px] w-full bg-black"></div>
