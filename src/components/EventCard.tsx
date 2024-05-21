@@ -1,3 +1,4 @@
+import {useState} from "react"
 interface HeroSlidesProps {
   title: String;
   description: string;
@@ -5,14 +6,22 @@ interface HeroSlidesProps {
     location: string;
     date: string;
 }
-function EventCard({ title, description, imageUrl,location,date }: HeroSlidesProps) {
+function EventCard({ title, description, imageUrl, location, date }: HeroSlidesProps) {
+  const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="rounded-3xl shadow:lg bg-white pb-2 md:w-[25vw] lg:w-[19vw] border-[#BCBCBC36] border-2">
+    <div
+      className="rounded-3xl shadow:lg transition-transform duration-300 ease-in-out  bg-white pb-2 md:w-[25vw] lg:w-[19vw] border-[#BCBCBC36] border-2"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ transform: isHovered ? "scale(1.1)" : "scale(1)" }}
+    >
       <div className="w-full">
         <img src={imageUrl} alt="" className="w-full lg:rounded-2xl" />
         <div className="p-2 flex w-full md:gap-4 gap-2 justify-center align-middle items-center">
-                  <div className="text-center font-medium 2xl:text-[1.5rem] lg:text-[1.2rem] text-[0.9rem] w-[20%] flex justify-center items-center">{date}</div>
-                  <div className="w-[2px] md:h-[70px] h-[50px] bg-black flex justify-center"></div>
+          <div className="text-center font-medium 2xl:text-[1.5rem] lg:text-[1.2rem] text-[0.9rem] w-[20%] flex justify-center items-center">
+            {date}
+          </div>
+          <div className="w-[2px] md:h-[70px] h-[50px] bg-black flex justify-center"></div>
           <div>
             <div className="flex justify-left font-medium text-[0.5rem] md:text-[0.7rem] 2xl:text-[1.2rem]">
               {location}

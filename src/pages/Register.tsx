@@ -9,6 +9,7 @@ const Register=observer(()=> {
   const [lastName, setLastName] = useState(""); // State for last name input
   const [gender, setGender] = useState("male"); // State for gender
   const [phone, setPhone] = useState("");
+    const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { root: { auth } } = useStore();
@@ -39,10 +40,21 @@ const Register=observer(()=> {
     }
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async(event: any) => {
     event.preventDefault(); 
-    auth.register(email, password, firstName, lastName, gender, phone);
-    navigate('/');
+    try {
+      await auth.register(email, password, firstName, lastName, gender, phone);
+      navigate("/");
+    }
+    catch (error: any) {
+      if (error.response && error.response.status === 400) {
+        setError("Invalid email or password. Please try again.");
+      } else {
+        setError("An error occurred during login. Please try again later.");
+        console.error("Login error:", error);
+      }
+    }
+
   };
   useEffect(() => {
     if (auth.isAuthenticated) navigate("/");
@@ -154,6 +166,7 @@ const Register=observer(()=> {
                   Sign Up
                 </button>
                 <div>
+                  <div className="text-red-500">{error}</div>
                   Already a member ?{" "}
                   <Link to="/login" className="text-[#8C3E87]">
                     Login
