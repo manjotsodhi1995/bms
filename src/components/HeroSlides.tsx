@@ -1,13 +1,21 @@
+import { useState } from "react"
 interface HeroSlidesProps{
     title: String,
     description: string,
   imageUrl: string,
 }
-function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
+function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) { const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="md:rounded-3xl rounded-xl">
+    <div
+      className="md:rounded-3xl rounded-xl transition-transform duration-300 ease-in-out "
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ transform: isHovered ? "scale(1.1)" : "scale(1)" }}
+    >
       <div className="w-full rounded-3xl relative">
-        <div className="absolute bg-white rounded-lg text-center ml-4 mt-4 p-1 font-medium text-[0.8rem] md:text-[1rem] lg:text-[1.2rem] 2xl:text-[1.5rem] 2xl:p-2">23 <br/> DEC</div>
+        <div className="absolute bg-white rounded-lg text-center ml-4 mt-4 p-1 font-medium text-[0.8rem] md:text-[1rem] lg:text-[1.2rem] 2xl:text-[1.5rem] 2xl:p-2">
+          23 <br /> DEC
+        </div>
         <img
           src={imageUrl}
           alt=""

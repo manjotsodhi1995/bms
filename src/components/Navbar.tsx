@@ -13,7 +13,7 @@ const Navbar = observer(() => {
   console.log(isAuthenticated);
   return (
     <div className="lg:px-[5%] xl:px-[7%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left py-[4vh] 2xl:text-[1.5rem] w-screen z-20 gap-8">
-      <nav className="flex ">
+      <nav className="flex gap-8">
         <div
           className="HAMBURGER-ICON space-y-2 flex flex-col justify-center cursor-pointer"
           onClick={() => setIsNavOpen((prev: boolean) => !prev)}
@@ -106,12 +106,13 @@ const Navbar = observer(() => {
             </div>
           </ul>
         </div>
+        <Link to="/">
+          <div className="text-[3rem] font-bold items-center flex h-full">
+            Logo.
+          </div>
+        </Link>
       </nav>
-      <Link to="/">
-        <div className="text-[3rem] font-bold items-center flex h-full">
-          Logo.
-        </div>
-      </Link>
+
       <div className="flex items-center text-center md:w-full">
         <input
           type="text"

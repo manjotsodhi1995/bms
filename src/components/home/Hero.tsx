@@ -83,7 +83,7 @@ const data = [
 ];
   return (
     <div className="flex flex-col items-center xl:mt-16 xl:gap-6 mt-[-2rem] lg:mt-[1rem]">
-      <div className="w-full h-fit">
+      <div className="w-full h-full ">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
@@ -133,7 +133,7 @@ const data = [
             modifier: 2.5,
           }}
           pagination={{ el: ".swiper-pagination", clickable: true }}
-          modules={[EffectCoverflow,Autoplay]}
+          modules={[EffectCoverflow, Autoplay]}
           className="swiper_container sw1 py-8"
         >
           {data.map((card, index) => (
