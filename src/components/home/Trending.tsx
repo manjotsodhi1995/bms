@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EventCard from "../EventCard";
 import axios from "../../utils/middleware";
+import { useStore } from "../../hooks/useStore";
 interface Category {
   categoryId: number;
   categoryName: string;
  
 }
 function Trending() {
-  const [selectedLocation, setSelectedLocation] = useState("Bengaluru");
+     const {
+       root: { event },
+     } = useStore();
+  const [selectedLocation, setSelectedLocation] = useState("");
   const [categories, setCategories] = useState([]);
 useEffect(() => {
   const fetchLocationOptions = async () => {
@@ -23,9 +27,21 @@ const fetchCategories = async () => {
     );
   setCategories(response.data.data);
 };
-  
+  const fetchEvents = async() => {
+    await event.fetchEvents("28.4262481", "77.0581663");
+    console.log(event.liveEvents);
+    console.log(event.trendingCategories);
+    console.log(event.currentCity);
+
+    setCategories(event.trendingCategories);
+    setSelectedLocation(event.currentCity);
+    console.log(event.upcomingEvents);
+
+  }
   fetchCategories();
   fetchLocationOptions();
+  fetchEvents()
+  
 }, []);
     const eventData = [
       {
@@ -75,7 +91,7 @@ const handleLocationChange = (event:any) => {
           onChange={handleLocationChange}
           className="ml-4 py-1 px-4 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
         >
-          <option value="Bengaluru">Bengaluru</option>
+          <option value="Bengaluru">{selectedLocation}</option>
           {/* {locationOptions.map(() => (
             // <option key={option.value} value={option.value}>
             //   {option.label}
@@ -104,7 +120,7 @@ const handleLocationChange = (event:any) => {
       <div className="flex flex-col gap-4">
         <div className="flex justify-between mt-4">
           <div className="font-medium lg:text-[1.4rem] text-[0.9rem]">
-            Events in Yerevan
+            Events in {selectedLocation}
           </div>
           <div className="hover:font-medium hover:underline ">
             <Link to="">See More</Link>
