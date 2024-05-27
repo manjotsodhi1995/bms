@@ -3,6 +3,7 @@ import { useStore } from "./hooks/useStore";
 import { observer } from "mobx-react-lite";
 import { lazy, Suspense } from "react"; 
 import { useEffect } from "react";
+import OrganizationProfile from "./pages/OrganizationDescription";
 import load from "./assets/Ghost.gif"
 import "@fontsource/inter";
 const Home = lazy(() => import("./pages/Home"));
@@ -28,9 +29,19 @@ const App = observer(() => {
    }, []);
   return (
     <BrowserRouter>
-      <Suspense fallback={<div className="min-h-screen w-screen flex justify-center items-center"><img src={load} alt="" className="w-[10vw] h-[10vw]"/></div>}>
+      <Suspense
+        fallback={
+          <div className="min-h-screen w-screen flex justify-center items-center">
+            <img src={load} alt="" className="w-[10vw] h-[10vw]" />
+          </div>
+        }
+      >
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route
+            path="/organization/:orgId"
+            element={<OrganizationProfile />}
+          />
           <Route path="/organizer/register" element={<OrganizerRegister />} />
           <Route path="/organizer/login" element={<OrganizerLogin />} />
           <Route path="/login" element={<Login />} />
