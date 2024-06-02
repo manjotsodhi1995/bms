@@ -9,77 +9,75 @@ interface Category {
  
 }
 function Trending() {
-     const {
-       root: { event },
-     } = useStore();
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [categories, setCategories] = useState([]);
-useEffect(() => {
-  const fetchLocationOptions = async () => {
-    try {
-    } catch (error) {
-      console.error("Error fetching location options:", error);
-    }
+  const {
+    root: { event },
+  } = useStore();
+  const [categories, setCategories] = useState([]); // Array of strings
+  const [selectedLocation, setSelectedLocation] = useState(""); // Single strin
+  useEffect(() => {
+    const fetchLocationOptions = async () => {
+      try {
+      } catch (error) {
+        console.error("Error fetching location options:", error);
+      }
+    };
+    const fetchCategories = async () => {
+      const response = await axios.get(
+        "http://3.253.146.194:3001/api/v1/categories/getallcategories"
+      );
+      setCategories(response.data.data);
+    };
+    const fetchEvents = async () => {
+      await event.fetchEvents("28.4262481", "77.0581663");
+      console.log(event.liveEvents);
+      console.log(event.trendingCategories);
+      console.log(event.currentCity);
+
+      setCategories(event.trendingCategories);
+      setSelectedLocation(event.currentCity);
+      console.log(event.upcomingEvents);
+    };
+    fetchCategories();
+    fetchLocationOptions();
+    fetchEvents();
+  }, []);
+  const eventData = [
+    {
+      title: "Rhythms Live",
+      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+      imageUrl:
+        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
+      date: "DEC 24",
+      location: "Boston",
+    },
+    {
+      title: "Rhythms Live",
+      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+      imageUrl:
+        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
+      date: "DEC 24",
+      location: "Boston",
+    },
+    {
+      title: "Rhythms Live",
+      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+      imageUrl:
+        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
+      date: "DEC 24",
+      location: "Boston",
+    },
+    {
+      title: "Rhythms Live",
+      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+      imageUrl:
+        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
+      date: "DEC 24",
+      location: "Boston",
+    },
+  ];
+  const handleLocationChange = (event: any) => {
+    setSelectedLocation(event.target.value);
   };
-const fetchCategories = async () => {
-    const response = await axios.get(
-      "http://3.253.146.194:3001/api/v1/categories/getallcategories"
-    );
-  setCategories(response.data.data);
-};
-  const fetchEvents = async() => {
-    await event.fetchEvents("28.4262481", "77.0581663");
-    console.log(event.liveEvents);
-    console.log(event.trendingCategories);
-    console.log(event.currentCity);
-
-    setCategories(event.trendingCategories);
-    setSelectedLocation(event.currentCity);
-    console.log(event.upcomingEvents);
-
-  }
-  fetchCategories();
-  fetchLocationOptions();
-  fetchEvents()
-  
-}, []);
-    const eventData = [
-      {
-        title: "Rhythms Live",
-        description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-        imageUrl:
-          "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-        date: "DEC 24",
-        location: "Boston",
-      },
-      {
-        title: "Rhythms Live",
-        description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-        imageUrl:
-          "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-        date: "DEC 24",
-        location: "Boston",
-      },
-      {
-        title: "Rhythms Live",
-        description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-        imageUrl:
-          "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-        date: "DEC 24",
-        location: "Boston",
-      },
-      {
-        title: "Rhythms Live",
-        description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-        imageUrl:
-          "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-        date: "DEC 24",
-        location: "Boston",
-      },
-    ];
-const handleLocationChange = (event:any) => {
-  setSelectedLocation(event.target.value);
-};
   return (
     <div className="lg:px-[8%] px-[8vw] mt-[7vh] flex flex-col gap-8">
       <div className="flex items-center mb-4">
@@ -107,7 +105,7 @@ const handleLocationChange = (event:any) => {
         </h2>
 
         <div className="flex space-x-4 overflow-x-auto">
-          {categories.slice(0, 7).map((category:Category) => (
+          {categories.slice(0, 7).map((category: Category) => (
             <button
               key={category.categoryId}
               className="lg:w-[200px] md:w-[20vw] py-1 min-w-[84px] font-medium md:text-[1rem] text-[0.7rem] rounded-full border-2 hover:bg-[#EBEBEBB2] bg-[rgba(235, 235, 235, 0.7)]text-gray-800 transition-colors duration-200"

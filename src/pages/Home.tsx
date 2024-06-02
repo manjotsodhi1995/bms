@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/home/Footer";
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 const Hero = lazy(() => import("../components/home/Hero"));
 const Profile = lazy(() => import("../components/home/Profile"));
 const Trending = lazy(() => import("../components/home/Trending"));

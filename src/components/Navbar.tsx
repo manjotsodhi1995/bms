@@ -10,7 +10,6 @@ const Navbar = observer(() => {
   } = useStore();
   const isAuthenticated = auth.isAuthenticated;
   const [isNavOpen, setIsNavOpen] = useState(false);
-  console.log(isAuthenticated);
   return (
     <div className="lg:px-[5%] xl:px-[7%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left py-[4vh] 2xl:text-[1.5rem] w-screen z-20 gap-8">
       <nav className="flex gap-8">
@@ -49,7 +48,7 @@ const Navbar = observer(() => {
                 <div>
                   <li className="">
                     <Link
-                      to="/"
+                      to="/mytickets"
                       className="flex justify-between"
                       onClick={() => setIsNavOpen((prev) => !prev)}
                     >
@@ -62,7 +61,7 @@ const Navbar = observer(() => {
                       className="flex justify-between"
                       onClick={() => setIsNavOpen((prev) => !prev)}
                     >
-                      <div>Folowing</div> <div>→</div>
+                      <div>Following</div> <div>→</div>
                     </Link>
                   </li>
                   <li className="my-6">
@@ -87,7 +86,7 @@ const Navbar = observer(() => {
               </li>
               <li className=" my-6">
                 <Link
-                  to="/"
+                  to="/help"
                   className="flex justify-between"
                   onClick={() => setIsNavOpen((prev) => !prev)}
                 >
@@ -158,10 +157,10 @@ const Navbar = observer(() => {
         {isAuthenticated && (
           <div className="flex justify-center gap-8 items-center min-w-[6vw]">
             <div className="cursor-pointer">
-              <img src={bell} alt="" />
+              <NotificationsDropdown />
             </div>
             <div>
-              <img src={pfp} alt="" />
+              <ProfileDropdown />
             </div>
           </div>
         )}
@@ -192,5 +191,102 @@ const Navbar = observer(() => {
     </div>
   );
 });
+// import checkMarkIcon from "./checkmark.svg";
+// import warningIcon from "./warning.svg";
+// import infoIcon from "./info.svg"; // Add these icons
 
+function NotificationsDropdown() {
+  const [activeTab, setActiveTab] = useState("Unread");
+const [isOpen, setIsOpen] = useState(false);
+
+const toggleDropdown = () => setIsOpen(!isOpen);
+  const notifications = [
+    {
+
+      title: "Payment Successful",
+      message: "You have successfully made a payment at Bpraak Concert",
+    },
+    {
+      title: "Order Canceled",
+      message: "You have successfully made a payment at Bpraak Concert", // You'll likely want to change this message
+    },
+    {
+      title: "New Features available",
+      message: "You have successfully made a payment at Bpraak Concert", // You'll likely want to change this message
+    },
+  ];
+
+  return (
+    <div className="relative">
+      <button onClick={toggleDropdown}>
+        <img src={bell} alt="Notifications" />
+      </button>
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg z-20">
+          <div className="py-2">Notifications</div>
+          <div className="border-b p-2 flex">
+            <button
+              onClick={() => setActiveTab("Unread")}
+              className={`px-4 py-2 rounded-t-md focus:outline-none ${
+                activeTab === "Unread" ? "bg-gray-200" : ""
+              }`}
+            >
+              Unread
+            </button>
+            <button
+              onClick={() => setActiveTab("All")}
+              className={`px-4 py-2 rounded-t-md focus:outline-none ${
+                activeTab === "All" ? "bg-gray-200" : ""
+              }`}
+            >
+              All
+            </button>
+          </div>
+
+          <div className="p-2">
+            {notifications.map((notification, index) => (
+              <div key={index} className="flex items-start space-x-2 mb-3">
+                <div className="text-left">
+                  <h6 className="font-semibold">{notification.title}</h6>
+                  <p className="text-sm text-gray-600">
+                    {notification.message}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+function ProfileDropdown() {
+  const [isOpen, setIsOpen] = useState(false);
+const {
+  root: { auth },
+} = useStore();
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  return (
+    <div className="relative">
+      <button onClick={toggleDropdown}>
+        <img src={pfp} alt="Profile" className="rounded-full w-8 h-8" />
+      </button>
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20">
+          {/* Your profile/settings content here */}
+          <a href="/profile" className="block px-4 py-2 hover:bg-gray-100">
+            Payment Method
+          </a>
+          <a href="/settings" className="block px-4 py-2 hover:bg-gray-100">
+            Account Settings
+          </a>
+          <button className="block px-4 py-2 w-full text-center hover:bg-gray-100" onClick={()=>{auth.logout()}}>
+            Logout
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 export default Navbar;
