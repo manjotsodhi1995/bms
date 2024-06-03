@@ -7,9 +7,25 @@ import three from "../assets/three.png";
 import axios from "../utils/middleware";
 import { Link } from "react-router-dom";
 import EventCard from "../components/EventCard";
+interface venueAddressI{
+  name: string;
+  city: string;
+  country: string;
+  zipcode: string;
+}
+interface Event {
+  id: number;
+  title: string;
+  genres: string[];
+  venueAddress: venueAddressI;
+  eventStart: string;
+  duration: string;
+  ageRestriction: string;
+
+}
 function EventPage() {
   const { eventId } = useParams();
-  const [eventsData, setEventData] = useState(null);
+  const [eventsData, setEventData] = useState<Event|null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
@@ -73,10 +89,10 @@ function EventPage() {
         <Navbar />
         <div className="h-[70vh]  flex text-white items-end lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] justify-between bg-black">
           <div className="w-[20%] font-bold text-[2.5rem] flex flex-col gap-4">
-            <div className="p-2 rounded-full border-2 border-white text-[1rem] w-[9rem] text-center">
-              {eventsData.genres}
+            <div className="p-2 rounded-full border-2 border-white text-[1rem] w-[9rem] text-center">  {eventsData?.genres}
+            
             </div>
-            <div className="leading-tight"> {eventsData.title}</div>
+            <div className="leading-tight"> {eventsData?.title}</div>
           </div>
           <div className="flex gap-4">
             <div className="bg-white rounded-full  w-[50px] h-[50px] items-center flex justify-center bg-opacity-40  cursor-pointer hover:bg-pink-700">
@@ -109,13 +125,13 @@ function EventPage() {
               </div>
               <div>
                 <div className="font-medium text-[1.3rem]">
-                  {eventsData.venueAddress.name}
+                  {eventsData?.venueAddress.name}
                 </div>
                 <div className="text-gray-700">
                   {" "}
-                  {eventsData.venueAddress.city},
-                  {eventsData.venueAddress.country},
-                  {eventsData.venueAddress.zipcode}
+                  {eventsData?.venueAddress.city},
+                  {eventsData?.venueAddress.country},
+                  {eventsData?.venueAddress.zipcode}
                 </div>
               </div>
             </div>
@@ -134,7 +150,7 @@ function EventPage() {
                   />
                 </svg>
               </div>
-              <div className="text-gray-700">{eventsData.eventStart}</div>
+              <div className="text-gray-700">{eventsData?.eventStart}</div>
             </div>
             <div className="flex items-center gap-4">
               <div>
@@ -156,19 +172,19 @@ function EventPage() {
             <div className="mt-4 flex justify-between gap-10">
               <div className="flex flex-col text-center items-center">
                 <div className="font-medium text-[1.2rem]">
-                  {eventsData.duration} {"h"}
+                  {eventsData?.duration} {"h"}
                 </div>
                 <div className="text-gray-700 text-[0.9rem]">Duration</div>
               </div>
               <div className="flex flex-col text-center items-center">
                 <div className="font-medium text-[1.2rem]">
-                  {eventsData.genres}
+                  {eventsData?.genres}
                 </div>
                 <div className="text-gray-700 text-[0.9rem]">Genre</div>
               </div>
               <div className="flex flex-col text-center items-center">
                 <div className="font-medium text-[1.2rem]">
-                  {eventsData.ageRestriction}
+                  {eventsData?.ageRestriction}
                 </div>
                 <div className="text-gray-700 text-[0.9rem]">
                   Age Restriction
