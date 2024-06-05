@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EventCard from "../EventCard";
-import axios from "../../utils/middleware";
+// import axios from "../../utils/middleware";
 import { useStore } from "../../hooks/useStore";
 interface Category {
   categoryId: number;
   categoryName: string;
- 
+
 }
 function Trending() {
   const {
     root: { event },
   } = useStore();
-  const [categories, setCategories] = useState([]); // Array of strings
+  const [categories] = useState([]); // Array of strings
   const [selectedLocation, setSelectedLocation] = useState(""); // Single strin
   useEffect(() => {
     const fetchLocationOptions = async () => {
@@ -21,23 +21,25 @@ function Trending() {
         console.error("Error fetching location options:", error);
       }
     };
-    const fetchCategories = async () => {
-      const response = await axios.get(
-        "http://3.253.146.194:3001/api/v1/categories/getallcategories"
-      );
-      setCategories(response.data.data);
-    };
+    // const fetchCategories = async () => {
+    //   const response = await axios.get(
+    //     "http://3.253.146.194:3001/api/v1/categories/getallcategories"
+    //   );
+    //   setCategories(response.data.data);
+    // };
     const fetchEvents = async () => {
       await event.fetchEvents("28.4262481", "77.0581663");
       console.log(event.liveEvents);
       console.log(event.trendingCategories);
       console.log(event.currentCity);
 
-      setCategories(event.trendingCategories);
-      setSelectedLocation(event.currentCity);
+      // setCategories((prevCategories) => {
+      //   return [...prevCategories, ...event.trendingCategories];
+      // });
+      // setSelectedLocation(event.currentCity);
       console.log(event.upcomingEvents);
     };
-    fetchCategories();
+    // fetchCategories();
     fetchLocationOptions();
     fetchEvents();
   }, []);
