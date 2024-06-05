@@ -107,7 +107,7 @@ const Navbar = observer(() => {
         </div>
         <Link to="/">
           <div className="text-[3rem] font-bold items-center flex h-full">
-            Logo.
+            Kafsco
           </div>
         </Link>
       </nav>
@@ -197,9 +197,9 @@ const Navbar = observer(() => {
 
 function NotificationsDropdown() {
   const [activeTab, setActiveTab] = useState("Unread");
-const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => setIsOpen(!isOpen);
   const notifications = [
     {
 
@@ -227,17 +227,15 @@ const toggleDropdown = () => setIsOpen(!isOpen);
           <div className="border-b p-2 flex">
             <button
               onClick={() => setActiveTab("Unread")}
-              className={`px-4 py-2 rounded-t-md focus:outline-none ${
-                activeTab === "Unread" ? "bg-gray-200" : ""
-              }`}
+              className={`px-4 py-2 rounded-t-md focus:outline-none ${activeTab === "Unread" ? "bg-gray-200" : ""
+                }`}
             >
               Unread
             </button>
             <button
               onClick={() => setActiveTab("All")}
-              className={`px-4 py-2 rounded-t-md focus:outline-none ${
-                activeTab === "All" ? "bg-gray-200" : ""
-              }`}
+              className={`px-4 py-2 rounded-t-md focus:outline-none ${activeTab === "All" ? "bg-gray-200" : ""
+                }`}
             >
               All
             </button>
@@ -262,9 +260,9 @@ const toggleDropdown = () => setIsOpen(!isOpen);
 }
 function ProfileDropdown() {
   const [isOpen, setIsOpen] = useState(false);
-const {
-  root: { auth },
-} = useStore();
+  const {
+    root: { auth },
+  } = useStore();
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   return (
@@ -281,7 +279,7 @@ const {
           <a href="/settings" className="block px-4 py-2 hover:bg-gray-100">
             Account Settings
           </a>
-          <button className="block px-4 py-2 w-full text-center hover:bg-gray-100" onClick={()=>{auth.logout()}}>
+          <button className="block px-4 py-2 w-full text-center hover:bg-gray-100" onClick={() => { auth.logout() }}>
             Logout
           </button>
         </div>
