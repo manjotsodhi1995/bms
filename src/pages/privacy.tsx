@@ -8,92 +8,92 @@ function Privacy() {
       </div>
       <div className="lg:px-[5%] xl:px-[7%] px-[8vw] md:flex pt-[15vh] justify-between w-full h-[100%] pb-[10vh]">
         <div className="flex flex-col gap-8 md:w-[32%] mt-28 font-medium">
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infocollect">
-                {" "}
-                WHAT INFORMATION DO WE COLLECT?
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infouse">
-                {" "}
-                HOW DO WE PROCESS YOUR INFORMATION?
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#legalbases">
-                {" "}
-                WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL
-                INFORMATION?
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#whoshare">
-                {" "}
-                WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#cookies">
-                {" "}
-                DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#sociallogins">
-                {" "}
-                HOW DO WE HANDLE YOUR SOCIAL LOGINS?{" "}
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#inforetain">
-                {" "}
-                HOW LONG DO WE KEEP YOUR INFORMATION?
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infosafe">
-                {" "}
-                HOW DO WE KEEP YOUR INFORMATION SAFE?
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infominors">
-                {" "}
-                DO WE COLLECT INFORMATION FROM MINORS?
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#privacyrights">
-                {" "}
-                WHAT ARE YOUR PRIVACY RIGHTS?
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#DNT">
-                {" "}
-                CONTROLS FOR DO-NOT-TRACK FEATURES
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#policyupdates">
-                {" "}
-                DO WE MAKE UPDATES TO THIS NOTICE?
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#contact">
-                {" "}
-                HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
-              </a>
-            </li>
-            <li>
-              <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#request">
-                {" "}
-                HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM
-                YOU?
-              </a>
-            </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infocollect">
+              {" "}
+              WHAT INFORMATION DO WE COLLECT?
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infouse">
+              {" "}
+              HOW DO WE PROCESS YOUR INFORMATION?
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#legalbases">
+              {" "}
+              WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL
+              INFORMATION?
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#whoshare">
+              {" "}
+              WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#cookies">
+              {" "}
+              DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#sociallogins">
+              {" "}
+              HOW DO WE HANDLE YOUR SOCIAL LOGINS?{" "}
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#inforetain">
+              {" "}
+              HOW LONG DO WE KEEP YOUR INFORMATION?
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infosafe">
+              {" "}
+              HOW DO WE KEEP YOUR INFORMATION SAFE?
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infominors">
+              {" "}
+              DO WE COLLECT INFORMATION FROM MINORS?
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#privacyrights">
+              {" "}
+              WHAT ARE YOUR PRIVACY RIGHTS?
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#DNT">
+              {" "}
+              CONTROLS FOR DO-NOT-TRACK FEATURES
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#policyupdates">
+              {" "}
+              DO WE MAKE UPDATES TO THIS NOTICE?
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#contact">
+              {" "}
+              HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
+            </a>
+          </li>
+          <li>
+            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#request">
+              {" "}
+              HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM
+              YOU?
+            </a>
+          </li>
         </div>
         <div className="flex flex-col w-full pt-8 gap-10">
           <div className="capitalize font-semibold text-[2rem]">PRIVACY</div>
@@ -436,7 +436,7 @@ function Privacy() {
                   may not be able to use certain aspects of the Services.
                 </li>
               </ul>
-              <ol start="2">
+              <ol start={2}>
                 <li>
                   <strong> HOW DO WE PROCESS YOUR INFORMATION?</strong>
                 </li>
@@ -556,7 +556,7 @@ function Privacy() {
                   prevent harm.
                 </li>
               </ul>
-              <ol start="3">
+              <ol start={3}>
                 <li>
                   <strong>
                     {" "}
@@ -654,7 +654,7 @@ function Privacy() {
                   person.
                 </li>
               </ul>
-              <ol start="4">
+              <ol start={4}>
                 <li>
                   <strong>
                     {" "}
@@ -716,7 +716,7 @@ function Privacy() {
                   provided at the end of this document.
                 </li>
               </ul>
-              <ol start="5">
+              <ol start={5}>
                 <li>
                   <strong>
                     {" "}
@@ -787,7 +787,7 @@ function Privacy() {
                 </a>
                 .
               </p>
-              <ol start="6">
+              <ol start={6}>
                 <li>
                   <strong> HOW DO WE HANDLE YOUR SOCIAL LOGINS?</strong>
                 </li>
@@ -824,7 +824,7 @@ function Privacy() {
                 how you can set your privacy preferences on their sites and
                 apps.
               </p>
-              <ol start="7">
+              <ol start={7}>
                 <li>
                   <strong> HOW LONG DO WE KEEP YOUR INFORMATION?</strong>
                 </li>
@@ -857,7 +857,7 @@ function Privacy() {
                 isolate it from any further processing until deletion is
                 possible.
               </p>
-              <ol start="8">
+              <ol start={8}>
                 <li>
                   <strong> HOW DO WE KEEP YOUR INFORMATION SAFE?</strong>
                 </li>
@@ -886,7 +886,7 @@ function Privacy() {
                 and from our Services is at your own risk. You should only
                 access the Services within a secure environment.
               </p>
-              <ol start="9">
+              <ol start={9}>
                 <li>
                   <strong> DO WE COLLECT INFORMATION FROM MINORS?</strong>
                 </li>
@@ -914,7 +914,7 @@ function Privacy() {
                 have collected from children under age 18, please contact us at
                 hello@kafsco.com.
               </p>
-              <ol start="10">
+              <ol start={10}>
                 <li>
                   <strong> WHAT ARE YOUR PRIVACY RIGHTS?</strong>
                 </li>
@@ -1057,7 +1057,7 @@ function Privacy() {
                 adopted that we must follow in the future, we will inform you
                 about that practice in a revised version of this privacy notice.
               </p>
-              <ol start="12">
+              <ol start={12}>
                 <li>
                   <strong> DO WE MAKE UPDATES TO THIS NOTICE?</strong>
                 </li>
@@ -1081,7 +1081,7 @@ function Privacy() {
                 frequently to be informed of how we are protecting your
                 information.
               </p>
-              <ol start="13">
+              <ol start={13}>
                 <li>
                   <strong> HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</strong>
                 </li>
@@ -1094,7 +1094,7 @@ function Privacy() {
               <p>__________</p>
               <p>Dublin</p>
               <p>Ireland</p>
-              <ol start="14">
+              <ol start={14}>
                 <li>
                   <strong>
                     {" "}
