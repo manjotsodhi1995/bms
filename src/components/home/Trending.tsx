@@ -5,24 +5,13 @@ import EventCard from "../EventCard";
 import { useStore } from "../../hooks/useStore";
 interface Category {
   categoryName: string;
-<<<<<<< Updated upstream
-
-=======
-  categoryId: string;
- 
->>>>>>> Stashed changes
 }
 function Trending() {
   const {
     root: { event },
   } = useStore();
-<<<<<<< Updated upstream
   const [categories] = useState([]); // Array of strings
-  const [selectedLocation, setSelectedLocation] = useState(""); // Single strin
-=======
-  const [categories, setCategories] = useState<String[]|null>([]); // Array of strings
-  const [selectedLocation, setSelectedLocation] = useState<String|null>(""); // Single strin
->>>>>>> Stashed changes
+  const [selectedLocation, setSelectedLocation] = useState(""); 
   useEffect(() => {
     const fetchLocationOptions = async () => {
       try {
@@ -118,7 +107,7 @@ function Trending() {
         <div className="flex space-x-4 overflow-x-auto">
           {categories.slice(0, 7).map((category: Category) => (
             <button
-              key={category.categoryId}
+             
               className="lg:w-[200px] md:w-[20vw] py-1 min-w-[84px] font-medium md:text-[1rem] text-[0.7rem] rounded-full border-2 hover:bg-[#EBEBEBB2] bg-[rgba(235, 235, 235, 0.7)]text-gray-800 transition-colors duration-200"
             >
               {category.categoryName}
