@@ -117,12 +117,12 @@ const handleSubmit = async (event: any) => {
                   Create an account
                 </Link>
               </div>
-              <div className="flex flex-col gap-4">
+              {/* <div className="flex flex-col gap-4">
                 <div className="h-[2px] bg-black"></div>
                 <button className="bg-black w-full text-white font-semibold py-2 px-4 rounded">
                   <Link to="/organizer/login">I'm an organizer</Link>
                 </button>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>

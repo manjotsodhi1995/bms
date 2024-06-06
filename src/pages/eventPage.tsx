@@ -87,22 +87,25 @@ function EventPage() {
     !isLoading && (
       <div className="w-full">
         <Navbar />
-        <div className="h-[70vh]  flex text-white items-end lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] justify-between bg-black">
-          <div className="w-[20%] font-bold text-[2.5rem] flex flex-col gap-4">
-            <div className="p-2 rounded-full border-2 border-white text-[1rem] w-[9rem] text-center">  {eventsData?.genres}
-            
+        <div className="    event">
+          <div className="flex text-white items-end lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] h-[60vh] bg-black bg-opacity-30 justify-between">
+            <div className="w-[20%] font-bold text-[2.5rem] flex flex-col gap-4">
+              <div className="p-2 rounded-full border-2 border-white text-[1rem] w-[9rem] text-center">
+                {" "}
+                {eventsData?.genres}
+              </div>
+              <div className="leading-tight"> {eventsData?.title}</div>
             </div>
-            <div className="leading-tight"> {eventsData?.title}</div>
-          </div>
-          <div className="flex gap-4">
-            <div className="bg-white rounded-full  w-[50px] h-[50px] items-center flex justify-center bg-opacity-40  cursor-pointer hover:bg-pink-700">
-              <img src={Like} alt="" />
-            </div>
-            <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-blue-300">
-              <img src={Share} alt="" />
-            </div>
-            <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-black">
-              <img src={three} alt="" />
+            <div className="flex gap-4">
+              <div className="bg-white rounded-full  w-[50px] h-[50px] items-center flex justify-center bg-opacity-40  cursor-pointer hover:bg-pink-700">
+                <img src={Like} alt="" />
+              </div>
+              <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-blue-300">
+                <img src={Share} alt="" />
+              </div>
+              <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-black">
+                <img src={three} alt="" />
+              </div>
             </div>
           </div>
         </div>

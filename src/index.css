@@ -80,10 +80,10 @@ input::placeholder,textarea::placeholder {
   background: var(--primary);
 }
 .back{
-  background-image: url('./assets/home/img.png');
+  background-image: url('https://s3-alpha-sig.figma.com/img/008c/6e8f/df18bd93dae25349c5b127db94e118c9?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pmwHG16hp8BBeh5ybqxZoYZCF9b4fDzeDfekGLpTyqNVTLqBz9tJ9NLr7jFFnFzSj1tmHANroLOrgva0dbcS~5GQtX~RJtLNX8Kdqo5CBSLQk5p7U6WH6gB3vvA4nBJVX1hj1I9HE-O~ia66RWDbiSVzHIYxBrTHpukBfwITXM~GZhqLAnUOvowta2EvmFg4vSQnLwYrk2X8IWO0gMPZ7v3cW07N~0iwlgryhaiLcFVSfnIqKNi8ZVDx14nWo0Fdj8JLwtsBvWiib5C~93xglF2PIKlxy9HvBMCdkt1x6dBXB-U2HyVOZqna51oMvZTY0-s6Ei9vxfIfUrlhMoyqBw__');
 }
 .dec{
-  background-image: url('./assets/img.png');
+  background-image: url('https://s3-alpha-sig.figma.com/img/008c/6e8f/df18bd93dae25349c5b127db94e118c9?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pmwHG16hp8BBeh5ybqxZoYZCF9b4fDzeDfekGLpTyqNVTLqBz9tJ9NLr7jFFnFzSj1tmHANroLOrgva0dbcS~5GQtX~RJtLNX8Kdqo5CBSLQk5p7U6WH6gB3vvA4nBJVX1hj1I9HE-O~ia66RWDbiSVzHIYxBrTHpukBfwITXM~GZhqLAnUOvowta2EvmFg4vSQnLwYrk2X8IWO0gMPZ7v3cW07N~0iwlgryhaiLcFVSfnIqKNi8ZVDx14nWo0Fdj8JLwtsBvWiib5C~93xglF2PIKlxy9HvBMCdkt1x6dBXB-U2HyVOZqna51oMvZTY0-s6Ei9vxfIfUrlhMoyqBw__');
   background-repeat: no-repeat;
   background-size: 100vw;
 }
@@ -113,4 +113,15 @@ input::placeholder,textarea::placeholder {
 .swiper-wrapper
 {
   margin: 30px 0px;
+}
+.home{
+background: rgba(255, 255, 255, 0.15);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.1px);
+-webkit-backdrop-filter: blur(14.1px);
+border: 1px solid rgba(255, 255, 255, 0.4);}
+
+.event{
+  background-image: url('https://s3-alpha-sig.figma.com/img/1cd7/f4dc/9ab46b29cc668c7f4e50b65efdb52bd2?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=o0crmQPt9uL0ZTxKjXhzyemymy5kxqqNva1yOimUDBO2gfDMEnBGmnk81r~fTApreOI3MqUPoPAgCe3FIT1LopcJOG8EF3VDoB2rtWE8Cq-F4y4Hd0qZEKJZVOMCsGpwNuBtbTBA9V4EIKdj32ruPM1fJW1hypUMy9cx9FMjbbb2l9Ebts6OQEOVDkXU~-pc9Ky0Iba-YJIVGqvu~rCmIRrd9JqTZ~VYIHi2NSgWy2MhCoYUHBPAlAgtn9cbJ3KksGUe7Is-rag9vV3TGBG0Pktd40zUSjs~FGGc3OW9vR33gp0J4-T6VVGytBCJBOvTMyjEE~yqU5RT9tYbh96thw__');  background-repeat: no-repeat;
+  background-size: 100vw;
 }

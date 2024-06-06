@@ -8,6 +8,8 @@ import load from "./assets/Ghost.gif"
 import "@fontsource/inter";
 import EventPage from "./pages/eventPage";
 import MyTickets from "./pages/MyTickets";
+import TermsAndConditions from "./pages/termsAndConditions";
+import Privacy from "./pages/privacy";
 const Home = lazy(() => import("./pages/Home"));
 const OrganizerRegister = lazy(() => import("./pages/OrganizerRegister"));
 const OrganizerLogin = lazy(() => import("./pages/OrganizerLogin"));
@@ -38,23 +40,25 @@ const App = observer(() => {
           </div>
         }
       >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/organization/:orgId"
-              element={<OrganizationProfile />}
-            />
-            <Route path="/event/:eventId" element={<EventPage />} />
-            <Route path="/mytickets" element={<MyTickets />} />
-            <Route path="/organizer/register" element={<OrganizerRegister />} />
-            <Route path="/organizer/login" element={<OrganizerLogin />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/contactus" element={<ContactUs />} />
-            <Route path="/help" element={<Help />} />
-            <Route path="/helpdetails" element={<HelpDetail />} />
-            <Route path="/affiliate" element={<Affiliate />} />
-          </Routes>{" "}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/organization/:orgId"
+            element={<OrganizationProfile />}
+          />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/event/:eventId" element={<EventPage />} />
+          <Route path="/mytickets" element={<MyTickets />} />
+          <Route path="/organizer/register" element={<OrganizerRegister />} />
+          <Route path="/organizer/login" element={<OrganizerLogin />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/helpdetails" element={<HelpDetail />} />
+          <Route path="/affiliate" element={<Affiliate />} />
+          <Route path="/privacy" element={<Privacy />} />
+        </Routes>{" "}
       </Suspense>
     </BrowserRouter>
   );

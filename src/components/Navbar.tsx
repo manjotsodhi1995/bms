@@ -95,12 +95,21 @@ const Navbar = observer(() => {
               </li>
               <li className=" my-6">
                 <Link
-                  to="/"
+                  to="/terms"
                   className="flex justify-between"
                   onClick={() => setIsNavOpen((prev) => !prev)}
                 >
                   <div>Terms & Conditions</div> <div>→</div>
                 </Link>
+                <li className="my-6">
+                  <Link
+                    to="/privacy"
+                    className="flex justify-between"
+                    onClick={() => setIsNavOpen((prev) => !prev)}
+                  >
+                    <div>Privacy Policy</div> <div>→</div>
+                  </Link>
+                </li>
               </li>
             </div>
           </ul>
@@ -120,11 +129,11 @@ const Navbar = observer(() => {
         />
       </div>
       <ul className="DESKTOP-MENU hidden lg:flex font-medium justify-center gap-10 text-center">
-        <div className="flex items-center text-center hover:underline bg-white ">
+        {/* <div className="flex items-center text-center hover:underline bg-white ">
           <Link to="/host" className="w-full whitespace-nowrap">
             Host an Event
           </Link>
-        </div>
+        </div> */}
         {!isAuthenticated && (
           <div className="flex items-center text-center hover:underline">
             <Link to="/login" className="w-full whitespace-nowrap">

@@ -19,7 +19,7 @@ function EventCard({ title, description, imageUrl, location, date }: HeroSlidesP
       <Link to="/event/1">
         {" "}
         <div className="w-full">
-          <img src={imageUrl} alt="" className="w-full lg:rounded-2xl" />
+          <img src={imageUrl} alt="" className="w-full lg:rounded-2xl h-[12rem] 2xl:h-[15rem]" />
           <div className="p-2 flex w-full md:gap-4 gap-2 justify-center align-middle items-center">
             <div className="text-center font-medium 2xl:text-[1.5rem] lg:text-[1.2rem] text-[0.9rem] w-[20%] flex justify-center items-center">
               {date}
@@ -29,10 +29,10 @@ function EventCard({ title, description, imageUrl, location, date }: HeroSlidesP
               <div className="flex justify-left font-medium text-[0.5rem] md:text-[0.7rem] 2xl:text-[1.2rem]">
                 {location}
               </div>
-              <div className="flex text-[#A48A00] justify-left font-medium text-[0.7rem] md:text-[0.9rem] lg:text-[1.1rem] 2xl:text-[1.9rem]">
+              <div className="flex text-[#A48A00] justify-left font-medium text-[0.7rem] md:text-[0.9rem] lg:text-[1.1rem] 2xl:text-[1.6rem]">
                 {title}
               </div>
-              <div className="flex justify-left text-[0.4rem] md:text-[0.6rem] 2xl:text-[1.1rem]">
+              <div className="flex justify-left text-[0.4rem] md:text-[0.6rem] 2xl:text-[0.9rem]">
                 {description}
               </div>
             </div>
