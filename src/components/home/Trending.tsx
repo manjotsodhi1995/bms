@@ -4,16 +4,25 @@ import EventCard from "../EventCard";
 // import axios from "../../utils/middleware";
 import { useStore } from "../../hooks/useStore";
 interface Category {
-  categoryId: number;
   categoryName: string;
+<<<<<<< Updated upstream
 
+=======
+  categoryId: string;
+ 
+>>>>>>> Stashed changes
 }
 function Trending() {
   const {
     root: { event },
   } = useStore();
+<<<<<<< Updated upstream
   const [categories] = useState([]); // Array of strings
   const [selectedLocation, setSelectedLocation] = useState(""); // Single strin
+=======
+  const [categories, setCategories] = useState<String[]|null>([]); // Array of strings
+  const [selectedLocation, setSelectedLocation] = useState<String|null>(""); // Single strin
+>>>>>>> Stashed changes
   useEffect(() => {
     const fetchLocationOptions = async () => {
       try {
