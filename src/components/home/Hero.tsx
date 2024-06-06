@@ -5,7 +5,6 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import img from "../../assets/home/swiper/Group 165.png"
 function Hero() {
   const data = [
     {
