@@ -19,7 +19,7 @@ function EventCard({ title, description, imageUrl, location, date }: HeroSlidesP
       <Link to="/event/1">
         {" "}
         <div className="w-full">
-          <img src={imageUrl} alt="" className="w-[15rem] h-[7rem] lg:rounded-2xl md:h-[12rem] 2xl:h-[15rem]" />
+          <img src={imageUrl} alt="" className="w-[45rem] h-[7rem] lg:rounded-2xl md:h-[12rem] 2xl:h-[15rem]" />
           <div className="p-2 flex w-full md:gap-4 gap-2 justify-center align-middle items-center">
             <div className="text-center font-medium 2xl:text-[1.5rem] lg:text-[1.2rem] text-[0.9rem] w-[20%] flex justify-center items-center">
               {date}
