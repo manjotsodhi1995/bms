@@ -6,8 +6,8 @@ function TermsAndConditions() {
         {" "}
         <Navbar />
       </div>
-      <div className="lg:px-[5%] xl:px-[7%] px-[8vw] flex pt-[15vh] justify-between w-full h-[100%] pb-[10vh]">
-        <div className="flex flex-col justify-center h-[85vh] gap-8 w-[32%] font-medium">
+      <div className="lg:px-[5%] xl:px-[7%] px-[8vw] md:flex pt-[18vh] justify-between w-full h-[100%] pb-[10vh]">
+        <div className="flex flex-col justify-center h-[85vh] gap-8 md:w-[32%] font-medium">
           <div>1. Introduction</div>
           <div>2. Your use of the platform</div>
           <div>3. Our relationship with you</div>
