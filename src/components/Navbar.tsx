@@ -9,7 +9,10 @@ const Navbar = observer(() => {
     root: { auth },
   } = useStore();
   const isAuthenticated = auth.isAuthenticated;
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false); const [isFocused, setIsFocused] = useState(false);
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
   return (
     <div className="lg:px-[5%] xl:px-[7%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left py-[4vh] 2xl:text-[1.5rem] w-screen z-20 gap-8">
       <nav className="flex gap-8">
@@ -121,12 +124,31 @@ const Navbar = observer(() => {
         </Link>
       </nav>
 
-      <div className="flex items-center text-center md:w-full">
+      <div className="flex items-center text-center md:w-full relative">
         <input
           type="text"
-          placeholder="Search for event..."
-          className="w-full px-4 py-3 text-gray-700 bg-white bg-opacity-35 outline-none rounded-3xl"
+          className="w-full px-4 py-3 pl-[20px] text-gray-700 bg-[#FBFBFF] shadow-lg bg-opacity-50 border-2 border-white outline-none rounded-3xl"
+          onFocus={handleFocus}
         />
+        {!isFocused && (
+          <span className="absolute left-6  flex h-full items-center gap-2 pointer-events-none">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.1239 16.7413L12.4039 12.0213C13.5382 10.6596 14.1038 8.91303 13.9831 7.14495C13.8624 5.37687 13.0647 3.72338 11.7559 2.52846C10.4472 1.33354 8.72813 0.689183 6.95639 0.72944C5.18465 0.769697 3.49663 1.49147 2.2435 2.7446C0.990368 3.99773 0.268599 5.68574 0.228341 7.45748C0.188084 9.22922 0.832438 10.9483 2.02736 12.257C3.22228 13.5658 4.87577 14.3635 6.64385 14.4842C8.41193 14.6049 10.1585 14.0393 11.5202 12.905L16.2402 17.625L17.1239 16.7413ZM1.49891 7.62501C1.49891 6.51249 1.82881 5.42496 2.4469 4.49993C3.06498 3.5749 3.94348 2.85393 4.97132 2.42819C5.99915 2.00245 7.13015 1.89105 8.2213 2.10809C9.31244 2.32514 10.3147 2.86087 11.1014 3.64754C11.8881 4.43421 12.4238 5.43649 12.6408 6.52763C12.8579 7.61877 12.7465 8.74977 12.3207 9.77761C11.895 10.8054 11.174 11.6839 10.249 12.302C9.32397 12.9201 8.23643 13.25 7.12391 13.25C5.63258 13.2484 4.2028 12.6552 3.14826 11.6007C2.09373 10.5461 1.50057 9.11635 1.49891 7.62501Z"
+                fill="black"
+                fill-opacity="0.6"
+              />
+            </svg>
+            {"         "}
+            Search for event
+          </span>
+        )}
       </div>
       <ul className="DESKTOP-MENU hidden lg:flex font-medium justify-center gap-10 text-center">
         <div className="flex items-center text-center ">
