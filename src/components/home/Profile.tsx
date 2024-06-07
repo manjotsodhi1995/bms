@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function Profile() {
   return (
     <div className="w-full   back  bg-cover ">
@@ -33,6 +34,11 @@ function Profile() {
               egestas rutrum lorem molestie et.{" "}
             </div>
           </div>
+        </div>
+        <div className="w-full flex justify-center">
+          <button className="bg-white text-black font-semibold px-16 rounded-lg py-2">
+            <Link to="/affiliate">Partner with us</Link>
+          </button>
         </div>
       </div>
     </div>
