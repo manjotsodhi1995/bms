@@ -54,7 +54,7 @@ const Navbar = observer(() => {
                         className="flex justify-between"
                         onClick={() => setIsNavOpen((prev) => !prev)}
                       >
-                        <div>My Tickets</div> <div>→</div>
+                        <div>My Tickets</div>
                       </Link>
                     </li>
                     <li className="my-6">
@@ -63,7 +63,7 @@ const Navbar = observer(() => {
                         className="flex justify-between"
                         onClick={() => setIsNavOpen((prev) => !prev)}
                       >
-                        <div>Folowing</div> <div>→</div>
+                        <div>Following</div>
                       </Link>
                     </li>
                     <li className="my-6">
@@ -72,18 +72,28 @@ const Navbar = observer(() => {
                         className="flex justify-between"
                         onClick={() => setIsNavOpen((prev) => !prev)}
                       >
-                        <div>Organizer Dashboard</div> <div>→</div>
+                        <div>Organizer Dashboard</div>
+                      </Link>
+                    </li>
+                    <li className="my-6">
+                      <Link
+                        to="/"
+                        className="flex justify-between"
+                        onClick={() => setIsNavOpen((prev) => !prev)}
+                      >
+                        <div>Host an Event</div>
                       </Link>
                     </li>
                   </div>
                 )}
-                <li className="my-6">
+
+                <li className=" my-6">
                   <Link
                     to="/"
                     className="flex justify-between"
                     onClick={() => setIsNavOpen((prev) => !prev)}
                   >
-                    <div>Host an Event</div> <div>→</div>
+                    <div>Help & Support</div>
                   </Link>
                 </li>
                 <li className=" my-6">
@@ -92,16 +102,7 @@ const Navbar = observer(() => {
                     className="flex justify-between"
                     onClick={() => setIsNavOpen((prev) => !prev)}
                   >
-                    <div>Help & Support</div> <div>→</div>
-                  </Link>
-                </li>
-                <li className=" my-6">
-                  <Link
-                    to="/"
-                    className="flex justify-between"
-                    onClick={() => setIsNavOpen((prev) => !prev)}
-                  >
-                    <div>Terms & Conditions</div> <div>→</div>
+                    <div>Terms & Conditions</div>
                   </Link>
                 </li>
               </div>
@@ -191,7 +192,9 @@ const Navbar = observer(() => {
     `}</style>
       </div>
       <div className="flex flex-col gap-4 w-[50%]">
-        <div className="text-white text-[2.5rem] text-center flex justify-center">HELP CENTER</div>
+        <div className="text-white text-[2.5rem] text-center flex justify-center">
+          HELP CENTER
+        </div>
         <div className="flex items-center text-center md:w-full">
           <input
             type="text"
