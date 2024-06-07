@@ -29,11 +29,11 @@ function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
           className="w-full md:rounded-3xl rounded-xl h-full"
           onLoad={handleImageLoad}
         />
-        <div className="bg-[rgb(255,255,255,0.2)] backdrop-blur-xl md:p-4 py-1 absolute bottom-[0rem] z-20 w-full flex flex-col gap-1 md:rounded-b-3xl rounded-b-xl border b-1">
-          <div className="flex justify-center font-medium text-[0.9rem] md:text-[0.9rem] lg:text-[1.4rem] 2xl:text-[1.9rem] text-white">
+        <div className="bg-[rgb(255,255,255,0.2)] backdrop-blur-2xl md:p-4 py-1 absolute bottom-[0rem] z-20 w-full flex flex-col gap-1 md:rounded-b-3xl rounded-b-xl border b-1">
+          <div className="flex justify-center font-medium text-[0.9rem] md:text-[0.9rem] lg:text-[1.6rem] 2xl:text-[2rem] text-white">
             {title}
           </div>
-          <div className="text-white flex justify-center text-center text-[0.6rem] md:text-[0.9rem] 2xl:text-[1.6rem]">
+          <div className="text-white px-2 2xl:px-4 flex justify-center text-center text-[0.6rem] md:text-[0.9rem] 2xl:text-[1.4rem]">
             {description}
           </div>
         </div>

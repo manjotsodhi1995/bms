@@ -62,7 +62,7 @@ const Register=observer(()=> {
   return (
     <>
       <div className="md:flex">
-        <div className="md:w-[46vw]">
+        <div className="md:w-[46vw] md:block hidden">
           <img src={img} className="h-screen w-full" alt="" />
         </div>
         <div className="h-screen">
@@ -165,6 +165,13 @@ const Register=observer(()=> {
                 >
                   Sign Up
                 </button>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <div className="h-[2px] bg-black"></div>
+                <p className="text-center text-sm">
+                  By registering, you agree to KAFSCO's T&Cs and Privacy Policy.
+                </p>
                 <div>
                   <div className="text-red-500">{error}</div>
                   Already a member ?{" "}
@@ -172,13 +179,6 @@ const Register=observer(()=> {
                     Login
                   </Link>
                 </div>
-              </div>
-
-              <div className="flex flex-col gap-1">
-                <div className="h-[2px] bg-black"></div>
-                <p className="text-center text-sm">
-                  By registering, you agree to FIXIR's T&Cs and Privacy Policy.
-                </p>
               </div>
             </form>
           </div>

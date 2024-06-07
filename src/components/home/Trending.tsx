@@ -21,9 +21,10 @@ function Trending() {
     };
     const fetchCategories = async () => {
       const response = await axios.get(
-        "http://3.253.146.194:3001/api/v1/categories/getallcategories"
+        "http://api.kafsco.com/api/v1/categories/getallcategories"
       );
       setCategories(response.data.data);
+      console.log(categories)
     };
     const fetchEvents = async () => {
       await event.fetchEvents("28.4262481", "77.0581663");

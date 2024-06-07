@@ -52,15 +52,15 @@ const handleSubmit = async (event: any) => {
 
   return (
     <>
-      <div className="md:flex">
-        <div className="md:w-[46vw]">
+      <div className="md:flex w-full justify-between">
+        <div className="md:block hidden w-[70vw]">
           <img src={img} className="h-screen w-full" alt="" />
         </div>
-        <div className="h-screen">
-          <div className="py-[7vh] 2xl:py-[12vh] px-[10vw] h-full md:w-[54vw]">
+        <div className="h-screen flex justify-center w-full">
+          <div className="flex justify-center h-full w-full">
             <form
               onSubmit={handleSubmit}
-              className="h-full p-4 flex flex-col gap-6"
+              className="h-full flex flex-col justify-center gap-6 w-[25rem]"
             >
               <div className="flex flex-col gap-2">
                 <h1 className="text-3xl font-bold">Login</h1>
@@ -101,7 +101,7 @@ const handleSubmit = async (event: any) => {
                   type="submit"
                   className="bg-black w-full text-white font-bold py-2 px-4 rounded"
                 >
-                  Sign Up
+                  Sign In
                 </button>
                 <div className="text-red-600">{error}</div>
               </div>
@@ -110,11 +110,11 @@ const handleSubmit = async (event: any) => {
                 <div className="text-center">or</div>
                 <div className="w-full h-[2px] bg-black"></div>
               </div>
-              <GoogleLogin onSuccess={responseGoogle}/>
+              <GoogleLogin onSuccess={responseGoogle} />
               <div className="text-[0.9rem]">
                 Dont have an account?
                 <Link to="/register" className="text-[#8C3E87]">
-                  Create an account
+                  {" "} Create an account
                 </Link>
               </div>
               {/* <div className="flex flex-col gap-4">

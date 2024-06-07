@@ -129,14 +129,20 @@ const Navbar = observer(() => {
         />
       </div>
       <ul className="DESKTOP-MENU hidden lg:flex font-medium justify-center gap-10 text-center">
-        {/* <div className="flex items-center text-center hover:underline bg-white ">
-          <Link to="/host" className="w-full whitespace-nowrap">
+        <div className="flex items-center text-center ">
+          <Link
+            to="/host"
+            className="w-full whitespace-nowrap px-4 py-2 rounded-xl hover:bg-gray-100 bg-white"
+          >
             Host an Event
           </Link>
-        </div> */}
+        </div>
         {!isAuthenticated && (
-          <div className="flex items-center text-center hover:underline">
-            <Link to="/login" className="w-full whitespace-nowrap">
+          <div className="flex items-center text-center">
+            <Link
+              to="/login"
+              className="w-full whitespace-nowrap  px-4 py-2 rounded-xl hover:bg-gray-100 bg-white"
+            >
               Login
             </Link>
           </div>

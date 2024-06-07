@@ -36,7 +36,7 @@ input::placeholder,textarea::placeholder {
 }
 
 .sw1 .swiper-slide {
-  width: 20vw;
+  width: 23vw;
   position: relative;
 }
 
@@ -45,18 +45,18 @@ input::placeholder,textarea::placeholder {
     width: 37vw !important;
   }
   .sw1 .swiper-slide img {
-    width: 28rem !important;
+    width: 30rem !important;
   }
 }
 @media (min-width: 500px) and (max-width: 1400px) {
   .sw1 .swiper-slide {
-    width: 20vw;
+    width: 25vw;
   }
 }
 
 
 .sw1 .swiper-slide img {
-  width: 32rem;
+  width: 35rem;
   object-fit: cover;
 }
 
