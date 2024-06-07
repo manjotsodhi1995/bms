@@ -69,7 +69,7 @@ function Hero() {
     },
   ];
   return (
-    <div className="flex flex-col items-center xl:mt-16 xl:gap-6 mt-[-2rem] lg:mt-[1rem]">
+    <div className="flex flex-col items-center xl:mt-[0rem] xl:gap-6 mt-[-2rem] lg:mt-[1rem]">
       <div className="w-full">
         <Swiper
           spaceBetween={30}

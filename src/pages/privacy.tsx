@@ -9,86 +9,86 @@ function Privacy() {
       <div className="lg:px-[5%] xl:px-[7%] px-[8vw] md:flex pt-[15vh] justify-between w-full h-[100%] pb-[10vh]">
         <div className="flex flex-col gap-8 md:w-[32%] mt-28 font-medium">
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infocollect">
+            <a>
               {" "}
               WHAT INFORMATION DO WE COLLECT?
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infouse">
+            <a>
               {" "}
               HOW DO WE PROCESS YOUR INFORMATION?
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#legalbases">
+            <a>
               {" "}
               WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL
               INFORMATION?
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#whoshare">
+            <a>
               {" "}
               WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#cookies">
+            <a>
               {" "}
               DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#sociallogins">
+            <a>
               {" "}
               HOW DO WE HANDLE YOUR SOCIAL LOGINS?{" "}
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#inforetain">
+            <a>
               {" "}
               HOW LONG DO WE KEEP YOUR INFORMATION?
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infosafe">
+            <a >
               {" "}
               HOW DO WE KEEP YOUR INFORMATION SAFE?
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infominors">
+            <a>
               {" "}
               DO WE COLLECT INFORMATION FROM MINORS?
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#privacyrights">
+            <a >
               {" "}
               WHAT ARE YOUR PRIVACY RIGHTS?
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#DNT">
+            <a>
               {" "}
               CONTROLS FOR DO-NOT-TRACK FEATURES
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#policyupdates">
+            <a>
               {" "}
               DO WE MAKE UPDATES TO THIS NOTICE?
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#contact">
+            <a>
               {" "}
               HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
             </a>
           </li>
           <li>
-            <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#request">
+            <a>
               {" "}
               HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM
               YOU?
@@ -105,7 +105,7 @@ function Privacy() {
                 collect, store, use, and/or share ("process") your information
                 when you use our services ("Services"), such as when you: Visit
                 our website at{" "}
-                <a href="http://Www.kafsco.com">http://Www.kafsco.com</a>, or
+                <a>http://Www.kafsco.com</a>, or
                 any website of ours that links to this privacy notice Download
                 and use our mobile application (Kafsco), or any other
                 application of ours that links to this privacy notice Engage
@@ -129,7 +129,7 @@ function Privacy() {
                     our{" "}
                   </em>
                 </strong>
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#toc">
+                <a>
                   <strong>
                     <em>table of contents</em>
                   </strong>
@@ -144,7 +144,7 @@ function Privacy() {
                 personal information depending on how you interact with us and
                 the Services, the choices you make, and the products and
                 features you use. Learn more about{" "}
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#personalinfo">
+                <a>
                   personal information you disclose to us
                 </a>
                 .
@@ -156,7 +156,7 @@ function Privacy() {
                 We may process sensitive personal information when necessary
                 with your consent or as otherwise permitted by applicable law.
                 Learn more about{" "}
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#sensitiveinfo">
+                <a>
                   sensitive information we process
                 </a>
                 .
@@ -175,7 +175,7 @@ function Privacy() {
                 information for other purposes with your consent. We process
                 your information only when we have a valid legal reason to do
                 so. Learn more about{" "}
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infouse">
+                <a>
                   how we process your information
                 </a>
                 .
@@ -187,7 +187,7 @@ function Privacy() {
                 </strong>{" "}
                 We may share information in specific situations and with
                 specific categories of third parties. Learn more about{" "}
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#whoshare">
+                <a>
                   when and with whom we share your personal information
                 </a>
                 .
@@ -202,7 +202,7 @@ function Privacy() {
                 third parties will not be able to defeat our security and
                 improperly collect, access, steal, or modify your information.
                 Learn more about{" "}
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#infosafe">
+                <a>
                   how we keep your information safe
                 </a>
                 .
@@ -212,7 +212,7 @@ function Privacy() {
                 are located geographically, the applicable privacy law may mean
                 you have certain rights regarding your personal information.
                 Learn more about{" "}
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#privacyrights">
+                <a>
                   your privacy rights
                 </a>
                 .
@@ -220,7 +220,7 @@ function Privacy() {
               <p>
                 <strong>How do you exercise your rights?</strong> The easiest
                 way to exercise your rights is by submitting a{" "}
-                <a href="https://app.termly.io/notify/74f9042a-89a9-45ac-bbad-e676a90b4290">
+                <a>
                   data subject access request
                 </a>
                 , or by contacting us. We will consider and act upon any request
@@ -229,7 +229,7 @@ function Privacy() {
               <p>
                 Want to learn more about what we do with any information we
                 collect?{" "}
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#toc">
+                <a>
                   Review the privacy notice in full
                 </a>
                 .
@@ -315,7 +315,7 @@ function Privacy() {
                 media account. If you choose to register in this way, we will
                 collect certain profile information about you from the social
                 media provider, as described in the section called "
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#sociallogins">
+                <a>
                   HOW DO WE HANDLE YOUR SOCIAL LOGINS?
                 </a>
                 " below.
@@ -526,7 +526,7 @@ function Privacy() {
                   marketing purposes, if this is in accordance with your
                   marketing preferences. You can opt out of our marketing emails
                   at any time. For more information, see "
-                  <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#privacyrights">
+                  <a>
                     WHAT ARE YOUR PRIVACY RIGHTS?
                   </a>
                   " below.
@@ -589,7 +589,7 @@ function Privacy() {
                   you have given us permission (i.e., consent) to use your
                   personal information for a specific purpose. You can withdraw
                   your consent at any time. Learn more about{" "}
-                  <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#withdrawconsent">
+                  <a>
                     withdrawing your consent
                   </a>
                   .
@@ -766,23 +766,23 @@ function Privacy() {
                 Advertising Features that we may use include: Google Analytics
                 Demographics and Interests Reporting. To opt out of being
                 tracked by Google Analytics across the Services, visit
-                <a href="https://tools.google.com/dlpage/gaoptout">
+                <a>
                   https://tools.google.com/dlpage/gaoptout
                 </a>
                 . You can opt out of Google Analytics Advertising Features
                 through
-                <a href="https://adssettings.google.com/">Ads Settings</a> and
+                <a>Ads Settings</a> and
                 Ad Settings for mobile apps. Other opt out means include
-                <a href="http://optout.networkadvertising.org/">
+                <a>
                   http://optout.networkadvertising.org/
                 </a>{" "}
                 and
-                <a href="http://www.networkadvertising.org/mobile-choice">
+                <a >
                   http://www.networkadvertising.org/mobile-choice
                 </a>
                 . For more information on the privacy practices of Google,
                 please visit the
-                <a href="https://policies.google.com/privacy">
+                <a >
                   Google Privacy &amp; Terms page
                 </a>
                 .
@@ -945,7 +945,7 @@ function Privacy() {
                 processing of your personal information. You can make such a
                 request by contacting us by using the contact details provided
                 in the section "
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#contact">
+                <a href="">
                   HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
                 </a>
                 " below.
@@ -958,18 +958,18 @@ function Privacy() {
                 If you are located in the EEA or UK and you believe we are
                 unlawfully processing your personal information, you also have
                 the right to complain to your
-                <a href="https://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm">
+                <a href="">
                   Member State data protection authority
                 </a>{" "}
                 or{" "}
-                <a href="https://ico.org.uk/make-a-complaint/data-protection-complaints/data-protection-complaints/">
+                <a href="">
                   UK data protection authority
                 </a>
                 .
               </p>
               <p>
                 If you are located in Switzerland, you may contact the
-                <a href="https://www.edoeb.admin.ch/edoeb/en/home.html">
+                <a href="">
                   Federal Data Protection and Information Commissioner
                 </a>
                 .
@@ -980,7 +980,7 @@ function Privacy() {
                 right to withdraw your consent at any time. You can withdraw
                 your consent at any time by contacting us by using the contact
                 details provided in the section "
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#contact">
+                <a href="">
                   HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
                 </a>
                 " below or updating your preferences.
@@ -1000,7 +1000,7 @@ function Privacy() {
                 in the emails that we send, replying "STOP" or "UNSUBSCRIBE" to
                 the SMS messages that we send, or by contacting us using the
                 details provided in the section "
-                <a href="https://app.termly.io/dashboard/website/68c02d07-3fde-4797-9f87-ef1ac717f4ce/privacy-policy#contact">
+                <a href="">
                   HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
                 </a>
                 " below. You will then be removed from the marketing lists.
@@ -1113,7 +1113,7 @@ function Privacy() {
                 circumstances by applicable law. To request to review, update,
                 or delete your personal information, please fill out and submit
                 a{" "}
-                <a href="https://app.termly.io/notify/74f9042a-89a9-45ac-bbad-e676a90b4290">
+                <a href="">
                   data subject access request
                 </a>
                 .
