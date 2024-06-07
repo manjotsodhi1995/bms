@@ -11,7 +11,7 @@ function EventCard({ title, description, imageUrl, location, date }: HeroSlidesP
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className="rounded-3xl shadow:lg transition-transform duration-300 ease-in-out  bg-white pb-2 md:w-[25vw] lg:w-[19vw] border-[#BCBCBC36] border-2 cursor-pointer relative"
+      className="rounded-3xl shadow:lg transition-transform duration-300 ease-in-out  bg-white pb-2 md:w-[25vw] lg:w-[20vw] border-[#BCBCBC36] border-2 cursor-pointer relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ transform: isHovered ? "scale(1.02)" : "scale(1)" }}
