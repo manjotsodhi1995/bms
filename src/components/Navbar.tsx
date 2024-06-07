@@ -73,17 +73,27 @@ const Navbar = observer(() => {
                       className="flex justify-between"
                       onClick={() => setIsNavOpen((prev) => !prev)}
                     >
+                      <div>My Rep Portal</div>
+                    </Link>
+                  </li>
+                  <li className="my-6">
+                    <Link
+                      to="/"
+                      className="flex justify-between"
+                      onClick={() => setIsNavOpen((prev) => !prev)}
+                    >
                       <div>Organizer Dashboard</div>
                     </Link>
                   </li>
-                  <div className="flex items-center text-center hover:underline ">
+                  <li className="my-6">
                     <Link
-                      to="/host"
-                      className="w-full whitespace-nowrap py-2 px-3 bg-white rounded-xl"
+                      to="/"
+                      className="flex justify-between"
+                      onClick={() => setIsNavOpen((prev) => !prev)}
                     >
-                      Host an Event
+                      <div>Host an Event</div>
                     </Link>
-                  </div>
+                  </li>
                 </div>
               )}
 
