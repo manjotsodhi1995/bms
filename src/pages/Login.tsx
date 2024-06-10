@@ -62,11 +62,11 @@ const handleSubmit = async (event: any) => {
               onSubmit={handleSubmit}
               className="h-full flex flex-col justify-center gap-6 w-[25rem]"
             >
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 items-center">
                 <h1 className="text-3xl font-bold">Login</h1>
-                <h6 className="text-md">
+                {/* <h6 className="text-md">
                   Please enter your login details to sign in
-                </h6>
+                </h6> */}
               </div>
               <div className="flex flex-col gap-4">
                 <div className="">
@@ -105,13 +105,14 @@ const handleSubmit = async (event: any) => {
                 </button>
                 <div className="text-red-600">{error}</div>
               </div>
+              <GoogleLogin onSuccess={responseGoogle} />
               <div className="flex w-full justify-around gap-2 items-center">
                 <div className="h-[2px] w-full bg-black"></div>
                 <div className="text-center">or</div>
                 <div className="w-full h-[2px] bg-black"></div>
               </div>
-              <GoogleLogin onSuccess={responseGoogle} />
-              <div className="text-[0.9rem]">
+
+              <div className="text-[0.9rem] flex justify-center gap-1">
                 Dont have an account?
                 <Link to="/register" className="text-[#8C3E87]">
                   {" "}

@@ -23,7 +23,7 @@ function EventCard({ title, description, imageUrl, location, date }: HeroSlidesP
             <img
               src={imageUrl}
               alt=""
-              className="w-[100rem] h-[7rem] lg:rounded-2xl md:h-[12rem] 2xl:h-[15rem]"
+              className="w-[100rem] h-[7rem] rounded-2xl md:h-[12rem] 2xl:h-[15rem]"
             />
             <div className="absolute md:bottom-4 md:right-4 bottom-2 right-2">
               {" "}
@@ -31,7 +31,7 @@ function EventCard({ title, description, imageUrl, location, date }: HeroSlidesP
                 width="18"
                 height="22"
                 viewBox="0 0 18 22"
-                fill="none"
+                fill=""
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -61,7 +61,7 @@ function EventCard({ title, description, imageUrl, location, date }: HeroSlidesP
             </div>
             <div className="w-[2px] md:h-[70px] h-[50px] bg-black flex justify-center"></div>
             <div>
-              <div className="flex gap-2 justify-left font-medium text-[0.5rem] md:text-[0.7rem] 2xl:text-[1.2rem]">
+              <div className="flex gap-2 justify-left font-medium text-[0.5rem] md:text-[0.7rem] 2xl:text-[1.2rem] items-center">
                 <svg
                   width="13"
                   height="14"

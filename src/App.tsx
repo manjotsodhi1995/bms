@@ -13,6 +13,7 @@ import TermsAndConditions from "./pages/termsAndConditions";
 import Privacy from "./pages/privacy";
 import Forgot from "./pages/Forgot";
 import Navbar from "./components/Navbar";
+import Filter from "./pages/Filter";
 const Home = lazy(() => import("./pages/Home"));
 const OrganizerRegister = lazy(() => import("./pages/OrganizerRegister"));
 const OrganizerLogin = lazy(() => import("./pages/OrganizerLogin"));
@@ -40,7 +41,7 @@ const App = observer(() => {
     <div>
       {" "}
       <BrowserRouter>
-        { <Navbar />}
+        {<Navbar />}
         <Suspense
           fallback={
             <div className="min-h-screen w-screen flex justify-center items-center">
@@ -55,6 +56,7 @@ const App = observer(() => {
               element={<OrganizationProfile />}
             />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/filter" element={<Filter/>} />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/event/:eventId" element={<EventPage />} />
             <Route path="/mytickets" element={<MyTickets />} />

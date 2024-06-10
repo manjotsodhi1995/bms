@@ -110,24 +110,39 @@ function Trending() {
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex justify-between mt-4">
-          <div className="font-medium lg:text-[1.4rem] text-[0.9rem]">
+          <div className="font-medium lg:text-[1.4rem] text-[0.9rem] flex gap-2 items-center">
+            <Link to="/filter">
+              {" "}
+              <svg
+                width="27"
+                height="25"
+                viewBox="0 0 27 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M25.9243 1.99774C25.7752 1.65325 25.5281 1.36018 25.2138 1.155C24.8994 0.949814 24.5317 0.841568 24.1563 0.84372H2.84384C2.46885 0.844459 2.10213 0.954001 1.78817 1.15906C1.47422 1.36411 1.22651 1.65587 1.0751 1.99894C0.9237 2.342 0.875102 2.72163 0.935208 3.09177C0.995315 3.46191 1.16154 3.80666 1.41372 4.08419L1.42341 4.09509L9.62509 12.8526V22.1562C9.62501 22.5069 9.72009 22.851 9.90021 23.1519C10.0803 23.4527 10.3387 23.6991 10.6478 23.8646C10.9569 24.0302 11.3052 24.1088 11.6555 24.0919C12.0057 24.0751 12.3448 23.9636 12.6367 23.7692L16.5117 21.185C16.7773 21.0081 16.9951 20.7683 17.1458 20.4869C17.2964 20.2055 17.3752 19.8913 17.3751 19.5721V12.8526L25.578 4.09509L25.5877 4.08419C25.8425 3.80793 26.0103 3.46272 26.0702 3.09167C26.1301 2.72061 26.0793 2.34014 25.9243 1.99774ZM15.7016 11.8124C15.534 11.9901 15.4397 12.2245 15.4376 12.4687V19.5721L11.5626 22.1562V12.4687C11.5627 12.2227 11.4692 11.9859 11.301 11.8063L2.84384 2.78122H24.1563L15.7016 11.8124Z"
+                  fill="black"
+                />
+              </svg>
+            </Link>
             Events in {selectedLocation}
           </div>
           <div className="hover:font-medium hover:underline ">
             <Link to="">See More</Link>
           </div>
         </div>
-        <div className="flex justify-around md:hidden gap-2">
+        <div className="flex justify-between md:hidden gap-2">
           {eventData.slice(0, 2).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
-        <div className="justify-around hidden md:flex lg:hidden">
+        <div className="justify-between hidden md:flex lg:hidden">
           {eventData.slice(0, 3).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
-        <div className="justify-around hidden lg:flex">
+        <div className="justify-between hidden lg:flex">
           {eventData.slice(0, 4).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
@@ -142,17 +157,17 @@ function Trending() {
             <Link to="">See More</Link>
           </div>
         </div>
-        <div className="flex justify-around md:hidden gap-2">
+        <div className="flex justify-between md:hidden gap-2">
           {eventData.slice(0, 2).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
-        <div className="justify-around hidden md:flex lg:hidden">
+        <div className="justify-between hidden md:flex lg:hidden">
           {eventData.slice(0, 3).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
-        <div className="justify-around hidden lg:flex">
+        <div className="justify-between hidden lg:flex">
           {eventData.slice(0, 4).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
