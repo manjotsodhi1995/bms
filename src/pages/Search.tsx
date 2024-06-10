@@ -149,7 +149,7 @@ const searchKeywords = searchParams.get("query");const eventData = [
           />
         </svg>
       </div>
-      <div className="flex flex-col gap-4 pb-10">
+      <div className="flex flex-col gap-2 pb-10">
         <div className="flex justify-between mt-4">
           <div className="font-medium lg:text-[1.4rem] text-[0.9rem]">
             Events
