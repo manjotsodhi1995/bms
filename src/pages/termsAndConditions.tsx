@@ -1,10 +1,10 @@
-import Navbar from "../components/Navbar";
+
 function TermsAndConditions() {
   return (
     <div className="min-h-screen">
       <div className="fixed">
         {" "}
-        <Navbar />
+        {/* <Navbar /> */}
       </div>
       <div className="lg:px-[5%] xl:px-[7%] px-[8vw] md:flex pt-[18vh] justify-between w-full h-[100%] pb-[10vh]">
         <div className="flex flex-col justify-center h-[85vh] gap-8 md:w-[32%] font-medium">

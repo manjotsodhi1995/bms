@@ -1,20 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
+import { useNavigate } from "react-router-dom";
 import pfp from "../assets/test/pfp.png"
 import bell from "../assets/test/bell.png"
 const Navbar = observer(() => {
+  const navigate = useNavigate();
   const {
     root: { auth },
   } = useStore();
+  const [search, setSearch] = useState("");
+  const handleSubmit = (event: any) => {
+    
+    if (event.key === "Enter") {event.preventDefault(); 
+      navigate(`/search?query=${search}`);
+    }
+};
   const isAuthenticated = auth.isAuthenticated;
   const [isNavOpen, setIsNavOpen] = useState(false); const [isFocused, setIsFocused] = useState(false); const [isDropOpen, setIsDropOpen] = useState(false); 
   const handleFocus = () => {
     setIsFocused(true);
-  };
+  }; const excludedRoutes = ["/login", "/register", "/forgot","/help","/helpdetail"];
+  const location = useLocation();
+  const showNavbar = !excludedRoutes.includes(location.pathname);
   return (
-    <div className="lg:px-[5%] xl:px-[7%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left py-[4vh] 2xl:text-[1.5rem] w-screen z-20 gap-8">
+    showNavbar&&<div className="lg:px-[5%] xl:px-[7%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left py-[4vh] 2xl:text-[1.5rem] w-screen z-20 gap-8">
       <nav className="flex gap-8">
         <div
           className="HAMBURGER-ICON space-y-2 flex flex-col justify-center cursor-pointer"
@@ -176,6 +187,9 @@ const Navbar = observer(() => {
           type="text"
           className="w-full px-4 py-3 pl-[20px] text-gray-700 bg-[#FBFBFF] shadow-lg bg-opacity-50 border-2 border-white outline-none rounded-3xl"
           onFocus={handleFocus}
+          onKeyDown={handleSubmit}
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
         />
         {!isFocused && (
           <span className="absolute left-6  flex h-full items-center gap-2 pointer-events-none">

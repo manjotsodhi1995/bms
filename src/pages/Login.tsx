@@ -52,7 +52,7 @@ const handleSubmit = async (event: any) => {
 
   return (
     <>
-      <div className="md:flex w-full justify-between">
+      <div className="md:flex w-full justify-between md:p-0 p-8 min-w-screen">
         <div className="md:block hidden w-[70vw]">
           <img src={img} className="h-screen w-full" alt="" />
         </div>
@@ -90,8 +90,8 @@ const handleSubmit = async (event: any) => {
                     className="w-full"
                     onChange={handleInputChange}
                   />
-                  <div className="text-[#8C3E87] text-end">
-                    Forgot Password?
+                  <div className="text-[#8C3E87] text-end hover:text-[#763572]">
+                    <Link to="/forgot">Forgot Password?</Link>
                   </div>
                 </div>
               </div>
@@ -114,7 +114,8 @@ const handleSubmit = async (event: any) => {
               <div className="text-[0.9rem]">
                 Dont have an account?
                 <Link to="/register" className="text-[#8C3E87]">
-                  {" "} Create an account
+                  {" "}
+                  Create an account
                 </Link>
               </div>
               {/* <div className="flex flex-col gap-4">

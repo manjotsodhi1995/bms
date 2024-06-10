@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar";
 import Footer from "../components/home/Footer";
 import { lazy } from "react";
 const Hero = lazy(() => import("../components/home/Hero"));
@@ -9,7 +8,7 @@ function Home() {
   return (
     <div className="relative w-full overflow-x-hidden min-h-screen">
 
-          <Navbar />
+          {/* <Navbar /> */}
           <Hero />
           <Trending />
           <Profile />

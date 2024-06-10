@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Like from "../assets/Like.png";
@@ -32,7 +32,7 @@ function EventPage() {
     const fetchEvent = async () => {
       try {
         const response = await axios.get(
-          `http://3.253.146.194:3001/api/v1/events/geteventbyid/664b80dbb35bffb5274b8abb`,
+          `http://api.kafsco.com/api/v1/events/geteventbyid/664b80dbb35bffb5274b8abb`,
           {
             headers: {
               is_guest_user: "yes",
@@ -86,7 +86,7 @@ function EventPage() {
   return (
     !isLoading && (
       <div className="w-full">
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="    event">
           <div className="flex text-white items-end lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] h-[60vh] bg-black bg-opacity-30 justify-between">
             <div className="w-[20%] font-bold text-[2.5rem] flex flex-col gap-4">

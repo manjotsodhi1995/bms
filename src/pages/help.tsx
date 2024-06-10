@@ -1,5 +1,5 @@
-import Hero from "../components/help/Hero"
-import Navbar from "../components/help/Navbar"
+import Hero from "../components/help/Hero";
+import Navbar from "../components/help/Navbar";
 function Help() {
   return (
     <div><Navbar/>

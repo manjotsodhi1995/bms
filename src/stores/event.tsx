@@ -18,7 +18,7 @@ export class Event {
   async fetchEvents(lat: string, long: string) {
     try {
       const response = await axios.get(
-        `http://3.253.146.194:3001/api/v1/events/fetch?lat=${lat}&lng=${long}`
+        `https://api.kafsco.com/api/v1/events/fetch?lat=${lat}&lng=${long}`
       );
         this.liveEvents = response.data.data.liveEvents;
         this.upcomingEvents = response.data.data.upcomingEvents;

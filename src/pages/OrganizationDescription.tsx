@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../utils/middleware";
-import Navbar from "../components/Navbar";
 import { useStore } from "../hooks/useStore";
 import EventCard from "../components/EventCard";
 import { Link } from "react-router-dom";
@@ -85,7 +84,7 @@ const OrganizationProfile = observer(() => {
   }, [orgId]);
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       {!isLoading && organizationData && (
         <div className="lg:px-[5%] xl:px-[7%] px-[8vw] w-screen flex flex-col gap-4 overflow-x-hidden">
           <div className="w-full flex flex-col items-center text-center gap-6">
