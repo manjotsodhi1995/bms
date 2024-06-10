@@ -1,5 +1,4 @@
 import { useSearchParams } from "react-router-dom"; import EventCard from "../components/EventCard";
-import { Link } from "react-router-dom";
 function SearchPage() {
     const [searchParams] = useSearchParams();
 
