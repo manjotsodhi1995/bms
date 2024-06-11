@@ -18,7 +18,7 @@ input::placeholder,textarea::placeholder {
   color: #000;  /* Increase size by 150% */
 }
 .container {
-  max-width: 124rem;
+  max-width: 100vw;
   padding: 4rem 1rem;
   margin: 0 auto;
 }
@@ -46,11 +46,6 @@ input::placeholder,textarea::placeholder {
   }
   .sw1 .swiper-slide img {
     width: 30rem !important;
-  }
-}
-@media (min-width: 500px) and (max-width: 1400px) {
-  .sw1 .swiper-slide {
-    width: 25vw;
   }
 }
 

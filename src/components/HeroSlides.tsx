@@ -13,7 +13,7 @@ function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
   };
   return (
     <div
-      className="md:rounded-3xl rounded-xl transition-transform duration-300 ease-in-out lg:h-[27rem] 2xl:h-[43rem]"
+      className="md:rounded-3xl rounded-xl transition-transform duration-300 ease-in-out lg:h-[25rem] 2xl:h-[35rem] lg:w-[16rem] 2xl:w-[23rem]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ transform: isHovered ? "scale(1.1)" : "scale(1)" }}
