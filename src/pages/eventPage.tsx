@@ -310,7 +310,7 @@ function EventPage() {const carouselRef = useRef(null);
                 width="350"
                 height="250"
               />
-              <div className="px-4 py-2 border-black border-2 w-[10rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center">
+              <div className="px-4 py-2 border-black border-2 2xl:w-[14rem] w-[12rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center">
                 GET DIRECTIONS
               </div>
             </div>
