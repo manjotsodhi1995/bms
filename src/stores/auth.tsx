@@ -31,7 +31,7 @@ export class Auth {
       password: password,
     };
       const response = await axios.post(
-        "http://api.kafsco.com/api/v1/users/login", // Correct URL
+        "https://api.kafsco.com/api/v1/users/login", // Correct URL
         data,
         { headers: { "Content-Type": "application/json" } }
       );
@@ -66,7 +66,7 @@ export class Auth {
       isPrivacyPolicyAccepted:true,
     };
       const response = await axios.post(
-        "http://api.kafsco.com/api/v1/users/signup",
+        "https://api.kafsco.com/api/v1/users/signup",
         data,
         { headers: { "Content-Type": "application/json" } }
       );
