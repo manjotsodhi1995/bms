@@ -90,7 +90,7 @@ export class Auth {
       phone: phone,
     };
     const response = await axios.post(
-      "http://api.kafsco.com/api/v1/users/login",
+      "https://api.kafsco.com/api/v1/users/login",
       data
     );
     this.accessToken = response.data.token;
