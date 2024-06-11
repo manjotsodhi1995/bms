@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useStore } from "./hooks/useStore";
 import { observer } from "mobx-react-lite";
-import SearchPage from "./pages/Search";
+const SearchPage = lazy(() => import("./pages/Search"));
 import { lazy, Suspense } from "react";
 import { useEffect } from "react";
 import OrganizationProfile from "./pages/OrganizationDescription";
