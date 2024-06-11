@@ -127,4 +127,19 @@ border: 1px solid rgba(255, 255, 255, 0.4);}
 }
 body{
   overflow-x:hidden;
+}.swiper-button-prev,
+.swiper-button-next {
+  /* Adjust these properties to your preference */
+  background-color: #D9D9D957; /* Set background color */
+  font-size: 5px !important;
+  width:60px !important; /* Increase or decrease arrow size */
+  color: white !important;
+  padding: 30px;
+ /* Add padding around the arrow */
+}
+.swiper-button-next{
+  margin-right:-10px!important;
+}
+.swiper-button-prev{
+  margin-left:-10px!important;
 }
