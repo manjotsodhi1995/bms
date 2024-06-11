@@ -6,6 +6,7 @@ import Share from "../assets/share.png";
 import three from "../assets/three.png";
 import axios from "../utils/middleware";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 import EventCard from "../components/EventCard";
 import EventSlides from "../components/eventStory";
 interface venueAddressI{
@@ -24,7 +25,7 @@ interface Event {
   ageRestriction: string;
 
 }
-function EventPage() {
+function EventPage() {const carouselRef = useRef(null);
   const data = [
     {
       title: "Match Events",
@@ -290,11 +291,35 @@ function EventPage() {
               </button>
             </div>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-8">
             <div className="flex gap-2">
               {data.map((card, index) => (
-                <div className="w-[160px]"><EventSlides key={index} {...card}/></div>
+                <div
+                  key={index}
+                  className="w-[160px] snap-center"
+                  ref={carouselRef}
+                >
+                  <EventSlides {...card} />
+                </div>
               ))}
+            </div>{" "}
+            <div>
+              <h1 className="font-medium text-[1.3rem]">Location</h1>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sPT%20Kulkul%20Teknologi%20Internasional!5e0!3m2!1sen!2sid!4v1601138221085!5m2!1sen!2sid"
+                width="350"
+                height="250"
+              />
+              <div className="px-4 py-2 border-black border-2 w-[10rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center">
+                GET DIRECTIONS
+              </div>
+            </div>
+            <div>
+              <div className="font-medium text-[1.2rem]">Would you like to rep this event?</div>
+              <div>
+                Check out all the benefits and sign up to rep this event!
+              </div>
+              <div className="px-4 py-2 bg-black text-white text-center rounded-lg mt-2 w-[10rem]">REP THIS EVENT</div>
             </div>
           </div>
         </div>
