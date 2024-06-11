@@ -216,7 +216,7 @@ const Navbar = observer(() => {
           <div className="flex items-center text-center ">
             <Link
               to="/host"
-              className="w-full whitespace-nowrap px-4 py-2 rounded-xl hover:bg-gray-100 bg-white"
+              className="w-full whitespace-nowrap px-4 py-2 rounded-xl hover:bg-gray-100 bg-white shadow-md"
             >
               Host an Event
             </Link>
@@ -225,7 +225,7 @@ const Navbar = observer(() => {
             <div className="flex items-center text-center">
               <Link
                 to="/login"
-                className="w-full whitespace-nowrap  px-4 py-2 rounded-xl hover:bg-gray-100 bg-white"
+                className="w-full whitespace-nowrap  px-4 py-2 rounded-xl hover:bg-gray-100 bg-white shadow-md"
               >
                 Login
               </Link>

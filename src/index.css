@@ -36,7 +36,7 @@ input::placeholder,textarea::placeholder {
 }
 
 .sw1 .swiper-slide {
-  width: 21vw;
+  width: 20vw;
   position: relative;
 }
 
@@ -123,7 +123,7 @@ border: 1px solid rgba(255, 255, 255, 0.4);}
 
 .event{
   background-image: url('https://s3-alpha-sig.figma.com/img/1cd7/f4dc/9ab46b29cc668c7f4e50b65efdb52bd2?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=o0crmQPt9uL0ZTxKjXhzyemymy5kxqqNva1yOimUDBO2gfDMEnBGmnk81r~fTApreOI3MqUPoPAgCe3FIT1LopcJOG8EF3VDoB2rtWE8Cq-F4y4Hd0qZEKJZVOMCsGpwNuBtbTBA9V4EIKdj32ruPM1fJW1hypUMy9cx9FMjbbb2l9Ebts6OQEOVDkXU~-pc9Ky0Iba-YJIVGqvu~rCmIRrd9JqTZ~VYIHi2NSgWy2MhCoYUHBPAlAgtn9cbJ3KksGUe7Is-rag9vV3TGBG0Pktd40zUSjs~FGGc3OW9vR33gp0J4-T6VVGytBCJBOvTMyjEE~yqU5RT9tYbh96thw__');  background-repeat: no-repeat;
-  background-size: 100vw;
+  background-size: cover;
 }
 body{
   overflow-x:hidden;

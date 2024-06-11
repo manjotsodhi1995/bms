@@ -72,8 +72,9 @@ const Register=observer(()=> {
               className="h-full p-4 flex flex-col justify-around"
             >
               <div className="flex flex-col gap-2">
-                <h1 className="text-3xl font-bold">Sign Up</h1>
-                <h6 className="text-md">Create your account in seconds</h6>
+                <h1 className="text-3xl font-bold text-center items-center">
+                  Sign Up
+                </h1>
               </div>
 
               <div className="w-full">
@@ -170,7 +171,9 @@ const Register=observer(()=> {
               <div className="flex flex-col gap-1">
                 <div className="h-[2px] bg-black"></div>
                 <p className="text-center text-sm">
-                  By registering, you agree to KAFSCO's T&Cs and Privacy Policy.
+                  By registering, you agree to KAFSCO's{" "}
+                  <a href="/terms">T&Cs</a> and{" "}
+                  <a href="/privacy">Privacy Policy.</a>
                 </p>
                 <div>
                   <div className="text-red-500">{error}</div>

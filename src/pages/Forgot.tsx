@@ -48,11 +48,8 @@ const Forgot = observer(() => {
               onSubmit={handleSubmit}
               className="h-full flex flex-col justify-center gap-6 w-[25rem]"
             >
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 text-center items-center">
                 <h1 className="text-3xl font-bold">Forgot Password?</h1>
-                <h6 className="text-md">
-                  Please enter your email address to recieve a password reset link
-                </h6>
               </div>
               <div className="flex flex-col gap-4">
                 <div className="">

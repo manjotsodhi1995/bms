@@ -113,7 +113,6 @@ const handleSubmit = async (event: any) => {
               </div>
 
               <div className="text-[0.9rem] flex justify-center gap-1">
-                Dont have an account?
                 <Link to="/register" className="text-[#8C3E87]">
                   {" "}
                   Create an account
