@@ -9,6 +9,7 @@ import load from "./assets/Ghost.gif"
 import "@fontsource/inter";
 const EventPage = lazy(() => import("./pages/eventPage"))
 import MyTickets from "./pages/MyTickets"
+import Bg from "./components/Bg";
 import TermsAndConditions from "./pages/termsAndConditions";
 import Privacy from "./pages/privacy";
 import Forgot from "./pages/Forgot";
@@ -39,8 +40,14 @@ const App = observer(() => {
   }, []);
   return (
     <div>
-      {" "}
       <BrowserRouter>
+        <div className="home absolute -z-50">
+          <Bg />
+        </div>
+        <div className="home min-h-full min-w-[100vw] -z-10 absolute"></div>
+        <div className="home min-h-full min-w-[100vw] -z-10 absolute"></div>
+        <div className="home min-h-full min-w-[100vw] -z-10 absolute"></div>
+
         {<Navbar />}
         <Suspense
           fallback={
@@ -56,7 +63,7 @@ const App = observer(() => {
               element={<OrganizationProfile />}
             />
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/filter" element={<Filter/>} />
+            <Route path="/filter" element={<Filter />} />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/event/:eventId" element={<EventPage />} />
             <Route path="/mytickets" element={<MyTickets />} />
