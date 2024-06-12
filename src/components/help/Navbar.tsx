@@ -110,7 +110,7 @@ const Navbar = observer(() => {
           </div>
           <Link to="/">
             <div className="text-[3rem] font-bold items-center flex h-full text-white">
-              Logo.
+              Kafsco
             </div>
           </Link>
         </nav>

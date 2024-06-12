@@ -48,6 +48,9 @@ const Navbar = observer(() => {
               className="CROSS-ICON absolute top-0 right-0 px-8 py-8 w-full justify-between flex"
               onClick={() => setIsNavOpen(false)}
             >
+              <div className="text-[2rem] font-bold items-center flex h-full">
+                Kafsco
+              </div>{" "}
               <div
                 className="HAMBURGER-ICON space-y-2 flex flex-col justify-center cursor-pointer "
                 onClick={() => setIsNavOpen((prev: boolean) => !prev)}
@@ -55,9 +58,6 @@ const Navbar = observer(() => {
                 <span className="block h-1 w-8 bg-black"></span>
                 <span className="block h-1 w-8 bg-black"></span>
                 <span className="block h-1 w-8 bg-black"></span>
-              </div>
-              <div className="text-[2rem] font-bold items-center flex h-full">
-                Kafsco
               </div>
             </div>
             <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-left justify-start min-h-[250px] font-medium  transition-all duration-300">
@@ -297,6 +297,7 @@ const Navbar = observer(() => {
         z-index: 10;
         display: flex;
         flex-direction: column;
+
       }
       @media (max-width: 768px){
   .showMenuNav {
