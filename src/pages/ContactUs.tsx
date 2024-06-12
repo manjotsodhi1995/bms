@@ -1,5 +1,4 @@
 import msg from "../assets/contact/message.png"
-import phn from "../assets/contact/phone (2).png";
 import lc from "../assets/contact/location.png";
 import ExpandableBox from "../components/Expandable";
 import { observer } from "mobx-react-lite";
