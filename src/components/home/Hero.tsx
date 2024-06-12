@@ -11,7 +11,7 @@ function Hero() {
       title: "Match Events",
       description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
       imageUrl:
-        "https://s3-alpha-sig.figma.com/img/6b57/3e9f/f11b382ddad846f8ed7d0e8060d59a6c?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aF2-DpLFLEjsG234dvP~914xlx5T~cm7whUtoxSnJOPyutrTPvxWX8QJUoYoYv7IAu4JIg9vMAEqzYQe65IPQHh34WuB4VHm43o~y~q~U7BZILeHRXiTt~C~hwT-GvEa1MBoJhwhyXM~vFQc7oz02NdcP3~od~1gPE4vqSoVodWB~xFC1jObIYVPNc18h-ts~XRb-4HjtRnpH~2OEABokQA7DuLA~1InmaCOkaiDDhkSoNNaTGtMz1g5oHNihs0eG3tNiCOwojb8hQq5Ksn5MQoZNeOxjUQQRGED5Z3S2emPw0RRM9VxzRQESiw9l2AE5hO5IAMq~OCInMqKx7n8Ug__",
+        "../../assets/v1.mp4",
     },
     {
       title: "Match Events",

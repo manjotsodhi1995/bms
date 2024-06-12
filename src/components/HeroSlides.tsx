@@ -23,9 +23,8 @@ function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
           23 <br /> DEC
         </div>
 
-        <img
+        <video
           src={imageUrl}
-          alt=""
           className="w-full md:rounded-3xl rounded-xl h-full"
           onLoad={handleImageLoad}
         />

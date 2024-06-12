@@ -46,19 +46,19 @@ function Footer() {
           <div className="flex flex-col gap-4">
             <div className="text-[1.3rem] font-medium">Find Events</div>
             <div className="font-normal flex flex-col gap-2">
-              <div>Events in Delhi</div>
-              <div>Events in Gujrat</div>
-              <div>Events in Mumbai</div>
-              <div>Events in Ranchi</div>
+              <div>Events in Dublin</div>
+              <div>Events in Cork</div>
+              <div>Events in Limerick</div>
+              <div>Events in Wicklow</div>
             </div>
           </div>
           <div className="flex flex-col gap-4">
             <div className="text-[1.3rem] font-medium">Find Events</div>
             <div className="font-normal flex flex-col gap-2">
-              <div>Events in Delhi</div>
-              <div>Events in Gujrat</div>
-              <div>Events in Mumbai</div>
-              <div>Events in Ranchi</div>
+              <div>Events in Dublin</div>
+              <div>Events in Cork</div>
+              <div>Events in Limerick</div>
+              <div>Events in Wicklow</div>
             </div>
           </div>
         </div>
