@@ -47,7 +47,7 @@ function Trending() {
       location: "Dublin 8",
     },
     {
-      title: "Fairport Convention",
+      title: "Fairport Convention - CSC",
       description: "Mulehouse Rd, Sheffield, S10 1TD, United Kingdom",
       imageUrl:
         "https://fixr-cdn.fixr.co/images/event/2024-04/f67d560e4861485abee2ee327823e265.jpeg",

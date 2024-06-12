@@ -79,7 +79,7 @@ function EventCard({ title, description, imageUrl, location, date }: HeroSlidesP
                 </svg>
                 {location}
               </div>
-              <div className="flex text-[#A48A00] justify-left font-medium text-[0.7rem] md:text-[0.9rem] lg:text-[1.1rem] 2xl:text-[1.6rem] leading-tight">
+              <div className="flex text-[#A48A00] justify-left font-medium text-[0.7rem] md:text-[0.9rem] lg:text-[1.1rem] 2xl:text-[1.6rem] leading-tight pr-4 lg:h-[3rem] 2xl:h-[4rem]">
                 {title}
               </div>
               <div className="flex justify-left text-[0.4rem] md:text-[0.6rem] 2xl:text-[0.9rem]">
