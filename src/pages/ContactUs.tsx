@@ -50,15 +50,11 @@ const ContactUs = observer(() => {
           <div className="md:w-[46vw] flex flex-col gap-4 justify-center items-center md:mt-[-100px]">
             <div className="flex md:w-[60%] w-[80%] items-center gap-4">
               <img src={msg} alt="" />
-              example@gmail.com
-            </div>
-            <div className="flex md:w-[60%] w-[80%] items-center gap-4">
-              <img src={phn} alt="" />
-              +1 (208)- 555-0112
+              kafscoteam@gmail.com
             </div>
             <div className="flex md:w-[60%] w-[80%] items-center gap-4">
               <img src={lc} alt="" />
-              1901 Thornridge Cir. Shiloh, Hawaii 81063
+              123 Summerhill, Mountjoy, Dublin, Ireland
             </div>
           </div>
           <div className="">

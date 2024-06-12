@@ -11,37 +11,13 @@ function Hero() {
       title: "Match Events",
       description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
       imageUrl:
-        "https://s3-alpha-sig.figma.com/img/00b1/5f93/9bcbb9d3005d27235028760f95c63384?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dP4DkBnN7OBnFvFqHq~aasPHhQTA~v2Z00IcUlf8pLjc0WaZE9hZ18YI7eTOu8p0L64rpm~AB389zpc~6HJGqw1HLoMfMrxFay2GM3tKmkPHwkLydeRFYPbz5Ckv7jBXnvR5P91fPk1euzjQPrFcMuItirrYqTAlzUr0rreV8mpSHdPwkRF0OzWiYZOymbSrwTAVQvu6VIdaugigHhKV1-1K0LT1iJwYLl4v2~Ljqf3LWsEkBzZDByVz7oauuU3eN5xpJzQbCgE9fSAg~lMoqMIFnGc52qmTjvrF~fAFkPTC5dX9JkVYYDdHsArtjxdkfUsJNxtfRQEBLOTKHfuiTg__",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://s3-alpha-sig.figma.com/img/e920/0a79/3bd63e987d7be88465fe00e7513f4ad9?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=INZa5DwcpoeZ0rceS5eZhRoO~k6-7e~E4rS1wBrpd74U8eUcSiNpwtpf58CwqDFlWNJmSTF-8RietDq4tK7QYABtO-dZmzSEuL9Vl-DHNCiLLrEc23GQXkTbBqFh8gngIfv9qeOjIQoM5b9MjFU8rlGSi1EL4tDvI~vAjvPDWNvr1zLcX2WqCYanKAHkdbCNPgS4cPV1Q9ybGjQ7Adv7MjyJbbiLIqFRZj3aFkhE543zp27x19doqwxDBSAr-WwI93RtTH404BG~np7Zhj4mDlPMxxZISKDGehNEkQGdAzz2ANsjlnsd0VfrxwZtS06x9uauVqKFaHV1SMIRnYLodg__",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://s3-alpha-sig.figma.com/img/00b1/5f93/9bcbb9d3005d27235028760f95c63384?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dP4DkBnN7OBnFvFqHq~aasPHhQTA~v2Z00IcUlf8pLjc0WaZE9hZ18YI7eTOu8p0L64rpm~AB389zpc~6HJGqw1HLoMfMrxFay2GM3tKmkPHwkLydeRFYPbz5Ckv7jBXnvR5P91fPk1euzjQPrFcMuItirrYqTAlzUr0rreV8mpSHdPwkRF0OzWiYZOymbSrwTAVQvu6VIdaugigHhKV1-1K0LT1iJwYLl4v2~Ljqf3LWsEkBzZDByVz7oauuU3eN5xpJzQbCgE9fSAg~lMoqMIFnGc52qmTjvrF~fAFkPTC5dX9JkVYYDdHsArtjxdkfUsJNxtfRQEBLOTKHfuiTg__",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://s3-alpha-sig.figma.com/img/00b1/5f93/9bcbb9d3005d27235028760f95c63384?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dP4DkBnN7OBnFvFqHq~aasPHhQTA~v2Z00IcUlf8pLjc0WaZE9hZ18YI7eTOu8p0L64rpm~AB389zpc~6HJGqw1HLoMfMrxFay2GM3tKmkPHwkLydeRFYPbz5Ckv7jBXnvR5P91fPk1euzjQPrFcMuItirrYqTAlzUr0rreV8mpSHdPwkRF0OzWiYZOymbSrwTAVQvu6VIdaugigHhKV1-1K0LT1iJwYLl4v2~Ljqf3LWsEkBzZDByVz7oauuU3eN5xpJzQbCgE9fSAg~lMoqMIFnGc52qmTjvrF~fAFkPTC5dX9JkVYYDdHsArtjxdkfUsJNxtfRQEBLOTKHfuiTg__",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
         "https://s3-alpha-sig.figma.com/img/6b57/3e9f/f11b382ddad846f8ed7d0e8060d59a6c?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aF2-DpLFLEjsG234dvP~914xlx5T~cm7whUtoxSnJOPyutrTPvxWX8QJUoYoYv7IAu4JIg9vMAEqzYQe65IPQHh34WuB4VHm43o~y~q~U7BZILeHRXiTt~C~hwT-GvEa1MBoJhwhyXM~vFQc7oz02NdcP3~od~1gPE4vqSoVodWB~xFC1jObIYVPNc18h-ts~XRb-4HjtRnpH~2OEABokQA7DuLA~1InmaCOkaiDDhkSoNNaTGtMz1g5oHNihs0eG3tNiCOwojb8hQq5Ksn5MQoZNeOxjUQQRGED5Z3S2emPw0RRM9VxzRQESiw9l2AE5hO5IAMq~OCInMqKx7n8Ug__",
     },
     {
       title: "Match Events",
       description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
       imageUrl:
-        "https://s3-alpha-sig.figma.com/img/00b1/5f93/9bcbb9d3005d27235028760f95c63384?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dP4DkBnN7OBnFvFqHq~aasPHhQTA~v2Z00IcUlf8pLjc0WaZE9hZ18YI7eTOu8p0L64rpm~AB389zpc~6HJGqw1HLoMfMrxFay2GM3tKmkPHwkLydeRFYPbz5Ckv7jBXnvR5P91fPk1euzjQPrFcMuItirrYqTAlzUr0rreV8mpSHdPwkRF0OzWiYZOymbSrwTAVQvu6VIdaugigHhKV1-1K0LT1iJwYLl4v2~Ljqf3LWsEkBzZDByVz7oauuU3eN5xpJzQbCgE9fSAg~lMoqMIFnGc52qmTjvrF~fAFkPTC5dX9JkVYYDdHsArtjxdkfUsJNxtfRQEBLOTKHfuiTg__",
+        "https://s3-alpha-sig.figma.com/img/716c/e89c/34c9f005aecf0fce773e8f5c86341198?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p5T282TI0CuZT3tRWbM-iGg0HjhkzfRZExnBRQEYgibEs4iDj8Z4Pq1N4Bhd1l-32mQ-X5xiQRyVAqAg4eS5SQOcu0vigwNmW8zq1b6FI5UDkBP9PxSXHEcyuywqO-d9-TdQHFnQwta29iWsjMuhHUYSYu1DQhOkKbScmXc5lSgXszqV0gmQfyNKRa36GvB9YltUjZ18FB5sGfqYIlzoh9S92yCImbB~kN9RYjiCL28k5URqEdPjxTbxtXWv-6NdDLku2H5FDCq8TrB9tFtYKgQjoJEiM93rASL2pGImmPS1XSjQjlcvMK9EgRSyPhO~2LrX1pXc0L6A04oigFugAA__",
     },
     {
       title: "Match Events",
@@ -54,6 +30,12 @@ function Hero() {
       description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
       imageUrl:
         "https://s3-alpha-sig.figma.com/img/00b1/5f93/9bcbb9d3005d27235028760f95c63384?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dP4DkBnN7OBnFvFqHq~aasPHhQTA~v2Z00IcUlf8pLjc0WaZE9hZ18YI7eTOu8p0L64rpm~AB389zpc~6HJGqw1HLoMfMrxFay2GM3tKmkPHwkLydeRFYPbz5Ckv7jBXnvR5P91fPk1euzjQPrFcMuItirrYqTAlzUr0rreV8mpSHdPwkRF0OzWiYZOymbSrwTAVQvu6VIdaugigHhKV1-1K0LT1iJwYLl4v2~Ljqf3LWsEkBzZDByVz7oauuU3eN5xpJzQbCgE9fSAg~lMoqMIFnGc52qmTjvrF~fAFkPTC5dX9JkVYYDdHsArtjxdkfUsJNxtfRQEBLOTKHfuiTg__",
+    },
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+      imageUrl:
+        "https://s3-alpha-sig.figma.com/img/716c/e89c/34c9f005aecf0fce773e8f5c86341198?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p5T282TI0CuZT3tRWbM-iGg0HjhkzfRZExnBRQEYgibEs4iDj8Z4Pq1N4Bhd1l-32mQ-X5xiQRyVAqAg4eS5SQOcu0vigwNmW8zq1b6FI5UDkBP9PxSXHEcyuywqO-d9-TdQHFnQwta29iWsjMuhHUYSYu1DQhOkKbScmXc5lSgXszqV0gmQfyNKRa36GvB9YltUjZ18FB5sGfqYIlzoh9S92yCImbB~kN9RYjiCL28k5URqEdPjxTbxtXWv-6NdDLku2H5FDCq8TrB9tFtYKgQjoJEiM93rASL2pGImmPS1XSjQjlcvMK9EgRSyPhO~2LrX1pXc0L6A04oigFugAA__",
     },
     {
       title: "Match Events",
@@ -136,8 +118,8 @@ function Hero() {
           loop={true}
           slidesPerView={"auto"}
           autoplay={{
-            delay: 2000,
-            disableOnInteraction: false,
+            delay: 4000,
+            disableOnInteraction: true,pauseOnMouseEnter:true,
           }}
           coverflowEffect={{
             rotate: 0,
