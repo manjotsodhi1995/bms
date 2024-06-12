@@ -23,7 +23,7 @@ function EventCard({ title, description, imageUrl, location, date }: HeroSlidesP
             <img
               src={imageUrl}
               alt=""
-              className="w-[100rem] h-[7rem] rounded-2xl md:h-[12rem] 2xl:h-[15rem]"
+              className="w-[100rem] h-[7rem] rounded-2xl md:h-[12rem] 2xl:h-[15rem] object-cover"
             />
             <div className="absolute md:bottom-4 md:right-4 bottom-2 right-2">
               {" "}
@@ -79,7 +79,7 @@ function EventCard({ title, description, imageUrl, location, date }: HeroSlidesP
                 </svg>
                 {location}
               </div>
-              <div className="flex text-[#A48A00] justify-left font-medium text-[0.7rem] md:text-[0.9rem] lg:text-[1.1rem] 2xl:text-[1.6rem]">
+              <div className="flex text-[#A48A00] justify-left font-medium text-[0.7rem] md:text-[0.9rem] lg:text-[1.1rem] 2xl:text-[1.6rem] leading-tight">
                 {title}
               </div>
               <div className="flex justify-left text-[0.4rem] md:text-[0.6rem] 2xl:text-[0.9rem]">

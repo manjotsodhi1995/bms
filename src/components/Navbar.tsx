@@ -21,7 +21,7 @@ const Navbar = observer(() => {
   const [isNavOpen, setIsNavOpen] = useState(false); const [isFocused, setIsFocused] = useState(false); const [isDropOpen, setIsDropOpen] = useState(false); 
   const handleFocus = () => {
     setIsFocused(true);
-  }; const excludedRoutes = ["/login", "/register", "/forgot","/help","/helpdetail"];
+  }; const excludedRoutes = ["/login", "/register", "/forgot","/help","/helpdetail","/contactus"];
   const location = useLocation();
   const showNavbar = !excludedRoutes.includes(location.pathname);
   return (
