@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+// import v1 from "../../assets/v1.mp4"/
 function Hero() {
   const data = [
     {
@@ -118,8 +119,8 @@ function Hero() {
           loop={true}
           slidesPerView={"auto"}
           autoplay={{
-            delay: 4000,
-            disableOnInteraction: true,pauseOnMouseEnter:true,
+            delay: 2000,
+            disableOnInteraction: true,pauseOnMouseEnter:true,reverseDirection:true
           }}
           coverflowEffect={{
             rotate: 0,
