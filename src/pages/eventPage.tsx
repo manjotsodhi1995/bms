@@ -310,7 +310,7 @@ function EventPage() {const carouselRef = useRef(null);
                 width="350"
                 height="250"
               />
-              <div className="px-4 py-2 border-black border-2 2xl:w-[14rem] w-[12rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center">
+              <div className="px-2 py-2 border-black border-2 2xl:w-[12rem] w-[10rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center text-[0.8rem]">
                 GET DIRECTIONS
               </div>
             </div>
@@ -319,7 +319,7 @@ function EventPage() {const carouselRef = useRef(null);
               <div>
                 Check out all the benefits and sign up to rep this event!
               </div>
-              <div className="px-4 py-2 bg-black text-white text-center rounded-lg mt-2 w-[10rem]">REP THIS EVENT</div>
+              <div className="px-2 py-2 text-[0.8rem] bg-black text-white text-center rounded-lg mt-2 w-[10rem]">REP THIS EVENT</div>
             </div>
           </div>
         </div>
