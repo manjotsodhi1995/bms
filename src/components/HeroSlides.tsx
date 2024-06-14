@@ -22,16 +22,18 @@ function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
       style={{ transform: isHovered ? "scale(1.1)" : "scale(1)" }}
     >
       <div className="w-full rounded-3xl relative h-full">
-       {!isPlaying&& <div className="absolute bg-white rounded-lg text-center ml-4 mt-4 p-1 font-medium text-[0.8rem] md:text-[1rem] lg:text-[1.2rem] 2xl:text-[1.5rem] 2xl:p-2">
-          24 <br /> DEC
-        </div>}
+        {!isPlaying && (
+          <div className="absolute bg-white rounded-lg text-center ml-4 mt-4 p-1 font-medium text-[0.8rem] md:text-[1rem] lg:text-[1.2rem] 2xl:text-[1.5rem] 2xl:p-2">
+            24 <br /> DEC
+          </div>
+        )}
         <video
           src={v1}
           className="w-full md:rounded-3xl rounded-xl h-full object-cover"
           controls
           autoPlay
           onClick={() => {
-            setIsPlaying(true);
+            setIsPlaying(!isPlaying);
           }}
           onLoad={handleImageLoad}
         ></video>
