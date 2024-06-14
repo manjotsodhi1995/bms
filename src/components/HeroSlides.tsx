@@ -20,7 +20,6 @@ function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ transform: isHovered ? "scale(1.1)" : "scale(1)" }}
-      style={{ transform: isPlaying ? "scale(2)" : "scale(1)" }}
     >
       <div className="w-full rounded-3xl relative h-full">
         {!isPlaying && (
