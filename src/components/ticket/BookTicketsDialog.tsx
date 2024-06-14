@@ -3,43 +3,21 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Event } from "@/pages/eventPage";
-import Bg from "../Bg";
-import { cn } from "@/utils";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import TicketTableOption from "./TicketTableOption";
 
 interface BookTicketsDialogProps extends DialogProps {
   eventsData: Event | null;
 }
 
-// TODO: Remove this
-const fakeEvent = {
-  id: 1,
-  title: "Rhythms Live",
-  ageRestriction: "18+",
-  duration: "2h",
-  eventStart: "8:00 PM",
-  genres: ["Jazz", "Blues", "Rock"],
-  venueAddress: {
-    name: "The Jazz Cafe",
-    city: "London",
-    country: "UK",
-    zipcode: "NW1 7PG",
-  },
-} satisfies Event;
-
 const BookTicketsDialog = ({
   children,
   eventsData,
   ...rest
 }: BookTicketsDialogProps) => {
-  const data = eventsData || fakeEvent;
   return (
     <Dialog {...rest}>
       <DialogTrigger asChild>{children}</DialogTrigger>
