@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Like from "../assets/Like.png";
@@ -9,13 +8,14 @@ import { Link } from "react-router-dom";
 import { useRef } from "react";
 import EventCard from "../components/EventCard";
 import EventSlides from "../components/eventStory";
-interface venueAddressI{
+import BookTicketsDialog from "@/components/ticket/BookTicketsDialog";
+interface venueAddressI {
   name: string;
   city: string;
   country: string;
   zipcode: string;
 }
-interface Event {
+export interface Event {
   id: number;
   title: string;
   genres: string[];
@@ -23,9 +23,9 @@ interface Event {
   eventStart: string;
   duration: string;
   ageRestriction: string;
-
 }
-function EventPage() {const carouselRef = useRef(null);
+function EventPage() {
+  const carouselRef = useRef(null);
   const data = [
     {
       title: "Match Events",
@@ -44,11 +44,14 @@ function EventPage() {const carouselRef = useRef(null);
       description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
       imageUrl:
         "https://s3-alpha-sig.figma.com/img/00b1/5f93/9bcbb9d3005d27235028760f95c63384?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dP4DkBnN7OBnFvFqHq~aasPHhQTA~v2Z00IcUlf8pLjc0WaZE9hZ18YI7eTOu8p0L64rpm~AB389zpc~6HJGqw1HLoMfMrxFay2GM3tKmkPHwkLydeRFYPbz5Ckv7jBXnvR5P91fPk1euzjQPrFcMuItirrYqTAlzUr0rreV8mpSHdPwkRF0OzWiYZOymbSrwTAVQvu6VIdaugigHhKV1-1K0LT1iJwYLl4v2~Ljqf3LWsEkBzZDByVz7oauuU3eN5xpJzQbCgE9fSAg~lMoqMIFnGc52qmTjvrF~fAFkPTC5dX9JkVYYDdHsArtjxdkfUsJNxtfRQEBLOTKHfuiTg__",
-    },];
+    },
+  ];
   const { eventId } = useParams();
-  const [eventsData, setEventData] = useState<Event|null>(null);
+  const [eventsData, setEventData] = useState<Event | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showBookTicketsDialog, setShowBookTicketsDialog] = useState(false);
+
   useEffect(() => {
     const fetchEvent = async () => {
       try {
@@ -70,7 +73,8 @@ function EventPage() {const carouselRef = useRef(null);
     console.log(error);
     fetchEvent();
     if (!isLoading) console.log(eventsData);
-  }, [eventId]);const eventData = [
+  }, [eventId]);
+  const eventData = [
     {
       title: "Rhythms Live",
       description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
@@ -286,9 +290,16 @@ function EventPage() {const carouselRef = useRef(null);
               </div>
             </div>
             <div className="mt-4">
-              <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
-                Get Tickets
-              </button>
+              <BookTicketsDialog
+                open={showBookTicketsDialog}
+                onOpenChange={setShowBookTicketsDialog}
+                modal={true}
+                eventsData={eventsData}
+              >
+                <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
+                  Get Tickets
+                </button>
+              </BookTicketsDialog>
             </div>
           </div>
           <div className="flex flex-col gap-8">
@@ -315,11 +326,15 @@ function EventPage() {const carouselRef = useRef(null);
               </div>
             </div>
             <div>
-              <div className="font-medium text-[1.2rem]">Would you like to rep this event?</div>
+              <div className="font-medium text-[1.2rem]">
+                Would you like to rep this event?
+              </div>
               <div>
                 Check out all the benefits and sign up to rep this event!
               </div>
-              <div className="px-2 py-2 text-[0.8rem] bg-black text-white text-center rounded-lg mt-2 w-[10rem]">REP THIS EVENT</div>
+              <div className="px-2 py-2 text-[0.8rem] bg-black text-white text-center rounded-lg mt-2 w-[10rem]">
+                REP THIS EVENT
+              </div>
             </div>
           </div>
         </div>
