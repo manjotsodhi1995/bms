@@ -1,13 +1,19 @@
-import { useState } from "react"
+import { useState } from "react";
 import { Link } from "react-router-dom";
 interface HeroSlidesProps {
-  title: String;
+  title: string;
   description: string;
-    imageUrl: string;
-    location: string;
-    date: string;
+  imageUrl: string;
+  location: string;
+  date: string;
 }
-function EventCard({ title, description, imageUrl, location, date }: HeroSlidesProps) {
+function EventCard({
+  title,
+  description,
+  imageUrl,
+  location,
+  date,
+}: HeroSlidesProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div

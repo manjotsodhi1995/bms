@@ -27,7 +27,7 @@ const Forgot = observer(() => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
-    //   await auth.fetchToken(email);
+      //   await auth.fetchToken(email);
       navigate("/");
     } catch (error: any) {
       if (error.response && error.response.status === 400) {

@@ -22,7 +22,7 @@ export class Auth {
     });
     this.root = root;
   }
-  setAuthenticated(){
+  setAuthenticated() {
     this.isAuthenticated = true;
   }
   async fetchToken(email: string, password: string) {
@@ -30,19 +30,18 @@ export class Auth {
       email: email,
       password: password,
     };
-      const response = await axios.post(
-        "https://api.kafsco.com/api/v1/users/login", // Correct URL
-        data,
-        { headers: { "Content-Type": "application/json" } }
-      );
-      console.log(response.data.data.accessToken)
-      this.accessToken = response.data.data.accessToken; 
-      this.refreshToken = response.data.data.refreshToken;
-      localStorage.setItem("accessToken", this.accessToken);
-      localStorage.setItem("refreshToken", this.refreshToken);
-      this.isAuthenticated = true;
-      console.log("Login successful:", response.data);
-    
+    const response = await axios.post(
+      "https://api.kafsco.com/api/v1/users/login", // Correct URL
+      data,
+      { headers: { "Content-Type": "application/json" } }
+    );
+    console.log(response.data.data.accessToken);
+    this.accessToken = response.data.data.accessToken;
+    this.refreshToken = response.data.data.refreshToken;
+    localStorage.setItem("accessToken", this.accessToken);
+    localStorage.setItem("refreshToken", this.refreshToken);
+    this.isAuthenticated = true;
+    console.log("Login successful:", response.data);
   }
 
   async register(
@@ -58,20 +57,20 @@ export class Auth {
       lname: lastName,
       countryCode: "+91",
       phone: phone,
-      fcmToken:"test token",
+      fcmToken: "test token",
       email: email,
       gender: gender,
       password: password,
       isTnCAccepted: true,
-      isPrivacyPolicyAccepted:true,
+      isPrivacyPolicyAccepted: true,
     };
-      const response = await axios.post(
-        "https://api.kafsco.com/api/v1/users/signup",
-        data,
-        { headers: { "Content-Type": "application/json" } }
-      );
-      console.log("Signup successful:", response.data);
-      this.fetchToken(email,password)
+    const response = await axios.post(
+      "https://api.kafsco.com/api/v1/users/signup",
+      data,
+      { headers: { "Content-Type": "application/json" } }
+    );
+    console.log("Signup successful:", response.data);
+    this.fetchToken(email, password);
   }
   async orgRegister(
     email: string,

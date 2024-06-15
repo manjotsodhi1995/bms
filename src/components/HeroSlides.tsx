@@ -1,16 +1,16 @@
-import { useState } from "react"
-import v1 from "../assets/v1.mp4"
+import { useState } from "react";
+import v1 from "../assets/v1.mp4";
 interface HeroSlidesProps {
-  title: String,
-  description: string,
-  imageUrl: string,
+  title: string;
+  description: string;
+  imageUrl: string;
 }
 function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
-  console.log("isLoading", isLoading)
-  console.log(imageUrl)
+  console.log("isLoading", isLoading);
+  console.log(imageUrl);
   const handleImageLoad = () => {
     setIsLoading(false); // Set loading to false when image loads
   };
@@ -52,4 +52,4 @@ function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
   );
 }
 
-export default HeroSlides
+export default HeroSlides;

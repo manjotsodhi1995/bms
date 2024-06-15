@@ -1,18 +1,20 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import img from "../assets/Auth/register.png";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
-const Register=observer(()=> {
+const Register = observer(() => {
   const [firstName, setFirstName] = useState(""); // State for first name input
   const [lastName, setLastName] = useState(""); // State for last name input
   const [gender, setGender] = useState("male"); // State for gender
   const [phone, setPhone] = useState("");
-    const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { root: { auth } } = useStore();
+  const {
+    root: { auth },
+  } = useStore();
   const navigate = useNavigate();
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
@@ -40,13 +42,12 @@ const Register=observer(()=> {
     }
   };
 
-  const handleSubmit = async(event: any) => {
-    event.preventDefault(); 
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
     try {
       await auth.register(email, password, firstName, lastName, gender, phone);
       navigate("/");
-    }
-    catch (error: any) {
+    } catch (error: any) {
       if (error.response && error.response.status === 400) {
         setError("Invalid email or password. Please try again.");
       } else {
@@ -54,7 +55,6 @@ const Register=observer(()=> {
         console.error("Login error:", error);
       }
     }
-
   };
   useEffect(() => {
     if (auth.isAuthenticated) navigate("/");
@@ -189,6 +189,6 @@ const Register=observer(()=> {
       </div>
     </>
   );
-})
+});
 
 export default Register;

@@ -1,8 +1,4 @@
-import {
-  AreaChart,
-  Area,
-  Tooltip,
-} from "recharts";
+import { AreaChart, Area, Tooltip } from "recharts";
 
 type ArCharPayoutProps = {
   color: string;

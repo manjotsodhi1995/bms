@@ -6,7 +6,7 @@ import EventCard from "../components/EventCard";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import Footer from "../components/Footer";
-interface od{
+interface od {
   name: string;
   slug: string;
   logoUrl: string;
@@ -14,7 +14,7 @@ interface od{
 const OrganizationProfile = observer(() => {
   const { orgId } = useParams();
   const navigate = useNavigate();
-  const [organizationData, setOrganizationData] = useState<od|null>(null);
+  const [organizationData, setOrganizationData] = useState<od | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const {
