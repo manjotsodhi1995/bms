@@ -9,9 +9,6 @@ import { useRef } from "react";
 import EventCard from "../components/EventCard";
 import EventSlides from "../components/eventStory";
 import BookTicketsDialog from "@/components/ticket/BookTicketsDialog";
-import CartDialog from "@/components/ticket/CartDialog";
-import CheckoutDialog from "@/components/ticket/CheckoutDialog";
-import LastPaymentsDialog from "@/components/ticket/LastPaymentsDialog";
 interface venueAddressI {
   name: string;
   city: string;
@@ -27,7 +24,7 @@ export interface Event {
   duration: string;
   ageRestriction: string;
 }
-function EventPage() {
+const EventPage = () => {
   const carouselRef = useRef(null);
   const data = [
     {
@@ -53,11 +50,6 @@ function EventPage() {
   const [eventsData, setEventData] = useState<Event | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showBookTicketsDialog, setShowBookTicketsDialog] = useState(false);
-  const [showCartDialog, setShowCartDialog] = useState(false);
-  const [showCheckoutDialog, setShowCheckoutDialog] = useState(false);
-  const [showLastPaymentsDesignDialog, setShowLastPaymentsDesignDialog] =
-    useState(false);
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -297,49 +289,11 @@ function EventPage() {
               </div>
             </div>
             <div className="mt-4 space-y-2">
-              <BookTicketsDialog
-                open={showBookTicketsDialog}
-                onOpenChange={setShowBookTicketsDialog}
-                modal={true}
-                eventsData={eventsData}
-              >
+              <BookTicketsDialog eventsData={eventsData}>
                 <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
                   Get Tickets
                 </button>
               </BookTicketsDialog>
-
-              {/* TODO: Remove these dialog */}
-              <CartDialog
-                open={showCartDialog}
-                onOpenChange={setShowCartDialog}
-                modal={true}
-                eventsData={eventsData}
-              >
-                <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
-                  Cart
-                </button>
-              </CartDialog>
-              <CheckoutDialog
-                open={showCheckoutDialog}
-                onOpenChange={setShowCheckoutDialog}
-                modal={true}
-                eventsData={eventsData}
-              >
-                <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
-                  Checkout
-                </button>
-              </CheckoutDialog>
-              <LastPaymentsDialog
-                open={showLastPaymentsDesignDialog}
-                onOpenChange={setShowLastPaymentsDesignDialog}
-                modal={true}
-                eventsData={eventsData}
-              >
-                <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
-                  Last Payments Screen Design Dialog
-                </button>
-              </LastPaymentsDialog>
-              {/*  */}
             </div>
           </div>
           <div className="flex flex-col gap-8">
@@ -624,6 +578,6 @@ function EventPage() {
     //   </div>
     // ))
   );
-}
+};
 
 export default EventPage;
