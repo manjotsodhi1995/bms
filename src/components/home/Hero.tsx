@@ -1,57 +1,125 @@
 import HeroSlides from "../HeroSlides";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Autoplay,Navigation } from "swiper/modules";
+import { EffectCoverflow, Autoplay,Navigation} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { useState, useRef, useEffect } from "react";
+import type SwiperCore from "swiper";
+import Stories from "../Stories";
 // import v1 from "../../assets/v1.mp4"/
 function Hero() {
   const data = [
     {
       title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
       imageUrl:
-        "../../assets/v1.mp4",
+        "/v1.jpg",
     },
     {
       title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
       imageUrl:
-        "https://s3-alpha-sig.figma.com/img/716c/e89c/34c9f005aecf0fce773e8f5c86341198?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p5T282TI0CuZT3tRWbM-iGg0HjhkzfRZExnBRQEYgibEs4iDj8Z4Pq1N4Bhd1l-32mQ-X5xiQRyVAqAg4eS5SQOcu0vigwNmW8zq1b6FI5UDkBP9PxSXHEcyuywqO-d9-TdQHFnQwta29iWsjMuhHUYSYu1DQhOkKbScmXc5lSgXszqV0gmQfyNKRa36GvB9YltUjZ18FB5sGfqYIlzoh9S92yCImbB~kN9RYjiCL28k5URqEdPjxTbxtXWv-6NdDLku2H5FDCq8TrB9tFtYKgQjoJEiM93rASL2pGImmPS1XSjQjlcvMK9EgRSyPhO~2LrX1pXc0L6A04oigFugAA__",
+        "/v2.jpg",
     },
     {
       title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
       imageUrl:
-        "https://s3-alpha-sig.figma.com/img/88e5/f86d/24834c9146c642c5b635c09a906461f7?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HhqaSNgTr7yxwil2RfV4XWWNnUAUdJjnONHMvFOTa5B1CAulm8DCEiGYHzpH2RyrxTc1~179fk8bPa9Qs5Y5kAimJl0TI7twrRoz-p9bFMWKTJBZsqdAKQ1Au10trbx232pMyJyvSst~bWUnIlEX1IVwdMmg76NvE5~7r6TuqZIHLJXAs4reVmcmN~nlWyuBNYOKVn98wnTAi5eWrV9PrOXPNax23M9P1sEgsEgo8yKGH23L6DK5CBvsZ0TrnxC8V~txMeioItj37t9KxCbOCtCQ37Ia1Zl5nm1kjwnzkOGJ5eUXgskrJLo7Skf8VW7Odz5MuBROiXCrowsjjRgI4Q__",
+        "/v3.jpg",
     },
     {
       title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
       imageUrl:
-        "https://s3-alpha-sig.figma.com/img/00b1/5f93/9bcbb9d3005d27235028760f95c63384?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dP4DkBnN7OBnFvFqHq~aasPHhQTA~v2Z00IcUlf8pLjc0WaZE9hZ18YI7eTOu8p0L64rpm~AB389zpc~6HJGqw1HLoMfMrxFay2GM3tKmkPHwkLydeRFYPbz5Ckv7jBXnvR5P91fPk1euzjQPrFcMuItirrYqTAlzUr0rreV8mpSHdPwkRF0OzWiYZOymbSrwTAVQvu6VIdaugigHhKV1-1K0LT1iJwYLl4v2~Ljqf3LWsEkBzZDByVz7oauuU3eN5xpJzQbCgE9fSAg~lMoqMIFnGc52qmTjvrF~fAFkPTC5dX9JkVYYDdHsArtjxdkfUsJNxtfRQEBLOTKHfuiTg__",
+        "/v4.jpg",
     },
     {
       title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
       imageUrl:
-        "https://s3-alpha-sig.figma.com/img/716c/e89c/34c9f005aecf0fce773e8f5c86341198?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p5T282TI0CuZT3tRWbM-iGg0HjhkzfRZExnBRQEYgibEs4iDj8Z4Pq1N4Bhd1l-32mQ-X5xiQRyVAqAg4eS5SQOcu0vigwNmW8zq1b6FI5UDkBP9PxSXHEcyuywqO-d9-TdQHFnQwta29iWsjMuhHUYSYu1DQhOkKbScmXc5lSgXszqV0gmQfyNKRa36GvB9YltUjZ18FB5sGfqYIlzoh9S92yCImbB~kN9RYjiCL28k5URqEdPjxTbxtXWv-6NdDLku2H5FDCq8TrB9tFtYKgQjoJEiM93rASL2pGImmPS1XSjQjlcvMK9EgRSyPhO~2LrX1pXc0L6A04oigFugAA__",
+        "/v5.jpg",
     },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://s3-alpha-sig.figma.com/img/716c/e89c/34c9f005aecf0fce773e8f5c86341198?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p5T282TI0CuZT3tRWbM-iGg0HjhkzfRZExnBRQEYgibEs4iDj8Z4Pq1N4Bhd1l-32mQ-X5xiQRyVAqAg4eS5SQOcu0vigwNmW8zq1b6FI5UDkBP9PxSXHEcyuywqO-d9-TdQHFnQwta29iWsjMuhHUYSYu1DQhOkKbScmXc5lSgXszqV0gmQfyNKRa36GvB9YltUjZ18FB5sGfqYIlzoh9S92yCImbB~kN9RYjiCL28k5URqEdPjxTbxtXWv-6NdDLku2H5FDCq8TrB9tFtYKgQjoJEiM93rASL2pGImmPS1XSjQjlcvMK9EgRSyPhO~2LrX1pXc0L6A04oigFugAA__",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://s3-alpha-sig.figma.com/img/716c/e89c/34c9f005aecf0fce773e8f5c86341198?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p5T282TI0CuZT3tRWbM-iGg0HjhkzfRZExnBRQEYgibEs4iDj8Z4Pq1N4Bhd1l-32mQ-X5xiQRyVAqAg4eS5SQOcu0vigwNmW8zq1b6FI5UDkBP9PxSXHEcyuywqO-d9-TdQHFnQwta29iWsjMuhHUYSYu1DQhOkKbScmXc5lSgXszqV0gmQfyNKRa36GvB9YltUjZ18FB5sGfqYIlzoh9S92yCImbB~kN9RYjiCL28k5URqEdPjxTbxtXWv-6NdDLku2H5FDCq8TrB9tFtYKgQjoJEiM93rASL2pGImmPS1XSjQjlcvMK9EgRSyPhO~2LrX1pXc0L6A04oigFugAA__",
-    },
+
   ];
+  const [open, setOpen] = useState(false);
+  // const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);
+
+  // const handleSetChildSwiper = (swiper: SwiperCore | null) => {
+  //   setChildSwiper(swiper);
+  // };
+  // const swiperControl = useCallback((swiper: SwiperCore) => {
+  //   setSwiperInstance(swiper);
+  // }, []);
+
+  // interface SwiperRefs {
+  //   swiperRef1: React.MutableRefObject<typeof Swiper | null>;
+  //   swiperRef2: React.MutableRefObject<typeof Swiper | null>;
+  // }
+  // const swiperRef1 = useRef<typeof Swiper | null>(null);
+  // const swiperRef2 = useRef<typeof Swiper | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  // const [clicked, setClicked] = useState(true);
+
+  const handleSlideClick = (index:number) => {
+      // setTimeout(() => {
+      //   setClicked(false);
+      // }, 15000);
+      setActiveIndex(index);
+      // if (firstSwiper.current) {
+      //   firstSwiper.current.slideTo(activeIndex);
+      // }
+    }
+
+  const firstSwiper = useRef<SwiperCore | null>(null);
+  // const secondSwiper = useRef<SwiperCore | null>(null);
+  // const handleFirstSlideChange = (swiper: SwiperCore) => {
+  //   const { activeIndex } = swiper;
+  //   // Navigate to the corresponding slide in the second swiper
+  //   if (secondSwiper.current && secondSwiper.current.activeIndex !== activeIndex) {
+  //     secondSwiper.current.slideTo(activeIndex);
+  //   }
+  // };
+  // const handleSecondSlideChange = (swiper: SwiperCore) => {
+  //   const { activeIndex } = swiper;
+  //   // Navigate to the corresponding slide in the first swiper
+  //   if (firstSwiper.current && firstSwiper.current.activeIndex !== activeIndex && open==true) {
+  //     firstSwiper.current.slideTo(activeIndex);
+  //   } 
+  // };
+  const handleNextClick = () => {
+    if (firstSwiper.current) {
+      firstSwiper.current.slideNext();
+    }
+  };
+
+  const handlePrevClick = () => {
+    if (firstSwiper.current) {
+      firstSwiper.current.slidePrev();
+    }
+  };
+  useEffect(() => {
+    if (firstSwiper.current) {
+      if (open) {
+        firstSwiper.current.autoplay.stop();
+      } else {
+        firstSwiper.current.autoplay.start();
+      }
+    }
+  
+  }, [open]);
+
+  // useEffect(() => {
+  //   if (swiperInstance) {
+  //     swiperInstance.update(); // Update swiper instance when modal is opened/closed
+  //   }
+  // }, [open, swiperInstance]);
   return (
+    <>
+    {/* swiperInstance={swiperInstance} activeIndex={activeIndex}  handleSlideChange={handleSecondSlideChange}*/}
+        <Stories onOpen={open} setOpen={setOpen} activeIndex={activeIndex} handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
+        handlePrevClick={handlePrevClick} />
     <div className="flex flex-col items-center xl:mt-[0rem] xl:gap-6 mt-[-2rem] lg:mt-[1rem]">
       <div className="w-full">
         <Swiper
@@ -107,21 +175,19 @@ function Hero() {
                 events through stories shared by our dedicated reps and
                 organizers
               </div>
-            </div>
+            </div> 
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="">
+      <div className="" >
         <Swiper
+          initialSlide={activeIndex}
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
           loop={true}
           slidesPerView={"auto"}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: true,pauseOnMouseEnter:true,reverseDirection:true
-          }}
+          autoplay={{ delay: 3000 }}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
@@ -131,15 +197,19 @@ function Hero() {
           pagination={{ el: ".swiper-pagination", clickable: true }}
           modules={[EffectCoverflow, Autoplay]}
           className="swiper_container sw1 py-8"
+          // onInit={(swiper) =>setSwiperInstance(swiper)}
+          onSwiper={(swiper) => (firstSwiper.current = swiper)}
+          // onSlideChange={handleSeoSlideChange}
         >
           {data.map((card, index) => (
-            <SwiperSlide>
-              <HeroSlides key={index} {...card} />
+            <SwiperSlide onClick={() => {setOpen(true);  handleSlideClick(index)}}>
+              <HeroSlides key={index} {...card}/>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
     </div>
+    </>
   );
 }
 
