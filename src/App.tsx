@@ -2,13 +2,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useStore } from "./hooks/useStore";
 import { observer } from "mobx-react-lite";
 
-import { lazy, Suspense } from "react";const SearchPage = lazy(() => import("./pages/Search"));
+import { lazy, Suspense } from "react";
+const SearchPage = lazy(() => import("./pages/Search"));
+import DashBoard from "./pages/dashboard/Dashboard";
 import { useEffect } from "react";
 import OrganizationProfile from "./pages/OrganizationDescription";
-import load from "./assets/Ghost.gif"
+import load from "./assets/Ghost.gif";
 import "@fontsource/inter";
-const EventPage = lazy(() => import("./pages/eventPage"))
-import MyTickets from "./pages/MyTickets"
+import PayOutD from "./pages/dashboard/PayOutD";
+const EventPage = lazy(() => import("./pages/eventPage"));
+import MyTickets from "./pages/MyTickets";
 import Bg from "./components/Bg";
 import TermsAndConditions from "./pages/termsAndConditions";
 import Privacy from "./pages/privacy";
@@ -23,9 +26,8 @@ const Register = lazy(() => import("./pages/Register"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const Help = lazy(() => import("./pages/help"));
 const HelpDetail = lazy(() => import("./pages/help/helpDetail"));
-const Affiliate = lazy(() => import("./pages/Affiliate")); 
+const Affiliate = lazy(() => import("./pages/Affiliate"));
 const App = observer(() => {
- 
   const {
     root: { auth },
   } = useStore();
@@ -62,6 +64,7 @@ const App = observer(() => {
               path="/organization/:orgId"
               element={<OrganizationProfile />}
             />
+
             <Route path="/search" element={<SearchPage />} />
             <Route path="/filter" element={<Filter />} />
             <Route path="/terms" element={<TermsAndConditions />} />
@@ -77,6 +80,8 @@ const App = observer(() => {
             <Route path="/affiliate" element={<Affiliate />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />
+            <Route path="/dashboard" element={<DashBoard />} />
+            <Route path="/dashboard/payout" element={<PayOutD />} />
           </Routes>{" "}
         </Suspense>
       </BrowserRouter>
