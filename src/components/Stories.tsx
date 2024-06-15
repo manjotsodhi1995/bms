@@ -101,14 +101,15 @@ const handleClose = () => setOpen(false);
   >
     <Box sx={style}>
     <Swiper
-          effect = {'coverflow'}
+          effect = {'coverflow'} 
           // onSlideChange={handleSlideChange}
           onNavigationNext={handleNext}
           onNavigationPrev={handlePrev}
           initialSlide={activeIndex}
           spaceBetween={60}
           navigation={true}
-          grabCursor={true}
+          grabCursor={false}
+          allowTouchMove={false}
           centeredSlides={true}
           loop={true}
           slidesPerView={2}
