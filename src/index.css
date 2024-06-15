@@ -108,6 +108,7 @@ input::placeholder,textarea::placeholder {
 .swiper-wrapper
 {
   margin: 30px 0px;
+  height:100%;
 }
 .home{
 /* background: rgba( 255, 255, 255, 0.09 ); */

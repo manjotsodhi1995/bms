@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 // import v1 from "../../assets/v1.mp4"/
 function Hero() {
+  
   const data = [
     {
       title: "Match Events",
@@ -118,10 +119,6 @@ function Hero() {
           centeredSlides={true}
           loop={true}
           slidesPerView={"auto"}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: true,pauseOnMouseEnter:true,reverseDirection:true
-          }}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
