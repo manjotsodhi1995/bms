@@ -17,9 +17,6 @@ module.exports = {
       },
     },
     extend: {
-      boxShadow: {
-        custom: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -77,4 +74,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-};
+}

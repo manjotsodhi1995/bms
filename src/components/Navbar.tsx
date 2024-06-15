@@ -3,8 +3,8 @@ import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
-import pfp from "../assets/test/pfp.png";
-import bell from "../assets/test/bell.png";
+import pfp from "../assets/test/pfp.png"
+import bell from "../assets/test/bell.png"
 const Navbar = observer(() => {
   const navigate = useNavigate();
   const {
@@ -12,28 +12,16 @@ const Navbar = observer(() => {
   } = useStore();
   const [search, setSearch] = useState("");
   const handleSubmit = (event: any) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
+    
+    if (event.key === "Enter") {event.preventDefault(); 
       navigate(`/search?query=${search}`);
     }
-  };
+};
   const isAuthenticated = auth.isAuthenticated;
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const [isDropOpen, setIsDropOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false); const [isFocused, setIsFocused] = useState(false); const [isDropOpen, setIsDropOpen] = useState(false); 
   const handleFocus = () => {
     setIsFocused(true);
-  };
-  const excludedRoutes = [
-    "/login",
-    "/register",
-    "/forgot",
-    "/help",
-    "/helpdetail",
-    "/contactus",
-    "/dashboard",
-    "/dashboard/payout",
-  ];
+  }; const excludedRoutes = ["/login", "/register", "/forgot","/help","/helpdetail","/contactus"];
   const location = useLocation();
   const showNavbar = !excludedRoutes.includes(location.pathname);
   return (
@@ -202,15 +190,6 @@ const Navbar = observer(() => {
                     </Link>
                   </li>
                 </li>
-                <li className=" my-6">
-                  <Link
-                    to="/dashboard"
-                    className="flex justify-between"
-                    onClick={() => setIsNavOpen((prev) => !prev)}
-                  >
-                    <div>Dashboard</div>
-                  </Link>
-                </li>
               </div>
             </ul>
           </div>
@@ -341,6 +320,7 @@ function NotificationsDropdown() {
   const toggleDropdown = () => setIsOpen(!isOpen);
   const notifications = [
     {
+
       title: "Payment Successful",
       message: "You have successfully made a payment at Bpraak Concert",
     },
@@ -365,17 +345,15 @@ function NotificationsDropdown() {
           <div className="border-b p-2 flex">
             <button
               onClick={() => setActiveTab("Unread")}
-              className={`px-4 py-2 rounded-t-md focus:outline-none ${
-                activeTab === "Unread" ? "bg-gray-200" : ""
-              }`}
+              className={`px-4 py-2 rounded-t-md focus:outline-none ${activeTab === "Unread" ? "bg-gray-200" : ""
+                }`}
             >
               Unread
             </button>
             <button
               onClick={() => setActiveTab("All")}
-              className={`px-4 py-2 rounded-t-md focus:outline-none ${
-                activeTab === "All" ? "bg-gray-200" : ""
-              }`}
+              className={`px-4 py-2 rounded-t-md focus:outline-none ${activeTab === "All" ? "bg-gray-200" : ""
+                }`}
             >
               All
             </button>
@@ -419,12 +397,7 @@ function ProfileDropdown() {
           <a href="/settings" className="block px-4 py-2 hover:bg-gray-100">
             Account Settings
           </a>
-          <button
-            className="block px-4 py-2 w-full text-center hover:bg-gray-100"
-            onClick={() => {
-              auth.logout();
-            }}
-          >
+          <button className="block px-4 py-2 w-full text-center hover:bg-gray-100" onClick={() => { auth.logout() }}>
             Logout
           </button>
         </div>
