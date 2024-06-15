@@ -1,4 +1,4 @@
-import React from "react";
+
 import HomeContainerCard from "../HomeContainerCard";
 import {
   BarChart,
@@ -6,7 +6,7 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
+
   Legend,
 } from "recharts";
 

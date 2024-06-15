@@ -1,7 +1,6 @@
-import React from "react";
 // import SideBar from "../../components/dashboard/SideBar";
 // import SideBar from "../../components/dashboard/SideBar";
-import Navbar from "../../components/dashboard/Navbar";
+
 import Sidebar from "../../components/dashboard/Sidebar";
 import TopBar from "../../components/dashboard/TopBar";
 import Home from "../../components/dashboard/Home";

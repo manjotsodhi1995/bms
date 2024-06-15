@@ -1,4 +1,3 @@
-import React from "react";
 import PayoutHome from "../../components/dashboard/PayoutHome";
 import Sidebar from "../../components/dashboard/Sidebar";
 import TopBar from "../../components/dashboard/TopBar";

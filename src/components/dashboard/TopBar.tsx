@@ -1,5 +1,3 @@
-import React from "react";
-
 const TopBar = () => {
   return (
     <div className="w-full p-5 h-[70px] font-bold items-center rounded-md shadow-custom flex gap-5">

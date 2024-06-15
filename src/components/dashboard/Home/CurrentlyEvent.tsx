@@ -1,4 +1,3 @@
-import React from "react";
 import HomeContainerCard2 from "../HomeContainerCard2";
 import DTable from "./DTable";
 

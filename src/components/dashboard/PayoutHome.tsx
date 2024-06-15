@@ -1,6 +1,5 @@
-import React from "react";
 import ArCharPayout from "./PayOut/ArCharPayout";
-import TableRow from "./PayOut/TableRow";
+
 import TableP from "./PayOut/TableP";
 function PayoutHome() {
   return (

@@ -1,10 +1,8 @@
-import React from "react";
 import BarChartHome from "./Charts/BarChart";
 import AreaChartHome from "./Charts/AreaChart";
 import Payouts from "./Home/Payouts";
 import TicketSold from "./Home/TicketSold";
 import CurrentlyEvent from "./Home/CurrentlyEvent";
-import DTable from "./Home/DTable";
 
 const Home = () => {
   const dummyData = [
