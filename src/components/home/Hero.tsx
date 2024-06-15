@@ -10,6 +10,7 @@ import type SwiperCore from "swiper";
 import Stories from "../Stories";
 // import v1 from "../../assets/v1.mp4"/
 function Hero() {
+  
   const data = [
     {
       title: "Match Events",

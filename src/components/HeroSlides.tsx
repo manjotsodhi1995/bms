@@ -30,7 +30,7 @@ function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
           controls
           autoPlay
           onClick={() => {
-            setIsPlaying(true);
+            setIsPlaying(!isPlaying);
           }}
           onLoad={handleImageLoad}
         ></video> */}
