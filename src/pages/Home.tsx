@@ -7,7 +7,6 @@ const Trending = lazy(() => import("../components/home/Trending"));
 function Home() {
   return (
     <div className="relative w-full overflow-x-hidden min-h-screen">
-
           {/* <Navbar /> */}
           <Hero />
           <Trending />

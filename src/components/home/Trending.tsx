@@ -21,7 +21,7 @@ function Trending() {
     };
     const fetchCategories = async () => {
       const response = await axios.get(
-        "https://api.kafsco.com/api/v1/categories/getallcategories"
+        "https://kafsbackend.onrender.com/api/v1/categories/getallcategories"
       );
       setCategories(response.data.data);
       console.log(categories);

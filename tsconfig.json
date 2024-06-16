@@ -24,8 +24,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./src/*"
-      ]
+        "./src/*",
+      ],
+      "@mui/*": ["node_modules/@mui/*"]
     }
   },
   "include": ["src"],
