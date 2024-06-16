@@ -31,7 +31,7 @@ export class Auth {
       password: password,
     };
       const response = await axios.post(
-        "https://api.kafsco.com/api/v1/users/login", // Correct URL
+        "https://kafsbackend.onrender.com/api/v1/users/login", // Correct URL
         data,
         { headers: { "Content-Type": "application/json" } }
       );
@@ -66,7 +66,7 @@ export class Auth {
       isPrivacyPolicyAccepted:true,
     };
       const response = await axios.post(
-        "https://api.kafsco.com/api/v1/users/signup",
+        "https://kafsbackend.onrender.com/api/v1/users/signup",
         data,
         { headers: { "Content-Type": "application/json" } }
       );
@@ -90,7 +90,7 @@ export class Auth {
       phone: phone,
     };
     const response = await axios.post(
-      "https://api.kafsco.com/api/v1/users/login",
+      "https://kafsbackend.onrender.com/api/v1/users/login",
       data
     );
     this.accessToken = response.data.token;
