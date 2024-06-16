@@ -10,8 +10,8 @@ function Trending() {
   const {
     root: { event },
   } = useStore();
-  const [categories,setCategories] = useState([]); // Array of strings
-  const [selectedLocation, setSelectedLocation] = useState("Dublin"); 
+  const [categories, setCategories] = useState([]); // Array of strings
+  const [selectedLocation, setSelectedLocation] = useState("Dublin");
   useEffect(() => {
     const fetchLocationOptions = async () => {
       try {
@@ -24,7 +24,7 @@ function Trending() {
         "https://kafsbackend.onrender.com/api/v1/categories/getallcategories"
       );
       setCategories(response.data.data);
-      console.log(categories)
+      console.log(categories);
     };
     const fetchEvents = async () => {
       await event.fetchEvents("28.4262481", "77.0581663");

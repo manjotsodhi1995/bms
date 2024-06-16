@@ -1,6 +1,6 @@
 import { useState } from "react";
 interface HeroSlidesProps {
-  title: String;
+  title: string;
   description: string;
   imageUrl: string;
 }
@@ -19,7 +19,6 @@ function EventSlides({ title, description, imageUrl }: HeroSlidesProps) {
       style={{ transform: isHovered ? "scale(1.1)" : "scale(1)" }}
     >
       <div className="w-full rounded-3xl relative h-full">
-
         <img
           src={imageUrl}
           alt=""

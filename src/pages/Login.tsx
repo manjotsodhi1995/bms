@@ -1,23 +1,22 @@
-import { useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import img from "../assets/Auth/login.png";
 import { GoogleLogin } from "@react-oauth/google";
-import { Link,  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 const Login = observer(() => {
-    const [error, setError] = useState<string | null>(null);
-   const navigate = useNavigate();
-  const responseGoogle = (response:any) => {
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const responseGoogle = (response: any) => {
     console.log("Google login response:", response);
   };
-   const {
-     root: { auth },
-   } = useStore();
+  const {
+    root: { auth },
+  } = useStore();
   useEffect(() => {
-  if(auth.isAuthenticated)
-navigate('/')
-}, [])
- 
+    if (auth.isAuthenticated) navigate("/");
+  }, []);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleInputChange = (event: any) => {
@@ -33,22 +32,21 @@ navigate('/')
         break;
     }
   };
- 
-  
-const handleSubmit = async (event: any) => {
-  event.preventDefault();
-  try {
-    await auth.fetchToken(email, password); 
-    navigate("/");
-  } catch (error: any) {
-    if (error.response && error.response.status === 400) {
-      setError("Invalid email or password. Please try again.");
-    } else {
-      setError("An error occurred during login. Please try again later.");
-      console.error("Login error:", error);
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    try {
+      await auth.fetchToken(email, password);
+      navigate("/");
+    } catch (error: any) {
+      if (error.response && error.response.status === 400) {
+        setError("Invalid email or password. Please try again.");
+      } else {
+        setError("An error occurred during login. Please try again later.");
+        console.error("Login error:", error);
+      }
     }
-  }
-};
+  };
 
   return (
     <>
