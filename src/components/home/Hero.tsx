@@ -15,34 +15,53 @@ function Hero() {
     {
       title: "Match Events",
       description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl:
-        "/v1.jpg",
+      imageUrl: "/v1.jpg",
     },
     {
       title: "Match Events",
       description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl:
-        "/v2.jpg",
+      imageUrl: "/v2.jpg",
     },
     {
       title: "Match Events",
       description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl:
-        "/v3.jpg",
+      imageUrl: "/v3.jpg",
     },
     {
       title: "Match Events",
       description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl:
-        "/v4.jpg",
+      imageUrl: "/v4.jpg",
     },
     {
       title: "Match Events",
       description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl:
-        "/v5.jpg",
+      imageUrl: "/v5.jpg",
     },
-
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
+      imageUrl: "/v1.jpg",
+    },
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
+      imageUrl: "/v2.jpg",
+    },
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
+      imageUrl: "/v3.jpg",
+    },
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
+      imageUrl: "/v4.jpg",
+    },
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
+      imageUrl: "/v5.jpg",
+    },
   ];
   const [open, setOpen] = useState(false);
   // const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);
