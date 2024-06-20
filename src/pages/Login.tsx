@@ -4,11 +4,14 @@ import { GoogleLogin } from "@react-oauth/google";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
+import { Loader2 } from "lucide-react";
 const Login = observer(() => {
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const responseGoogle = (response: any) => {
     console.log("Google login response:", response);
+    setLoading(false);
   };
   const {
     root: { auth },
@@ -36,8 +39,10 @@ const Login = observer(() => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      await auth.fetchToken(email, password);
-      navigate("/");
+      setLoading(true);
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+      // await auth.fetchToken(email, password);
+      // navigate("/");
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
         setError("Invalid email or password. Please try again.");
@@ -45,6 +50,8 @@ const Login = observer(() => {
         setError("An error occurred during login. Please try again later.");
         console.error("Login error:", error);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -97,9 +104,10 @@ const Login = observer(() => {
               <div className="w-full text-[1rem] flex flex-col gap-1">
                 <button
                   type="submit"
-                  className="bg-black w-full text-white font-bold py-2 px-4 rounded"
+                  className="flex items-center justify-center gap-4 bg-black w-full text-white font-bold py-2 px-4 rounded"
                 >
                   Sign In
+                  {loading && <Loader2 className="size-4 animate-spin" />}
                 </button>
                 <div className="text-red-600">{error}</div>
               </div>

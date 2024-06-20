@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
 const Register = observer(() => {
   const [firstName, setFirstName] = useState(""); // State for first name input
   const [lastName, setLastName] = useState(""); // State for last name input
@@ -12,6 +13,7 @@ const Register = observer(() => {
   const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const {
     root: { auth },
   } = useStore();
@@ -45,6 +47,7 @@ const Register = observer(() => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
+      setLoading(true);
       await auth.register(email, password, firstName, lastName, gender, phone);
       navigate("/");
     } catch (error: any) {
@@ -54,6 +57,8 @@ const Register = observer(() => {
         setError("An error occurred during login. Please try again later.");
         console.error("Login error:", error);
       }
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -162,9 +167,10 @@ const Register = observer(() => {
               <div className="w-full text-[1rem] flex flex-col gap-1">
                 <button
                   type="submit"
-                  className="bg-black w-full text-white font-bold py-2 px-4 rounded"
+                  className="flex items-center justify-center gap-4 bg-black w-full text-white font-bold py-2 px-4 rounded"
                 >
                   Sign Up
+                  {loading && <Loader2 className="size-4 animate-spin" />}
                 </button>
               </div>
 
