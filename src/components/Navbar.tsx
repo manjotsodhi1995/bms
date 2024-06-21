@@ -33,6 +33,7 @@ const Navbar = observer(() => {
     "/contactus",
     "/dashboard",
     "/dashboard/payout",
+    "/settings"
   ];
   const location = useLocation();
   const showNavbar = !excludedRoutes.includes(location.pathname);
@@ -408,7 +409,7 @@ function ProfileDropdown() {
   return (
     <div className="relative">
       <button onClick={toggleDropdown}>
-        <img src={pfp} alt="Profile" className="rounded-full w-8 h-8" />
+        <img src={pfp} alt="Profile" className="rounded-full w-8 h-8" /> 
       </button>
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20">

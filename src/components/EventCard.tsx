@@ -17,7 +17,7 @@ function EventCard({
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className="place-self-center rounded-3xl shadow:lg transition-transform duration-300 ease-in-out  bg-white pb-2 md:w-[25vw] lg:w-[20vw] border-[#BCBCBC36] border-2 cursor-pointer relative"
+      className="place-self-center rounded-3xl shadow:lg transition-transform duration-300 ease-in-out  bg-white pb-2 md:w-[25vw] lg:w-[20vw] max-w-[200px] border-[#BCBCBC36] border-2 cursor-pointer relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ transform: isHovered ? "scale(1.02)" : "scale(1)" }}
@@ -29,7 +29,7 @@ function EventCard({
             <img
               src={imageUrl}
               alt=""
-              className="w-[100rem] h-[7rem] rounded-2xl md:h-[12rem] 2xl:h-[15rem] object-cover"
+              className="w-[100rem] h-[10rem] rounded-2xl md:h-[12rem] 2xl:h-[15rem] object-cover"
             />
             <div className="absolute md:bottom-4 md:right-4 bottom-2 right-2">
               {" "}
