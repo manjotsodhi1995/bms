@@ -40,9 +40,8 @@ const Login = observer(() => {
     event.preventDefault();
     try {
       setLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-      // await auth.fetchToken(email, password);
-      // navigate("/");
+      await auth.fetchToken(email, password);
+      navigate("/");
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
         setError("Invalid email or password. Please try again.");
