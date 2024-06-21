@@ -18,6 +18,7 @@ import Privacy from "./pages/privacy";
 import Forgot from "./pages/Forgot";
 import Navbar from "./components/Navbar";
 import Filter from "./pages/Filter";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 import AccountSettings from "./pages/AccountSettings";
 const Home = lazy(() => import("./pages/Home"));
 const OrganizerRegister = lazy(() => import("./pages/OrganizerRegister"));
@@ -67,15 +68,25 @@ const App = observer(() => {
               element={<OrganizationProfile />}
             />
 
+            {/* Protected Routes */}
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/mytickets" element={<MyTickets />} />
+              <Route
+                path="/organizer/register"
+                element={<OrganizerRegister />}
+              />
+              <Route path="/organizer/login" element={<OrganizerLogin />} />
+              <Route path="/dashboard" element={<DashBoard />} />
+              <Route path="/dashboard/payout" element={<PayOutD />} />
+            </Route>
+
+            {/* Public Routes */}
             <Route path="/search" element={<SearchPage />} />
             <Route path="/dashboard" element={<DashBoard />} />
             <Route path="/settings" element={<AccountSettings />} />
             <Route path="/filter" element={<Filter />} />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/event/:eventId" element={<EventPage />} />
-            <Route path="/mytickets" element={<MyTickets />} />
-            <Route path="/organizer/register" element={<OrganizerRegister />} />
-            <Route path="/organizer/login" element={<OrganizerLogin />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/contactus" element={<ContactUs />} />
