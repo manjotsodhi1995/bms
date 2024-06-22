@@ -13,11 +13,11 @@ const AccSettings = () => {
     setGender(event.target.value);
   };
 
-  const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setter(event.target.value);
-  };
+  const handleInputChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value);
+    };
 
   const formSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const AccSettings = () => {
   };
 
   return (
-    <div className="flex flex-col sm:items-start items-center w-[90%] sm:max-w-[75%] lg:pl-[10%] sm:pl-[5%] mt-[50px] mx-[5px]">
+    <div className="flex flex-col sm:items-start items-center w-[90%] sm:max-w-[75%] lg:pl-[10%] sm:pl-[5%] bg-white pt-[50px]">
       <h1 className="text-2xl font-medium my-2">Account Settings</h1>
       <form onSubmit={formSubmitHandler} className="flex flex-col">
         <h2 className="mt-[20px] text-lg font-medium">Edit Profile</h2>
@@ -83,7 +83,7 @@ const AccSettings = () => {
             <input
               type="radio"
               value="male"
-              checked={gender === 'male'}
+              checked={gender === "male"}
               onChange={handleGenderChange}
               className="form-radio text-black checked:text-black focus:ring-black"
             />
@@ -93,7 +93,7 @@ const AccSettings = () => {
             <input
               type="radio"
               value="female"
-              checked={gender === 'female'}
+              checked={gender === "female"}
               onChange={handleGenderChange}
               className="form-radio text-black checked:text-black focus:ring-black"
             />
@@ -101,7 +101,12 @@ const AccSettings = () => {
           </label>
         </div>
         <div className="flex w-full justify-center">
-        <button type="submit" className="bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2">SAVE CHANGES</button>
+          <button
+            type="submit"
+            className="bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2"
+          >
+            SAVE CHANGES
+          </button>
         </div>
       </form>
     </div>

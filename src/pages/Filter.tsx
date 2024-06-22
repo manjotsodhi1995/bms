@@ -132,7 +132,7 @@ function Filter() {
   ];
   return (
     <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex justify-between flex-col sm:flex-row">
-      <div className="lg:w-[25vw] sm:w-[35vw] w-[90vw]  min-h-[80vh] backdrop-blur-md bg-white/50 flex flex-col mt-[10px] pt-[40px] rounded-tr-xl rounded-br-xl border-gray-400 border h-fit min-w-max">
+      <div className="lg:w-[25vw] sm:w-[35vw] w-[100vw]  min-h-[80vh] backdrop-blur-md bg-white/50 flex flex-col mt-[10px] pt-[40px] rounded-tr-xl rounded-br-xl border-gray-400 border h-fit min-w-max">
         {" "}
         {/* Fixed positioning and overflow */}
         <div className="border-gray-400 border-b mb-[30px] pl-[30px]">
@@ -366,7 +366,7 @@ function Filter() {
             Events
           </div>
         </div>
-        <div className="justify-center sm:w-full w-screen grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 ">
+        <div className="justify-center sm:w-full w-screen grid lg:grid-cols-3 md:grid-cols-2 grid-cols-2 gap-4 p-4 ">
           {eventData.map((card, index) => (
             <EventCard key={index} {...card} />
           ))}

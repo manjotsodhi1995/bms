@@ -33,7 +33,7 @@ const Navbar = observer(() => {
     "/contactus",
     "/dashboard",
     "/dashboard/payout",
-    "/settings"
+    "/settings",
   ];
   const location = useLocation();
   const showNavbar = !excludedRoutes.includes(location.pathname);
@@ -119,15 +119,6 @@ const Navbar = observer(() => {
                         <div>Organizer Dashboard</div>
                       </Link>
                     </li>
-                    <li className="my-6">
-                      <Link
-                        to="/"
-                        className="flex justify-between"
-                        onClick={() => setIsNavOpen((prev) => !prev)}
-                      >
-                        <div>Host an Event</div>
-                      </Link>
-                    </li>
                   </div>
                 )}
 
@@ -203,18 +194,20 @@ const Navbar = observer(() => {
                     </Link>
                   </li>
                 </li>
-                <li className=" my-6">
-                  <Link
-                    to="/dashboard"
-                    className="flex justify-between"
-                    onClick={() => setIsNavOpen((prev) => !prev)}
+                {isAuthenticated && (
+                  <button
+                    className="block w-full text-left hover:bg-gray-100"
+                    onClick={() => {
+                      auth.logout();
+                    }}
                   >
-                    <div>Dashboard</div>
-                  </Link>
-                </li>
+                    Logout
+                  </button>
+                )}
               </div>
             </ul>
           </div>
+
           <Link to="/">
             <div className="text-[3rem] font-bold items-center flex h-full">
               Kafsco
@@ -409,7 +402,7 @@ function ProfileDropdown() {
   return (
     <div className="relative">
       <button onClick={toggleDropdown}>
-        <img src={pfp} alt="Profile" className="rounded-full w-8 h-8" /> 
+        <img src={pfp} alt="Profile" className="rounded-full w-8 h-8" />
       </button>
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20">
