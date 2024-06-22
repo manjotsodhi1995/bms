@@ -36,7 +36,7 @@ const AccSettings = () => {
       <h1 className="text-2xl font-medium my-2">Account Settings</h1>
       <form onSubmit={formSubmitHandler} className="flex flex-col">
         <h2 className="mt-[20px] text-lg font-medium">Edit Profile</h2>
-        {/* <input
+        <input
           type="text"
           className="w-full max-w-[500px] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
           placeholder="First Name"
@@ -77,7 +77,7 @@ const AccSettings = () => {
           placeholder="Change Password"
           value={password}
           onChange={handleInputChange(setPassword)}
-        /> */}
+        />
         <div className="flex flex-col items-start mt-1">
           <label className="flex items-center space-x-2 text-md mb-[5px]">
             <input
