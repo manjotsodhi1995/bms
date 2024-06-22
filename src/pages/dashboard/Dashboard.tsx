@@ -7,9 +7,9 @@ import Home from "../../components/dashboard/Home";
 
 export default function Dashboard() {
   return (
-    <div className="flex p-2 w-full  gap-8 justify-start">
+    <div className="flex w-full h-screen gap-8 justify-start">
       <Sidebar />
-      <div className="flex max-h-[1200px] mx-auto gap-8 flex-col">
+      <div className="flex flex-col mx-auto gap-8 max-h-screen overflow-auto">
         <TopBar />
         <Home />
       </div>
