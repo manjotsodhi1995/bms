@@ -162,7 +162,7 @@ function Hero() {
             <SwiperSlide>
               <div>
                 <img
-                  src="/src/assets/Web Carousels-0111.jpg"
+                  src="/src/assets/c1.jpg"
                   className="w-full h-[10rem] md:h-[20rem] object-cover"
                   alt=""
                 />
@@ -171,7 +171,7 @@ function Hero() {
             <SwiperSlide>
               <div>
                 <img
-                  src="/src/assets/Web Carousels-0211.jpg"
+                  src="/src/assets/c2.jpg"
                   className="w-full h-[10rem] md:h-[20rem] object-cover"
                   alt=""
                 />
