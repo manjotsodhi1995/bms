@@ -23,7 +23,7 @@ const ArCharPayout = ({ color }: ArCharPayoutProps) => {
     },
   ];
   return (
-    <div className="flex rounded-md justify-between items-center h-[220px] bg-white rounded-xl shadow-xl w-full p-6">
+    <div className="flex rounded-md justify-between items-center h-[220px] bg-blue-box rounded-xl shadow-xl w-full p-6">
       <div className="flex flex-col h-full justify-between">
         <p className="text-sm">Total ticket Sold</p>
         <p className="font-bold text-3xl text-[#60769D]">$43,000</p>
