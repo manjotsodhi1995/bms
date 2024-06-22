@@ -1,3 +1,30 @@
+export const FAKE_TICKETS: TicketCardProps[] = [
+  {
+    imageUrl:
+      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
+    name: "Fall Guy - Movie Screening",
+    genre: "Comedy",
+    location: "19a Koryun St, Yerevan 0009",
+    date: "Thu, 15th June - 17:00",
+  },
+  {
+    imageUrl:
+      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
+    name: "Fall Guy - Movie Screening",
+    genre: "Comedy",
+    location: "19a Koryun St, Yerevan 0009",
+    date: "Thu, 15th June - 17:00",
+  },
+  {
+    imageUrl:
+      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
+    name: "Fall Guy - Movie Screening",
+    genre: "Comedy",
+    location: "19a Koryun St, Yerevan 0009",
+    date: "Thu, 15th June - 17:00",
+  },
+];
+
 interface TicketCardProps {
   imageUrl: string;
   genre: string;
@@ -14,7 +41,7 @@ function TicketCard({
   location,
 }: TicketCardProps) {
   return (
-    <div className="w-full flex p-4 drop-shadow-md border-[1px] border-gray-500 rounded-3xl gap-4">
+    <div className="w-full bg-white flex p-4 shadow-xl rounded-3xl gap-4 border">
       <div className="w-[10rem] h-[10rem] rounded-2xl">
         <img
           src={imageUrl}

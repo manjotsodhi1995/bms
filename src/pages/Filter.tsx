@@ -130,21 +130,155 @@ function Filter() {const eventData = [
   },
 ];
   return (
-    <div className="lg:px-[5%] xl:px-[7%] px-[8vw] min-h-[80vh] flex">
-      <div className="w-[25vw] min-h-[80vh]">
+    <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex justify-between flex-col sm:flex-row">
+      <div className="lg:w-[25vw] sm:w-[35vw] w-[70vw]  min-h-[80vh] backdrop-blur-md bg-white/50 flex flex-col mt-[10px] pt-[40px] rounded-tr-xl rounded-br-xl border-gray-400 border h-fit min-w-max">
         {" "}
         {/* Fixed positioning and overflow */}
-        Filters
+        <div className="border-gray-400 border-b mb-[30px] pl-[30px]">
+        <h2 className="text-lg font-medium mt-[10px] mb-[20px]">Filter By:</h2>
+        </div>
+        <div className="border-gray-600 border-b mb-[50px] pl-[30px]">
+        <h3 className="font-medium mb-[20px]">Day</h3>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Today</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Tommorow</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>This Week</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex mb-[20px]">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>This Month</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        </div>
+        <div className="border-gray-600 border-b mb-[50px] pl-[30px]">
+        <h3 className="font-medium mb-[20px]">Pricing</h3>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Free</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex mb-[20px]">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Paid</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        </div>
+        <div className="border-gray-600 border-b mb-[50px] pl-[30px]">
+        <h3 className="font-medium mb-[20px]">Categories</h3>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Music</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Comedy</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Sports</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Food & Drinks</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Theater</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Dance</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Art</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex mb-[20px]">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Other</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        </div>
+        <div className="mb-[100px] pl-[30px]">
+        <h3 className="font-medium mb-[20px]">Near By Cities</h3>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Ahmedabad</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Gandhinagar</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        <div className="flex justify-between w-[200px]">
+        <div className="flex">
+          <input type="checkbox" name="" id="" className="mr-[10px] w-[17px] border-black"/>
+          <h2>Surat</h2>
+        </div>
+        <h2 className="text-gray-600">32</h2>
+        </div>
+        </div>
       </div>
-      <div className="flex flex-col gap-2 pb-10 w-[75vw]">
+
+      <div className="flex flex-col gap-2 pb-10 lg:w-[75vw] w-[60vw]">
         {" "}
         {/* Adjusted margin-left */}
-        <div className="flex justify-between mt-4">
-          <div className="font-medium lg:text-[1.4rem] text-[0.9rem]">
+        <div className="flex w-screen justify-center mt-4 sm:justify-normal">
+          <div className="font-medium lg:text-[1.4rem] text-[0.9rem] sm:ml-[50px]">
             Events
           </div>
         </div>
-        <div className="justify-center w-full grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4">
+        <div className="justify-center sm:w-full w-screen grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 ">
           {eventData.map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
