@@ -213,6 +213,13 @@ const Navbar = observer(() => {
               Kafsco
             </div>
           </Link>
+          {isAuthenticated && (
+            <div className="flex justify-center items-center ml-10 md:hidden">
+              <div>
+                <ProfileDropdown />
+              </div>
+            </div>
+          )}
         </nav>
 
         <div className="flex items-center text-center md:w-full relative">
