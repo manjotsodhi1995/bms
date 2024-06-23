@@ -1,18 +1,20 @@
 import pfp from "@/assets/test/pfpbig.png";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface SideBarProps {
   onStateChange: (newState: string) => void;
+  initialState: string;
 }
 import { useStore } from "@/hooks/useStore";
 
-const SideBar: React.FC<SideBarProps> = ({ onStateChange }) => {
+const SideBar: React.FC<SideBarProps> = ({ onStateChange , initialState}) => {
   const {
     root: { auth },
   } = useStore();
-  const [select, setSelect] = useState<string>("acc");
+  const [select, setSelect] = useState<string>(initialState);
   return (
-    <div className="sm:w-[25%] sm:max-w-[350px] min-w-[200px] bg-gray-300 text-black flex flex-col items-center sm:h-screen h-fit w-screen">
+    <div className="sm:w-[25%] sm:max-w-[350px] min-w-[200px] bg-gray-300 text-black flex flex-col items-center h-[99vh] w-screen sm:z-10">
       <img
         src={pfp}
         alt="Profile"
@@ -50,7 +52,7 @@ const SideBar: React.FC<SideBarProps> = ({ onStateChange }) => {
         }`}
         onClick={() => {
           setSelect("pay");
-          onStateChange("pay");
+          onStateChange("paycard");
         }}
       >
         <svg
@@ -60,7 +62,7 @@ const SideBar: React.FC<SideBarProps> = ({ onStateChange }) => {
           viewBox="0 0 24 24"
           fill="none"
           className={`fill-black ml-2.5 mr-1 ${
-            select == "pay" ? "fill-white" : ""
+            select == "pay"? "fill-white" : ""
           }`}
         >
           <g clip-path="url(#clip0_1594_13923)">
@@ -74,13 +76,16 @@ const SideBar: React.FC<SideBarProps> = ({ onStateChange }) => {
         </svg>
         <h2>Payment Method</h2>
       </div>
+      <Link to={'/'} className="flex w-full">
+      
       <div
-        className={`flex my-1 w-full p-2 cursor-default  hover:cursor-pointer items-center group ${
+        className={`my-1 flex w-full p-2 cursor-default  hover:cursor-pointer items-center group ${
           select == "log" ? "bg-black text-white" : ""
         }`}
         onClick={() => {
           setSelect("log");
           onStateChange("log");
+          auth.logout();
         }}
       >
         <svg
@@ -95,15 +100,15 @@ const SideBar: React.FC<SideBarProps> = ({ onStateChange }) => {
         >
           <path d="M11.25 20.25C11.25 20.4489 11.171 20.6397 11.0303 20.7803C10.8897 20.921 10.6989 21 10.5 21H4.5C4.30109 21 4.11032 20.921 3.96967 20.7803C3.82902 20.6397 3.75 20.4489 3.75 20.25V3.75C3.75 3.55109 3.82902 3.36032 3.96967 3.21967C4.11032 3.07902 4.30109 3 4.5 3H10.5C10.6989 3 10.8897 3.07902 11.0303 3.21967C11.171 3.36032 11.25 3.55109 11.25 3.75C11.25 3.94891 11.171 4.13968 11.0303 4.28033C10.8897 4.42098 10.6989 4.5 10.5 4.5H5.25V19.5H10.5C10.6989 19.5 10.8897 19.579 11.0303 19.7197C11.171 19.8603 11.25 20.0511 11.25 20.25ZM21.5306 11.4694L17.7806 7.71937C17.6399 7.57864 17.449 7.49958 17.25 7.49958C17.051 7.49958 16.8601 7.57864 16.7194 7.71937C16.5786 7.86011 16.4996 8.05098 16.4996 8.25C16.4996 8.44902 16.5786 8.63989 16.7194 8.78063L19.1897 11.25H10.5C10.3011 11.25 10.1103 11.329 9.96967 11.4697C9.82902 11.6103 9.75 11.8011 9.75 12C9.75 12.1989 9.82902 12.3897 9.96967 12.5303C10.1103 12.671 10.3011 12.75 10.5 12.75H19.1897L16.7194 15.2194C16.5786 15.3601 16.4996 15.551 16.4996 15.75C16.4996 15.949 16.5786 16.1399 16.7194 16.2806C16.8601 16.4214 17.051 16.5004 17.25 16.5004C17.449 16.5004 17.6399 16.4214 17.7806 16.2806L21.5306 12.5306C21.6004 12.461 21.6557 12.3783 21.6934 12.2872C21.7312 12.1962 21.7506 12.0986 21.7506 12C21.7506 11.9014 21.7312 11.8038 21.6934 11.7128C21.6557 11.6217 21.6004 11.539 21.5306 11.4694Z" />
         </svg>{" "}
+        <div>
         <h2
           className="block w-full text-left"
-          onClick={() => {
-            auth.logout();
-          }}
         >
           Logout
-        </h2>{" "}
+        </h2>
+        </div>
       </div>
+      </Link>
     </div>
   );
 };

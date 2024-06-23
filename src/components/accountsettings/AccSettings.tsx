@@ -32,48 +32,49 @@ const AccSettings = () => {
   };
 
   return (
-    <div className="flex flex-col sm:items-start items-center w-[90%] sm:max-w-[75%] lg:pl-[10%] sm:pl-[5%] bg-white pt-[50px]">
+    // flex flex-col sm:items-start 2xl:items-center items-center w-[80vw] mx-[5px] sm:w-[75%] lg:pl-[10%] sm:pl-[5%] bg-white mt-[50px]
+    <div className="flex flex-col sm:items-start 2xl:items-center items-center sm:w-[75%] w-full lg:pl-[10%] sm:pl-[5%] mt-[50px] bg-white 2xl:justify-center max-h-full">
       <h1 className="text-2xl font-medium my-2">Account Settings</h1>
-      <form onSubmit={formSubmitHandler} className="flex flex-col">
+      <form onSubmit={formSubmitHandler} className="flex flex-col items-center sm:items-start">
         <h2 className="mt-[20px] text-lg font-medium">Edit Profile</h2>
         <input
           type="text"
-          className="w-full max-w-[500px] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          className="w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
           placeholder="First Name"
           value={fname}
           onChange={handleInputChange(setFname)}
         />
         <input
           type="text"
-          className="w-full max-w-[500px]  my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          className="w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
           placeholder="Last Name"
           value={lname}
           onChange={handleInputChange(setLname)}
         />
         <input
           type="text"
-          className="w-full max-w-[500px]  my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          className="w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
           placeholder="Email Address"
           value={email}
           onChange={handleInputChange(setEmail)}
         />
         <input
           type="text"
-          className="w-full max-w-[500px]  my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          className="w-[80vw] md:max-w-[500px] sm:w-[50vw]   my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
           placeholder="Mobile Number"
           value={mobile}
           onChange={handleInputChange(setMobile)}
         />
         <input
           type="text"
-          className="w-screen max-w-[500px] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          className="w-[80vw] md:max-w-[500px] sm:w-[50vw]  my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
           placeholder="Date of Birth"
           value={dob}
           onChange={handleInputChange(setDob)}
         />
         <input
           type="password"
-          className="w-screen max-w-[500px]  my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          className="w-[80vw] md:max-w-[500px] sm:w-[50vw]   my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
           placeholder="Change Password"
           value={password}
           onChange={handleInputChange(setPassword)}
@@ -103,7 +104,7 @@ const AccSettings = () => {
         <div className="flex w-full justify-center">
           <button
             type="submit"
-            className="bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2"
+            className="bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]"
           >
             SAVE CHANGES
           </button>

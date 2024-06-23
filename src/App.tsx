@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useStore } from "./hooks/useStore";
 import { observer } from "mobx-react-lite";
 
-import { lazy, Suspense } from "react";
+import { lazy, Suspense} from "react";
 const SearchPage = lazy(() => import("./pages/Search"));
 import DashBoard from "./pages/dashboard/Dashboard";
 import { useEffect } from "react";
@@ -48,6 +48,8 @@ const App = observer(() => {
       auth.setAuthenticated();
     }
   }, []);
+
+
   return (
     <div className="relative overflow-hidden">
       <BrowserRouter>
@@ -94,7 +96,8 @@ const App = observer(() => {
             {/* Public Routes */}
             <Route path="/search" element={<SearchPage />} />
             <Route path="/dashboard" element={<DashBoard />} />
-            <Route path="/settings" element={<AccountSettings />} />
+            <Route path="/settings" element={<AccountSettings defaultSettingState="acc"/>} />
+            <Route path="/payment" element={<AccountSettings defaultSettingState="pay"/>} />
             <Route path="/filter" element={<Filter />} />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/event/:eventId" element={<EventPage />} />
