@@ -7,6 +7,7 @@ export default function Bg() {
     "/help",
     "/helpdetail",
     "/settings",
+    "/payment"
   ];
   const location = useLocation();
   const showNavbar = !excludedRoutes.includes(location.pathname);

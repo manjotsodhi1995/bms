@@ -34,6 +34,7 @@ const Navbar = observer(() => {
     "/dashboard",
     "/dashboard/payout",
     "/settings",
+    "/payment"
   ];
   const location = useLocation();
   const showNavbar = !excludedRoutes.includes(location.pathname);
@@ -414,7 +415,7 @@ function ProfileDropdown() {
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20">
           {/* Your profile/settings content here */}
-          <a href="/profile" className="block px-4 py-2 hover:bg-gray-100">
+          <a href="/payment" className="block px-4 py-2 hover:bg-gray-100">
             Payment Method
           </a>
           <a href="/settings" className="block px-4 py-2 hover:bg-gray-100">
