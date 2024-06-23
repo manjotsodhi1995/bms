@@ -19,6 +19,7 @@ export class Auth {
       setAuthenticated: action,
       getAccessToken: computed,
       getRefreshToken: computed,
+      googleLogin: action,
     });
     this.root = root;
   }
@@ -109,5 +110,17 @@ export class Auth {
   }
   get getRefreshToken() {
     return this.refreshToken;
+  }
+  async googleLogin(token: string) {
+    const data = {
+      credential: token,
+    };
+    const response = await axios.post(
+      "https://kafsbackend.onrender.com/api/v1/users/google-auth",
+      data,
+      { headers: { "Content-Type": "application/json" } }
+    );
+    console.log(response.data);
+    throw new Error("TODO: NOT IMPLEMENTED");
   }
 }

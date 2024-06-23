@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import img from "../assets/Auth/login.png";
-import { GoogleLogin } from "@react-oauth/google";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
@@ -9,10 +9,6 @@ const Login = observer(() => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const responseGoogle = (response: any) => {
-    console.log("Google login response:", response);
-    setLoading(false);
-  };
   const {
     root: { auth },
   } = useStore();
@@ -36,6 +32,22 @@ const Login = observer(() => {
     }
   };
 
+  const responseGoogle = async (response: CredentialResponse) => {
+    try {
+      console.log(response);
+      setLoading(true);
+      if (!response.credential) {
+        throw new Error("Cannot Login");
+      }
+      await auth.googleLogin(response.credential);
+      navigate("/");
+    } catch (error: any) {
+      setError("An error occurred during login. Please try again later.");
+      console.error("Login error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
