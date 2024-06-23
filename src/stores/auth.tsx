@@ -5,7 +5,7 @@ import { iRoot } from "./root";
 export class Auth {
   accessToken: string = "";
   refreshToken: string = "";
-  isAuthenticated: boolean = true;
+  isAuthenticated: boolean = false;
   root: iRoot;
   constructor(root: Root) {
     makeObservable(this, {
