@@ -1,40 +1,33 @@
 import EventCard from "@/components/EventCard";
 import { TicketStepsProps } from ".";
+import { EventType } from "@/stores/event";
 
 const eventData = [
   {
     title: "Rhythms Live",
     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    imageUrl:
+    posterUrl:
       "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-    date: "DEC 24",
-    location: "Boston",
   },
   {
     title: "Rhythms Live",
     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    imageUrl:
+    posterUrl:
       "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-    date: "DEC 24",
-    location: "Boston",
   },
   {
     title: "Rhythms Live",
     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    imageUrl:
+    posterUrl:
       "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-    date: "DEC 24",
-    location: "Boston",
   },
   {
     title: "Rhythms Live",
     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    imageUrl:
+    posterUrl:
       "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-    date: "DEC 24",
-    location: "Boston",
   },
-];
+] satisfies Partial<EventType>[];
 
 export const BuyAnotherTicketsStep = (_props: TicketStepsProps) => (
   <div className="mt-6 w-full flex flex-col items-center justify-center gap-10">

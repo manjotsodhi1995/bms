@@ -1,7 +1,7 @@
-import { Event } from "@/pages/eventPage";
+import type { EventType } from "@/stores/event";
 
 export interface TicketStepsProps {
   onBack?: () => void;
-  eventsData?: Event | null;
+  eventsData?: EventType | null;
   onStepChange?: () => void;
 }

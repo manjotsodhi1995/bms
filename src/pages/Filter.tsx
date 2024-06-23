@@ -1,39 +1,36 @@
+import { EventType } from "@/stores/event";
 import EventCard from "../components/EventCard";
 function Filter() {
   const eventData = [
     {
       title: "Saved By The 90s - Dublin",
       description: "10 Wellington Quay, Dublin 8, D02 VX36, Ireland",
-      imageUrl:
+      posterUrl:
         "https://fixr-cdn.fixr.co/images/event/2024-05/4b89154a7a7a4d66b901a06c664a596c.jpeg",
-      date: "DEC 24",
-      location: "Dublin 8",
+      eventStart: "24/12/24",
     },
     {
       title: "Fairport Convention",
       description: "Mulehouse Rd, Sheffield, S10 1TD, United Kingdom",
-      imageUrl:
+      posterUrl:
         "https://fixr-cdn.fixr.co/images/event/2024-04/f67d560e4861485abee2ee327823e265.jpeg",
-      date: "DEC 24",
-      location: "Sheffield",
+      eventStart: "24/12/24",
     },
     {
       title: "Summer Garden Party!",
       description: "26 Wexford St, Dublin 2, D02 HX93, Ireland",
-      imageUrl:
+      posterUrl:
         "https://fixr-cdn.fixr.co/images/event/2024-02/c7834a06b2da429bb25a37e80c4614e1.jpeg",
-      date: "DEC 24",
-      location: "Dublin 2",
+      eventStart: "24/12/24",
     },
     {
       title: "Bird Workshop for Kids",
       description: "The Boilerhouse Main Street D09 HK58 Ballymun Ireland",
-      imageUrl:
+      posterUrl:
         "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F779473109%2F202697254659%2F1%2Foriginal.20240530-130519?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1000%2C500&s=1ef110bf7facd194dc8f15d1c39196b5",
-      date: "DEC 24",
-      location: "Dublin",
+      eventStart: "24/12/24",
     },
-  ];
+  ] satisfies Partial<EventType>[];
   return (
     <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex justify-between flex-col sm:flex-row">
       <div className="lg:w-[25vw] sm:w-[35vw] w-[100vw]  min-h-[80vh] backdrop-blur-md bg-white/50 flex flex-col mt-[10px] pt-[40px] rounded-tr-xl rounded-br-xl border-gray-400 border h-fit min-w-max">
