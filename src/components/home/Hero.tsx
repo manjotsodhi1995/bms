@@ -8,6 +8,9 @@ import "swiper/css/navigation";
 import { useState, useRef, useEffect } from "react";
 import type SwiperCore from "swiper";
 import Stories from "../Stories";
+import c1 from "@/assets/c1.jpeg";
+import c2 from "@/assets/c2.jpeg";
+
 // import v1 from "../../assets/v1.mp4"/
 function Hero() {
   const data = [
@@ -162,7 +165,7 @@ function Hero() {
             <SwiperSlide>
               <div>
                 <img
-                  src="/src/assets/c1.jpg"
+                  src={c1}
                   className="w-full h-[10rem] md:h-[20rem] object-cover"
                   alt=""
                 />
@@ -171,7 +174,7 @@ function Hero() {
             <SwiperSlide>
               <div>
                 <img
-                  src="/src/assets/c2.jpg"
+                  src={c2}
                   className="w-full h-[10rem] md:h-[20rem] object-cover"
                   alt=""
                 />
