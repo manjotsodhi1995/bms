@@ -65,7 +65,7 @@ const TableP = () => {
   //   }
 
   return (
-    <div className="relative shadow-custom p-6 rounded-md w-full overflow-y-auto  ">
+    <div className="relative shadow-custom p-6 rounded-md w-full overflow-y-auto  bg-blue-box">
       <table className=" text-sm w-full text-left  text-gray-800 ">
         <thead className="text-xs text-[#60769D] uppercase ">
           <tr>

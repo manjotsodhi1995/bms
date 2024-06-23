@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import OrganizationProfile from "./pages/OrganizationDescription";
 import load from "./assets/Ghost.gif";
 import "@fontsource/inter";
-import PayOutD from "./pages/dashboard/PayOutD";
+import PayOutD from "./pages/dashboard/payout/PayOutD";
 const EventPage = lazy(() => import("./pages/eventPage"));
 import MyTickets from "./pages/MyTickets";
 import Bg from "./components/Bg";
@@ -29,7 +29,12 @@ const ContactUs = lazy(() => import("./pages/ContactUs"));
 const Help = lazy(() => import("./pages/help"));
 const HelpDetail = lazy(() => import("./pages/help/helpDetail"));
 const Affiliate = lazy(() => import("./pages/Affiliate"));
-// const AccountSettings = lazy(() => import("./pages/AccountSettings"));
+const PaymentsMethodPage = lazy(
+  () => import("./pages/dashboard/payout/payments-method"),
+);
+const ProfilePage = lazy(() => import("./pages/dashboard/profile"));
+const EventsPage = lazy(() => import("./pages/dashboard/events"));
+
 const App = observer(() => {
   const {
     root: { auth },
@@ -46,7 +51,7 @@ const App = observer(() => {
 
 
   return (
-    <div>
+    <div className="relative overflow-hidden">
       <BrowserRouter>
         <div className="home absolute -z-50">
           <Bg />
@@ -80,6 +85,12 @@ const App = observer(() => {
               <Route path="/organizer/login" element={<OrganizerLogin />} />
               <Route path="/dashboard" element={<DashBoard />} />
               <Route path="/dashboard/payout" element={<PayOutD />} />
+              <Route
+                path="/dashboard/payout/payments-method"
+                element={<PaymentsMethodPage />}
+              />
+              <Route path="/dashboard/profile" element={<ProfilePage />} />
+              <Route path="/dashboard/events" element={<EventsPage />} />
             </Route>
 
             {/* Public Routes */}

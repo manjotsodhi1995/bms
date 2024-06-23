@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Sidebar() {
   const [isDropOpen, setIsDropOpen] = useState(false);
   return (
-    <div className="w-[25%] max-w-[320px] rounded-xl p-12 bg-gray-400 text-xl text-black">
+    <div className="sticky top-0 w-[25%] max-w-[320px] rounded-xl p-12 bg-gray-400 text-xl text-black">
       <ul className="flex flex-col gap-y-10  ">
         <li>
           <h1>Overview</h1>

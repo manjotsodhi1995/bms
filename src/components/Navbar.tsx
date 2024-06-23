@@ -34,7 +34,8 @@ const Navbar = observer(() => {
     "/dashboard",
     "/dashboard/payout",
     "/settings",
-    "/payment"
+    "/payment",
+    "/dashboard/payout/payments-method",
   ];
   const location = useLocation();
   const showNavbar = !excludedRoutes.includes(location.pathname);
