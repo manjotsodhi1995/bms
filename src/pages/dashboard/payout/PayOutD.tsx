@@ -1,6 +1,6 @@
-import PayoutHome from "../../components/dashboard/PayoutHome";
-import Sidebar from "../../components/dashboard/Sidebar";
-import TopBar from "../../components/dashboard/TopBar";
+import PayoutHome from "@/components/dashboard/PayoutHome";
+import Sidebar from "@/components/dashboard/Sidebar";
+import TopBar from "@/components/dashboard/TopBar";
 
 function PayOutD() {
   return (
