@@ -120,7 +120,7 @@ export class Auth {
       data,
       { headers: { "Content-Type": "application/json" } }
     );
-    console.log(response.data);
+    console.log("google",response.data);
     throw new Error("TODO: NOT IMPLEMENTED");
   }
 }

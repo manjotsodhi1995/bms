@@ -22,7 +22,7 @@ function EventCard(event: Partial<EventType>) {
             <img
               src={event.posterUrl}
               alt=""
-              className="w-full h-full rounded-2xl md:h-[12rem] 2xl:h-[15rem] object-cover"
+              className="w-full rounded-2xl h-[12rem] object-cover"
             />
             <div className="absolute md:bottom-4 md:right-4 bottom-2 right-2">
               {" "}
