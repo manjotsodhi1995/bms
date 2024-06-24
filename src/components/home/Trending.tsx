@@ -28,49 +28,12 @@ function Trending() {
     };
     const fetchEvents = async () => {
       await event.fetchEvents("28.4262481", "77.0581663");
-      console.log(event.liveEvents);
-      console.log(event.trendingCategories);
-      console.log(event.currentCity);
-      console.log(event.upcomingEvents);
+      console.log(event);
     };
     fetchCategories();
     fetchLocationOptions();
     fetchEvents();
   }, []);
-  const eventData = [
-    {
-      title: "Saved By The 90s - Dublin",
-      description: "10 Wellington Quay, Dublin 8, D02 VX36, Ireland",
-      imageUrl:
-        "https://fixr-cdn.fixr.co/images/event/2024-05/4b89154a7a7a4d66b901a06c664a596c.jpeg",
-      date: "DEC 24",
-      location: "Dublin 8",
-    },
-    {
-      title: "Fairport Convention",
-      description: "Mulehouse Rd, Sheffield, S10 1TD, United Kingdom",
-      imageUrl:
-        "https://fixr-cdn.fixr.co/images/event/2024-04/f67d560e4861485abee2ee327823e265.jpeg",
-      date: "DEC 24",
-      location: "Sheffield",
-    },
-    {
-      title: "Summer Garden Party!",
-      description: "26 Wexford St, Dublin 2, D02 HX93, Ireland",
-      imageUrl:
-        "https://fixr-cdn.fixr.co/images/event/2024-02/c7834a06b2da429bb25a37e80c4614e1.jpeg",
-      date: "DEC 24",
-      location: "Dublin 2",
-    },
-    {
-      title: "Bird Workshop for Kids",
-      description: "The Boilerhouse Main Street D09 HK58 Ballymun Ireland",
-      imageUrl:
-        "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F779473109%2F202697254659%2F1%2Foriginal.20240530-130519?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1000%2C500&s=1ef110bf7facd194dc8f15d1c39196b5",
-      date: "DEC 24",
-      location: "Dublin",
-    },
-  ];
   const handleLocationChange = (event: any) => {
     setSelectedLocation(event.target.value);
   };
@@ -133,17 +96,17 @@ function Trending() {
           </div>
         </div>
         <div className="flex justify-between md:hidden gap-2">
-          {eventData.slice(0, 2).map((card, index) => (
+          {event.liveEvents.slice(0, 2).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
         <div className="justify-between hidden md:flex lg:hidden">
-          {eventData.slice(0, 3).map((card, index) => (
+          {event.liveEvents.slice(0, 3).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
         <div className="justify-between hidden lg:flex">
-          {eventData.slice(0, 4).map((card, index) => (
+          {event.liveEvents.slice(0, 4).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
@@ -158,17 +121,17 @@ function Trending() {
           </div>
         </div>
         <div className="flex justify-between md:hidden gap-2">
-          {eventData.slice(0, 2).map((card, index) => (
+          {event.upcomingEvents.slice(0, 2).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
         <div className="justify-between hidden md:flex lg:hidden">
-          {eventData.slice(0, 3).map((card, index) => (
+          {event.upcomingEvents.slice(0, 3).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
         <div className="justify-between hidden lg:flex">
-          {eventData.slice(0, 4).map((card, index) => (
+          {event.upcomingEvents.slice(0, 4).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>

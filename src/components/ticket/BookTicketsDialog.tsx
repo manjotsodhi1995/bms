@@ -1,6 +1,5 @@
 import { DialogProps } from "@radix-ui/react-dialog";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Event } from "@/pages/eventPage";
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { TicketStep } from "@/stores/ticket";
@@ -12,9 +11,10 @@ import { PaymentSuccessStep } from "./steps/PaymentSuccessStep";
 import { ViewTicketStep } from "./steps/VIewTicketStep";
 import { BuyAnotherTicketsStep } from "./steps/BuyAnotherTicketStep";
 import { ShareTicketStep } from "./steps/ShareTicketStep";
+import type { EventType } from "@/stores/event";
 
 interface BookTicketsDialogProps extends DialogProps {
-  eventsData: Event | null;
+  eventsData: EventType | null;
 }
 
 const BookTicketsDialog = observer(

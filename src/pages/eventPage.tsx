@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import Like from "../assets/Like.png";
 import Share from "../assets/share.png";
@@ -9,45 +9,18 @@ import { useRef } from "react";
 import EventCard from "../components/EventCard";
 import EventSlides from "../components/eventStory";
 import BookTicketsDialog from "@/components/ticket/BookTicketsDialog";
-interface venueAddressI {
-  name: string;
-  city: string;
-  country: string;
-  zipcode: string;
-}
-export interface Event {
-  id: number;
-  title: string;
-  genres: string[];
-  venueAddress: venueAddressI;
-  eventStart: string;
-  duration: string;
-  ageRestriction: string;
-}
-const EventPage = () => {
+import type { EventType } from "@/stores/event";
+import { useStore } from "@/hooks/useStore";
+import { observer } from "mobx-react-lite";
+import { formatDate } from "@/utils";
+
+const EventPage = observer(() => {
+  const {
+    root: { event },
+  } = useStore();
   const carouselRef = useRef(null);
-  const data = [
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://s3-alpha-sig.figma.com/img/00b1/5f93/9bcbb9d3005d27235028760f95c63384?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dP4DkBnN7OBnFvFqHq~aasPHhQTA~v2Z00IcUlf8pLjc0WaZE9hZ18YI7eTOu8p0L64rpm~AB389zpc~6HJGqw1HLoMfMrxFay2GM3tKmkPHwkLydeRFYPbz5Ckv7jBXnvR5P91fPk1euzjQPrFcMuItirrYqTAlzUr0rreV8mpSHdPwkRF0OzWiYZOymbSrwTAVQvu6VIdaugigHhKV1-1K0LT1iJwYLl4v2~Ljqf3LWsEkBzZDByVz7oauuU3eN5xpJzQbCgE9fSAg~lMoqMIFnGc52qmTjvrF~fAFkPTC5dX9JkVYYDdHsArtjxdkfUsJNxtfRQEBLOTKHfuiTg__",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://s3-alpha-sig.figma.com/img/e920/0a79/3bd63e987d7be88465fe00e7513f4ad9?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=INZa5DwcpoeZ0rceS5eZhRoO~k6-7e~E4rS1wBrpd74U8eUcSiNpwtpf58CwqDFlWNJmSTF-8RietDq4tK7QYABtO-dZmzSEuL9Vl-DHNCiLLrEc23GQXkTbBqFh8gngIfv9qeOjIQoM5b9MjFU8rlGSi1EL4tDvI~vAjvPDWNvr1zLcX2WqCYanKAHkdbCNPgS4cPV1Q9ybGjQ7Adv7MjyJbbiLIqFRZj3aFkhE543zp27x19doqwxDBSAr-WwI93RtTH404BG~np7Zhj4mDlPMxxZISKDGehNEkQGdAzz2ANsjlnsd0VfrxwZtS06x9uauVqKFaHV1SMIRnYLodg__",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://s3-alpha-sig.figma.com/img/00b1/5f93/9bcbb9d3005d27235028760f95c63384?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dP4DkBnN7OBnFvFqHq~aasPHhQTA~v2Z00IcUlf8pLjc0WaZE9hZ18YI7eTOu8p0L64rpm~AB389zpc~6HJGqw1HLoMfMrxFay2GM3tKmkPHwkLydeRFYPbz5Ckv7jBXnvR5P91fPk1euzjQPrFcMuItirrYqTAlzUr0rreV8mpSHdPwkRF0OzWiYZOymbSrwTAVQvu6VIdaugigHhKV1-1K0LT1iJwYLl4v2~Ljqf3LWsEkBzZDByVz7oauuU3eN5xpJzQbCgE9fSAg~lMoqMIFnGc52qmTjvrF~fAFkPTC5dX9JkVYYDdHsArtjxdkfUsJNxtfRQEBLOTKHfuiTg__",
-    },
-  ];
   const { eventId } = useParams();
-  const [eventsData, setEventData] = useState<Event | null>(null);
+  const [eventData, setEventData] = useState<EventType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -55,7 +28,7 @@ const EventPage = () => {
     const fetchEvent = async () => {
       try {
         const response = await axios.get(
-          `http://api.kafsco.com/api/v1/events/geteventbyid/664b80dbb35bffb5274b8abb`,
+          `https://kafsbackend.onrender.com/api/v1/events/geteventbyurl/${eventId}`,
           {
             headers: {
               is_guest_user: "yes",
@@ -71,47 +44,35 @@ const EventPage = () => {
     };
     console.log(error);
     fetchEvent();
-    if (!isLoading) console.log(eventsData);
+    if (!isLoading) console.log(eventData);
   }, [eventId]);
-  const eventData = [
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-  ];
+
+  const date = useMemo(() => {
+    if (!eventData) return "Sat, Jun 12 - June 13 19:00";
+
+    let start = formatDate(new Date(eventData.eventStart));
+    let end = formatDate(new Date(eventData.eventEnd));
+
+    return `${start} - ${end}`;
+  }, [eventData]);
+
+  const canBookTicket = useMemo(() => {
+    if (!eventData) return false;
+    let closingDate = new Date(eventData.bookingClosingDate).getTime();
+    return !eventData.isSoldOut && Date.now() < closingDate;
+  }, [eventData]);
+
+  console.log(canBookTicket, "canBook");
   return (
     !isLoading && (
       <div className="w-full">
         {/* <Navbar /> */}
-        <div className="    event">
+        <div
+          className=""
+          style={{
+            backgroundImage: `url(${eventData?.posterUrl})`,
+          }}
+        >
           <div className="flex text-white items-end lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] h-[60vh] bg-black bg-opacity-30 justify-between">
             <div className="w-[40%] font-bold text-[2.5rem] flex flex-col gap-4">
               <div className="p-2 rounded-full border-2 border-white text-[1rem] w-[9rem] text-center">
@@ -120,7 +81,7 @@ const EventPage = () => {
               </div>
               <div className="leading-tight text-[1.7rem] md:text-[2.5rem]">
                 {" "}
-                Fall Guy - Movie Screening
+                {eventData?.title}
               </div>
             </div>
             <div className="flex gap-4">
@@ -155,15 +116,13 @@ const EventPage = () => {
               </div>
               <div>
                 <div className="font-medium text-[1.3rem]">
-                  {/* {eventsData?.venueAddress.name} */}Cinema Star
+                  {eventData?.venueAddress.name}
                 </div>
                 <div className="text-gray-700">
                   {" "}
-                  {/* {eventsData?.venueAddress.city},
-                  {eventsData?.venueAddress.country},
-                  {eventsData?.venueAddress.zipcode} */}
-                  Dalma Grden Mall, 2nd floor 3 Tsitsernakaberd Hwy, Yerevan
-                  0082
+                  {eventData?.venueAddress.city},
+                  {eventData?.venueAddress.country},
+                  {eventData?.venueAddress.zipcode}
                 </div>
               </div>
             </div>
@@ -182,7 +141,7 @@ const EventPage = () => {
                   />
                 </svg>
               </div>
-              <div className="text-gray-700">Sat, Jun 12 - June 13 19:00</div>
+              <div className="text-gray-700">{date}</div>
             </div>
             <div className="flex items-center gap-4">
               <div>
@@ -204,19 +163,19 @@ const EventPage = () => {
             <div className="mt-4 flex justify-between gap-10">
               <div className="flex flex-col text-center items-center">
                 <div className="font-medium text-[1.2rem]">
-                  {/* {eventsData?.duration} {"h"} */} 4h
+                  {eventData?.duration ? `${eventData.duration}h` : "4h"}
                 </div>
                 <div className="text-gray-700 text-[0.9rem]">Duration</div>
               </div>
               <div className="flex flex-col text-center items-center">
                 <div className="font-medium text-[1.2rem]">
-                  {/* {eventsData?.genres} */}Drama
+                  {eventData?.genres[0]}{" "}
                 </div>
                 <div className="text-gray-700 text-[0.9rem]">Genre</div>
               </div>
               <div className="flex flex-col text-center items-center">
                 <div className="font-medium text-[1.2rem]">
-                  {/* {eventsData?.ageRestriction} */}16+
+                  {eventData?.ageRestriction}
                 </div>
                 <div className="text-gray-700 text-[0.9rem]">
                   Age Restriction
@@ -225,12 +184,7 @@ const EventPage = () => {
             </div>
             <div className="flex flex-col mt-4 gap-2">
               <div className="font-medium text-[1.4rem]">About</div>
-              <div>
-                Lorem ipsum dolor sit amet consectetur. Augue lacus in ut erat
-                tempor massa. Vitae turpis quam ut leo amet quisque. Gravida
-                molestie faucibus duis hendrerit amet massa. Vel cursus vitae
-                facilisis purus ac commodo. Read more
-              </div>
+              <div>{eventData?.description}</div>
             </div>
             <div className="underline font-medium mt-4 cursor-pointer">
               Refund Policy
@@ -251,7 +205,11 @@ const EventPage = () => {
                     />
                   </svg>
                 </div>
-                <div>Opens at Fri 5th Jul at 9:00 AM (GMT+)</div>
+                <div>
+                  Opens at{" "}
+                  {eventData && formatDate(new Date(eventData.eventStart))} at
+                  9:00 AM (GMT+)
+                </div>
               </div>
               <div className="flex gap-2 items-center">
                 <div className="w-[30px] items-center flex justify-center">
@@ -268,7 +226,11 @@ const EventPage = () => {
                     />
                   </svg>
                 </div>
-                <div>Closes at Fri 5th Jul at 9:00 AM (GMT+)</div>
+                <div>
+                  Closes at{" "}
+                  {eventData && formatDate(new Date(eventData.eventEnd))} at
+                  9:00 AM (GMT+)
+                </div>
               </div>
               <div className="flex gap-2 items-center">
                 <div className="w-[30px] items-center flex justify-center">
@@ -288,17 +250,19 @@ const EventPage = () => {
                 <div>Last Entry at Fri 5th Jul at 9:00 AM (GMT+)</div>
               </div>
             </div>
-            <div className="mt-4 space-y-2">
-              <BookTicketsDialog eventsData={eventsData}>
-                <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
-                  Get Tickets
-                </button>
-              </BookTicketsDialog>
-            </div>
+            {canBookTicket && (
+              <div className="mt-4 space-y-2">
+                <BookTicketsDialog eventsData={eventData}>
+                  <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
+                    Get Tickets
+                  </button>
+                </BookTicketsDialog>
+              </div>
+            )}
           </div>
           <div className="flex flex-col gap-8">
             <div className="flex gap-2">
-              {data.map((card, index) => (
+              {event.upcomingEvents.slice(0, 3).map((card, index) => (
                 <div
                   key={index}
                   className="w-[160px] snap-center"
@@ -311,7 +275,7 @@ const EventPage = () => {
             <div>
               <h1 className="font-medium text-[1.3rem]">Location</h1>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sPT%20Kulkul%20Teknologi%20Internasional!5e0!3m2!1sen!2sid!4v1601138221085!5m2!1sen!2sid"
+                src={`https://maps.google.com/maps?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}&hl=en;z=14&amp&output=embed`}
                 width="350"
                 height="250"
               />
@@ -343,17 +307,17 @@ const EventPage = () => {
               </div>
             </div>
             <div className="flex justify-around md:hidden gap-2">
-              {eventData.slice(0, 2).map((card, index) => (
+              {event.upcomingEvents.slice(0, 2).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>
             <div className="justify-around hidden md:flex lg:hidden">
-              {eventData.slice(0, 3).map((card, index) => (
+              {event.upcomingEvents.slice(0, 3).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>
             <div className="justify-around hidden lg:flex">
-              {eventData.slice(0, 4).map((card, index) => (
+              {event.upcomingEvents.slice(0, 4).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>
@@ -578,6 +542,6 @@ const EventPage = () => {
     //   </div>
     // ))
   );
-};
+});
 
 export default EventPage;

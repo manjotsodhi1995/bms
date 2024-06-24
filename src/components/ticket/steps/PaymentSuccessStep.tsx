@@ -1,45 +1,35 @@
+import { EventType } from "@/stores/event";
 import { TicketStepsProps } from ".";
 import EventCard from "@/components/EventCard";
 
-
 const eventData = [
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-  ];
-  
-export const PaymentSuccessStep = ({
-  onStepChange,
-}: TicketStepsProps) => {
+  {
+    title: "Rhythms Live",
+    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+    posterUrl:
+      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
+  },
+  {
+    title: "Rhythms Live",
+    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+    posterUrl:
+      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
+  },
+  {
+    title: "Rhythms Live",
+    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+    posterUrl:
+      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
+  },
+  {
+    title: "Rhythms Live",
+    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+    posterUrl:
+      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
+  },
+] satisfies Partial<EventType>[];
+
+export const PaymentSuccessStep = ({ onStepChange }: TicketStepsProps) => {
   return (
     <div className="w-full flex flex-col items-center justify-center gap-10">
       <div className="flex flex-col items-center justify-center gap-10">
