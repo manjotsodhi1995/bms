@@ -28,7 +28,7 @@ const EventPage = observer(() => {
     const fetchEvent = async () => {
       try {
         const response = await axios.get(
-          `http://api.kafsco.com/api/v1/events/geteventbyurl/${eventId}`,
+          `https://kafsbackend.onrender.com/api/v1/events/geteventbyurl/${eventId}`,
           {
             headers: {
               is_guest_user: "yes",
@@ -56,14 +56,21 @@ const EventPage = observer(() => {
     return `${start} - ${end}`;
   }, [eventData]);
 
+  const canBookTicket = useMemo(() => {
+    if (!eventData) return false;
+    let closingDate = new Date(eventData.bookingClosingDate).getTime();
+    return !eventData.isSoldOut && Date.now() < closingDate;
+  }, [eventData]);
+
+  console.log(canBookTicket, "canBook");
   return (
     !isLoading && (
       <div className="w-full">
         {/* <Navbar /> */}
         <div
-          className="    event"
+          className=""
           style={{
-            backgroundImage: eventData?.posterUrl,
+            backgroundImage: `url(${eventData?.posterUrl})`,
           }}
         >
           <div className="flex text-white items-end lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] h-[60vh] bg-black bg-opacity-30 justify-between">
@@ -156,13 +163,13 @@ const EventPage = observer(() => {
             <div className="mt-4 flex justify-between gap-10">
               <div className="flex flex-col text-center items-center">
                 <div className="font-medium text-[1.2rem]">
-                  {/* {eventsData?.duration} {"h"} */} 4h
+                  {eventData?.duration ? `${eventData.duration}h` : "4h"}
                 </div>
                 <div className="text-gray-700 text-[0.9rem]">Duration</div>
               </div>
               <div className="flex flex-col text-center items-center">
                 <div className="font-medium text-[1.2rem]">
-                  {eventData?.genres}{" "}
+                  {eventData?.genres[0]}{" "}
                 </div>
                 <div className="text-gray-700 text-[0.9rem]">Genre</div>
               </div>
@@ -243,17 +250,19 @@ const EventPage = observer(() => {
                 <div>Last Entry at Fri 5th Jul at 9:00 AM (GMT+)</div>
               </div>
             </div>
-            <div className="mt-4 space-y-2">
-              <BookTicketsDialog eventsData={eventData}>
-                <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
-                  Get Tickets
-                </button>
-              </BookTicketsDialog>
-            </div>
+            {canBookTicket && (
+              <div className="mt-4 space-y-2">
+                <BookTicketsDialog eventsData={eventData}>
+                  <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
+                    Get Tickets
+                  </button>
+                </BookTicketsDialog>
+              </div>
+            )}
           </div>
           <div className="flex flex-col gap-8">
             <div className="flex gap-2">
-              {event.upcomingEvents.slice(0,3).map((card, index) => (
+              {event.upcomingEvents.slice(0, 3).map((card, index) => (
                 <div
                   key={index}
                   className="w-[160px] snap-center"
@@ -266,7 +275,7 @@ const EventPage = observer(() => {
             <div>
               <h1 className="font-medium text-[1.3rem]">Location</h1>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sPT%20Kulkul%20Teknologi%20Internasional!5e0!3m2!1sen!2sid!4v1601138221085!5m2!1sen!2sid"
+                src={`https://maps.google.com/maps?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}&hl=en;z=14&amp&output=embed`}
                 width="350"
                 height="250"
               />

@@ -51,6 +51,7 @@ export type EventType = {
   eventMode: string;
   shareUrl: string;
   ageRestriction?: string;
+  [key: string]: any;
 };
 
 export class Event {
