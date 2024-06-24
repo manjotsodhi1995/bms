@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import EventCard from "../EventCard";
 import axios from "../../utils/middleware";
 import { useStore } from "../../hooks/useStore";
+import EventCardSkeleton from "../EventCardSkeleton";
 interface Category {
   categoryName: string;
 }
@@ -12,6 +13,7 @@ function Trending() {
   } = useStore();
   const [categories, setCategories] = useState([]); // Array of strings
   const [selectedLocation, setSelectedLocation] = useState("Dublin");
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchLocationOptions = async () => {
       try {
@@ -28,6 +30,7 @@ function Trending() {
     };
     const fetchEvents = async () => {
       await event.fetchEvents("28.4262481", "77.0581663");
+      setLoading(false);
       console.log(event);
     };
     fetchCategories();
@@ -96,17 +99,20 @@ function Trending() {
           </div>
         </div>
         <div className="flex justify-between md:hidden gap-2">
-          {event.liveEvents.slice(0, 2).map((card, index) => (
+          {loading && [...Array(2)].map((_) => <EventCardSkeleton />)}
+          {!loading && event.liveEvents.slice(0, 2).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
-        <div className="justify-between hidden md:flex lg:hidden">
-          {event.liveEvents.slice(0, 3).map((card, index) => (
+        <div className="justify-between hidden md:flex lg:hidden gap-2">
+          {loading && [...Array(3)].map((_) => <EventCardSkeleton />)}
+          {!loading && event.liveEvents.slice(0, 3).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
-        <div className="justify-between hidden lg:flex">
-          {event.liveEvents.slice(0, 4).map((card, index) => (
+        <div className="justify-between hidden lg:flex gap-2">
+          {loading && [...Array(4)].map((_) => <EventCardSkeleton />)}
+          {!loading && event.liveEvents.slice(0, 4).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
@@ -121,17 +127,20 @@ function Trending() {
           </div>
         </div>
         <div className="flex justify-between md:hidden gap-2">
-          {event.upcomingEvents.slice(0, 2).map((card, index) => (
+          {loading && [...Array(2)].map((_) => <EventCardSkeleton />)}
+          {!loading && event.upcomingEvents.slice(0, 2).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
-        <div className="justify-between hidden md:flex lg:hidden">
-          {event.upcomingEvents.slice(0, 3).map((card, index) => (
+        <div className="justify-between hidden md:flex lg:hidden gap-2">
+          {loading && [...Array(3)].map((_) => <EventCardSkeleton />)}
+          {!loading && event.upcomingEvents.slice(0, 3).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
-        <div className="justify-between hidden lg:flex">
-          {event.upcomingEvents.slice(0, 4).map((card, index) => (
+        <div className="justify-between hidden lg:flex gap-2">
+          {loading && [...Array(4)].map((_) => <EventCardSkeleton />)}
+          {!loading && event.upcomingEvents.slice(0, 4).map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
