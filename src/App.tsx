@@ -34,6 +34,8 @@ const PaymentsMethodPage = lazy(
 );
 const ProfilePage = lazy(() => import("./pages/dashboard/profile"));
 const EventsPage = lazy(() => import("./pages/dashboard/events"));
+const EventsInLocation = lazy(() => import("./pages/events/EventsInLocation"))
+const UpComingEventsInLocation = lazy(() => import("./pages/events/UpcomingEventsInLocation"))
 
 const App = observer(() => {
   const {
@@ -110,6 +112,9 @@ const App = observer(() => {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />
             <Route path="/dashboard/payout" element={<PayOutD />} />
+
+            <Route path="/events/:location" element={<EventsInLocation />} />
+            <Route path="/upcoming-events/:location" element={<UpComingEventsInLocation />} />
           </Routes>{" "}
         </Suspense>
       </BrowserRouter>
