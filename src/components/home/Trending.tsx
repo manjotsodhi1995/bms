@@ -68,9 +68,12 @@ function Trending() {
 
         <div className="flex space-x-4 overflow-x-auto">
           {categories.slice(0, 7).map((category: Category) => (
-            <button className="lg:w-[200px] md:w-[20vw] py-1 min-w-[84px] font-medium md:text-[1rem] text-[0.7rem] rounded-full border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200">
+            <a
+              href={`/search?query=${category.categoryName}`}
+              className="text-center lg:w-[200px] md:w-[20vw] py-1 min-w-[84px] font-medium md:text-[1rem] text-[0.7rem] rounded-full border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200"
+            >
               {category.categoryName}
-            </button>
+            </a>
           ))}
         </div>
       </div>
@@ -95,7 +98,7 @@ function Trending() {
             Events in {selectedLocation}
           </div>
           <div className="hover:font-medium hover:underline">
-            <Link to="">See More</Link>
+            <Link to={`/events/${selectedLocation}`}>See More</Link>
           </div>
         </div>
         <div className="grid grid-cols-2 justify-between md:hidden gap-2">
@@ -126,7 +129,7 @@ function Trending() {
             Upcoming Events
           </div>
           <div className="hover:font-medium hover:underline">
-            <Link to="">See More</Link>
+            <Link to={`/upcoming-events/${selectedLocation}`}>See More</Link>
           </div>
         </div>
         <div className="grid grid-cols-2 justify-between md:hidden gap-2">
