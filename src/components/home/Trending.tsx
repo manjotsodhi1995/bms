@@ -4,6 +4,7 @@ import EventCard from "../EventCard";
 import axios from "../../utils/middleware";
 import { useStore } from "../../hooks/useStore";
 import EventCardSkeleton from "../EventCardSkeleton";
+import { API } from "@/api";
 interface Category {
   categoryName: string;
 }
@@ -22,9 +23,7 @@ function Trending() {
       }
     };
     const fetchCategories = async () => {
-      const response = await axios.get(
-        "https://kafsbackend.onrender.com/api/v1/categories/getallcategories"
-      );
+      const response = await axios.get(API.categories.getAllCategories);
       setCategories(response.data.data);
       console.log(categories);
     };

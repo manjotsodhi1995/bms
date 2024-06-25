@@ -2,6 +2,7 @@ import { makeObservable, observable, action, computed } from "mobx";
 import axios from "../utils/middleware";
 import { Root } from "./root";
 import { iRoot } from "./root";
+import { API } from "@/api";
 export class Auth {
   accessToken: string = "";
   refreshToken: string = "";
@@ -32,7 +33,7 @@ export class Auth {
       password: password,
     };
     const response = await axios.post(
-      "https://kafsbackend.onrender.com/api/v1/users/login", // Correct URL
+      API.users.login, // Correct URL
       data,
       { headers: { "Content-Type": "application/json" } }
     );
@@ -65,11 +66,9 @@ export class Auth {
       isTnCAccepted: true,
       isPrivacyPolicyAccepted: true,
     };
-    const response = await axios.post(
-      "https://kafsbackend.onrender.com/api/v1/users/signup",
-      data,
-      { headers: { "Content-Type": "application/json" } }
-    );
+    const response = await axios.post(API.users.signup, data, {
+      headers: { "Content-Type": "application/json" },
+    });
     console.log("Signup successful:", response.data);
     this.fetchToken(email, password);
   }
@@ -89,10 +88,7 @@ export class Auth {
       gender: gender,
       phone: phone,
     };
-    const response = await axios.post(
-      "https://kafsbackend.onrender.com/api/v1/users/login",
-      data
-    );
+    const response = await axios.post(API.users.login, data);
     this.accessToken = response.data.token;
     localStorage.setItem("accessToken", this.accessToken);
     localStorage.setItem("refreshToken", this.refreshToken);
@@ -115,12 +111,10 @@ export class Auth {
     const data = {
       credential: token,
     };
-    const response = await axios.post(
-      "https://kafsbackend.onrender.com/api/v1/users/google-auth",
-      data,
-      { headers: { "Content-Type": "application/json" } }
-    );
-    console.log("google",response.data);
+    const response = await axios.post(API.users.googleAuth, data, {
+      headers: { "Content-Type": "application/json" },
+    });
+    console.log("google", response.data);
     throw new Error("TODO: NOT IMPLEMENTED");
   }
 }

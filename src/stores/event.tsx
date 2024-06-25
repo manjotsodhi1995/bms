@@ -2,6 +2,7 @@ import { makeObservable, action } from "mobx";
 import axios from "../utils/middleware";
 import { Root } from "./root";
 import { iRoot } from "./root";
+import { API } from "@/api";
 
 export type EventType = {
   venueAddress: {
@@ -70,7 +71,7 @@ export class Event {
   async fetchEvents(lat: string, long: string) {
     try {
       const response = await axios.get(
-        `https://kafsbackend.onrender.com/api/v1/events/fetch?lat=${lat}&lng=${long}`
+        `${API.events.fetchAllEvents}?lat=${lat}&lng=${long}`
       );
       this.liveEvents = response.data.data.liveEvents;
       this.upcomingEvents = response.data.data.upcomingEvents;
