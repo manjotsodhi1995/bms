@@ -6,7 +6,6 @@ import { useStore } from "../../hooks/useStore";
 import EventCardSkeleton from "../EventCardSkeleton";
 import { API } from "@/api";
 import { useQuery } from "@tanstack/react-query";
-import { Event } from "@/stores/event";
 
 interface Category {
   categoryId: string;
@@ -28,7 +27,7 @@ function Trending() {
   };
 
   const { data: categories } = useQuery({
-    queryKey: ["categoresQuery"],
+    queryKey: ["categoriesQuery"],
     queryFn: fetchCategories,
   });
   // Dont care about data as it will be added to event directly
