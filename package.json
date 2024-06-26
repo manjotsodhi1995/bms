@@ -28,6 +28,7 @@
     "mobx": "^6.12.3",
     "mobx-logger": "^0.7.1",
     "mobx-react-lite": "^4.0.7",
+    "path-to-regexp": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-insta-stories": "^2.7.0",
