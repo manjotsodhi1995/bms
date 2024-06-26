@@ -2,6 +2,7 @@ import { makeObservable, action } from "mobx";
 import axios from "../utils/middleware";
 import { Root } from "./root";
 import { iRoot } from "./root";
+import { API } from "@/api";
 
 export type EventType = {
   venueAddress: {
@@ -54,6 +55,13 @@ export type EventType = {
   [key: string]: any;
 };
 
+export interface FetchEventsResponse {
+  currentCity: string;
+  liveEvents: EventType[];
+  nearestEventCity: string;
+  trendingCategories: any[];
+  upcomingEvents: EventType[];
+}
 export class Event {
   root: iRoot;
   liveEvents: EventType[] = [];
@@ -70,13 +78,14 @@ export class Event {
   async fetchEvents(lat: string, long: string) {
     try {
       const response = await axios.get(
-        `https://kafsbackend.onrender.com/api/v1/events/fetch?lat=${lat}&lng=${long}`
+        `${API.events.fetchAllEvents}?lat=${lat}&lng=${long}`
       );
       this.liveEvents = response.data.data.liveEvents;
       this.upcomingEvents = response.data.data.upcomingEvents;
       this.trendingCategories = response.data.data.trendingCategories;
       this.currentCity = response.data.data.currentCity;
-      this.nearestCity = response.data.data.nearestCity;
+      this.nearestCity = response.data.data.nearestEventCity;
+      return response.data.data as FetchEventsResponse
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("API Error:", error.response?.data || error.message);

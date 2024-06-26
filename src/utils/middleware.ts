@@ -1,3 +1,4 @@
+import { API } from "@/api";
 import axios from "axios";
 axios.interceptors.request.use(
     async (config) => {
@@ -5,7 +6,7 @@ axios.interceptors.request.use(
     const refreshToken = localStorage.getItem("refreshToken");
     if (!accessToken && refreshToken) {
       try {
-        const response = await axios.post("/refresh", {
+        const response = await axios.post(API.users.refreshToken, {
           refreshToken: refreshToken,
         });
         const newAccessToken = response.data.access_token;

@@ -1,45 +1,46 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import EventCard from "../EventCard";
 import axios from "../../utils/middleware";
 import { useStore } from "../../hooks/useStore";
 import EventCardSkeleton from "../EventCardSkeleton";
+import { API } from "@/api";
+import { useQuery } from "@tanstack/react-query";
+
 interface Category {
+  categoryId: string;
   categoryName: string;
 }
+
+const fetchCategories = async () => {
+  const response = await axios.get(API.categories.getAllCategories);
+  return response.data.data as Category[];
+};
+
 function Trending() {
   const {
     root: { event },
   } = useStore();
-  const [categories, setCategories] = useState([]); // Array of strings
+  const fetchEvents = async () => {
+    await event.fetchEvents("28.4262481", "77.0581663");
+    console.log(event);
+  };
+
+  const { data: categories } = useQuery({
+    queryKey: ["categoriesQuery"],
+    queryFn: fetchCategories,
+  });
+  // Dont care about data as it will be added to event directly
+  const { data: _, isLoading: loading } = useQuery({
+    queryKey: ["homepage", "fetchAllEvents"],
+    queryFn: fetchEvents,
+  });
+
   const [selectedLocation, setSelectedLocation] = useState("Dublin");
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchLocationOptions = async () => {
-      try {
-      } catch (error) {
-        console.error("Error fetching location options:", error);
-      }
-    };
-    const fetchCategories = async () => {
-      const response = await axios.get(
-        "https://kafsbackend.onrender.com/api/v1/categories/getallcategories"
-      );
-      setCategories(response.data.data);
-      console.log(categories);
-    };
-    const fetchEvents = async () => {
-      await event.fetchEvents("28.4262481", "77.0581663");
-      setLoading(false);
-      console.log(event);
-    };
-    fetchCategories();
-    fetchLocationOptions();
-    fetchEvents();
-  }, []);
   const handleLocationChange = (event: any) => {
     setSelectedLocation(event.target.value);
   };
+
   return (
     <div className="lg:px-[8%] px-[8vw] mt-[7vh] flex flex-col gap-8">
       <div className="flex items-center mb-4">
@@ -66,15 +67,19 @@ function Trending() {
           Trending Categories
         </h2>
 
-        <div className="flex space-x-4 overflow-x-auto">
-          {categories.slice(0, 7).map((category: Category) => (
-            <a
-              href={`/search?query=${category.categoryName}`}
-              className="text-center lg:w-[200px] md:w-[20vw] py-1 min-w-[84px] font-medium md:text-[1rem] text-[0.7rem] rounded-full border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200"
-            >
-              {category.categoryName}
-            </a>
-          ))}
+        <div className="flex w-full gap-4 overflow-x-auto">
+          {categories &&
+            categories.slice(0, 7).map((category: Category) => (
+              <a
+                key={category.categoryId}
+                href={`/search?query=${encodeURIComponent(
+                  category.categoryName
+                )}`}
+                className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200"
+              >
+                {category.categoryName}
+              </a>
+            ))}
         </div>
       </div>
       <div className="flex flex-col gap-4">

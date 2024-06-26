@@ -12,7 +12,9 @@ import BookTicketsDialog from "@/components/ticket/BookTicketsDialog";
 import type { EventType } from "@/stores/event";
 import { useStore } from "@/hooks/useStore";
 import { observer } from "mobx-react-lite";
-import { formatDate } from "@/utils";
+import { cn, formatDate } from "@/utils";
+import { ShareEventDialog } from "@/components/ShareEventDialog";
+import { API } from "@/api";
 
 const EventPage = observer(() => {
   const {
@@ -23,12 +25,20 @@ const EventPage = observer(() => {
   const [eventData, setEventData] = useState<EventType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  //  TODO: CHECK LIKE STATUS FROM BACKEND API
+  const isLiked = false;
+  const [like, setLike] = useState(isLiked);
+  const likeCurrentEvent = () => {
+    setLike((p) => !p);
+    //  TODO: UPDATE LIKE STATUS
+    // ...
+  };
 
   useEffect(() => {
     const fetchEvent = async () => {
       try {
         const response = await axios.get(
-          `https://kafsbackend.onrender.com/api/v1/events/geteventbyurl/${eventId}`,
+          `${API.events.getByUrl}/${eventId}`,
           {
             headers: {
               is_guest_user: "yes",
@@ -85,12 +95,28 @@ const EventPage = observer(() => {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="bg-white rounded-full  w-[50px] h-[50px] items-center flex justify-center bg-opacity-40  cursor-pointer hover:bg-pink-700">
+              <div
+                onClick={likeCurrentEvent}
+                className={cn(
+                  "bg-white rounded-full  w-[50px] h-[50px] items-center flex justify-center bg-opacity-40  cursor-pointer hover:bg-pink-700",
+                  {
+                    "bg-pink-700": like,
+                  }
+                )}
+              >
                 <img src={Like} alt="" />
               </div>
-              <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-blue-300">
-                <img src={Share} alt="" />
-              </div>
+
+              {eventData && (
+                <ShareEventDialog
+                  imageUrl={eventData.posterUrl}
+                  link={`/event/${eventData.slug}`}
+                >
+                  <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-blue-300">
+                    <img src={Share} alt="" />
+                  </div>
+                </ShareEventDialog>
+              )}
               <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-black">
                 <img src={three} alt="" />
               </div>
@@ -261,11 +287,11 @@ const EventPage = observer(() => {
             )}
           </div>
           <div className="flex flex-col gap-8">
-            <div className="flex gap-2">
+            <div className="grid grid-cols-3 gap-2">
               {event.upcomingEvents.slice(0, 3).map((card, index) => (
                 <div
                   key={index}
-                  className="w-[160px] snap-center"
+                  className="snap-center"
                   ref={carouselRef}
                 >
                   <EventSlides {...card} />
@@ -306,17 +332,17 @@ const EventPage = observer(() => {
                 <Link to="">See More</Link>
               </div>
             </div>
-            <div className="flex justify-around md:hidden gap-2">
+            <div className="grid grid-cols-2 md:hidden gap-2">
               {event.upcomingEvents.slice(0, 2).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>
-            <div className="justify-around hidden md:flex lg:hidden">
+            <div className="hidden md:grid grid-cols-3 lg:hidden">
               {event.upcomingEvents.slice(0, 3).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>
-            <div className="justify-around hidden lg:flex">
+            <div className="hidden lg:grid grid-cols-4">
               {event.upcomingEvents.slice(0, 4).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}

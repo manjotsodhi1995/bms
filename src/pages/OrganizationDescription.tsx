@@ -6,6 +6,7 @@ import EventCard from "../components/EventCard";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import Footer from "../components/Footer";
+import { API } from "@/api";
 interface od {
   name: string;
   slug: string;
@@ -63,15 +64,12 @@ const OrganizationProfile = observer(() => {
   useEffect(() => {
     const fetchOrg = async () => {
       try {
-        const response = await axios.get(
-          `http://3.253.146.194:3001/api/v1/organizers/getorgbyid/${orgId}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
+        const response = await axios.get(`${API.organizers.getById}/${orgId}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
         setOrganizationData(response.data.data);
       } catch (error: any) {
         setError(error.message || "An error occurred while fetching data");
