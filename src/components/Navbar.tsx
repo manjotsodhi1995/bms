@@ -5,6 +5,20 @@ import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import pfp from "../assets/test/pfp.png";
 import bell from "../assets/test/bell.png";
+import { createRouteMatcher } from "@/utils/routeMatcher";
+
+const isExcludedRoute = createRouteMatcher([
+  "/login",
+  "/register",
+  "/forgot",
+  "/help",
+  "/helpdetail",
+  "/contactus",
+  "/settings",
+  "/payment",
+  "/dashboard(.*)",
+]);
+
 const Navbar = observer(() => {
   const navigate = useNavigate();
   const {
@@ -24,21 +38,10 @@ const Navbar = observer(() => {
   const handleFocus = () => {
     setIsFocused(true);
   };
-  const excludedRoutes = [
-    "/login",
-    "/register",
-    "/forgot",
-    "/help",
-    "/helpdetail",
-    "/contactus",
-    "/dashboard",
-    "/dashboard/payout",
-    "/settings",
-    "/payment",
-    "/dashboard/payout/payments-method",
-  ];
+
   const location = useLocation();
-  const showNavbar = !excludedRoutes.includes(location.pathname);
+  const showNavbar = !isExcludedRoute(location);
+
   return (
     showNavbar && (
       <div className="lg:px-[5%] xl:px-[7%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left py-[4vh] 2xl:text-[1.5rem] w-screen z-20 gap-8">
