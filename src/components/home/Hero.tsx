@@ -52,12 +52,12 @@ function Hero() {
     {
       title: "Match Events",
       description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v3.jpg",
+      imageUrl: "/v5.jpg",
     },
     {
       title: "Match Events",
       description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v4.jpg",
+      imageUrl: "/v5.jpg",
     },
     {
       title: "Match Events",
@@ -194,8 +194,8 @@ function Hero() {
             coverflowEffect={{
               rotate: 0,
               stretch: 0,
-              depth: 160,
-              modifier: 1.5,
+              depth: 30,
+              modifier: 3,
             }}
             pagination={{ el: ".swiper-pagination", clickable: true }}
             modules={[EffectCoverflow, Autoplay]}

@@ -7,7 +7,7 @@ input,textarea {
   padding: 0.5rem 0.7rem !important;
   border-radius: 8px; /* Add rounded corners */
 }
-input::placeholder,textarea::placeholder { 
+input::placeholder,textarea::placeholder {
  align-items: center;
  justify-content: center;
   color: #000;
@@ -36,7 +36,7 @@ input::placeholder,textarea::placeholder {
 }
 
 .sw1 .swiper-slide {
-  width: 15vw;
+  width: 10vw;
   position: relative;
 }
 

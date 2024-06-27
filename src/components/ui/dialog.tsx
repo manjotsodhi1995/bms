@@ -27,8 +27,8 @@ const DialogOverlay = React.forwardRef<
 ));
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
-const DialogBackgroundCircle = ({ className }: { className: string }) => (
-  <div className={cn("rounded-full size-40 bg-gradient-to-br", className)} />
+export const DialogBackgroundCircle = ({ className }: { className: string }) => (
+  <div className={cn("rounded-full size-40", className)} />
 );
 
 type DialogContentProps = {

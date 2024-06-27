@@ -120,11 +120,11 @@ function Trending() {
               .slice(0, 3)
               .map((card, index) => <EventCard key={index} {...card} />)}
         </div>
-        <div className="justify-between hidden lg:grid lg:grid-cols-4 gap-2">
-          {loading && [...Array(4)].map((_) => <EventCardSkeleton />)}
+        <div className="justify-between hidden lg:grid lg:grid-cols-5 gap-2">
+          {loading && [...Array(5)].map((_) => <EventCardSkeleton />)}
           {!loading &&
             event.liveEvents
-              .slice(0, 4)
+              .slice(0, 5)
               .map((card, index) => <EventCard key={index} {...card} />)}
         </div>
       </div>
@@ -151,11 +151,11 @@ function Trending() {
               .slice(0, 3)
               .map((card, index) => <EventCard key={index} {...card} />)}
         </div>
-        <div className="justify-between hidden lg:grid lg:grid-cols-4 gap-2">
-          {loading && [...Array(4)].map((_) => <EventCardSkeleton />)}
+        <div className="justify-between hidden lg:grid lg:grid-cols-5 gap-2">
+          {loading && [...Array(5)].map((_) => <EventCardSkeleton />)}
           {!loading &&
             event.upcomingEvents
-              .slice(0, 4)
+              .slice(0, 5)
               .map((card, index) => <EventCard key={index} {...card} />)}
         </div>
       </div>

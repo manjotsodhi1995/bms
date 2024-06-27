@@ -1,16 +1,20 @@
+import { createRouteMatcher } from "@/utils/routeMatcher";
 import { useLocation } from "react-router-dom";
+
+const isRouteExcluded = createRouteMatcher([
+  "/login",
+  "/register",
+  "/forgot",
+  "/help",
+  "/helpdetail",
+  "/settings",
+  "/payment",
+  "/dashboard(.*)",
+]);
+
 export default function Bg() {
-  const excludedRoutes = [
-    "/login",
-    "/register",
-    "/forgot",
-    "/help",
-    "/helpdetail",
-    "/settings",
-    "/payment"
-  ];
   const location = useLocation();
-  const showNavbar = !excludedRoutes.includes(location.pathname);
+  const showNavbar = !isRouteExcluded(location);
   return (
     showNavbar && (
       <div className="overflow-x-hidden max-w-screen -z-20">

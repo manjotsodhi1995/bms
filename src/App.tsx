@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useStore } from "./hooks/useStore";
 import { observer } from "mobx-react-lite";
 
-import { lazy, Suspense} from "react";
+import { lazy, Suspense } from "react";
 const SearchPage = lazy(() => import("./pages/Search"));
 import DashBoard from "./pages/dashboard/Dashboard";
 import { useEffect } from "react";
@@ -30,12 +30,36 @@ const Help = lazy(() => import("./pages/help"));
 const HelpDetail = lazy(() => import("./pages/help/helpDetail"));
 const Affiliate = lazy(() => import("./pages/Affiliate"));
 const PaymentsMethodPage = lazy(
-  () => import("./pages/dashboard/payout/payments-method"),
+  () => import("./pages/dashboard/payout/payments-method")
 );
 const ProfilePage = lazy(() => import("./pages/dashboard/profile"));
 const EventsPage = lazy(() => import("./pages/dashboard/events"));
-const EventsInLocation = lazy(() => import("./pages/events/EventsInLocation"))
-const UpComingEventsInLocation = lazy(() => import("./pages/events/UpcomingEventsInLocation"))
+const EventsInLocation = lazy(() => import("./pages/events/EventsInLocation"));
+const UpComingEventsInLocation = lazy(
+  () => import("./pages/events/UpcomingEventsInLocation")
+);
+const DashboardLayout = lazy(() => import("./layouts/DashboardLayout"));
+const EventDetailPage = lazy(
+  () => import("./pages/dashboard/events/event-detail")
+);
+const EventAvailableToRepOrganizer = lazy(
+  () => import("./pages/dashboard/events/available-to-organizer")
+);
+const OrganizerDetails = lazy(
+  () => import("./pages/dashboard/organizer/details")
+);
+const OrganizerEventsHistory = lazy(
+  () => import("./pages/dashboard/organizer/history")
+);
+const CurrentlyRepping = lazy(
+  () => import("./pages/dashboard/events/currently-repping")
+);
+const ReppedInPast = lazy(
+  () => import("./pages/dashboard/events/repped-in-past")
+);
+const ReppedInPastDetails = lazy(
+  () => import("./pages/dashboard/events/repped-in-past-details")
+);
 
 const App = observer(() => {
   const {
@@ -51,9 +75,9 @@ const App = observer(() => {
     }
   }, []);
 
-
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative">
+      {/* <div className="relative overflow-hidden"> */}
       <BrowserRouter>
         <div className="home absolute -z-50">
           <Bg />
@@ -85,21 +109,62 @@ const App = observer(() => {
                 element={<OrganizerRegister />}
               />
               <Route path="/organizer/login" element={<OrganizerLogin />} />
-              <Route path="/dashboard" element={<DashBoard />} />
-              <Route path="/dashboard/payout" element={<PayOutD />} />
-              <Route
-                path="/dashboard/payout/payments-method"
-                element={<PaymentsMethodPage />}
-              />
-              <Route path="/dashboard/profile" element={<ProfilePage />} />
-              <Route path="/dashboard/events" element={<EventsPage />} />
+
+              {/* Dashboard Routes */}
+              <Route element={<DashboardLayout />}>
+                <Route path="/dashboard" element={<DashBoard />} />
+                <Route path="/dashboard/payout" element={<PayOutD />} />
+                <Route
+                  path="/dashboard/payout/payments-method"
+                  element={<PaymentsMethodPage />}
+                />
+                <Route path="/dashboard/profile" element={<ProfilePage />} />
+                <Route path="/dashboard/events" element={<EventsPage />} />
+                <Route
+                  path="/dashboard/events/:eventId"
+                  element={<EventDetailPage />}
+                />
+                <Route
+                  path="/dashboard/events/available-to-organizer"
+                  element={<EventAvailableToRepOrganizer />}
+                />
+                <Route
+                  path="/dashboard/organizer/:id"
+                  element={<OrganizerDetails />}
+                />
+                <Route
+                  path="/dashboard/organizer/:id/events"
+                  element={<OrganizerEventsHistory />}
+                />
+                <Route
+                  path="/dashboard/events/currently-repping"
+                  element={<CurrentlyRepping />}
+                />
+
+                <Route
+                  path="/dashboard/events/repped-in-past"
+                  element={<ReppedInPast />}
+                />
+
+                <Route
+                  path="/dashboard/events/repped-in-past/:eventId"
+                  element={<ReppedInPastDetails />}
+                />
+              </Route>
+              {/* Dashboard Routes */}
             </Route>
 
             {/* Public Routes */}
             <Route path="/search" element={<SearchPage />} />
             <Route path="/dashboard" element={<DashBoard />} />
-            <Route path="/settings" element={<AccountSettings defaultSettingState="acc"/>} />
-            <Route path="/payment" element={<AccountSettings defaultSettingState="pay"/>} />
+            <Route
+              path="/settings"
+              element={<AccountSettings defaultSettingState="acc" />}
+            />
+            <Route
+              path="/payment"
+              element={<AccountSettings defaultSettingState="pay" />}
+            />
             <Route path="/filter" element={<Filter />} />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/event/:eventId" element={<EventPage />} />
@@ -111,10 +176,12 @@ const App = observer(() => {
             <Route path="/affiliate" element={<Affiliate />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />
-            <Route path="/dashboard/payout" element={<PayOutD />} />
 
             <Route path="/events/:location" element={<EventsInLocation />} />
-            <Route path="/upcoming-events/:location" element={<UpComingEventsInLocation />} />
+            <Route
+              path="/upcoming-events/:location"
+              element={<UpComingEventsInLocation />}
+            />
           </Routes>{" "}
         </Suspense>
       </BrowserRouter>
