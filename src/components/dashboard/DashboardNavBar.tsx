@@ -185,7 +185,10 @@ const MobileNav = () => {
           block: isNavOpen,
         })}
       >
-        <Sidebar className="absolute z-10 w-[96vw] border h-fit top-0 translate-y-[10%] rounded-3xl bg-[#B1B1B1]/65 backdrop-blur-lg" />
+        <Sidebar
+          className="absolute z-10 w-[96vw] border h-fit top-0 translate-y-[10%] rounded-3xl bg-[#B1B1B1]/65 backdrop-blur-lg"
+          onRouteClicked={() => setIsNavOpen((p) => !p)}
+        />
       </div>
     </nav>
   );
