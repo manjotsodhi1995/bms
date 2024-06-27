@@ -146,7 +146,7 @@ function Hero() {
         handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
         handlePrevClick={handlePrevClick}
       />
-      <div className="flex flex-col items-center xl:mt-[-1rem] xl:gap-6 mt-[-2rem] lg:mt-[1rem]">
+      <div className="flex flex-col items-center xl:mt-[-3rem] xl:gap-6 mt-[-2rem] lg:mt-[-2rem]">
         <div className="w-full">
           <Swiper
             spaceBetween={30}
