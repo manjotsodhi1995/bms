@@ -47,7 +47,7 @@ export const ShareEventDialog = ({
           <img
             src={imageUrl}
             alt="event image"
-            className="w-full h-[16rem] object-fill rounded-3xl"
+            className="w-full h-[16rem] object-cover rounded-3xl"
           />
         </div>
         <div className="flex flex-col items-center gap-8  bg-white rounded-xl w-full p-8">
