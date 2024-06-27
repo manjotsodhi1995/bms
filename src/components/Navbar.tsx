@@ -108,7 +108,7 @@ const Navbar = observer(() => {
                     </li>
                     <li className="my-6">
                       <Link
-                        to="/"
+                        to="/dashboard"
                         className="flex justify-between"
                         onClick={() => setIsNavOpen((prev) => !prev)}
                       >

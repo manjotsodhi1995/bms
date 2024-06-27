@@ -146,7 +146,7 @@ function Hero() {
         handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
         handlePrevClick={handlePrevClick}
       />
-      <div className="flex flex-col items-center xl:mt-[0rem] xl:gap-6 mt-[-2rem] lg:mt-[1rem]">
+      <div className="flex flex-col items-center xl:mt-[-3rem] xl:gap-6 mt-[-2rem] lg:mt-[-2rem]">
         <div className="w-full">
           <Swiper
             spaceBetween={30}
@@ -175,7 +175,7 @@ function Hero() {
               <div>
                 <img
                   src={c2}
-                  className="w-[100vw] h-[35vw] object-fill"
+                  className="w-[100vw] h-[25vw] object-fill"
                   alt=""
                 />
               </div>
