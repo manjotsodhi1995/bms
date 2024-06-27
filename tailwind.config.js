@@ -20,6 +20,12 @@ module.exports = {
       boxShadow: {
         custom: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
       },
+      backgroundImage: {
+        "gradient-red": "linear-gradient(to right, #8C3E87, #A76169, #964B7D)",
+        "gradient-golden":
+          "linear-gradient(to right, #A87863, #C68D55, #C5C168)",
+        "gradient-blue": "linear-gradient(to right, #4A75C8, #647A9A, #6E693B)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

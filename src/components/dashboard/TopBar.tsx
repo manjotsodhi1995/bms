@@ -1,6 +1,6 @@
 const TopBar = () => {
   return (
-    <div className="w-full p-5 h-[70px] font-bold items-center rounded-md shadow-custom flex gap-5">
+    <div className="w-full p-5 h-[70px] font-semibold items-center rounded-md shadow-custom flex gap-5">
       <button className="bg-gray-300 px-10 py-3 flex gap-2 items-center  rounded-md">
         Refer a friend
         <svg

@@ -18,7 +18,7 @@ interface StoryProps {
   // onSwiper: (swiper: SwiperCore) => void;
   // handleSlideChange: (swiper: SwiperCore) => void;
   handleNextClick: () => void; // Add handleNextClick to props
-  handlePrevClick: () => void; 
+  handlePrevClick: () => void;
 }
 
 const data = [
@@ -73,7 +73,7 @@ const Stories: React.FC<StoryProps> = ({ onOpen, setOpen, activeIndex, handleNex
   handlePrevClick,}) => {
   // const [childSwiper, setChildSwiper] = useState<SwiperCore | null>(null);
 
-  const [currentIndex, setCurrentIndex] = useState(activeIndex); 
+  const [currentIndex, setCurrentIndex] = useState(activeIndex);
   useEffect(() => {
     setCurrentIndex(activeIndex);
   }, [activeIndex]);

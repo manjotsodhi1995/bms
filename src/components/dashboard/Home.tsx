@@ -14,7 +14,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="flex h-full gap-4 flex-wrap">
+    <div className="flex w-full h-full gap-4 flex-wrap">
       <BarChartHome data={dummyData} />
       <AreaChartHome data={dummyData} />
       <AreaChartHome data={dummyData} />
