@@ -182,10 +182,10 @@ const MobileNav = () => {
 
       <div
         className={cn("hidden", {
-          "block": isNavOpen,
+          block: isNavOpen,
         })}
       >
-        <Sidebar className="absolute z-10 h-fit top-20 rounded-3xl bg-[#B1B1B198] backdrop-blur-3xl drop-shadow-2xl"/>
+        <Sidebar className="absolute z-10 w-[96vw] border h-fit top-0 translate-y-[10%] rounded-3xl bg-[#B1B1B1]/65 backdrop-blur-lg" />
       </div>
     </nav>
   );
