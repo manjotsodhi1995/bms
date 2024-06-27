@@ -175,7 +175,7 @@ function Hero() {
               <div>
                 <img
                   src={c2}
-                  className="w-[100vw] h-[35vw] object-fill"
+                  className="w-[100vw] h-[25vw] object-fill"
                   alt=""
                 />
               </div>
