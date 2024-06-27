@@ -30,7 +30,7 @@ const routes = [
       },
     ],
   },
-  { name: "Followers", path: "#" },
+  { name: "Following", path: "/dashboard/following" },
   { name: "Representing organizers", path: "#" },
   { name: "Help & Support", path: "/help" },
   { name: "FAQs", path: "#" },
