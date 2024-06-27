@@ -166,7 +166,7 @@ function Hero() {
               <div>
                 <img
                   src={c1}
-                  className="w-full h-[15rem] md:h-[28rem] object-cover"
+                  className="w-[100vw] h-[25vw] object-fill"
                   alt=""
                 />
               </div>
@@ -175,7 +175,7 @@ function Hero() {
               <div>
                 <img
                   src={c2}
-                  className="w-full h-[15rem] md:h-[28rem] object-cover"
+                  className="w-[100vw] h-[35vw] object-fill"
                   alt=""
                 />
               </div>
