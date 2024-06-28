@@ -65,9 +65,9 @@ const DTable = () => {
   //   }
 
   return (
-    <div className="relative max-w-[520px] overflow-y-scroll ">
-      <table className=" text-sm text-left  text-gray-800 ">
-        <thead className="text-xs text-[#964B7D] uppercase ">
+    <div className="relative w-full overflow-auto">
+      <table className="w-full text-sm text-left text-gray-800 ">
+        <thead className="text-xs text-[#964B7D] uppercase text-nowrap">
           <tr>
             <th scope="col" className="px-1 py-3">
               Event

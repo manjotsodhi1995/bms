@@ -1,9 +1,9 @@
-import HomeContainerCard2 from "../HomeContainerCard2";
+import HomeContainerCard from "../HomeContainerCard";
 
 function TicketSold() {
   return (
-    <HomeContainerCard2>
-      <div className="flex gap-1 items-center ">
+    <HomeContainerCard className="h-[35vh] col-span-2 md:col-span-1">
+      <div className="flex gap-1 items-center">
         <svg
           width="32"
           height="32"
@@ -30,8 +30,8 @@ function TicketSold() {
         <h1>Total Ticket Sold </h1>
       </div>
 
-      <div className="py-12">
-        <div className="flex gap-3 items-end">
+      <div className="py-8 text-[#60769D]">
+        <div className="flex gap-3 items-center">
           <div>
             <h1 className="text-[28px]">20 </h1>
             <span className="text-xs ">ticket</span>
@@ -39,9 +39,9 @@ function TicketSold() {
           <h1 className="text-2xl">SOLD</h1>
         </div>
 
-        <hr className="my-5 border-[#703892] border-[1px] " />
+        <hr className="my-2 border-[#703892] border-[1px] " />
 
-        <div className="flex gap-3 items-end">
+        <div className="flex gap-3 items-center">
           <div>
             <h1 className="text-[28px]">40 </h1>
             <span className="text-xs ">ticket</span>
@@ -49,7 +49,7 @@ function TicketSold() {
           <h1 className="text-2xl">REMAINED</h1>
         </div>
       </div>
-    </HomeContainerCard2>
+    </HomeContainerCard>
   );
 }
 

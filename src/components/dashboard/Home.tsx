@@ -11,10 +11,12 @@ const Home = () => {
     { name: "Category 3", value: 30 },
     { name: "Category 4", value: 40 },
     { name: "Category 5", value: 10 },
+    { name: "Category 6", value: 70 },
+    { name: "Category 6", value: 90 },
   ];
 
   return (
-    <div className="flex w-full h-full gap-4 flex-wrap">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 2xl:gap-4">
       <BarChartHome data={dummyData} />
       <AreaChartHome data={dummyData} />
       <AreaChartHome data={dummyData} />

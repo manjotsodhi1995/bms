@@ -1,10 +1,10 @@
-import HomeContainerCard2 from "../HomeContainerCard2";
+import HomeContainerCard from "../HomeContainerCard";
 import DTable from "./DTable";
 
 function CurrentlyEvent() {
   return (
-    <HomeContainerCard2>
-      <div className="flex gap-1 items-center overflow-hidden">
+    <HomeContainerCard className="h-[35vh] col-span-2 w-full">
+      <div className="flex w-full gap-1 items-center">
         <svg
           width="32"
           height="32"
@@ -30,7 +30,7 @@ function CurrentlyEvent() {
       </div>
 
       <DTable />
-    </HomeContainerCard2>
+    </HomeContainerCard>
   );
 }
 
