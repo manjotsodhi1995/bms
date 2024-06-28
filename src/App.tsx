@@ -60,6 +60,7 @@ const ReppedInPast = lazy(
 const ReppedInPastDetails = lazy(
   () => import("./pages/dashboard/events/repped-in-past-details")
 );
+const FollowingPage = lazy(() => import("./pages/dashboard/following"));
 
 const App = observer(() => {
   const {
@@ -149,6 +150,11 @@ const App = observer(() => {
                 <Route
                   path="/dashboard/events/repped-in-past/:eventId"
                   element={<ReppedInPastDetails />}
+                />
+
+                <Route
+                  path="/dashboard/following"
+                  element={<FollowingPage />}
                 />
               </Route>
               {/* Dashboard Routes */}

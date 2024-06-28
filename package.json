@@ -19,6 +19,7 @@
     "@radix-ui/react-slider": "^1.1.2",
     "@react-oauth/google": "^0.12.1",
     "@tanstack/react-query": "^5.48.0",
+    "@tanstack/react-table": "^8.17.3",
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

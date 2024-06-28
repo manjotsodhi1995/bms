@@ -19,16 +19,16 @@ const ReppedInPastDetails = () => {
   }, [data]);
 
   return (
-    <div className="flex w-full flex-col gap-10">
-      <HomeContainerCard className="h-[50vh]">
-        <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-24 p-8">
+    <div className="flex w-full flex-col gap-6 p-2 md:p-10">
+      <HomeContainerCard className="h-fit">
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6 md:gap-24 md:p-8">
           <div>
             <img
               src="https://s3-alpha-sig.figma.com/img/1cd7/f4dc/9ab46b29cc668c7f4e50b65efdb52bd2?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b3G3VQBBMsUKRGyMAsYgNPxkQSxlxUn2Ed8ZPXXECJm19wizFnhVjMQ2cyjeVUubwKZB8cKtL-8NGsZup8AFZOyIc5C-eVNwA5We4IOkDVwZHdi0qoRRCpOfwSO6A-pSmwtMy4ds92B1KsZiUuafeTcmnY5qeqYI5C5g3YZYurpDkYfTepAq25sQi9MO7EDtRqKPecy4OGoW5j3KNcp7Fsq6SLv95LjAlWZefmRQSQe1d8VmMtE0P7Mqr7GMi0YGqethkfIajjureZ4gJDRFElnD93w~uEpmASq7nFC1MHlwiy33AB41c2hmO0tkrz2uw-QnUKawD1qz-GVOm4sqDw__"
               className="w-full h-[40vh] object-cover rounded-xl"
             />
           </div>
-          <div className="flex flex-col gap-8 justify-center">
+          <div className="flex flex-col gap-4 md:gap-6 justify-center 2xl:text-xl">
             <span className="w-fit border border-black px-2 rounded-full py-1">
               {data.eventCategories[0].categoryName}
             </span>
@@ -77,11 +77,11 @@ const ReppedInPastDetails = () => {
                 </div>
                 <div className="text-gray-700">{date}</div>
               </div>
-              <span className="font-medium text-[1.3rem]">
-                Total commission earned: $456.00
-              </span>
-
-              <button className="flex items-center justify-center gap-2 bg-black w-full text-white py-2 px-4 rounded-xl">
+              <p className="mt-4 flex w-full gap-4 items-center font-medium text-[1.3rem]">
+                <span>Total commission earned:</span>
+                <span>$456.00</span>
+              </p>
+              <button className="mt-2 flex items-center justify-center gap-2 bg-black w-full text-white py-2 px-4 rounded-lg">
                 View participant discussion
                 <svg
                   width="24"
@@ -102,17 +102,78 @@ const ReppedInPastDetails = () => {
       </HomeContainerCard>
       <h2 className="text-2xl md:text-3xl font-semibold">Tickets</h2>
 
-      <HomeContainerCard className="flex w-full flex-col h-full justify-between p-14">
-        <p className="font-medium text-xl">Final Round</p>
-        <span className="text-[#60769D] font-[700] text-4xl">$4300</span>
+      <HomeContainerCard className="flex w-full flex-col h-full justify-between p-4 md:p-14">
+        <div className="flex w-full items-center justify-between">
+          <p className="text-[#60769D] font-medium text-2xl">Final Round</p>
+          <span className="bg-[#BA1818] text-white px-4 py-1 rounded-lg">
+            Exipred
+          </span>
+        </div>
+
+        <div className="flex w-full font-[600] text-xl items-center justify-between mt-4">
+          <span>Price</span>
+          <span className="text-[#989898]">$34.00</span>
+        </div>
+
+        <div className="flex w-full font-[600] text-xl items-center justify-between">
+          <span>Tickets Sold</span>
+          <span className="text-[#989898]">23/56</span>
+        </div>
+
+        <div className="flex w-full font-[600] text-xl items-center justify-between">
+          <span>Revenue</span>
+          <span>$654.00</span>
+        </div>
       </HomeContainerCard>
-      <HomeContainerCard className="flex w-full flex-col h-full justify-between p-14">
-        <p className="font-medium text-xl">Comission Earned</p>
-        <span className="text-[#60769D] font-[700] text-4xl">$4300</span>
+
+
+      <HomeContainerCard className="flex w-full flex-col h-full justify-between p-4 md:p-14">
+        <div className="flex w-full items-center justify-between">
+          <p className="text-[#60769D] font-medium text-2xl">Final Round</p>
+          <span className="bg-[#BA1818] text-white px-4 py-1 rounded-lg">
+            Exipred
+          </span>
+        </div>
+
+        <div className="flex w-full font-[600] text-xl items-center justify-between mt-4">
+          <span>Price</span>
+          <span className="text-[#989898]">$34.00</span>
+        </div>
+
+        <div className="flex w-full font-[600] text-xl items-center justify-between">
+          <span>Tickets Sold</span>
+          <span className="text-[#989898]">23/56</span>
+        </div>
+
+        <div className="flex w-full font-[600] text-xl items-center justify-between">
+          <span>Revenue</span>
+          <span>$654.00</span>
+        </div>
       </HomeContainerCard>
-      <HomeContainerCard className="flex w-full flex-col h-full justify-between p-14">
-        <p className="font-medium text-xl">Comission Earned</p>
-        <span className="text-[#60769D] font-[700] text-4xl">$4300</span>
+
+
+      <HomeContainerCard className="flex w-full flex-col h-full justify-between p-4 md:p-14">
+        <div className="flex w-full items-center justify-between">
+          <p className="text-[#60769D] font-medium text-2xl">Final Round</p>
+          <span className="bg-[#BA1818] text-white px-4 py-1 rounded-lg">
+            Exipred
+          </span>
+        </div>
+
+        <div className="flex w-full font-[600] text-xl items-center justify-between mt-4">
+          <span>Price</span>
+          <span className="text-[#989898]">$34.00</span>
+        </div>
+
+        <div className="flex w-full font-[600] text-xl items-center justify-between">
+          <span>Tickets Sold</span>
+          <span className="text-[#989898]">23/56</span>
+        </div>
+
+        <div className="flex w-full font-[600] text-xl items-center justify-between">
+          <span>Revenue</span>
+          <span>$654.00</span>
+        </div>
       </HomeContainerCard>
     </div>
   );
