@@ -21,17 +21,17 @@ export const Icons = {
         <path
           d="M160 161.124C176 161.124 186.667 171.19 186.667 182.541H218.667V21.916H186.667C186.667 32.6243 176 43.3327 160 43.3327C144 43.3327 133.333 32.6243 133.333 21.916H101.333V96.8743"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M160 236.083H128C128 224.732 117.333 214.666 101.333 214.666C85.3332 214.666 74.6665 224.732 74.6665 236.083H42.6665V75.4577H74.6665C74.6665 86.166 85.3332 96.8744 101.333 96.8744C117.333 96.8744 128 86.166 128 75.4577H160V236.083Z"
           fill="#555555"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M74.6664 139.708C80.5575 139.708 85.3331 134.913 85.3331 128.999C85.3331 123.085 80.5575 118.291 74.6664 118.291C68.7754 118.291 63.9998 123.085 63.9998 128.999C63.9998 134.913 68.7754 139.708 74.6664 139.708Z"

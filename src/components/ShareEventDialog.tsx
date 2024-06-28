@@ -100,7 +100,7 @@ const communities = [
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
-        <g clip-path="url(#clip0_1594_23271)">
+        <g clipPath="url(#clip0_1594_23271)">
           <path
             d="M0.5 40L3.32712 29.7338C1.57927 26.7205 0.662369 23.308 0.67192 19.8194C0.67192 8.88783 9.61174 0 20.5859 0C25.9155 0 30.9202 2.06274 34.6738 5.80799C38.4369 9.55323 40.5095 14.5342 40.5 19.8289C40.5 30.7605 31.5601 39.6483 20.5764 39.6483H20.5668C17.2335 39.6483 13.9575 38.8118 11.0444 37.2338L0.5 40ZM11.5506 33.6502L12.1523 34.0114C14.6929 35.5133 17.606 36.3023 20.5764 36.3118H20.5859C29.7072 36.3118 37.138 28.9259 37.138 19.8384C37.138 15.4373 35.4188 11.3023 32.2956 8.18441C29.1724 5.06654 25.0081 3.35551 20.5859 3.35551C11.4647 3.34601 4.0339 10.7319 4.0339 19.8194C4.0339 22.9278 4.90305 25.9601 6.56494 28.5837L6.95654 29.211L5.2851 35.2852L11.5506 33.6502Z"
             fill="white"
@@ -114,8 +114,8 @@ const communities = [
             fill="url(#paint1_linear_1594_23271)"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M15.6102 11.5304C15.2377 10.7034 14.8461 10.6844 14.4927 10.6749C14.2062 10.6654 13.8719 10.6654 13.5376 10.6654C13.2033 10.6654 12.6684 10.789 12.21 11.2833C11.7515 11.7776 10.4717 12.9753 10.4717 15.4183C10.4717 17.8517 12.2577 20.2091 12.5061 20.5418C12.7544 20.8745 15.954 26.0361 21.0065 28.0228C25.209 29.6768 26.0686 29.3441 26.976 29.2586C27.8833 29.173 29.9177 28.0608 30.3379 26.9011C30.7486 25.7415 30.7486 24.7529 30.6245 24.5437C30.5003 24.3346 30.166 24.211 29.6694 23.9639C29.1727 23.7167 26.7276 22.519 26.2692 22.3479C25.8107 22.1863 25.4764 22.1008 25.1517 22.5951C24.8174 23.0894 23.8623 24.2015 23.5758 24.5342C23.2892 24.8669 22.9932 24.905 22.4965 24.6578C21.9998 24.4107 20.3953 23.8878 18.4946 22.1958C17.0142 20.884 16.0113 19.2586 15.7248 18.7643C15.4382 18.27 15.6961 18.0038 15.9445 17.7567C16.1641 17.538 16.4411 17.1768 16.6894 16.8916C16.9378 16.6065 17.0237 16.3973 17.1861 16.0646C17.3485 15.7319 17.2721 15.4468 17.1479 15.1996C17.0237 14.962 16.0495 12.5095 15.6102 11.5304Z"
             fill="white"
           />
@@ -129,8 +129,8 @@ const communities = [
             y2="0.692558"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#20B038" />
-            <stop offset="1" stop-color="#60D66A" />
+            <stop stopColor="#20B038" />
+            <stop offset="1" stopColor="#60D66A" />
           </linearGradient>
           <linearGradient
             id="paint1_linear_1594_23271"
@@ -140,8 +140,8 @@ const communities = [
             y2="0"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#F9F9F9" />
-            <stop offset="1" stop-color="white" />
+            <stop stopColor="#F9F9F9" />
+            <stop offset="1" stopColor="white" />
           </linearGradient>
           <clipPath id="clip0_1594_23271">
             <rect
@@ -202,7 +202,7 @@ const communities = [
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
-        <g clip-path="url(#clip0_1594_23280)">
+        <g clipPath="url(#clip0_1594_23280)">
           <path
             d="M31.125 0H9.875C4.69733 0 0.5 4.19733 0.5 9.375V30.625C0.5 35.8027 4.69733 40 9.875 40H31.125C36.3027 40 40.5 35.8027 40.5 30.625V9.375C40.5 4.19733 36.3027 0 31.125 0Z"
             fill="url(#paint0_radial_1594_23280)"
@@ -225,10 +225,10 @@ const communities = [
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(11.125 43.0808) rotate(-90) scale(39.643 36.8711)"
           >
-            <stop stop-color="#FFDD55" />
-            <stop offset="0.1" stop-color="#FFDD55" />
-            <stop offset="0.5" stop-color="#FF543E" />
-            <stop offset="1" stop-color="#C837AB" />
+            <stop stopColor="#FFDD55" />
+            <stop offset="0.1" stopColor="#FFDD55" />
+            <stop offset="0.5" stopColor="#FF543E" />
+            <stop offset="1" stopColor="#C837AB" />
           </radialGradient>
           <radialGradient
             id="paint1_radial_1594_23280"
@@ -238,9 +238,9 @@ const communities = [
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(-6.20016 2.88141) rotate(78.681) scale(17.7206 73.045)"
           >
-            <stop stop-color="#3771C8" />
-            <stop offset="0.128" stop-color="#3771C8" />
-            <stop offset="1" stop-color="#6600FF" stop-opacity="0" />
+            <stop stopColor="#3771C8" />
+            <stop offset="0.128" stopColor="#3771C8" />
+            <stop offset="1" stopColor="#6600FF" stopOpacity="0" />
           </radialGradient>
           <clipPath id="clip0_1594_23280">
             <rect
@@ -265,28 +265,28 @@ const communities = [
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
-        <g clip-path="url(#clip0_1594_23288)">
+        <g clipPath="url(#clip0_1594_23288)">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M39.7 20.4546C39.7 19.0364 39.5727 17.6728 39.3364 16.3637H20.5V24.1H31.2636C30.8 26.6 29.3909 28.7182 27.2727 30.1364V35.1546H33.7364C37.5182 31.6728 39.7 26.5455 39.7 20.4546Z"
             fill="#4285F4"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M20.4997 40C25.8997 40 30.427 38.2091 33.736 35.1545L27.2724 30.1364C25.4815 31.3364 23.1906 32.0454 20.4997 32.0454C15.2906 32.0454 10.8815 28.5273 9.30877 23.8H2.62695V28.9818C5.91786 35.5182 12.6815 40 20.4997 40Z"
             fill="#34A853"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M9.30909 23.8C8.90909 22.6 8.68182 21.3182 8.68182 20C8.68182 18.6818 8.90909 17.4 9.30909 16.2V11.0182H2.62727C1.27273 13.7182 0.5 16.7727 0.5 20C0.5 23.2273 1.27273 26.2818 2.62727 28.9818L9.30909 23.8Z"
             fill="#FBBC05"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M20.4997 7.95455C23.436 7.95455 26.0724 8.96364 28.1451 10.9455L33.8815 5.20909C30.4179 1.98182 25.8906 0 20.4997 0C12.6815 0 5.91786 4.48182 2.62695 11.0182L9.30877 16.2C10.8815 11.4727 15.2906 7.95455 20.4997 7.95455Z"
             fill="#EA4335"
           />
