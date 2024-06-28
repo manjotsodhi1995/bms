@@ -196,7 +196,7 @@ function Hero() {
               <div>
                 <img
                   src={c1}
-                  className="w-[100vw] h-[25vw] object-fill"
+                  className="w-[100vw] lg:h-[25vw] h-[25rem] object-fill"
                   alt=""
                 />
               </div>
@@ -205,7 +205,7 @@ function Hero() {
               <div>
                 <img
                   src={c2}
-                  className="w-[100vw] h-[25vw] object-fill"
+                  className="w-[100vw] lg:h-[25vw] h-[25rem]  object-fill"
                   alt=""
                 />
               </div>
@@ -224,7 +224,7 @@ function Hero() {
             coverflowEffect={{
               rotate: 0,
               stretch: 0,
-              depth: 30,
+              depth: 20,
               modifier: 3,
             }}
             pagination={{ el: ".swiper-pagination", clickable: true }}
