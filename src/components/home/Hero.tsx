@@ -42,6 +42,36 @@ function Hero() {
     {
       title: "Match Events",
       description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
+      imageUrl: "/v3.jpg",
+    },
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
+      imageUrl: "/v4.jpg",
+    },
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
+      imageUrl: "/v5.jpg",
+    },
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
+      imageUrl: "/v3.jpg",
+    },
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
+      imageUrl: "/v4.jpg",
+    },
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
+      imageUrl: "/v5.jpg",
+    },
+    {
+      title: "Match Events",
+      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
       imageUrl: "/v1.jpg",
     },
     {
