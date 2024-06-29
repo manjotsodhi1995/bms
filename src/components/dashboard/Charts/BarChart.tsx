@@ -1,4 +1,3 @@
-
 import HomeContainerCard from "../HomeContainerCard";
 import {
   BarChart,
@@ -6,15 +5,13 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-
-  Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 const BarChartHome = ({ data }: any) => {
   return (
-    // <div className="w-[40%] px-8 py-3 bg-gray-400 rounded-xl">
-    <HomeContainerCard>
-      <div className="flex items-center gap-4 ">
+    <HomeContainerCard className="col-span-2 h-[35vh]">
+      <div className="flex items-center gap-4">
         <svg
           width="32"
           height="33"
@@ -40,20 +37,16 @@ const BarChartHome = ({ data }: any) => {
           <h3 className="text-xs">Yearly Earning overview</h3>
         </div>
       </div>
-      <BarChart
-        width={450}
-        height={300}
-        className=" mt-5"
-        data={data}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-      >
-        <CartesianGrid strokeDasharray="2 2" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        {/* <Tooltip /> */}
-        <Legend />
-        <Bar dataKey="value" width={10} fill="#8884d8" />
-      </BarChart>
+
+      <ResponsiveContainer width="100%">
+        <BarChart data={data}>
+          <CartesianGrid strokeDasharray="2 2" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          {/* <Tooltip /> */}
+          <Bar dataKey="value" width={10} fill="#8884d8" />
+        </BarChart>
+      </ResponsiveContainer>
     </HomeContainerCard>
   );
 };

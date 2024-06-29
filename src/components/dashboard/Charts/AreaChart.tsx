@@ -1,4 +1,3 @@
-
 import {
   AreaChart,
   Area,
@@ -6,13 +5,14 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  ResponsiveContainer,
 } from "recharts";
 import HomeContainerCard from "../HomeContainerCard";
 
 function AreaChartHome({ data }: any) {
   return (
-    <HomeContainerCard>
-      <div className="flex gap-1 items-center ">
+    <HomeContainerCard className="h-[35vh] col-span-2 md:col-span-1">
+      <div className="flex gap-1 items-center">
         <svg
           width="32"
           height="33"
@@ -83,23 +83,28 @@ function AreaChartHome({ data }: any) {
           </div>
         </div>
       </div>
-      <AreaChart
-        width={250}
-        height={280}
-        data={data}
-        margin={{
-          top: 0,
-          right: 0,
-          left: 0,
-          bottom: 0,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Area type="monotone" dataKey="value" stroke="#8884d8" fill="#60769D" />
-      </AreaChart>
+      <ResponsiveContainer width="100%">
+        <AreaChart
+          data={data}
+          margin={{
+            top: 0,
+            right: 0,
+            left: 0,
+            bottom: 0,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Area
+            type="monotone"
+            dataKey="value"
+            stroke="#8884d8"
+            fill="#60769D"
+          />
+        </AreaChart>
+      </ResponsiveContainer>
     </HomeContainerCard>
   );
 }

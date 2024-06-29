@@ -1,9 +1,9 @@
-import HomeContainerCard2 from "../HomeContainerCard2";
+import HomeContainerCard from "../HomeContainerCard";
 
 function Payouts() {
   return (
-    <HomeContainerCard2>
-      <div className="flex gap-1 items-center ">
+    <HomeContainerCard className="h-[35vh] col-span-2 md:col-span-1">
+      <div className="flex gap-1 items-center">
         <svg
           width="32"
           height="32"
@@ -28,10 +28,10 @@ function Payouts() {
         <h1>Payouts</h1>
       </div>
 
-      <div className="py-12">
+      <div className="py-8">
         <div>
           <p>Previous Payout</p>
-          <div className="flex items-end gap-6">
+          <div className="flex items-center gap-6">
             <h1 className="text-[32px]">$43,000</h1>
             <span className="text-xs p-1 bg-green-300 rounded-md text-green-600">
               paid
@@ -39,14 +39,14 @@ function Payouts() {
           </div>
         </div>
         <p>Next Payout</p>
-        <div className="flex items-end gap-6">
+        <div className="flex items-center gap-6">
           <h1 className="text-[32px]">$43,000</h1>
-          <span className="text-xs p-1 bg-gray-400  text-red-600 rounded-md">
+          <span className="text-xs p-1 bg-red-200  text-red-600 rounded-md">
             pending
           </span>
         </div>
       </div>
-    </HomeContainerCard2>
+    </HomeContainerCard>
   );
 }
 
