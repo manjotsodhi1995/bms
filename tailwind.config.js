@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ["Poppins", "sans-serif"], // Add Poppins here
+      "wix-display": ["Wix Madefor Display", "sans-serif"],
     },
     container: {
       center: true,
