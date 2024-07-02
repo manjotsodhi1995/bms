@@ -27,7 +27,7 @@ const DashboardNavBar = observer(() => {
       <div className="hidden md:block w-[270px] text-[3rem] font-bold">
         <Link to="/">
           <img
-            src="/logo.png"
+            src="/logo-nobg.png"
             alt="logo"
             className="max-h-[10vh] max-w-[40vw]"
           />
