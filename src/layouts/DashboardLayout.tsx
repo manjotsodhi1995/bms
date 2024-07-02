@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
   return (
-    <div className="relative flex min-h-screen flex-col backdrop-blur-sm">
+    <div className="relative flex min-h-screen flex-col backdrop-blur-sm font-wix-display">
       <BackgroundBlurEffect />
       <DashboardNavBar />
       <div className="flex flex-row mt-2 gap-6 px-2 md:px-6">

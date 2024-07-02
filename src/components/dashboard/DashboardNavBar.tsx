@@ -24,9 +24,14 @@ const DashboardNavBar = observer(() => {
 
   return (
     <header className="flex w-full px-2 md:px-6 py-[4vh] gap-6">
-      {/* TODO: Add logo in future */}
       <div className="hidden md:block w-[270px] text-[3rem] font-bold">
-        <Link to="/">Kafsco</Link>
+        <Link to="/">
+          <img
+            src="/logo-nobg.png"
+            alt="logo"
+            className="max-h-[10vh] max-w-[40vw]"
+          />
+        </Link>
       </div>
 
       <nav className="flex flex-grow items-center justify-end">

@@ -8,7 +8,6 @@ import DashBoard from "./pages/dashboard/Dashboard";
 import { useEffect } from "react";
 import OrganizationProfile from "./pages/OrganizationDescription";
 import load from "./assets/Ghost.gif";
-import "@fontsource/inter";
 import PayOutD from "./pages/dashboard/payout/PayOutD";
 const EventPage = lazy(() => import("./pages/eventPage"));
 import MyTickets from "./pages/MyTickets";

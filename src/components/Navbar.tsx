@@ -66,9 +66,11 @@ const Navbar = observer(() => {
               className="CROSS-ICON absolute top-0 right-0 px-8 py-8 w-full justify-between flex"
               onClick={() => setIsNavOpen(false)}
             >
-              <div className="text-[2rem] font-bold items-center flex h-full">
-                Kafsco
-              </div>{" "}
+              <img
+                src="/logo.png"
+                alt="logo"
+                className="max-h-[10vh] max-w-[40vw]"
+              />
               <div
                 className="HAMBURGER-ICON space-y-2 flex flex-col justify-center cursor-pointer "
                 onClick={() => setIsNavOpen((prev: boolean) => !prev)}
@@ -213,10 +215,12 @@ const Navbar = observer(() => {
             </ul>
           </div>
 
-          <Link to="/">
-            <div className="text-[3rem] font-bold items-center flex h-full">
-              Kafsco
-            </div>
+          <Link to="/" className="">
+            <img
+              src="/logo.png"
+              alt="logo"
+              className="max-h-[10vh] max-w-[40vw]"
+            />
           </Link>
           {isAuthenticated && (
             <div className="flex justify-center items-center ml-10 md:hidden">
