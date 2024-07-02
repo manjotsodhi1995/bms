@@ -109,9 +109,11 @@ const Navbar = observer(() => {
             </ul>
           </div>
           <Link to="/">
-            <div className="text-[3rem] font-bold items-center flex h-full text-white">
-              Kafsco
-            </div>
+            <img
+              src="/logo.png"
+              alt="logo"
+              className="max-h-[10vh] max-w-[40vw]"
+            />
           </Link>
         </nav>
 
