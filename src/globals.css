@@ -6,7 +6,7 @@
 
 @layer base {
     :root {
-        --blue-box: 235 100% 98%;
+        --blue-box: 0 0% 100%;
         --background: 0 0% 100%;
         --foreground: 240 10% 3.9%;
 
