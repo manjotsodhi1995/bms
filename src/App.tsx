@@ -173,7 +173,7 @@ const App = observer(() => {
             />
             <Route path="/filter" element={<Filter />} />
             <Route path="/terms" element={<TermsAndConditions />} />
-            <Route path="/event/:eventId" element={<EventPage />} />
+            <Route path="/event/:slug" element={<EventPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/contactus" element={<ContactUs />} />

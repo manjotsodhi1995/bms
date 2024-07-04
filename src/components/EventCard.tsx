@@ -3,6 +3,7 @@ import { cn, formatDate } from "@/utils";
 import { MouseEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { ShareEventDialog } from "./ShareEventDialog";
+import { useLikesQuery } from "@/api/query/useLikesQuery";
 
 function EventCard(event: Partial<EventType>) {
   const [isHovered, setIsHovered] = useState(false);
@@ -11,13 +12,14 @@ function EventCard(event: Partial<EventType>) {
     : null;
   const [openShareDialog, setOpenShareDialog] = useState(false);
 
-  const [eventLiked, setEventLiked] = useState(false);
+  const { data: isLiked, mutation } = useLikesQuery(event._id);
   const onLikeClicked = (
     e: MouseEvent<SVGSVGElement, globalThis.MouseEvent>
   ) => {
     e.preventDefault();
-    setEventLiked((p) => !p);
+    mutation.mutate();
   };
+
   const onShareClicked = (
     e: MouseEvent<SVGSVGElement, globalThis.MouseEvent>
   ) => {
@@ -59,9 +61,10 @@ function EventCard(event: Partial<EventType>) {
               xmlns="http://www.w3.org/2000/svg"
               onClick={onLikeClicked}
               className={cn(
-                "size-6 absolute md:top-4 md:right-4 top-2 right-2 fill-white hover:fill-pink-700",
+                "size-6 absolute md:top-4 md:right-4 top-2 right-2 fill-white",
                 {
-                  "fill-pink-700": eventLiked,
+                  "fill-pink-700": isLiked,
+                  "fill-pink-100": mutation.isPending,
                 }
               )}
             >
