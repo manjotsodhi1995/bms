@@ -1,5 +1,6 @@
 export const SERVER_BASE_URL = `${
-  import.meta.env.VITE_BACKEND_SERVER_URL || "https://kafsbackend-106f.onrender.com"
+  import.meta.env.VITE_BACKEND_SERVER_URL ||
+  "https://kafsbackend-106f.onrender.com"
 }/api/v1` as const;
 
 export const API = {
@@ -8,6 +9,14 @@ export const API = {
     login: `${SERVER_BASE_URL}/users/login`,
     googleAuth: `${SERVER_BASE_URL}/users/google-auth`,
     refreshToken: `${SERVER_BASE_URL}/users/refreshtoken`,
+
+    likeEvent: `${SERVER_BASE_URL}/users/like`,
+    unlikeEvent: `${SERVER_BASE_URL}/users/unlike`,
+    getAllLikedEvents: `${SERVER_BASE_URL}/users/liked-events`,
+
+    followOrganizer: `${SERVER_BASE_URL}/users/follow`,
+    unfollowOrganizer: `${SERVER_BASE_URL}/users/unfollow`,
+    getAllFollowedOrganizers: `${SERVER_BASE_URL}/users/followed-organizers`,
 
     // profile: `${SERVER_BASE_URL}/users/profile`,
     // changePassword: `${SERVER_BASE_URL}/users/change-password`,
