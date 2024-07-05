@@ -12,7 +12,9 @@ const Home = () => {
     { name: "Category 4", value: 40 },
     { name: "Category 5", value: 10 },
     { name: "Category 6", value: 70 },
-    { name: "Category 6", value: 90 },
+    { name: "Category 7", value: 30 },
+    { name: "Category 8", value: 70 },
+    { name: "Category 9", value: 20 },
   ];
 
   return (
