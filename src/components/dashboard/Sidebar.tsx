@@ -66,7 +66,7 @@ const Sidebar = observer(
           className
         )}
       >
-        <ul className="flex flex-col gap-8 items-start">
+        <ul className="flex flex-col gap-4 items-start">
           {routes.map((route, index) => (
             <li key={index}>
               {route.subRoutes ? (
@@ -121,7 +121,7 @@ const Sidebar = observer(
         </ul>
 
         <button
-          className="px-4 mt-16 font-semibold"
+          className="px-4 mt-12 font-semibold"
           onClick={() => auth.logout()}
         >
           Logout
