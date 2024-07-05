@@ -13,7 +13,9 @@ const DashboardLayout = () => {
         <Sidebar className="hidden md:block h-fit sticky top-0 rounded-3xl bg-[#B1B1B152] drop-shadow-lg" />
         <div className="flex-1 w-full flex flex-col gap-8">
           <TopBar />
-          <Outlet />
+          <div className="2xl:max-w-[70vw]">
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>
