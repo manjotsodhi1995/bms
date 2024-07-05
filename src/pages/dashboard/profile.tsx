@@ -4,7 +4,7 @@ import { Avatar } from "@mui/material";
 const ProfilePage = () => {
   const handleSaveChanges = () => {};
   return (
-    <div className="flex flex-col gap-8 mt-8">
+    <div className="flex flex-col gap-8 mt-6">
       <h1 className="text-3xl font-medium">Edit your profile</h1>
 
       <p>

@@ -8,7 +8,7 @@ function PayoutHome() {
   return (
     <div className="">
       <h1 className="text-3xl my-12 font-semibold">Payouts</h1>
-      <div className="flex w-full justify-between gap-10">
+      <div className="flex w-full justify-between gap-8">
         <ArCharPayout color="#25CD2599" />
         <ArCharPayout color="#DB303099" />
       </div>

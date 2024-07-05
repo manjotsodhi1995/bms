@@ -16,12 +16,12 @@ export const FormCard = ({
 }: FormCardProps) => {
   return (
     <Card
-      className="max-w-3xl"
+      className="max-w-6xl"
       sx={{ borderRadius: 4, backgroundColor: "#FFFFFF" }}
     >
       <CardContent>
         <div className="flex w-full flex-col gap-6">
-          <div className={cn("px-4 max-w-xl flex flex-col gap-10", className)}>
+          <div className={cn("px-4 max-w-4xl flex flex-col gap-10", className)}>
             {title && <CardTitle>{title}</CardTitle>}
             {children}
           </div>

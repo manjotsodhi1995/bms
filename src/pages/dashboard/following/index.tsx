@@ -30,16 +30,16 @@ const FollowingPage = () => {
   return (
     <div className="flex flex-col gap-6 p-2 md:p-10">
       <div className="flex flex-col  md:flex-row gap-4 md:gap-6">
-        <HomeContainerCard className="h-full min-w-[30vw] p-4 md:p-14">
-          <div className="flex flex-col w-full h-full items-center gap-20">
+        <HomeContainerCard className="h-full min-w-[30vw] p-4">
+          <div className="flex flex-col w-full h-full items-center gap-14">
             <p className="text-2xl lg:text-4xl">Following organizers count</p>
             <span className="font-semibold text-4xl lg:text-6xl">432</span>
           </div>
         </HomeContainerCard>
 
-        <HomeContainerCard className="min-w-[35vw] h-full p-4 md:p-14">
+        <HomeContainerCard className="min-w-[35vw] h-full p-4">
           <span className="text-xl font-medium text-center">Total Revenue</span>
-          <ResponsiveContainer width="100%" height={220}>
+          <ResponsiveContainer width="100%" height={160}>
             <PieChart>
               <Legend
                 height={36}

@@ -9,7 +9,7 @@ const TicketStructureTable: React.FC<any> = ({
   commission_applicable,
 }) => {
   return (
-    <TableRow className="border-none">
+    <TableRow className="border-none 2xl:text-xl">
       <TableHead
         scope="row"
         className="w-full py-2 font-medium text-gray-900 flex gap-2 h-full"
@@ -21,7 +21,7 @@ const TicketStructureTable: React.FC<any> = ({
         />
         <div>
           <h1 className="font-semibold">{event}</h1>
-          <p className="text-xs text-gray-800 flex items-start gap-1">
+          <p className="text-xs 2xl:text-lg text-gray-800 flex items-start gap-1">
             {eventinfo}
           </p>
         </div>
