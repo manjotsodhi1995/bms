@@ -33,7 +33,8 @@ function Filter() {
   ] satisfies Partial<EventType>[];
   return (
     <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex justify-between flex-col sm:flex-row">
-      <div className="lg:w-[25vw] sm:w-[35vw] w-[100vw]  min-h-[80vh] backdrop-blur-md bg-white/50 flex flex-col mt-[10px] pt-[40px] rounded-tr-xl rounded-br-xl border-gray-400 border h-fit min-w-max">
+
+      <div className="lg:w-[25vw] sm:w-[35vw] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] border h-fit min-w-max rounded-3xl bg-[#B1B1B152] drop-shadow-lg ml-2">
         {" "}
         {/* Fixed positioning and overflow */}
         <div className="border-gray-400 border-b mb-[30px] pl-[30px]">
@@ -41,7 +42,7 @@ function Filter() {
             Filter By:
           </h2>
         </div>
-        <div className="border-gray-600 border-b mb-[50px] pl-[30px]">
+        <div className="border-gray-400 border-b mb-[50px] pl-[30px]">
           <h3 className="font-medium mb-[20px]">Day</h3>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -92,7 +93,7 @@ function Filter() {
             <h2 className="text-gray-600">32</h2>
           </div>
         </div>
-        <div className="border-gray-600 border-b mb-[50px] pl-[30px]">
+        <div className="border-gray-400 border-b mb-[50px] pl-[30px]">
           <h3 className="font-medium mb-[20px]">Pricing</h3>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -119,7 +120,7 @@ function Filter() {
             <h2 className="text-gray-600">32</h2>
           </div>
         </div>
-        <div className="border-gray-600 border-b mb-[50px] pl-[30px]">
+        <div className="border-gray-400 border-b mb-[50px] pl-[30px]">
           <h3 className="font-medium mb-[20px]">Categories</h3>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -267,7 +268,7 @@ function Filter() {
             Events
           </div>
         </div>
-        <div className="justify-center sm:w-full w-screen grid lg:grid-cols-3 md:grid-cols-2 grid-cols-2 gap-4 p-4 ">
+        <div className="justify-center sm:w-full w-screen grid lg:grid-cols-5 md:grid-cols-2 grid-cols-2 gap-4 p-4 ">
           {eventData.map((card, index) => (
             <EventCard key={index} {...card} />
           ))}

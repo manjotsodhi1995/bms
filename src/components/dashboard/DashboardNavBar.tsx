@@ -23,7 +23,7 @@ const DashboardNavBar = observer(() => {
   };
 
   return (
-    <header className="flex w-full px-2 md:px-6 py-[4vh] gap-6">
+    <header className="flex w-full px-2 md:px-6 py-[10px] gap-6">
       <div className="hidden md:block w-[270px] text-[3rem] font-bold">
         <Link to="/">
           <img

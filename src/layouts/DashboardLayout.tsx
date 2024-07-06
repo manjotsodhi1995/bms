@@ -9,11 +9,13 @@ const DashboardLayout = () => {
     <div className="relative flex min-h-screen flex-col backdrop-blur-sm font-wix-display">
       <BackgroundBlurEffect />
       <DashboardNavBar />
-      <div className="flex flex-row mt-2 gap-6 px-2 md:px-6">
+      <div className="flex flex-row mt-2 gap-6 px-2 md:px-6 2xl:gap-20">
         <Sidebar className="hidden md:block h-fit sticky top-0 rounded-3xl bg-[#B1B1B152] drop-shadow-lg" />
-        <div className="flex-1 w-full flex flex-col mt-12 gap-8">
+        <div className="flex-1 w-full flex flex-col gap-8">
           <TopBar />
-          <Outlet />
+          <div className="2xl:max-w-[70vw]">
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>
