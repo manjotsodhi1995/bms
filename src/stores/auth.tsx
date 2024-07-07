@@ -114,7 +114,11 @@ export class Auth {
     const response = await axios.post(API.users.googleAuth, data, {
       headers: { "Content-Type": "application/json" },
     });
-    console.log("google", response.data);
-    throw new Error("TODO: NOT IMPLEMENTED");
+    this.accessToken = response.data.data.accessToken;
+    this.refreshToken = response.data.data.refreshToken;
+    localStorage.setItem("accessToken", this.accessToken);
+    localStorage.setItem("refreshToken", this.refreshToken);
+    this.isAuthenticated = true;
+    console.log("Login successful");
   }
 }
