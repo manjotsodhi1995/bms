@@ -15,8 +15,7 @@ function SearchPage() {
     root: { event },
   } = useStore();
 
-
-  const { data: _, isLoading: loading } = useQuery({
+  const { data: _ } = useQuery({
     queryKey: ["homepage", "fetchAllEvents"],
     queryFn: fetchEvents,
   });

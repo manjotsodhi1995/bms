@@ -11,14 +11,13 @@ function Filter() {
   };
 
   // Dont care about data as it will be added to event directly
-  const { data: _, isLoading: loading } = useQuery({
+  const { data: _ } = useQuery({
     queryKey: ["filterEvents"],
     queryFn: fetchEvents,
   });
 
   return (
     <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex justify-between flex-col sm:flex-row text-xl">
-
       <div className="lg:w-[15vw] sm:w-[35vw] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] border h-fit min-w-max rounded-3xl bg-[#B1B1B152] drop-shadow-lg ml-2">
         {" "}
         {/* Fixed positioning and overflow */}
