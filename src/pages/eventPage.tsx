@@ -7,7 +7,7 @@ import axios from "../utils/middleware";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import EventCard from "../components/EventCard";
-import EventSlides from "../components/eventStory";
+import EventSlides from "@/components/eventStory";
 import BookTicketsDialog from "@/components/ticket/BookTicketsDialog";
 import type { EventType } from "@/stores/event";
 import { useStore } from "@/hooks/useStore";
@@ -119,8 +119,8 @@ const EventPage = observer(() => {
           </div>
         </div>
       </div>
-      <div className="lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] flex justify-between md:flex-row flex-col gap-8">
-        <div className="flex flex-col gap-2 max-w-xl">
+      <div className="lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] flex justify-between md:flex-row flex-col gap-8 2xl:gap-16">
+        <div className="flex flex-col gap-2 lg:max-w-xl 2xl:max-w-5xl">
           <div className="flex items-center gap-4">
             <div>
               <svg
@@ -309,7 +309,7 @@ const EventPage = observer(() => {
             </div>
           )}
         </div>
-        <div className="flex max-w-lg flex-col gap-8">
+        <div className="flex lg:max-w-lg 2xl:max-w-3xl flex-col gap-8">
           <div className="grid grid-cols-3 md:grid-cols-3 gap-2">
             {event.upcomingEvents.slice(0, 3).map((card, index) => (
               <div key={index} className="snap-center w-full" ref={carouselRef}>
@@ -317,12 +317,12 @@ const EventPage = observer(() => {
               </div>
             ))}
           </div>{" "}
-          <div>
+          <div className="w-full">
             <h1 className="font-medium text-[1.3rem]">Location</h1>
             <iframe
               src={`https://maps.google.com/maps?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}&hl=en;z=14&amp&output=embed`}
-              width="350"
-              height="250"
+              width="100%"
+              height="290"
             />
             <div className="px-2 py-2 border-black border-2 2xl:w-[12rem] w-[10rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center text-[0.8rem]">
               GET DIRECTIONS

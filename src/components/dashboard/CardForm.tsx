@@ -17,7 +17,7 @@ export const FormCard = ({
   return (
     <Card
       className="max-w-6xl"
-      sx={{ borderRadius: 4, backgroundColor: "#FFFFFF" }}
+      sx={{ borderRadius: 4, backgroundColor: "transparent" }}
     >
       <CardContent>
         <div className="flex w-full flex-col gap-6">

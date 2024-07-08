@@ -1,44 +1,28 @@
-import { EventType } from "@/stores/event";
+import { useStore } from "@/hooks/useStore";
 import EventCard from "../components/EventCard";
-function Filter() {
-  const eventData = [
-    {
-      title: "Saved By The 90s - Dublin",
-      description: "10 Wellington Quay, Dublin 8, D02 VX36, Ireland",
-      posterUrl:
-        "https://fixr-cdn.fixr.co/images/event/2024-05/4b89154a7a7a4d66b901a06c664a596c.jpeg",
-      eventStart: "24/12/24",
-    },
-    {
-      title: "Fairport Convention",
-      description: "Mulehouse Rd, Sheffield, S10 1TD, United Kingdom",
-      posterUrl:
-        "https://fixr-cdn.fixr.co/images/event/2024-04/f67d560e4861485abee2ee327823e265.jpeg",
-      eventStart: "24/12/24",
-    },
-    {
-      title: "Summer Garden Party!",
-      description: "26 Wexford St, Dublin 2, D02 HX93, Ireland",
-      posterUrl:
-        "https://fixr-cdn.fixr.co/images/event/2024-02/c7834a06b2da429bb25a37e80c4614e1.jpeg",
-      eventStart: "24/12/24",
-    },
-    {
-      title: "Bird Workshop for Kids",
-      description: "The Boilerhouse Main Street D09 HK58 Ballymun Ireland",
-      posterUrl:
-        "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F779473109%2F202697254659%2F1%2Foriginal.20240530-130519?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1000%2C500&s=1ef110bf7facd194dc8f15d1c39196b5",
-      eventStart: "24/12/24",
-    },
-  ] satisfies Partial<EventType>[];
-  return (
-    <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex justify-between flex-col sm:flex-row">
+import { useQuery } from "@tanstack/react-query";
 
-      <div className="lg:w-[25vw] sm:w-[35vw] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] border h-fit min-w-max rounded-3xl bg-[#B1B1B152] drop-shadow-lg ml-2">
+function Filter() {
+  const {
+    root: { event },
+  } = useStore();
+  const fetchEvents = async () => {
+    await event.fetchEvents("28.4262481", "77.0581663");
+  };
+
+  // Dont care about data as it will be added to event directly
+  const { data: _ } = useQuery({
+    queryKey: ["filterEvents"],
+    queryFn: fetchEvents,
+  });
+
+  return (
+    <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex justify-between flex-col sm:flex-row text-xl">
+      <div className="lg:w-[15vw] sm:w-[35vw] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] border h-fit min-w-max rounded-3xl bg-[#B1B1B152] drop-shadow-lg ml-2">
         {" "}
         {/* Fixed positioning and overflow */}
         <div className="border-gray-400 border-b mb-[30px] pl-[30px]">
-          <h2 className="text-lg font-medium mt-[10px] mb-[20px]">
+          <h2 className="text-xl font-medium mt-[10px] mb-[20px]">
             Filter By:
           </h2>
         </div>
@@ -260,7 +244,7 @@ function Filter() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 pb-10 lg:w-[75vw] w-[60vw]">
+      <div className="flex flex-col gap-2 pb-10 lg:w-[75vw] w-[100vw]">
         {" "}
         {/* Adjusted margin-left */}
         <div className="flex w-screen justify-center mt-4 sm:justify-normal">
@@ -268,8 +252,8 @@ function Filter() {
             Events
           </div>
         </div>
-        <div className="justify-center sm:w-full w-screen grid lg:grid-cols-5 md:grid-cols-2 grid-cols-2 gap-4 p-4 ">
-          {eventData.map((card, index) => (
+        <div className="w-full grid lg:grid-cols-4 xl:grid-cols-5 grid-cols-2 gap-4 p-4">
+          {event.upcomingEvents.map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
         </div>
