@@ -7,20 +7,24 @@ import ticket from "@/assets/payment-methods/ticket.svg";
 interface ViewTicketStepProps extends TicketStepsProps {
   onDownloadClicked: () => void;
   onShareClicked: () => void;
+  showTitle?: boolean;
 }
 export const ViewTicketStep = ({
   onDownloadClicked,
   onShareClicked,
   onBack,
+  showTitle = true,
 }: ViewTicketStepProps) => {
   return (
     <Fragment>
-      <div className="flex items-center gap-2">
-        <button onClick={onBack}>
-          <ChevronLeft className="size-6" />
-        </button>
-        <h2 className="text-2xl font-thin">Checkout</h2>
-      </div>
+      {showTitle && (
+        <div className="flex items-center gap-2">
+          <button onClick={onBack}>
+            <ChevronLeft className="size-6" />
+          </button>
+          <h2 className="text-2xl font-thin">Checkout</h2>
+        </div>
+      )}
       <div className="flex items-center justify-center">
         <div className="flex flex-col p-10 rounded-2xl items-center justify-center mt-10 w-4/5 border border-gray-200 ">
           <div
