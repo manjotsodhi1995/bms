@@ -61,27 +61,28 @@ function Trending() {
         </select>
       </div>
 
-      <div className="flex flex-col gap-3">
-        <h2 className="text-lg font-medium mb-2 lg:text-[1.4rem] text-[0.9rem]">
-          <span className="inline-block transform -rotate-90 mr-2">▼</span>{" "}
-          Trending Categories
-        </h2>
+      {/* <div className="flex flex-col gap-3"> */}
+      {/*   <h2 className="text-lg font-medium mb-2 lg:text-[1.4rem] text-[0.9rem]"> */}
+      {/*     <span className="inline-block transform -rotate-90 mr-2">▼</span>{" "} */}
+      {/*     Trending Categories */}
+      {/*   </h2> */}
+      {/**/}
+      {/*   <div className="flex w-full gap-4 overflow-x-auto"> */}
+      {/*     {categories && */}
+      {/*       categories.slice(0, 7).map((category: Category) => ( */}
+      {/*         <a */}
+      {/*           key={category.categoryId} */}
+      {/*           href={`/search?query=${encodeURIComponent( */}
+      {/*             category.categoryName */}
+      {/*           )}`} */}
+      {/*           className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200" */}
+      {/*         > */}
+      {/*           {category.categoryName} */}
+      {/*         </a> */}
+      {/*       ))} */}
+      {/*   </div> */}
+      {/* </div> */}
 
-        <div className="flex w-full gap-4 overflow-x-auto">
-          {categories &&
-            categories.slice(0, 7).map((category: Category) => (
-              <a
-                key={category.categoryId}
-                href={`/search?query=${encodeURIComponent(
-                  category.categoryName
-                )}`}
-                className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200"
-              >
-                {category.categoryName}
-              </a>
-            ))}
-        </div>
-      </div>
       <div className="flex flex-col gap-4">
         <div className="flex justify-between mt-4">
           <div className="font-medium lg:text-[1.4rem] text-[0.9rem] flex gap-2 items-center">
@@ -106,59 +107,71 @@ function Trending() {
             <Link to={`/events/${selectedLocation}`}>See More</Link>
           </div>
         </div>
-        <div className="grid grid-cols-2 justify-between md:hidden gap-2">
-          {loading && [...Array(2)].map((_) => <EventCardSkeleton />)}
-          {!loading &&
-            event.liveEvents
-              .slice(0, 2)
-              .map((card, index) => <EventCard key={index} {...card} />)}
-        </div>
-        <div className="justify-between hidden md:grid md:grid-cols-3 lg:hidden gap-2">
-          {loading && [...Array(3)].map((_) => <EventCardSkeleton />)}
-          {!loading &&
-            event.liveEvents
-              .slice(0, 3)
-              .map((card, index) => <EventCard key={index} {...card} />)}
-        </div>
-        <div className="justify-between hidden lg:grid lg:grid-cols-5 gap-2">
+        {/* <div className="grid grid-cols-2 justify-between md:hidden gap-2"> */}
+        {/*   {loading && [...Array(2)].map((_) => <EventCardSkeleton />)} */}
+        {/*   {!loading && */}
+        {/*     event.liveEvents */}
+        {/*       .slice(0, 2) */}
+        {/*       .map((card, index) => <EventCard key={index} {...card} />)} */}
+        {/*   {!loading && */}
+        {/*     event.upcomingEvents */}
+        {/*       .slice(0, 2) */}
+        {/*       .map((card, index) => <EventCard key={index} {...card} />)} */}
+        {/* </div> */}
+        {/* <div className="justify-between hidden md:grid md:grid-cols-3 lg:hidden gap-2"> */}
+        {/*   {loading && [...Array(3)].map((_) => <EventCardSkeleton />)} */}
+        {/*   {!loading && */}
+        {/*     event.liveEvents */}
+        {/*       .slice(0, 3) */}
+        {/*       .map((card, index) => <EventCard key={index} {...card} />)} */}
+        {/*   {!loading && */}
+        {/*     event.upcomingEvents */}
+        {/*       .slice(0, 3) */}
+        {/*       .map((card, index) => <EventCard key={index} {...card} />)} */}
+        {/* </div> */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-between gap-2">
           {loading && [...Array(5)].map((_) => <EventCardSkeleton />)}
           {!loading &&
             event.liveEvents
               .slice(0, 5)
               .map((card, index) => <EventCard key={index} {...card} />)}
+          {!loading &&
+            event.upcomingEvents.map((card, index) => (
+              <EventCard key={index} {...card} />
+            ))}
         </div>
       </div>
-      <div className="flex flex-col gap-4 pb-10">
-        <div className="flex justify-between mt-4">
-          <div className="font-medium lg:text-[1.4rem] text-[0.9rem]">
-            Upcoming Events
-          </div>
-          <div className="hover:font-medium hover:underline">
-            <Link to={`/upcoming-events/${selectedLocation}`}>See More</Link>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 justify-between md:hidden gap-2">
-          {loading && [...Array(2)].map((_) => <EventCardSkeleton />)}
-          {!loading &&
-            event.upcomingEvents
-              .slice(0, 2)
-              .map((card, index) => <EventCard key={index} {...card} />)}
-        </div>
-        <div className="justify-between hidden md:grid md:grid-cols-3 lg:hidden gap-2">
-          {loading && [...Array(3)].map((_) => <EventCardSkeleton />)}
-          {!loading &&
-            event.upcomingEvents
-              .slice(0, 3)
-              .map((card, index) => <EventCard key={index} {...card} />)}
-        </div>
-        <div className="justify-between hidden lg:grid lg:grid-cols-5 gap-2">
-          {loading && [...Array(5)].map((_) => <EventCardSkeleton />)}
-          {!loading &&
-            event.upcomingEvents
-              .slice(0, 5)
-              .map((card, index) => <EventCard key={index} {...card} />)}
-        </div>
-      </div>
+      {/* <div className="flex flex-col gap-4 pb-10"> */}
+      {/*   <div className="flex justify-between mt-4"> */}
+      {/*     <div className="font-medium lg:text-[1.4rem] text-[0.9rem]"> */}
+      {/*       Upcoming Events */}
+      {/*     </div> */}
+      {/*     <div className="hover:font-medium hover:underline"> */}
+      {/*       <Link to={`/upcoming-events/${selectedLocation}`}>See More</Link> */}
+      {/*     </div> */}
+      {/*   </div> */}
+      {/*   <div className="grid grid-cols-2 justify-between md:hidden gap-2"> */}
+      {/*     {loading && [...Array(2)].map((_) => <EventCardSkeleton />)} */}
+      {/*     {!loading && */}
+      {/*       event.upcomingEvents */}
+      {/*         .slice(0, 2) */}
+      {/*         .map((card, index) => <EventCard key={index} {...card} />)} */}
+      {/*   </div> */}
+      {/*   <div className="justify-between hidden md:grid md:grid-cols-3 lg:hidden gap-2"> */}
+      {/*     {loading && [...Array(3)].map((_) => <EventCardSkeleton />)} */}
+      {/*     {!loading && */}
+      {/*       event.upcomingEvents */}
+      {/*         .slice(0, 3) */}
+      {/*         .map((card, index) => <EventCard key={index} {...card} />)} */}
+      {/*   </div> */}
+      {/*   <div className="justify-between hidden lg:grid lg:grid-cols-5 gap-2"> */}
+      {/*     {loading && [...Array(5)].map((_) => <EventCardSkeleton />)} */}
+      {/*     {!loading && */}
+      {/*       event.upcomingEvents */}
+      {/*         .slice(0, 5) */}
+      {/*         .map((card, index) => <EventCard key={index} {...card} />)} */}
+      {/*   </div> */}
+      {/* </div> */}
     </div>
   );
 }
