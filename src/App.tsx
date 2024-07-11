@@ -10,7 +10,9 @@ import Navbar from "./components/Navbar";
 import Bg from "./components/Bg";
 
 const DashBoard = lazy(() => import("./pages/dashboard/Dashboard"));
-const OrganizationProfile = lazy(() => import("./pages/OrganizationDescription"));
+const OrganizationProfile = lazy(
+  () => import("./pages/OrganizationDescription")
+);
 const PayOutD = lazy(() => import("./pages/dashboard/payout/PayOutD"));
 const MyTickets = lazy(() => import("./pages/MyTickets"));
 const TermsAndConditions = lazy(() => import("./pages/termsAndConditions"));

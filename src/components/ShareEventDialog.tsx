@@ -1,5 +1,7 @@
+import { useRef } from "react";
 import { IconProps } from "./Icons";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 interface ShareEventDialogProps {
   open?: boolean;
@@ -19,9 +21,15 @@ export const ShareEventDialog = ({
   const MAX_LINK_LENGTH = 30;
   const origin = window.location.origin;
   const fullLink = `${origin}${link}`;
+  const copyButtonRef = useRef<HTMLButtonElement>(null);
 
   const copyLink = () => {
-    navigator.clipboard.writeText(link || "");
+    navigator.clipboard.writeText(fullLink || "");
+    copyButtonRef.current!!.textContent = "Copied";
+    setTimeout(() => {
+      if (!copyButtonRef.current) return;
+      copyButtonRef.current.textContent = "Copy";
+    }, 500);
   };
 
   const shareLink = () => {
@@ -47,7 +55,7 @@ export const ShareEventDialog = ({
           <img
             src={imageUrl}
             alt="event image"
-            className="w-full h-[16rem] object-cover rounded-3xl"
+            className="w-full h-[14rem] object-cover rounded-3xl"
           />
         </div>
         <div className="flex flex-col items-center gap-8  bg-white rounded-xl w-full p-8">
@@ -75,7 +83,8 @@ export const ShareEventDialog = ({
               </span>
               {truncateLink(fullLink)}
               <button
-                className="absolute right-0 top-0 text-black font-medium hover:bg-gray-300 rounded-2xl py-4 px-2 transition-all duration-300"
+                ref={copyButtonRef}
+                className="absolute right-0 top-0 text-black font-medium rounded-2xl py-4 px-2 transition-all duration-300"
                 onClick={copyLink}
               >
                 Copy
