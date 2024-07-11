@@ -15,13 +15,13 @@ export const BookingStep = ({
         </button>
         <h2 className="text-2xl font-thin">Tickets</h2>
       </span>
-      <TicketTableOption title="Table 1" />
-      <TicketTableOption title="Table 3" />
-      <TicketTableOption title="Table 3" />
-      <TicketTableOption title="Table 4" />
+      <TicketTableOption title="Round 1" />
+      <TicketTableOption title="Round 2" />
+      {/* <TicketTableOption title="Table 3" /> */}
+      {/* <TicketTableOption title="Table 4" /> */}
     </div>
 
-    <div className="bg-white mt-10 p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
+    <div className="bg-white p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
       <img
         src="https://s3-alpha-sig.figma.com/img/1cd7/f4dc/9ab46b29cc668c7f4e50b65efdb52bd2?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=o0crmQPt9uL0ZTxKjXhzyemymy5kxqqNva1yOimUDBO2gfDMEnBGmnk81r~fTApreOI3MqUPoPAgCe3FIT1LopcJOG8EF3VDoB2rtWE8Cq-F4y4Hd0qZEKJZVOMCsGpwNuBtbTBA9V4EIKdj32ruPM1fJW1hypUMy9cx9FMjbbb2l9Ebts6OQEOVDkXU~-pc9Ky0Iba-YJIVGqvu~rCmIRrd9JqTZ~VYIHi2NSgWy2MhCoYUHBPAlAgtn9cbJ3KksGUe7Is-rag9vV3TGBG0Pktd40zUSjs~FGGc3OW9vR33gp0J4-T6VVGytBCJBOvTMyjEE~yqU5RT9tYbh96thw__"
         className="w-full h-52 object-fill rounded-lg"
