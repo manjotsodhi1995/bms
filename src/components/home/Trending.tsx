@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import EventCard from "../EventCard";
-import axios from "../../utils/middleware";
+// import axios from "../../utils/middleware";
 import { useStore } from "../../hooks/useStore";
 import EventCardSkeleton from "../EventCardSkeleton";
-import { API } from "@/api";
+// import { API } from "@/api";
 import { useQuery } from "@tanstack/react-query";
 
-interface Category {
-  categoryId: string;
-  categoryName: string;
-}
+// interface Category {
+//   categoryId: string;
+//   categoryName: string;
+// }
 
-const fetchCategories = async () => {
-  const response = await axios.get(API.categories.getAllCategories);
-  return response.data.data as Category[];
-};
+// const fetchCategories = async () => {
+//   const response = await axios.get(API.categories.getAllCategories);
+//   return response.data.data as Category[];
+// };
 
 function Trending() {
   const {
@@ -26,10 +26,10 @@ function Trending() {
     console.log(event);
   };
 
-  const { data: categories } = useQuery({
-    queryKey: ["categoriesQuery"],
-    queryFn: fetchCategories,
-  });
+  // const { data: categories } = useQuery({
+  //   queryKey: ["categoriesQuery"],
+  //   queryFn: fetchCategories,
+  // });
   // Dont care about data as it will be added to event directly
   const { data: _, isLoading: loading } = useQuery({
     queryKey: ["homepage", "fetchAllEvents"],

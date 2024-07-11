@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { IconProps } from "./Icons";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
-import { DialogClose } from "@radix-ui/react-dialog";
 
 interface ShareEventDialogProps {
   open?: boolean;
