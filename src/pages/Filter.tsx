@@ -17,8 +17,8 @@ function Filter() {
   });
 
   return (
-    <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex justify-between flex-col sm:flex-row text-xl">
-      <div className="lg:w-[15vw] sm:w-[35vw] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] border h-fit min-w-max rounded-3xl bg-[#B1B1B152] drop-shadow-lg ml-2">
+    <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
+      <div className="md:w-[20rem] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] border h-fit rounded-3xl bg-white/50 backdrop-blur-lg ml-2">
         {" "}
         {/* Fixed positioning and overflow */}
         <div className="border-gray-400 border-b mb-[30px] pl-[30px]">
@@ -244,7 +244,7 @@ function Filter() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 pb-10 lg:w-[75vw] w-[100vw]">
+      <div className="flex flex-col gap-2 pb-10 sm:w-[70vw] w-[100vw]">
         {" "}
         {/* Adjusted margin-left */}
         <div className="flex w-screen justify-center mt-4 sm:justify-normal">

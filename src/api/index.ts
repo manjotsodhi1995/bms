@@ -18,7 +18,7 @@ export const API = {
     unfollowOrganizer: `${SERVER_BASE_URL}/users/unfollow`,
     getAllFollowedOrganizers: `${SERVER_BASE_URL}/users/followed-organizers`,
 
-    // profile: `${SERVER_BASE_URL}/users/profile`,
+    profile: `${SERVER_BASE_URL}/users/profile`,
     // changePassword: `${SERVER_BASE_URL}/users/change-password`,
     // update: `${SERVER_BASE_URL}/users/update`,
     // verify: `${SERVER_BASE_URL}/users/authorize`,
