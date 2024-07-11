@@ -66,9 +66,9 @@ const Sidebar = observer(
           className
         )}
       >
-        <ul className="flex flex-col gap-4 items-start">
+        <ul className="flex flex-col gap-1 items-start">
           {routes.map((route, index) => (
-            <li key={index}>
+            <li key={index} className="w-full">
               {route.subRoutes ? (
                 <>
                   <button
@@ -99,7 +99,7 @@ const Sidebar = observer(
                       <Link
                         key={subIndex}
                         to={subRoute.path}
-                        className="block px-4 hover:text-[#647A9A] text-[1.1rem]"
+                        className="block px-4 hover:bg-[#647A9A] hover:text-white text-[1.1rem]"
                         onClick={onRouteClicked}
                       >
                         {subRoute.name}
@@ -110,7 +110,7 @@ const Sidebar = observer(
               ) : (
                 <Link
                   to={route.path}
-                  className="block px-4 py-2 hover:text-[#647A9A] rounded-lg"
+                  className="block w-full px-4 py-2 hover:bg-[#647A9A] hover:text-white rounded-lg"
                   onClick={onRouteClicked}
                 >
                   {route.name}
