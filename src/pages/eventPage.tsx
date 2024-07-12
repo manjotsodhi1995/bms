@@ -68,9 +68,9 @@ const EventPage = observer(() => {
     <div className="w-full">
       {/* <Navbar /> */}
       <div
-        className=""
         style={{
           backgroundImage: `url(${eventData?.posterUrl})`,
+          backgroundSize: "100%",
         }}
       >
         <div className="flex text-white items-end lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] h-[60vh] bg-black bg-opacity-30 justify-between">
