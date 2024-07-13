@@ -90,7 +90,7 @@ const Navbar = observer(() => {
               </div>
               <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-left justify-start min-h-[250px] font-medium  transition-all duration-300">
                 <a href="/" className="top-0 left-0 absolute py-8 px-[10%]"></a>
-                <div className="px-[10%] mt-[35%] text-[20px] text-black ">
+                <div className="px-[10%] mt-[35%] 2xl:mt-[15vh] text-[20px] text-black ">
                   {!isAuthenticated && (
                     <li className="underline">
                       <Link to="/login">Sign up/Log in</Link>
@@ -453,57 +453,50 @@ function ProfileDropdown({ open, onOpenChange }: NavbarDropdownProps) {
     root: { auth },
   } = useStore();
 
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["profile"],
     queryFn: fetchProfile,
   });
   const toggleDropdown = () => onOpenChange(!open);
 
   return (
-    !isLoading && (
-      <div className="relative">
-        <button onClick={toggleDropdown}>
-          <img
-            src={pfp}
-            alt="Profile"
-            className="rounded-full w-8 h-8"
-          />
-        </button>
-        {open && (
-          <div className="absolute flex flex-col items-center -right-24 mt-2 w-96 bg-white rounded-md shadow-lg z-20">
-            {/* Your profile/settings content here */}
+    <div className="relative">
+      <button onClick={toggleDropdown}>
+        <img src={pfp} alt="Profile" className="rounded-full w-8 h-8" />
+      </button>
+      {open && (
+        <div className="absolute flex flex-col items-center -right-24 mt-2 w-96 bg-white rounded-md shadow-lg z-20">
+          {/* Your profile/settings content here */}
 
-            <Avatar
-              src={data.displayPic || pfp}
-              sx={{ width: 82, height: 82 }}
-            />
+          <Avatar src={pfp} sx={{ width: 82, height: 82 }} />
+          {data && data.fname && data.lname && (
             <span className="py-2 mb-6">
               {data.fname} {data.lname}
             </span>
-            <a
-              href="/payment"
-              className="block w-full px-4 py-2 hover:bg-gray-100"
-            >
-              Payment Method
-            </a>
-            <a
-              href="/settings"
-              className="block w-full px-4 py-2 hover:bg-gray-100"
-            >
-              Account Settings
-            </a>
-            <button
-              className="block px-4 w-full py-2 text-center hover:bg-gray-100"
-              onClick={() => {
-                auth.logout();
-              }}
-            >
-              Logout
-            </button>
-          </div>
-        )}
-      </div>
-    )
+          )}
+          <a
+            href="/payment"
+            className="block w-full px-4 py-2 hover:bg-gray-100"
+          >
+            Payment Method
+          </a>
+          <a
+            href="/settings"
+            className="block w-full px-4 py-2 hover:bg-gray-100"
+          >
+            Account Settings
+          </a>
+          <button
+            className="block px-4 w-full py-2 text-center hover:bg-gray-100"
+            onClick={() => {
+              auth.logout();
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 export default Navbar;
