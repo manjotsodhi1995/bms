@@ -16,7 +16,7 @@ function MyTickets() {
 
   return (
     <>
-      <div className="flex flex-col gap-8 px-4 lg:px-40">
+      <div className="flex flex-col gap-8 px-4 lg:px-40 mb-10">
         <div className="flex w-full items-center justify-between">
           <h3 className="md:text-[1.6rem] 2xl:text-[2rem] text-[1.5rem] font-medium">
             Your Tickets
@@ -26,7 +26,7 @@ function MyTickets() {
             <span className="text-neutral-800">Past Bookings</span>
           </p>
         </div>
-        <div className="w-full flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="w-full flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="flex w-full flex-col items-center">
             <div className="flex w-full flex-col gap-4">
               {tickets.length === 0 ? (
@@ -44,7 +44,7 @@ function MyTickets() {
             </div>
           </div>
           <div>
-            <Calendar onChange={onChange} value={value} />
+            <Calendar className="!w-[100vw] md:!w-[25vw] 2xl:text-xl" onChange={onChange} value={value} />
           </div>
         </div>
       </div>

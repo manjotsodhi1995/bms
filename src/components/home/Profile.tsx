@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 function Profile() {
   return (
-    <div className="w-full   back  bg-cover ">
+    <div className="mt-20 w-full   back  bg-cover ">
       <div className="bg-black bg-opacity-60 lg:px-[10%] px-[8vw] flex flex-col gap-4 md:py-[10vw] py-[16vw] text-white">
         <div className="grid md:grid-cols-3 gap-16 md:gap-4 xl:gap-8 lg:flex-row flex-col">
           <div className="md:text-left text-center flex flex-col gap-2">
