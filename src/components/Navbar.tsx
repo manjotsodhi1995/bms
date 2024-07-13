@@ -464,7 +464,7 @@ function ProfileDropdown({ open, onOpenChange }: NavbarDropdownProps) {
       <div className="relative">
         <button onClick={toggleDropdown}>
           <img
-            src={data.displayPic || pfp}
+            src={pfp}
             alt="Profile"
             className="rounded-full w-8 h-8"
           />
