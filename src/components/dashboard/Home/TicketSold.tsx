@@ -2,7 +2,7 @@ import HomeContainerCard from "../HomeContainerCard";
 
 function TicketSold() {
   return (
-    <HomeContainerCard className="h-[35vh] col-span-2 md:col-span-1">
+    <HomeContainerCard className="h-72 col-span-2 md:col-span-1">
       <div className="flex gap-1 items-center">
         <svg
           width="32"
