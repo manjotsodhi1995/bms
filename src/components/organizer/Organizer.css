@@ -1,0 +1,10 @@
+/* .payout-image {
+  background-image: url(../../assets/organizer/BG.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+} */
+.title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}

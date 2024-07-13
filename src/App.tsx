@@ -63,6 +63,7 @@ const ReppedInPastDetails = lazy(
   () => import("./pages/dashboard/events/repped-in-past-details")
 );
 const FollowingPage = lazy(() => import("./pages/dashboard/following"));
+const Organizer = lazy(() => import("./pages/Organizer"));
 
 const App = observer(() => {
   const {
@@ -95,8 +96,7 @@ const App = observer(() => {
             <div className="min-h-screen w-screen flex justify-center items-center">
               <img src={load} alt="" className="w-[10vw] h-[10vw]" />
             </div>
-          }
-        >
+          }>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
@@ -185,6 +185,8 @@ const App = observer(() => {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />
 
+            {/* Organizer Component */}
+            <Route path="/organizer" element={<Organizer />} />
             <Route path="/events/:location" element={<EventsInLocation />} />
             <Route
               path="/upcoming-events/:location"
