@@ -2,20 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-input,textarea {
+input,
+textarea {
   border: 1px solid #000; /* Add a 1px solid gray border */
   padding: 0.5rem 0.7rem !important;
   border-radius: 8px; /* Add rounded corners */
 }
-input::placeholder,textarea::placeholder {
- align-items: center;
- justify-content: center;
+input::placeholder,
+textarea::placeholder {
+  align-items: center;
+  justify-content: center;
   color: #000;
   font-size: 0.8rem;
 }
 .custom-radio input[type="radio"] {
   transform: scale(1.5);
-  color: #000;  /* Increase size by 150% */
+  color: #000; /* Increase size by 150% */
 }
 .container {
   max-width: 100vw;
@@ -49,7 +51,6 @@ input::placeholder,textarea::placeholder {
   }
 }
 
-
 .sw1 .swiper-slide img {
   width: 35rem;
   object-fit: cover;
@@ -59,7 +60,6 @@ input::placeholder,textarea::placeholder {
 .sw1 .swiper-slide-shadow-right {
   display: none;
 }
-
 
 .swiper-pagination {
   position: relative;
@@ -74,11 +74,11 @@ input::placeholder,textarea::placeholder {
 .swiper-pagination .swiper-pagination-bullet-active {
   background: var(--primary);
 }
-.back{
-  background-image: url('https://s3-alpha-sig.figma.com/img/008c/6e8f/df18bd93dae25349c5b127db94e118c9?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pmwHG16hp8BBeh5ybqxZoYZCF9b4fDzeDfekGLpTyqNVTLqBz9tJ9NLr7jFFnFzSj1tmHANroLOrgva0dbcS~5GQtX~RJtLNX8Kdqo5CBSLQk5p7U6WH6gB3vvA4nBJVX1hj1I9HE-O~ia66RWDbiSVzHIYxBrTHpukBfwITXM~GZhqLAnUOvowta2EvmFg4vSQnLwYrk2X8IWO0gMPZ7v3cW07N~0iwlgryhaiLcFVSfnIqKNi8ZVDx14nWo0Fdj8JLwtsBvWiib5C~93xglF2PIKlxy9HvBMCdkt1x6dBXB-U2HyVOZqna51oMvZTY0-s6Ei9vxfIfUrlhMoyqBw__');
+.back {
+  background-image: url("https://s3-alpha-sig.figma.com/img/008c/6e8f/df18bd93dae25349c5b127db94e118c9?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pmwHG16hp8BBeh5ybqxZoYZCF9b4fDzeDfekGLpTyqNVTLqBz9tJ9NLr7jFFnFzSj1tmHANroLOrgva0dbcS~5GQtX~RJtLNX8Kdqo5CBSLQk5p7U6WH6gB3vvA4nBJVX1hj1I9HE-O~ia66RWDbiSVzHIYxBrTHpukBfwITXM~GZhqLAnUOvowta2EvmFg4vSQnLwYrk2X8IWO0gMPZ7v3cW07N~0iwlgryhaiLcFVSfnIqKNi8ZVDx14nWo0Fdj8JLwtsBvWiib5C~93xglF2PIKlxy9HvBMCdkt1x6dBXB-U2HyVOZqna51oMvZTY0-s6Ei9vxfIfUrlhMoyqBw__");
 }
-.dec{
-  background-image: url('https://s3-alpha-sig.figma.com/img/008c/6e8f/df18bd93dae25349c5b127db94e118c9?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pmwHG16hp8BBeh5ybqxZoYZCF9b4fDzeDfekGLpTyqNVTLqBz9tJ9NLr7jFFnFzSj1tmHANroLOrgva0dbcS~5GQtX~RJtLNX8Kdqo5CBSLQk5p7U6WH6gB3vvA4nBJVX1hj1I9HE-O~ia66RWDbiSVzHIYxBrTHpukBfwITXM~GZhqLAnUOvowta2EvmFg4vSQnLwYrk2X8IWO0gMPZ7v3cW07N~0iwlgryhaiLcFVSfnIqKNi8ZVDx14nWo0Fdj8JLwtsBvWiib5C~93xglF2PIKlxy9HvBMCdkt1x6dBXB-U2HyVOZqna51oMvZTY0-s6Ei9vxfIfUrlhMoyqBw__');
+.dec {
+  background-image: url("https://s3-alpha-sig.figma.com/img/008c/6e8f/df18bd93dae25349c5b127db94e118c9?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pmwHG16hp8BBeh5ybqxZoYZCF9b4fDzeDfekGLpTyqNVTLqBz9tJ9NLr7jFFnFzSj1tmHANroLOrgva0dbcS~5GQtX~RJtLNX8Kdqo5CBSLQk5p7U6WH6gB3vvA4nBJVX1hj1I9HE-O~ia66RWDbiSVzHIYxBrTHpukBfwITXM~GZhqLAnUOvowta2EvmFg4vSQnLwYrk2X8IWO0gMPZ7v3cW07N~0iwlgryhaiLcFVSfnIqKNi8ZVDx14nWo0Fdj8JLwtsBvWiib5C~93xglF2PIKlxy9HvBMCdkt1x6dBXB-U2HyVOZqna51oMvZTY0-s6Ei9vxfIfUrlhMoyqBw__");
   background-repeat: no-repeat;
   background-size: 100vw;
 }
@@ -105,40 +105,52 @@ input::placeholder,textarea::placeholder {
   height: 100%;
   object-fit: cover;
 }
-.swiper-wrapper
-{
+.swiper-wrapper {
   margin: 30px 0px;
-  height:100%;
+  height: 100%;
 }
-.home{
-/* background: rgba( 255, 255, 255, 0.09 ); */
-backdrop-filter: blur( 20px );
--webkit-backdrop-filter: blur( 20px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.1 );}
-.showMenuNav{
+.home {
+  /* background: rgba( 255, 255, 255, 0.09 ); */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.showMenuNav {
   border-top-right-radius: 20px;
 }
-.event{
-  background-image: url('https://s3-alpha-sig.figma.com/img/1cd7/f4dc/9ab46b29cc668c7f4e50b65efdb52bd2?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=o0crmQPt9uL0ZTxKjXhzyemymy5kxqqNva1yOimUDBO2gfDMEnBGmnk81r~fTApreOI3MqUPoPAgCe3FIT1LopcJOG8EF3VDoB2rtWE8Cq-F4y4Hd0qZEKJZVOMCsGpwNuBtbTBA9V4EIKdj32ruPM1fJW1hypUMy9cx9FMjbbb2l9Ebts6OQEOVDkXU~-pc9Ky0Iba-YJIVGqvu~rCmIRrd9JqTZ~VYIHi2NSgWy2MhCoYUHBPAlAgtn9cbJ3KksGUe7Is-rag9vV3TGBG0Pktd40zUSjs~FGGc3OW9vR33gp0J4-T6VVGytBCJBOvTMyjEE~yqU5RT9tYbh96thw__');  background-repeat: no-repeat;
+.event {
+  background-image: url("https://s3-alpha-sig.figma.com/img/1cd7/f4dc/9ab46b29cc668c7f4e50b65efdb52bd2?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=o0crmQPt9uL0ZTxKjXhzyemymy5kxqqNva1yOimUDBO2gfDMEnBGmnk81r~fTApreOI3MqUPoPAgCe3FIT1LopcJOG8EF3VDoB2rtWE8Cq-F4y4Hd0qZEKJZVOMCsGpwNuBtbTBA9V4EIKdj32ruPM1fJW1hypUMy9cx9FMjbbb2l9Ebts6OQEOVDkXU~-pc9Ky0Iba-YJIVGqvu~rCmIRrd9JqTZ~VYIHi2NSgWy2MhCoYUHBPAlAgtn9cbJ3KksGUe7Is-rag9vV3TGBG0Pktd40zUSjs~FGGc3OW9vR33gp0J4-T6VVGytBCJBOvTMyjEE~yqU5RT9tYbh96thw__");
+  background-repeat: no-repeat;
   background-size: cover;
 }
-body{
-  overflow-x:hidden;
+body {
+  overflow-x: hidden;
   background: transparent;
-}.swiper-button-prev,
+}
+.swiper-button-prev,
 .swiper-button-next {
   /* Adjust these properties to your preference */
-  background-color: #D9D9D957; /* Set background color */
+  background-color: #d9d9d957; /* Set background color */
   font-size: 5px !important;
-  width:60px !important; /* Increase or decrease arrow size */
+  width: 60px !important; /* Increase or decrease arrow size */
   color: white !important;
   padding: 30px;
- /* Add padding around the arrow */
+  /* Add padding around the arrow */
 }
-.swiper-button-next{
-  margin-right:-10px!important;
+.swiper-button-next {
+  margin-right: -10px !important;
 }
-.swiper-button-prev{
-  margin-left:-10px!important;
+.swiper-button-prev {
+  margin-left: -10px !important;
+}
+.title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+.payout-image {
+  background-image: url(${../../assets/organizer/BG.png});
+  background-size: cover;
+  background-repeat: no-repeat;
 }
