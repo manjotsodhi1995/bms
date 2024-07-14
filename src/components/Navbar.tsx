@@ -10,6 +10,8 @@ import axios from "@/utils/middleware";
 import { API } from "@/api";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@mui/material";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 const isExcludedRoute = createRouteMatcher([
   "/login",
@@ -47,6 +49,7 @@ const Navbar = observer(() => {
   const showNavbar = !isExcludedRoute(location);
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
 
   return (
     showNavbar && (
@@ -239,6 +242,7 @@ const Navbar = observer(() => {
                     open={profileOpen}
                     onOpenChange={(v) => {
                       if (notificationOpen) setNotificationOpen(false);
+                      if (calendarOpen) setCalendarOpen(false);
                       setProfileOpen(v);
                     }}
                   />
@@ -298,24 +302,14 @@ const Navbar = observer(() => {
             )}
             {isAuthenticated && (
               <div className="flex items-center text-center">
-                <Link
-                  to="/events"
-                  className="w-full flex justify-between items-center gap-2 whitespace-nowrap px-4 py-2 rounded-xl hover:bg-gray-100 bg-white shadow-md"
-                >
-                  <svg
-                    width="16"
-                    height="17"
-                    viewBox="0 0 16 17"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M14.25 1.5H12.375V0.875C12.375 0.70924 12.3092 0.550268 12.1919 0.433058C12.0747 0.315848 11.9158 0.25 11.75 0.25C11.5842 0.25 11.4253 0.315848 11.3081 0.433058C11.1908 0.550268 11.125 0.70924 11.125 0.875V1.5H4.875V0.875C4.875 0.70924 4.80915 0.550268 4.69194 0.433058C4.57473 0.315848 4.41576 0.25 4.25 0.25C4.08424 0.25 3.92527 0.315848 3.80806 0.433058C3.69085 0.550268 3.625 0.70924 3.625 0.875V1.5H1.75C1.41848 1.5 1.10054 1.6317 0.866116 1.86612C0.631696 2.10054 0.5 2.41848 0.5 2.75V15.25C0.5 15.5815 0.631696 15.8995 0.866116 16.1339C1.10054 16.3683 1.41848 16.5 1.75 16.5H14.25C14.5815 16.5 14.8995 16.3683 15.1339 16.1339C15.3683 15.8995 15.5 15.5815 15.5 15.25V2.75C15.5 2.41848 15.3683 2.10054 15.1339 1.86612C14.8995 1.6317 14.5815 1.5 14.25 1.5ZM3.625 2.75V3.375C3.625 3.54076 3.69085 3.69973 3.80806 3.81694C3.92527 3.93415 4.08424 4 4.25 4C4.41576 4 4.57473 3.93415 4.69194 3.81694C4.80915 3.69973 4.875 3.54076 4.875 3.375V2.75H11.125V3.375C11.125 3.54076 11.1908 3.69973 11.3081 3.81694C11.4253 3.93415 11.5842 4 11.75 4C11.9158 4 12.0747 3.93415 12.1919 3.81694C12.3092 3.69973 12.375 3.54076 12.375 3.375V2.75H14.25V5.25H1.75V2.75H3.625ZM14.25 15.25H1.75V6.5H14.25V15.25Z"
-                      fill="black"
-                    />
-                  </svg>
-                  <div className="flex items-center">My Calendar</div>
-                </Link>
+                <MyCalendarDropdown
+                  open={calendarOpen}
+                  onOpenChange={(v) => {
+                    if (notificationOpen) setNotificationOpen(false);
+                    if (profileOpen) setProfileOpen(false);
+                    setCalendarOpen(v);
+                  }}
+                />
               </div>
             )}
             {isAuthenticated && (
@@ -326,6 +320,7 @@ const Navbar = observer(() => {
                     onOpenChange={(v) => {
                       setNotificationOpen(v);
                       if (profileOpen) setProfileOpen((_) => false);
+                      if (calendarOpen) setCalendarOpen((_) => false);
                     }}
                   />
                 </div>
@@ -334,6 +329,7 @@ const Navbar = observer(() => {
                     open={profileOpen}
                     onOpenChange={(v) => {
                       if (notificationOpen) setNotificationOpen(false);
+                      if (calendarOpen) setCalendarOpen(false);
                       setProfileOpen(v);
                     }}
                   />
@@ -499,4 +495,38 @@ function ProfileDropdown({ open, onOpenChange }: NavbarDropdownProps) {
     </div>
   );
 }
+
+function MyCalendarDropdown({ open, onOpenChange }: NavbarDropdownProps) {
+  const toggleDropdown = () => onOpenChange(!open);
+
+  return (
+    <div className="relative">
+      <button
+        onClick={toggleDropdown}
+        className="w-full flex justify-between items-center gap-2 whitespace-nowrap px-4 py-2 rounded-xl hover:bg-gray-100 bg-white shadow-md"
+      >
+        <svg
+          width="16"
+          height="17"
+          viewBox="0 0 16 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M14.25 1.5H12.375V0.875C12.375 0.70924 12.3092 0.550268 12.1919 0.433058C12.0747 0.315848 11.9158 0.25 11.75 0.25C11.5842 0.25 11.4253 0.315848 11.3081 0.433058C11.1908 0.550268 11.125 0.70924 11.125 0.875V1.5H4.875V0.875C4.875 0.70924 4.80915 0.550268 4.69194 0.433058C4.57473 0.315848 4.41576 0.25 4.25 0.25C4.08424 0.25 3.92527 0.315848 3.80806 0.433058C3.69085 0.550268 3.625 0.70924 3.625 0.875V1.5H1.75C1.41848 1.5 1.10054 1.6317 0.866116 1.86612C0.631696 2.10054 0.5 2.41848 0.5 2.75V15.25C0.5 15.5815 0.631696 15.8995 0.866116 16.1339C1.10054 16.3683 1.41848 16.5 1.75 16.5H14.25C14.5815 16.5 14.8995 16.3683 15.1339 16.1339C15.3683 15.8995 15.5 15.5815 15.5 15.25V2.75C15.5 2.41848 15.3683 2.10054 15.1339 1.86612C14.8995 1.6317 14.5815 1.5 14.25 1.5ZM3.625 2.75V3.375C3.625 3.54076 3.69085 3.69973 3.80806 3.81694C3.92527 3.93415 4.08424 4 4.25 4C4.41576 4 4.57473 3.93415 4.69194 3.81694C4.80915 3.69973 4.875 3.54076 4.875 3.375V2.75H11.125V3.375C11.125 3.54076 11.1908 3.69973 11.3081 3.81694C11.4253 3.93415 11.5842 4 11.75 4C11.9158 4 12.0747 3.93415 12.1919 3.81694C12.3092 3.69973 12.375 3.54076 12.375 3.375V2.75H14.25V5.25H1.75V2.75H3.625ZM14.25 15.25H1.75V6.5H14.25V15.25Z"
+            fill="black"
+          />
+        </svg>
+        <div className="flex items-center">My Calendar</div>
+      </button>
+
+      {open && (
+        <div className="absolute flex flex-col items-center -right-24 mt-2 w-96 bg-white rounded-md shadow-lg z-20">
+          <Calendar className="!w-[100vw] md:!w-[25vw] 2xl:text-xl" />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default Navbar;
