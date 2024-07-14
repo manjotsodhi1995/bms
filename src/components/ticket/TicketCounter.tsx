@@ -10,16 +10,16 @@ const TicketCounter = ({ className }: { className?: string }) => {
     <div className={cn("flex gap-4 mr-6", className)}>
       <button
         className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center"
-        onClick={increaseTicket}
+        onClick={decreaseTicket}
       >
-        <Plus className="size-5  stroke-1" />
+        <Minus className="size-5 stroke-1" />
       </button>
       <span>{ticket}</span>
       <button
         className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center"
-        onClick={decreaseTicket}
+        onClick={increaseTicket}
       >
-        <Minus className="size-5 stroke-1" />
+        <Plus className="size-5  stroke-1" />
       </button>
     </div>
   );
