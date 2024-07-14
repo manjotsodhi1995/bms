@@ -242,6 +242,7 @@ const Navbar = observer(() => {
                     open={profileOpen}
                     onOpenChange={(v) => {
                       if (notificationOpen) setNotificationOpen(false);
+                      if (calendarOpen) setCalendarOpen(false);
                       setProfileOpen(v);
                     }}
                   />
@@ -303,7 +304,11 @@ const Navbar = observer(() => {
               <div className="flex items-center text-center">
                 <MyCalendarDropdown
                   open={calendarOpen}
-                  onOpenChange={setCalendarOpen}
+                  onOpenChange={(v) => {
+                    if (notificationOpen) setNotificationOpen(false);
+                    if (profileOpen) setProfileOpen(false);
+                    setCalendarOpen(v);
+                  }}
                 />
               </div>
             )}
@@ -315,6 +320,7 @@ const Navbar = observer(() => {
                     onOpenChange={(v) => {
                       setNotificationOpen(v);
                       if (profileOpen) setProfileOpen((_) => false);
+                      if (calendarOpen) setCalendarOpen((_) => false);
                     }}
                   />
                 </div>
@@ -323,6 +329,7 @@ const Navbar = observer(() => {
                     open={profileOpen}
                     onOpenChange={(v) => {
                       if (notificationOpen) setNotificationOpen(false);
+                      if (calendarOpen) setCalendarOpen(false);
                       setProfileOpen(v);
                     }}
                   />
@@ -515,9 +522,7 @@ function MyCalendarDropdown({ open, onOpenChange }: NavbarDropdownProps) {
 
       {open && (
         <div className="absolute flex flex-col items-center -right-24 mt-2 w-96 bg-white rounded-md shadow-lg z-20">
-          <Calendar
-            className="!w-[100vw] md:!w-[25vw] 2xl:text-xl"
-          />
+          <Calendar className="!w-[100vw] md:!w-[25vw] 2xl:text-xl" />
         </div>
       )}
     </div>
