@@ -44,11 +44,13 @@ export const API = {
     // update: `${SERVER_BASE_URL}/organizers/update`,
     // delete: `${SERVER_BASE_URL}/organizers/delete`,
   },
-  cart: {
-    // fetchBookingMatrix: `${SERVER_BASE_URL}/bookingmatrix/fetch`,
-    // fetchUserBasket: `${SERVER_BASE_URL}/baskets/fetch`,
-    // updateBasket: `${SERVER_BASE_URL}/baskets/update`,
-    // resetBasket: `${SERVER_BASE_URL}/baskets/reset`,
+  basket: {
+    fetch: `${SERVER_BASE_URL}/baskets/fetch`,
+    update: `${SERVER_BASE_URL}/baskets/update`,
+  },
+  bookingmatrix: {
+    create: `${SERVER_BASE_URL}/bookingmatrix/create`,
+    update: `${SERVER_BASE_URL}/bookingmatrix/update`,
   },
   categories: {
     getAllCategories: `${SERVER_BASE_URL}/categories/getallcategories`,
