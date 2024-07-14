@@ -51,6 +51,7 @@ export const API = {
   bookingmatrix: {
     create: `${SERVER_BASE_URL}/bookingmatrix/create`,
     update: `${SERVER_BASE_URL}/bookingmatrix/update`,
+    fetch: `${SERVER_BASE_URL}/bookingmatrix/fetch`,
   },
   categories: {
     getAllCategories: `${SERVER_BASE_URL}/categories/getallcategories`,

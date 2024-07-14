@@ -1,6 +1,6 @@
 import axios from "@/utils/middleware";
 import { API } from "..";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 interface TicketCategory {
   categoryType: string;
@@ -18,6 +18,7 @@ export interface BookingMatrix {
   eventTime: string;
 }
 export const useBookingMatrixQuery = (eventId?: string) => {
+  const queryClient = useQueryClient();
   const createBookingMatrix = async (body: Partial<BookingMatrix>) => {
     if (!eventId) return false;
     const response = await axios.post(API.bookingmatrix.create, body);
@@ -35,14 +36,38 @@ export const useBookingMatrixQuery = (eventId?: string) => {
     return response.data;
   };
 
+  const fetchBookingMatrix = async () => {
+    if (!eventId) return false;
+    const response = await axios.post(`${API.bookingmatrix.fetch}/${eventId}`);
+    return response.data;
+  };
+
+  const bookingMatrix = useQuery({
+    queryKey: ["bookingMatrix", eventId],
+    queryFn: fetchBookingMatrix,
+    enabled: !!eventId,
+  });
+
   const createMutation = useMutation({
     mutationFn: createBookingMatrix,
+    onSettled: async () => {
+      return await queryClient.invalidateQueries({
+        queryKey: ["bookingMatrix", eventId],
+      });
+    },
   });
 
   const updateMutation = useMutation({
     mutationFn: updateBookingMatrix,
+    onSettled: async () => {
+      return await queryClient.invalidateQueries({
+        queryKey: ["bookingMatrix", eventId],
+      });
+    },
   });
+
   return {
+    bookingMatrix,
     createMutation,
     updateMutation,
   };
