@@ -11,7 +11,7 @@ interface UpdateCart {
   };
 }
 
-export const useCartQuery = (eventId?: string) => {
+export const useCartQuery = (eventId?: string, eventDate?: string) => {
   const queryClient = useQueryClient();
 
   const updateCart = async (body: Partial<UpdateCart>) => {
@@ -22,14 +22,16 @@ export const useCartQuery = (eventId?: string) => {
 
   const fetchCart = async () => {
     if (!eventId) return false;
-    const response = await axios.post(`${API.basket.fetch}/${eventId}`);
-    return response.data;
+    const response = await axios.post(`${API.basket.fetch}/${eventId}`, {
+      eventDate: eventDate ? eventDate.split(" ")[0] : null,
+    });
+    return response.data.data;
   };
 
   const { data: cartData } = useQuery({
     queryKey: ["cart", eventId],
-    queryFn: () => fetchCart,
-    enabled: !!eventId,
+    queryFn: fetchCart,
+    enabled: !!eventId && !!eventDate,
   });
 
   const cartMutation = useMutation({
