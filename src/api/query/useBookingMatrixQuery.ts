@@ -12,12 +12,12 @@ interface TicketCategory {
 }
 
 export interface BookingMatrix {
-  event: string;
+  event: any;
   ticketCategories: TicketCategory[];
   eventDate: string;
   eventTime: string;
 }
-export const useBookingMatrixQuery = (eventId?: string) => {
+export const useBookingMatrixQuery = (eventId?: string, eventDate?: string) => {
   const queryClient = useQueryClient();
   const createBookingMatrix = async (body: Partial<BookingMatrix>) => {
     if (!eventId) return false;
@@ -38,14 +38,19 @@ export const useBookingMatrixQuery = (eventId?: string) => {
 
   const fetchBookingMatrix = async () => {
     if (!eventId) return false;
-    const response = await axios.post(`${API.bookingmatrix.fetch}/${eventId}`);
-    return response.data;
+    const response = await axios.get(`${API.bookingmatrix.fetch}/${eventId}`, {
+      params: {
+        eventDate: eventDate ? eventDate.split(" ")[0]: null,
+      },
+    });
+    return response.data.data;
   };
 
   const bookingMatrix = useQuery({
     queryKey: ["bookingMatrix", eventId],
     queryFn: fetchBookingMatrix,
-    enabled: !!eventId,
+    enabled: !!eventId && !!eventDate,
+    retry: 2
   });
 
   const createMutation = useMutation({

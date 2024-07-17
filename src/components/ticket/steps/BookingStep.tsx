@@ -1,8 +1,10 @@
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Loader2 } from "lucide-react";
 import TicketTableOption from "../TicketTableOption";
 import { TicketStepsProps } from ".";
 import { useBookingMatrixQuery } from "@/api/query/useBookingMatrixQuery";
 import { formatDate } from "@/utils";
+import { useCartQuery } from "@/api/query/useCartQuery";
+import { useMemo } from "react";
 
 export const BookingStep = ({
   eventsData,
@@ -10,8 +12,20 @@ export const BookingStep = ({
   onStepChange,
 }: TicketStepsProps) => {
   const {
-    bookingMatrix: { data, isLoading },
-  } = useBookingMatrixQuery(eventsData!!.eventId);
+    bookingMatrix: { data, isLoading, isError },
+  } = useBookingMatrixQuery(eventsData!!.eventId, eventsData!!.eventStart);
+  const { cartData, cartMutation } = useCartQuery(
+    eventsData?.eventId,
+    eventsData?.eventStart
+  );
+  const noOfTickets = useMemo(() => {
+    if (!cartData) return 0;
+    const tickets = cartData.basket
+      ? cartData.basket.reduce((acc: number, d: any) => acc + d.noOfPersons, 0)
+      : 0;
+    return tickets;
+  }, [cartData]);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
       <div>
@@ -21,41 +35,35 @@ export const BookingStep = ({
           </button>
           <h2 className="text-2xl font-thin">Tickets</h2>
         </span>
+        {isLoading && (
+          <p className="flex gap-2 items-center text-gray-600">
+            Loading
+            <Loader2 className="animate-spin size-4" />
+          </p>
+        )}
         {!isLoading &&
           data &&
-          data.data.map((ticket: any) => <TicketTableOption ticket={ticket} />)}
-
-        <TicketTableOption
-          ticket={{
-            categoryName: "CLASSIC",
-            categoryType: "INR",
-            categoryPricePerPerson: "100",
-          }}
-        />
-        <TicketTableOption
-          ticket={{
-            categoryName: "PREMIUM",
-            categoryType: "GBP",
-            categoryPricePerPerson: "500",
-          }}
-        />
-        <TicketTableOption
-          ticket={{
-            categoryName: "CLASSIC",
-            categoryType: "INR",
-            categoryPricePerPerson: "100",
-          }}
-        />
-        <TicketTableOption
-          ticket={{
-            categoryName: "CLASSIC",
-            categoryType: "INR",
-            categoryPricePerPerson: "100",
-          }}
-        />
-        {/* <TicketTableOption title="Round 2" /> */}
-        {/* <TicketTableOption title="Table 3" /> */}
-        {/* <TicketTableOption title="Table 4" /> */}
+          data.ticketCategories &&
+          data.ticketCategories.map((ticket: any) => (
+            <TicketTableOption
+              currentBasket={cartData?.basket}
+              ticket={ticket}
+              key={ticket._id}
+              pending={cartMutation.isPending}
+              onTicketUpdate={(v) => {
+                // TODO: pass ticketCategory id if it gets added
+                cartMutation.mutate({
+                  eventDate: eventsData?.eventStart.split(" ")[0],
+                  basket: {
+                    noOfPersons: v,
+                    categoryName: ticket.categoryName,
+                    categoryType: ticket.categoryType,
+                  },
+                });
+              }}
+            />
+          ))}
+        {isError && <p>There are no tickets available</p>}
       </div>
 
       <div className="bg-white p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
@@ -77,23 +85,23 @@ export const BookingStep = ({
           Order Summary
         </h3>
         <p className="flex w-full items-center justify-between font-medium">
-          <span>Table - 1(2)</span>
-          <span>$60.00</span>
+          <span>Ticket - {noOfTickets}</span>
+          <span>${cartData ? cartData.subTotal : "0.00"}</span>
         </p>
         <hr className="w-full border-t border-1 border-neutral-300" />
         <div className="flex flex-col w-full px-4">
           <p className="flex items-center justify-between text-gray-600 text-sm">
             <span>Subtotal</span>
-            <span>$60.00</span>
+            <span>${cartData ? cartData.subTotal : "0.00"}</span>
           </p>
           <p className="flex items-center justify-between text-gray-600 text-sm">
             <span>Fees</span>
-            <span>$10.00</span>
+            <span>${cartData ? cartData.totalTax : "0.00"}</span>
           </p>
 
           <p className="flex items-center justify-between mt-4 text-black font-medium">
             <span>Total</span>
-            <span>$70.00</span>
+            <span>${cartData ? cartData.totalAmount : "0.00"}</span>
           </p>
         </div>
 

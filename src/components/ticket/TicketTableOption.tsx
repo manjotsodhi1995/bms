@@ -4,13 +4,23 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import TicketCounter from "./TicketCounter";
-// import { ChevronLeft, ChevronRight } from "lucide-react";
-// import { Slider } from "../ui/slider";
 
 interface TicketTableOptionProps {
+  currentBasket: any;
   ticket: any;
+  onTicketUpdate: (ticket: number) => void;
+  pending: boolean;
 }
-const TicketTableOption = ({ ticket }: TicketTableOptionProps) => {
+const TicketTableOption = ({
+  ticket,
+  onTicketUpdate,
+  currentBasket,
+  pending,
+}: TicketTableOptionProps) => {
+  const tickets = currentBasket
+    ? currentBasket.find((item: any) => item._id === ticket._id)?.noOfPersons
+    : 0;
+
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1">
@@ -19,12 +29,16 @@ const TicketTableOption = ({ ticket }: TicketTableOptionProps) => {
             <p className="flex flex-col items-start ">
               <span className="text-lg">{ticket.categoryName}</span>
               <span className="text-gray-600 font-normal text-sm">
-                {/* {ticket.categoryType === "IND" ? "₹" : "$"}{" "} */}
-                {ticket.categoryPricePerPerson} {ticket.categoryType}
+                {ticket.categoryType === "IND" ? "₹" : "$"}
+                {ticket.categoryPricePerPerson}
               </span>
             </p>
 
-            <TicketCounter />
+            <TicketCounter
+              value={tickets}
+              onValueChange={onTicketUpdate}
+              pending={pending}
+            />
           </div>
         </AccordionTrigger>
         {/* <AccordionContent className="ml-2 w-11/12"> */}
