@@ -5,6 +5,8 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
+import { MuiTelInput } from "mui-tel-input";
+
 const Register = observer(() => {
   const [firstName, setFirstName] = useState(""); // State for first name input
   const [lastName, setLastName] = useState(""); // State for last name input
@@ -129,14 +131,15 @@ const Register = observer(() => {
               </div>
 
               <div className="">
-                <input
-                  type="tel" // Use type="tel" for better phone number input
+                <MuiTelInput
+                  value={phone}
+                  onChange={setPhone}
                   name="phone"
                   id="phone"
-                  value={phone}
                   placeholder="Phone"
+                  defaultCountry="US"
+                  variant="outlined"
                   className="w-full"
-                  onChange={handleInputChange}
                 />
               </div>
 

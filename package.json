@@ -29,6 +29,7 @@
     "mobx": "^6.12.3",
     "mobx-logger": "^0.7.1",
     "mobx-react-lite": "^4.0.7",
+    "mui-tel-input": "^5.1.2",
     "path-to-regexp": "^7.0.0",
     "react": "^18.2.0",
     "react-calendar": "^5.0.0",
