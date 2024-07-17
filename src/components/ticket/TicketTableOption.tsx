@@ -4,7 +4,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import TicketCounter from "./TicketCounter";
-import { useMemo } from "react";
 
 interface TicketTableOptionProps {
   currentBasket: any;
