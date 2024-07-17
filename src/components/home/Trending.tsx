@@ -22,8 +22,7 @@ function Trending() {
     root: { event },
   } = useStore();
   const fetchEvents = async () => {
-    await event.fetchEvents("28.4262481", "77.0581663");
-    console.log(event);
+    return await event.fetchEvents("28.4262481", "77.0581663");
   };
 
   // const { data: categories } = useQuery({
