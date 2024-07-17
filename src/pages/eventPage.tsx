@@ -20,6 +20,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { useLikesQuery } from "@/api/query/useLikesQuery";
 import { useFollowingQuery } from "@/api/query/useFollowingQuery";
+import Footer from "@/components/Footer";
 
 const fetchEvent = async (slug?: string) => {
   const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
@@ -219,9 +220,9 @@ const EventPage = observer(() => {
                   }}
                 />
                 <p className="flex flex-col">
-                  <span className="font-medium text-lg">
+                  <Link to={`/organization/${eventData.organizer._id}`} className="font-medium text-lg">
                     {eventData.organizer.name}
-                  </span>
+                  </Link>
                   <span>Organizer</span>
                 </p>
               </div>
@@ -366,6 +367,7 @@ const EventPage = observer(() => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 });
