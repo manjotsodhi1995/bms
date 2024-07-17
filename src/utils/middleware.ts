@@ -1,7 +1,7 @@
 import { API } from "@/api";
 import axios from "axios";
 axios.interceptors.request.use(
-    async (config) => {
+  async (config) => {
     const accessToken = localStorage.getItem("accessToken");
     const refreshToken = localStorage.getItem("refreshToken");
     if (!accessToken && refreshToken) {
@@ -12,8 +12,7 @@ axios.interceptors.request.use(
         const newAccessToken = response.data.access_token;
         localStorage.setItem("accessToken", newAccessToken);
         config.headers["Authorization"] = `Bearer ${newAccessToken}`;
-      } catch (refreshError) {
-      }
+      } catch (refreshError) {}
     } else if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     }
@@ -24,4 +23,32 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+axios.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        const refreshToken = localStorage.getItem("refreshToken");
+        const response = await axios.post(API.users.refreshToken, {
+          refreshToken: refreshToken,
+        });
+        const newAccessToken = response.data.data.accessToken;
+        localStorage.setItem("accessToken", newAccessToken);
+
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+
+        return axios(originalRequest);
+      } catch (error) {
+        window.location.replace("/login");
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default axios;

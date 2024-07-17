@@ -85,12 +85,12 @@ export class Event {
       this.trendingCategories = response.data.data.trendingCategories;
       this.currentCity = response.data.data.currentCity;
       this.nearestCity = response.data.data.nearestEventCity;
-      return response.data.data as FetchEventsResponse
+      return response.data.data as FetchEventsResponse;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error("API Error:", error.response?.data || error.message);
+        throw new Error(error.response?.data || error.message);
       } else {
-        console.error("Unexpected Error:", error);
+        throw new Error(`Unexpected Error: ${error}`);
       }
     }
   }
