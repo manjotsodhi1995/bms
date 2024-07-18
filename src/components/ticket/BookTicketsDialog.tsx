@@ -12,6 +12,7 @@ import { ViewTicketStep } from "./steps/VIewTicketStep";
 import { BuyAnotherTicketsStep } from "./steps/BuyAnotherTicketStep";
 import { ShareTicketStep } from "./steps/ShareTicketStep";
 import type { EventType } from "@/stores/event";
+import CartProvider from "@/stores/cart";
 
 interface BookTicketsDialogProps extends DialogProps {
   eventsData: EventType | null;
@@ -23,71 +24,73 @@ const BookTicketsDialog = observer(
     const [ticketStep, setTicketStep] = useState<TicketStep>("booking");
 
     return (
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogTrigger asChild>{children}</DialogTrigger>
-        <DialogContent className="overflow-y-auto p-1 max-w-screen-lg max-h-[calc(100dvh)]">
-          <div className=" p-12 backdrop-blur-md">
-            {ticketStep === "booking" && (
-              <BookingStep
-                onBack={() => setDialogOpen(false)}
-                eventsData={eventsData}
-                onStepChange={() => setTicketStep("cart")}
-              />
-            )}
-            {ticketStep === "cart" && (
-              <CartStep
-                onBack={() => setTicketStep("booking")}
-                eventsData={eventsData}
-                onStepChange={() => setTicketStep("checkout")}
-              />
-            )}
-            {ticketStep === "checkout" && (
-              <CheckoutStep
-                onBack={() => setTicketStep("cart")}
-                eventsData={eventsData}
-                onStepChange={() => setTicketStep("payment")}
-              />
-            )}
-            {ticketStep === "payment" && (
-              <PaymentStep
-                onBack={() => setTicketStep("checkout")}
-                eventsData={eventsData}
-                onStepChange={() => setTicketStep("payment-success")}
-              />
-            )}
-            {ticketStep === "payment-success" && (
-              <PaymentSuccessStep
-                onBack={() => setTicketStep("payment")}
-                eventsData={eventsData}
-                onStepChange={() => setTicketStep("view-ticket")}
-              />
-            )}
-            {ticketStep === "view-ticket" && (
-              <ViewTicketStep
-                onBack={() => setTicketStep("payment-success")}
-                eventsData={eventsData}
-                onDownloadClicked={() => setTicketStep("buy-another-tickets")}
-                onShareClicked={() => setTicketStep("share-ticket")}
-              />
-            )}
-            {ticketStep === "buy-another-tickets" && (
-              <BuyAnotherTicketsStep
-                onBack={() => setTicketStep("view-ticket")}
-                onStepChange={() => {}}
-                eventsData={eventsData}
-              />
-            )}
-            {ticketStep === "share-ticket" && (
-              <ShareTicketStep
-                onClose={() => {
-                  setDialogOpen(false);
-                  setTicketStep("booking");
-                }}
-              />
-            )}
-          </div>
-        </DialogContent>
-      </Dialog>
+      <CartProvider>
+        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+          <DialogTrigger asChild>{children}</DialogTrigger>
+          <DialogContent className="overflow-y-auto p-1 max-w-screen-lg max-h-[calc(100dvh)]">
+            <div className=" p-12 backdrop-blur-md">
+              {ticketStep === "booking" && (
+                <BookingStep
+                  onBack={() => setDialogOpen(false)}
+                  eventsData={eventsData}
+                  onStepChange={() => setTicketStep("cart")}
+                />
+              )}
+              {ticketStep === "cart" && (
+                <CartStep
+                  onBack={() => setTicketStep("booking")}
+                  eventsData={eventsData}
+                  onStepChange={() => setTicketStep("checkout")}
+                />
+              )}
+              {ticketStep === "checkout" && (
+                <CheckoutStep
+                  onBack={() => setTicketStep("cart")}
+                  eventsData={eventsData}
+                  onStepChange={() => setTicketStep("payment")}
+                />
+              )}
+              {ticketStep === "payment" && (
+                <PaymentStep
+                  onBack={() => setTicketStep("checkout")}
+                  eventsData={eventsData}
+                  onStepChange={() => setTicketStep("payment-success")}
+                />
+              )}
+              {ticketStep === "payment-success" && (
+                <PaymentSuccessStep
+                  onBack={() => setTicketStep("payment")}
+                  eventsData={eventsData}
+                  onStepChange={() => setTicketStep("view-ticket")}
+                />
+              )}
+              {ticketStep === "view-ticket" && (
+                <ViewTicketStep
+                  onBack={() => setTicketStep("payment-success")}
+                  eventsData={eventsData}
+                  onDownloadClicked={() => setTicketStep("buy-another-tickets")}
+                  onShareClicked={() => setTicketStep("share-ticket")}
+                />
+              )}
+              {ticketStep === "buy-another-tickets" && (
+                <BuyAnotherTicketsStep
+                  onBack={() => setTicketStep("view-ticket")}
+                  onStepChange={() => {}}
+                  eventsData={eventsData}
+                />
+              )}
+              {ticketStep === "share-ticket" && (
+                <ShareTicketStep
+                  onClose={() => {
+                    setDialogOpen(false);
+                    setTicketStep("booking");
+                  }}
+                />
+              )}
+            </div>
+          </DialogContent>
+        </Dialog>
+      </CartProvider>
     );
   }
 );
