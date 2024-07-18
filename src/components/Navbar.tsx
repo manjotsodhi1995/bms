@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@mui/material";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 
 const isExcludedRoute = createRouteMatcher([
   "/login",
@@ -39,6 +40,9 @@ const Navbar = observer(() => {
   };
   const isAuthenticated = auth.isAuthenticated;
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(sidebarRef, () => setIsNavOpen(false));
+
   const [isFocused, setIsFocused] = useState(false);
   const [isDropOpen, setIsDropOpen] = useState(false);
   const handleFocus = () => {
@@ -48,8 +52,16 @@ const Navbar = observer(() => {
   const location = useLocation();
   const showNavbar = !isExcludedRoute(location);
   const [notificationOpen, setNotificationOpen] = useState(false);
+  const notificationRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(notificationRef, () => setNotificationOpen(false));
+
   const [profileOpen, setProfileOpen] = useState(false);
+  const accountRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(accountRef, () => setProfileOpen(false));
+
   const [calendarOpen, setCalendarOpen] = useState(false);
+  const calendarRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(calendarRef, () => setCalendarOpen(false));
 
   return (
     showNavbar && (
@@ -72,6 +84,7 @@ const Navbar = observer(() => {
                   ? "showMenuNav transition-all duration-100"
                   : "hideMenuNav"
               }
+              ref={sidebarRef}
             >
               <div
                 className="CROSS-ICON absolute top-0 right-0 px-8 py-8 w-full justify-between flex"
@@ -237,7 +250,7 @@ const Navbar = observer(() => {
             </Link>
             {isAuthenticated && (
               <div className="flex justify-center items-center ml-10 md:hidden">
-                <div>
+                <div ref={accountRef}>
                   <ProfileDropdown
                     open={profileOpen}
                     onOpenChange={(v) => {
@@ -301,7 +314,7 @@ const Navbar = observer(() => {
               </div>
             )}
             {isAuthenticated && (
-              <div className="flex items-center text-center">
+              <div className="flex items-center text-center" ref={calendarRef}>
                 <MyCalendarDropdown
                   open={calendarOpen}
                   onOpenChange={(v) => {
@@ -314,7 +327,7 @@ const Navbar = observer(() => {
             )}
             {isAuthenticated && (
               <div className="flex justify-center gap-8 items-center min-w-[6vw]">
-                <div className="cursor-pointer">
+                <div className="cursor-pointer" ref={notificationRef}>
                   <NotificationsDropdown
                     open={notificationOpen}
                     onOpenChange={(v) => {
@@ -324,7 +337,7 @@ const Navbar = observer(() => {
                     }}
                   />
                 </div>
-                <div>
+                <div ref={accountRef}>
                   <ProfileDropdown
                     open={profileOpen}
                     onOpenChange={(v) => {
