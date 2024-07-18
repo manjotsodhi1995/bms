@@ -51,10 +51,10 @@ export const BookingStep = ({
               key={ticket._id}
               pending={cartMutation.isPending}
               onTicketUpdate={(v) => {
-                // TODO: pass ticketCategory id if it gets added
                 cartMutation.mutate({
                   eventDate: eventsData?.eventStart.split(" ")[0],
                   basket: {
+                    categoryId: ticket._id,
                     noOfPersons: v,
                     categoryName: ticket.categoryName,
                     categoryType: ticket.categoryType,
@@ -106,7 +106,8 @@ export const BookingStep = ({
         </div>
 
         <button
-          className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md"
+          disabled={noOfTickets === 0}
+          className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed"
           onClick={onStepChange}
         >
           Reserve
