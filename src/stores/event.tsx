@@ -75,7 +75,7 @@ export class Event {
     });
     this.root = root;
   }
-  async fetchEvents(location: string) {
+  async fetchEvents(location: string = "Dublin") {
     try {
       if (location.includes(",")) {
         location = location.split(",")[0];
