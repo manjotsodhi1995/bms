@@ -6,6 +6,7 @@ import { useStore } from "../../hooks/useStore";
 import EventCardSkeleton from "../EventCardSkeleton";
 // import { API } from "@/api";
 import { useQuery } from "@tanstack/react-query";
+import Autocomplete from "react-google-autocomplete";
 
 // interface Category {
 //   categoryId: string;
@@ -21,8 +22,8 @@ function Trending() {
   const {
     root: { event },
   } = useStore();
-  const fetchEvents = async () => {
-    return await event.fetchEvents("28.4262481", "77.0581663");
+  const fetchEvents = async (location: string) => {
+    return await event.fetchEvents(location);
   };
 
   // const { data: categories } = useQuery({
@@ -30,15 +31,18 @@ function Trending() {
   //   queryFn: fetchCategories,
   // });
   // Dont care about data as it will be added to event directly
-  const { data: _, isLoading: loading } = useQuery({
-    queryKey: ["homepage", "fetchAllEvents"],
-    queryFn: fetchEvents,
-  });
+  const [selectedLocation, setSelectedLocation] = useState("Dublin, Ireland");
+  const handleLocationChange = (place: any) => {
+    let location: string = place.formatted_address
+      ? place.formatted_address
+      : place.name;
 
-  const [selectedLocation, setSelectedLocation] = useState("Dublin");
-  const handleLocationChange = (event: any) => {
-    setSelectedLocation(event.target.value);
+    setSelectedLocation(location);
   };
+  const { data, isLoading: loading } = useQuery({
+    queryKey: ["homepage", selectedLocation, "fetchAllEvents"],
+    queryFn: () => fetchEvents(selectedLocation),
+  });
 
   return (
     <div className="lg:px-[8%] px-[8vw] mt-[7vh] flex flex-col gap-8">
@@ -46,18 +50,12 @@ function Trending() {
         <div className="lg:text-[1.2rem] text-[0.7rem] font-medium">
           Discover events in
         </div>
-        <select
-          value={selectedLocation}
-          onChange={handleLocationChange}
+        <Autocomplete
+          apiKey={"AIzaSyCEJYl0JjVBnPxlOZgvNkJ69PyLOSVzAmY"}
           className="ml-4 py-1 px-4 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
-        >
-          <option value="Bengaluru">{selectedLocation}</option>
-          {/* {locationOptions.map(() => (
-            // <option key={option.value} value={option.value}>
-            //   {option.label}
-            // </option>
-          ))} */}
-        </select>
+          onPlaceSelected={handleLocationChange}
+          defaultValue={selectedLocation}
+        />
       </div>
 
       {/* <div className="flex flex-col gap-3"> */}
@@ -131,11 +129,13 @@ function Trending() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-between gap-2">
           {loading && [...Array(5)].map((_) => <EventCardSkeleton />)}
           {!loading &&
-            event.liveEvents
+            data &&
+            data.liveEvents
               .slice(0, 5)
               .map((card, index) => <EventCard key={index} {...card} />)}
           {!loading &&
-            event.upcomingEvents.map((card, index) => (
+            data &&
+            data.upcomingEvents.map((card, index) => (
               <EventCard key={index} {...card} />
             ))}
         </div>

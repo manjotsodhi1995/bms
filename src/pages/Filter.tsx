@@ -7,7 +7,7 @@ function Filter() {
     root: { event },
   } = useStore();
   const fetchEvents = async () => {
-    await event.fetchEvents("28.4262481", "77.0581663");
+    await event.fetchEvents();
   };
 
   // Dont care about data as it will be added to event directly

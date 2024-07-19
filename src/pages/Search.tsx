@@ -7,7 +7,7 @@ function SearchPage() {
   const [searchParams] = useSearchParams();
 
   const fetchEvents = async () => {
-    await event.fetchEvents("28.4262481", "77.0581663");
+    await event.fetchEvents();
     console.log(event);
   };
 

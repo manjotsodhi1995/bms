@@ -75,10 +75,13 @@ export class Event {
     });
     this.root = root;
   }
-  async fetchEvents(_lat: string, _long: string) {
+  async fetchEvents(location: string = "Dublin") {
     try {
+      if (location.includes(",")) {
+        location = location.split(",")[0];
+      }
       const response = await axios.get(
-        `${API.events.fetchAllEvents}?city=Dublin`
+        `${API.events.fetchAllEvents}?city=${location}`
       );
       this.liveEvents = response.data.data.liveEvents;
       this.upcomingEvents = response.data.data.upcomingEvents;
