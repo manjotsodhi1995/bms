@@ -58,4 +58,7 @@ export const API = {
 
     // trending: `${SERVER_BASE_URL}/categories/trending`,
   },
+  payments: {
+    direct: `${SERVER_BASE_URL}/payments/direct`,
+  },
 } as const;

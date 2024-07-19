@@ -1,16 +1,88 @@
-import { ChevronLeft } from "lucide-react";
-import { Fragment, useState } from "react";
+import { ChevronLeft, Loader2 } from "lucide-react";
+import { Fragment, useMemo } from "react";
 import { TicketStepsProps } from ".";
+import { useCart } from "@/stores/cart";
+import { useCartQuery } from "@/api/query/useCartQuery";
+import { formatDate } from "@/utils";
+import { useMutation } from "@tanstack/react-query";
+import axios from "@/utils/middleware";
+import { API } from "@/api";
+
+interface PaymentBody {
+  amount: string;
+  cardNumber: string;
+  cardExpiryMonth: string;
+  cardExpiryYear: string;
+  cardCVV: string;
+  customerName: string;
+  customerEmail: string;
+  customerAddress: string;
+  customerPostCode: string;
+}
+
+const sendPaymentDetails = async (body: PaymentBody) => {
+  console.log(body);
+  const response = await axios.post(API.payments.direct, body);
+  return response.data;
+};
 
 export const PaymentStep = ({
-  eventsData: _,
+  eventsData,
   onBack,
   onStepChange,
 }: TicketStepsProps) => {
-  const [cardNumber, setCardNumber] = useState("");
-  const [expiryDate, setExpiryDate] = useState("");
-  const [cvv, setCvv] = useState("");
-  const [country, setCountry] = useState("");
+  const {
+    firstName,
+    lastName,
+    email,
+    cardNumber,
+    setCardNumber,
+    expiryDate,
+    setExpiryDate,
+    country,
+    setCountry,
+    cvv,
+    setCvv,
+    setBookingId,
+  } = useCart();
+
+  const { cartData } = useCartQuery(
+    eventsData?.eventId,
+    eventsData?.eventStart
+  );
+  const noOfTickets = useMemo(() => {
+    if (!cartData) return 0;
+    const tickets = cartData.basket
+      ? cartData.basket.reduce((acc: number, d: any) => acc + d.noOfPersons, 0)
+      : 0;
+    return tickets;
+  }, [cartData]);
+
+  const { mutate, isPending, isError } = useMutation({
+    mutationFn: sendPaymentDetails,
+    onSuccess: (data: any) => {
+      if (data.transaction.transactionStatus === "SUCCESS") {
+        setBookingId(data.transaction.bookingId);
+        onStepChange?.();
+      }
+    },
+  });
+
+  const onSubmit = () =>
+    mutate({
+      amount: Number(cartData.totalAmount).toFixed(0),
+      cardNumber: cardNumber,
+      cardExpiryMonth: expiryDate.split("/")[0],
+      cardExpiryYear: expiryDate.split("/")[1],
+      cardCVV: cvv,
+      customerName: `${firstName} ${lastName}`,
+      customerEmail: email,
+      customerAddress: "Flat 6 Primrose Rise 347 Lavender Road Northampton",
+      customerPostCode: "NN17 8YG",
+      // customerAddress: country,
+      // customerPostCode: country,
+    });
+
   return (
     <Fragment>
       <div className="flex items-center gap-2">
@@ -87,14 +159,24 @@ export const PaymentStep = ({
           </div>
 
           <div className="flex flex-col mt-10 gap-4">
+            {isError && (
+              <p className="text-red-400 text-sm font-medium">
+                Could'nt complete payment. Please try again
+              </p>
+            )}
             <button
-              className="bg-black w-5/6 text-white font-thin py-3 rounded-md shadow-md"
-              onClick={onStepChange}
+              disabled={isPending}
+              className="flex justify-center items-center gap-2 bg-black w-5/6 text-white font-thin py-3 rounded-md shadow-md disabled:cursor-not-allowed"
+              onClick={onSubmit}
             >
               Pay NOW
+              {isPending && <Loader2 className="animate-spin size-4" />}
             </button>
 
-            <button className="bg-gray-100 w-5/6 text-black font-thin py-3 rounded-md shadow-md">
+            <button
+              className="bg-gray-100 w-5/6 text-black font-thin py-3 rounded-md shadow-md"
+              onClick={onBack}
+            >
               CANCEL
             </button>
           </div>
@@ -102,39 +184,41 @@ export const PaymentStep = ({
 
         <div className="bg-white mt-10 p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
           <img
-            src="https://s3-alpha-sig.figma.com/img/1cd7/f4dc/9ab46b29cc668c7f4e50b65efdb52bd2?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=o0crmQPt9uL0ZTxKjXhzyemymy5kxqqNva1yOimUDBO2gfDMEnBGmnk81r~fTApreOI3MqUPoPAgCe3FIT1LopcJOG8EF3VDoB2rtWE8Cq-F4y4Hd0qZEKJZVOMCsGpwNuBtbTBA9V4EIKdj32ruPM1fJW1hypUMy9cx9FMjbbb2l9Ebts6OQEOVDkXU~-pc9Ky0Iba-YJIVGqvu~rCmIRrd9JqTZ~VYIHi2NSgWy2MhCoYUHBPAlAgtn9cbJ3KksGUe7Is-rag9vV3TGBG0Pktd40zUSjs~FGGc3OW9vR33gp0J4-T6VVGytBCJBOvTMyjEE~yqU5RT9tYbh96thw__"
+            src={eventsData?.posterUrl}
             className="w-full h-52 object-fill rounded-lg"
           />
           <span className="leading-tight text-xl font-medium">
-            Fall Guy - Movie Screening
+            {eventsData?.title}
           </span>
           <p className="ml-4 md:ml-2 text-sm">
-            Wednesdays, 11 June
+            Wednesdays, {formatDate(new Date(eventsData?.eventStart!!))}
             <br />
-            at Cinema Star, Great Eastern Street, London, UK.
+            at {eventsData?.venueAddress.name}, {eventsData?.venueAddress.city},{" "}
+            {eventsData?.venueAddress.country},{" "}
+            {eventsData?.venueAddress.zipcode}
           </p>
 
           <h3 className="mt-10 leading-tight text-xl font-medium w-full">
             Order Summary
           </h3>
           <p className="flex w-full items-center justify-between font-medium">
-            <span>Table - 1(2)</span>
-            <span>$60.00</span>
+            <span>Ticket - {noOfTickets}</span>
+            <span>${cartData ? cartData.subTotal : "0.00"}</span>
           </p>
           <hr className="w-full border-t border-1 border-neutral-300" />
           <div className="flex flex-col w-full px-4">
             <p className="flex items-center justify-between text-gray-600 text-sm">
               <span>Subtotal</span>
-              <span>$60.00</span>
+              <span>${cartData ? cartData.subTotal : "0.00"}</span>
             </p>
             <p className="flex items-center justify-between text-gray-600 text-sm">
               <span>Fees</span>
-              <span>$10.00</span>
+              <span>${cartData ? cartData.totalTax : "0.00"}</span>
             </p>
 
             <p className="flex items-center justify-between mt-4 text-black font-medium">
               <span>Total</span>
-              <span>$70.00</span>
+              <span>${cartData ? cartData.totalAmount : "0.00"}</span>
             </p>
           </div>
         </div>
