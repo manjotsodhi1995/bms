@@ -3,16 +3,16 @@ import { useEffect, useRef, useState } from "react"
 interface StorySlidesProps {
   title: String,
   description: string,
-  src: string,
+  VideoUrl: string,
   index: number;
   activeIndex: number;
   currentIndex: number;
 }
-function StorySlide({ src, index, currentIndex }: StorySlidesProps) {
+function StorySlide({ VideoUrl, index, currentIndex }: StorySlidesProps) {
   const [isLoading, setIsLoading] = useState(true); // Add loading state
   const videoRef = useRef<HTMLVideoElement>(null);
   console.log("isLoading", isLoading)
-  console.log(src)
+  console.log(VideoUrl)
   const handleImageLoad = () => {
     setIsLoading(false); // Set loading to false when image loads
   };
@@ -35,7 +35,7 @@ function StorySlide({ src, index, currentIndex }: StorySlidesProps) {
           24 <br /> DEC
         </div>} */}
         <video
-          src={src}
+          src={VideoUrl}
           ref={videoRef}
           className="w-full md:rounded-3xl rounded-xl h-full object-cover"
           loop

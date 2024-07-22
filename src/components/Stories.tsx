@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import {data}  from "../utils/stories"
 
 
 
@@ -21,38 +22,68 @@ interface StoryProps {
   handlePrevClick: () => void;
 }
 
-const data = [
-  {
-    title: "Match Events",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    src:
-      "/v1.mp4",
-  },
-  {
-    title: "Match Events",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 810",
-    src:
-      "/v2.mp4",
-  },
-  {
-    title: "Match Events",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    src:
-      "/v3.mp4",
-  },
-  {
-    title: "Match Events",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    src:
-     "/v4.mp4",
-  },
-  {
-    title: "Match Events",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    src:
-      "/v5.mp4",
-  }
-];
+// const data = [
+//   {
+//     title: "Match Events",
+//     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+//     src:
+//       "/v1.mp4",
+//   },
+//   {
+//     title: "Match Events",
+//     description: "1901 Thornridge Cir. Shiloh, Hawaii 810",
+//     src:
+//       "/v2.mp4",
+//   },
+//   {
+//     title: "Match Events",
+//     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+//     src:
+//       "/v3.mp4",
+//   },
+//   {
+//     title: "Match Events",
+//     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+//     src:
+//      "/v4.mp4",
+//   },
+//   {
+//     title: "Match Events",
+//     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+//     src:
+//       "/v5.mp4",
+//   },
+//   {
+//     title: "Match Events",
+//     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+//     src:
+//       "/v1.mp4",
+//   },
+//   {
+//     title: "Match Events",
+//     description: "1901 Thornridge Cir. Shiloh, Hawaii 810",
+//     src:
+//       "/v2.mp4",
+//   },
+//   {
+//     title: "Match Events",
+//     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+//     src:
+//       "/v3.mp4",
+//   },
+//   {
+//     title: "Match Events",
+//     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+//     src:
+//      "/v4.mp4",
+//   },
+//   {
+//     title: "Match Events",
+//     description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+//     src:
+//       "/v5.mp4",
+//   }
+// ];
 const style = {
   position: 'absolute',
   display:'flex',
@@ -83,13 +114,13 @@ const Stories: React.FC<StoryProps> = ({ onOpen, setOpen, activeIndex, handleNex
   const handleNext = () => {
     handleNextClick();
     // Perform additional actions here
-    setCurrentIndex((prev)=>(prev+1)%5)
+    setCurrentIndex((prev)=>(prev+11)%10)
   };
 
   const handlePrev = () => {
     handlePrevClick();
     // Perform additional actions here
-    setCurrentIndex((prev)=>((prev-1)+5)%5)
+    setCurrentIndex((prev)=>(prev+9)%10)
   };
 const handleClose = () => setOpen(false);
   return (
@@ -113,6 +144,7 @@ const handleClose = () => setOpen(false);
           loop={true}
           slidesPerView={2}
           autoplay={false}
+          allowTouchMove={false}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
