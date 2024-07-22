@@ -20,6 +20,8 @@ const Privacy = lazy(() => import("./pages/privacy"));
 const Forgot = lazy(() => import("./pages/Forgot"));
 const Filter = lazy(() => import("./pages/Filter"));
 import AccountSettings from "./pages/AccountSettings";
+import ReferFriends from "./pages/ReferFriends";
+import ReferOrganizer from "./pages/ReferOrganizer";
 const EventPage = lazy(() => import("./pages/eventPage"));
 const SearchPage = lazy(() => import("./pages/Search"));
 const Home = lazy(() => import("./pages/Home"));
@@ -192,6 +194,9 @@ const App = observer(() => {
               path="/upcoming-events/:location"
               element={<UpComingEventsInLocation />}
             />
+
+            <Route path="/refer-friends" element={<ReferFriends />} />
+            <Route path="/refer-organizer" element={<ReferOrganizer />} />
           </Routes>{" "}
         </Suspense>
       </BrowserRouter>

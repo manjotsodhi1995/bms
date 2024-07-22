@@ -154,3 +154,13 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+.bg-color {
+  color: rgba(150, 75, 125, 1);
+}
+.card {
+  width: Fixed (624px) px;
+  height: Fixed (192px) px;
+  padding: 40px 53px 40px 53px;
+  border-radius: 30px;
+  opacity: 0px;
+}

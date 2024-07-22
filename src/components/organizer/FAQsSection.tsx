@@ -2,7 +2,7 @@ import ExpandableBox from "./Expandable";
 
 const FAQsSection = () => {
   return (
-    <div className="pl-[5vw] pt-[5vh] w-full flex flex-col items-center pb-20 gap-8">
+    <div className="pl-[5vw] pt-[5vh] w-full flex flex-col items-center pb-20 gap-10 md:my-20">
       <div className="title font-semibold text-2xl md:text-5xl">FAQs</div>
       <div className="w-[90%] flex flex-col gap-3 py-8">
         <ExpandableBox

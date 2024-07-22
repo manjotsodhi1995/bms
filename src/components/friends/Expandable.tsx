@@ -11,14 +11,11 @@ const ExpandableBox = ({ title, content }: ExpandableBoxProps) => {
   };
 
   return (
-    <div className="w-full rounded-xl shadow-md overflow-hidden px-2 py-5 border-2 border-gray-300">
+    <div className="w-full rounded-xl shadow-md overflow-hidden md:px-2 md:py-5 border-2 border-gray-300">
       <div
-        className="flex justify-between items-center px-4 py-3 cursor-pointer"
+        className="flex justify-between items-center px-10 py-6 cursor-pointer"
         onClick={handleClick}>
-        <p
-          className={`${
-            isOpen ? "text-[#009961]" : ""
-          } 2xl:text-[1.5rem] text-lg`}>
+        <p className={`${isOpen ? "text" : ""} 2xl:text-[1.5rem] text-lg`}>
           {title}
         </p>
         <svg
@@ -37,7 +34,7 @@ const ExpandableBox = ({ title, content }: ExpandableBoxProps) => {
         </svg>
       </div>
       {isOpen && (
-        <div className="px-4 py-6 prose 2xl:text-[1.2rem] text-lg">
+        <div className="px-10 py-6 prose 2xl:text-[1.2rem] text-lg">
           {content}
         </div>
       )}
