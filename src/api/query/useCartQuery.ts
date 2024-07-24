@@ -5,7 +5,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 interface UpdateCart {
   eventDate: string;
   basket: {
-    categoryId: string;
     categoryType: string;
     categoryName: string;
     noOfPersons: number;
