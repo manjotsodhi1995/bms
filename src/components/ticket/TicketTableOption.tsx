@@ -18,7 +18,11 @@ const TicketTableOption = ({
   pending,
 }: TicketTableOptionProps) => {
   const tickets = currentBasket
-    ? currentBasket.find((item: any) => item._id === ticket._id)?.noOfPersons
+    ? currentBasket.find(
+        (item: any) =>
+          item.categoryType === ticket.categoryType &&
+          item.categoryName === ticket.categoryName
+      )?.noOfPersons
     : 0;
 
   return (

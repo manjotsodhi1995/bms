@@ -54,7 +54,6 @@ export const BookingStep = ({
                 cartMutation.mutate({
                   eventDate: eventsData?.eventStart.split(" ")[0],
                   basket: {
-                    categoryId: ticket._id,
                     noOfPersons: v,
                     categoryName: ticket.categoryName,
                     categoryType: ticket.categoryType,

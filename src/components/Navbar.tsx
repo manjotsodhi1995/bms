@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useRef, useState } from "react";
+import { Ref, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
@@ -250,16 +250,15 @@ const Navbar = observer(() => {
             </Link>
             {isAuthenticated && (
               <div className="flex justify-center items-center ml-10 md:hidden">
-                <div ref={accountRef}>
-                  <ProfileDropdown
-                    open={profileOpen}
-                    onOpenChange={(v) => {
-                      if (notificationOpen) setNotificationOpen(false);
-                      if (calendarOpen) setCalendarOpen(false);
-                      setProfileOpen(v);
-                    }}
-                  />
-                </div>
+                <ProfileDropdown
+                  ref={accountRef}
+                  open={profileOpen}
+                  onOpenChange={(v) => {
+                    if (notificationOpen) setNotificationOpen(false);
+                    if (calendarOpen) setCalendarOpen(false);
+                    setProfileOpen(v);
+                  }}
+                />
               </div>
             )}
           </nav>
@@ -337,8 +336,9 @@ const Navbar = observer(() => {
                     }}
                   />
                 </div>
-                <div ref={accountRef}>
+                <div>
                   <ProfileDropdown
+                    ref={accountRef}
                     open={profileOpen}
                     onOpenChange={(v) => {
                       if (notificationOpen) setNotificationOpen(false);
@@ -386,6 +386,7 @@ const Navbar = observer(() => {
 interface NavbarDropdownProps {
   open: boolean;
   onOpenChange: (v: boolean) => void;
+  ref?: Ref<HTMLDivElement>;
 }
 
 function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
@@ -457,7 +458,7 @@ const fetchProfile = async () => {
   return response.data.data;
 };
 
-function ProfileDropdown({ open, onOpenChange }: NavbarDropdownProps) {
+function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
   const {
     root: { auth },
   } = useStore();
@@ -474,7 +475,10 @@ function ProfileDropdown({ open, onOpenChange }: NavbarDropdownProps) {
         <img src={pfp} alt="Profile" className="rounded-full w-8 h-8" />
       </button>
       {open && (
-        <div className="absolute flex flex-col items-center -right-24 mt-2 w-96 bg-white rounded-md shadow-lg z-20">
+        <div
+          ref={ref}
+          className="absolute flex flex-col items-center -right-24 mt-2 w-96 bg-white rounded-md shadow-lg z-20"
+        >
           {/* Your profile/settings content here */}
 
           <Avatar src={pfp} sx={{ width: 82, height: 82 }} />
