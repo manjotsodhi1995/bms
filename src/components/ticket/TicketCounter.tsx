@@ -1,5 +1,5 @@
 import { cn } from "@/utils";
-import { Plus, Minus } from "lucide-react";
+import { Plus, Minus, Loader2 } from "lucide-react";
 
 interface TicketCounterProps {
   value: number;
@@ -24,17 +24,22 @@ const TicketCounter = ({
     onValueChange(value > 0 ? value - 1 : value);
   };
   return (
-    <div className={cn("flex gap-4 mr-6", className)}>
+    <div className={cn("flex items-center gap-4 mr-6", className)}>
       <button
-        className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center"
+        disabled={pending}
+        className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center disabled:cursor-not-allowed"
         onClick={decreaseTicket}
       >
         <Minus className="size-5 stroke-1" />
       </button>
-      <span>{value}</span>
+      {pending ? (
+        <Loader2 className="size-4 animate-spin" />
+      ) : (
+        <span>{value}</span>
+      )}
       <button
         disabled={pending}
-        className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center"
+        className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center disabled:cursor-not-allowed"
         onClick={increaseTicket}
       >
         <Plus className="size-5  stroke-1" />
