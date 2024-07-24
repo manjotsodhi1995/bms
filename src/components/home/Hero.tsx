@@ -8,8 +8,8 @@ import "swiper/css/navigation";
 import { useState, useRef, useEffect } from "react";
 import type SwiperCore from "swiper";
 import Stories from "../Stories";
-import c1 from "@/assets/c1.jpeg";
-import c2 from "@/assets/c2.jpeg";
+import c1 from "@/assets/c1.jpg";
+import c2 from "@/assets/c2.jpg";
 
 // import v1 from "../../assets/v1.mp4"/
 function Hero() {
