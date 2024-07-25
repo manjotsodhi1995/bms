@@ -120,8 +120,8 @@ const EventPage = observer(() => {
           </div>
         </div>
       </div>
-      <div className="lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] flex justify-between md:flex-row flex-col gap-8 2xl:gap-16">
-        <div className="flex flex-col gap-2 lg:max-w-xl 2xl:max-w-5xl">
+      <div className="relative lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] flex justify-between md:flex-row flex-col gap-8 2xl:gap-16">
+        <div className="flex flex-col gap-2 md:w-[50%] lg:max-w-xl 2xl:max-w-5xl">
           <div className="flex items-center gap-4">
             <div>
               <svg
@@ -182,7 +182,7 @@ const EventPage = observer(() => {
             </div>
             <div className="text-gray-700">2000-4000</div>
           </div>
-          <div className="mt-4 flex justify-between gap-10">
+          <div className="mt-4 flex md:hidden justify-between gap-10">
             <div className="flex flex-col text-center items-center">
               <div className="font-medium text-[1.2rem]">
                 {eventData?.duration ? `${eventData.duration}h` : "4h"}
@@ -202,12 +202,27 @@ const EventPage = observer(() => {
               <div className="text-gray-700 text-[0.9rem]">Age Restriction</div>
             </div>
           </div>
+          <div className="grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
+            {event.upcomingEvents.slice(0, 3).map((card, index) => (
+              <div key={index} className="snap-center w-full" ref={carouselRef}>
+                <EventSlides {...card} />
+              </div>
+            ))}
+          </div>{" "}
           <div className="flex flex-col mt-4 gap-2">
             <div className="font-medium text-[1.4rem]">About</div>
             <div>{eventData?.description}</div>
           </div>
-          <div className="underline font-medium mt-4 cursor-pointer text-xl">
-            Refund Policy
+          <div className="w-full">
+            <h1 className="font-medium text-[1.3rem]">Location</h1>
+            <iframe
+              src={`https://maps.google.com/maps?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}&hl=en;z=14&amp&output=embed`}
+              width="100%"
+              height="290"
+            />
+            <div className="px-2 py-2 border-black border-2 2xl:w-[12rem] w-[10rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center text-[0.8rem]">
+              GET DIRECTIONS
+            </div>
           </div>
           {eventData?.organizer && (
             <div className="flex items-center justify-between mt-4">
@@ -220,7 +235,10 @@ const EventPage = observer(() => {
                   }}
                 />
                 <p className="flex flex-col">
-                  <Link to={`/organization/${eventData.organizer._id}`} className="font-medium text-lg">
+                  <Link
+                    to={`/organization/${eventData.organizer._id}`}
+                    className="font-medium text-lg"
+                  >
                     {eventData.organizer.name}
                   </Link>
                   <span>Organizer</span>
@@ -238,7 +256,6 @@ const EventPage = observer(() => {
               </button>
             </div>
           )}
-
           <div className="mt-4 flex flex-col gap-2">
             <div className="flex gap-2">
               <div className="w-[30px] items-center flex justify-center">
@@ -300,36 +317,10 @@ const EventPage = observer(() => {
               <div>Last Entry at Fri 5th Jul at 9:00 AM (GMT+)</div>
             </div>
           </div>
-          {canBookTicket && eventData && (
-            <div className="mt-4 space-y-2">
-              <BookTicketsDialog eventsData={eventData}>
-                <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
-                  Get Tickets
-                </button>
-              </BookTicketsDialog>
-            </div>
-          )}
-        </div>
-        <div className="flex lg:max-w-lg 2xl:max-w-3xl flex-col gap-8">
-          <div className="grid grid-cols-3 md:grid-cols-3 gap-2">
-            {event.upcomingEvents.slice(0, 3).map((card, index) => (
-              <div key={index} className="snap-center w-full" ref={carouselRef}>
-                <EventSlides {...card} />
-              </div>
-            ))}
-          </div>{" "}
-          <div className="w-full">
-            <h1 className="font-medium text-[1.3rem]">Location</h1>
-            <iframe
-              src={`https://maps.google.com/maps?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}&hl=en;z=14&amp&output=embed`}
-              width="100%"
-              height="290"
-            />
-            <div className="px-2 py-2 border-black border-2 2xl:w-[12rem] w-[10rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center text-[0.8rem]">
-              GET DIRECTIONS
-            </div>
+          <div className="underline font-medium mt-4 cursor-pointer text-xl">
+            Refund Policy
           </div>
-          <div>
+          <div className="mt-20">
             <div className="font-medium text-[1.2rem]">
               Would you like to rep this event?
             </div>
@@ -339,7 +330,40 @@ const EventPage = observer(() => {
             </div>
           </div>
         </div>
+
+        <div className="h-fit fixed bottom-0 z-10 left-0 bg-white py-2 px-2 md:sticky md:top-20 flex flex-col w-full md:max-w-[50%]">
+          <div className="mt-4 hidden md:flex justify-between gap-10">
+            <div className="flex flex-col text-center items-center">
+              <div className="font-medium text-[1.2rem]">
+                {eventData?.duration ? `${eventData.duration}h` : "4h"}
+              </div>
+              <div className="text-gray-700 text-[0.9rem]">Duration</div>
+            </div>
+            <div className="flex flex-col text-center items-center">
+              <div className="font-medium text-[1.2rem]">
+                {eventData?.genres[0]}{" "}
+              </div>
+              <div className="text-gray-700 text-[0.9rem]">Genre</div>
+            </div>
+            <div className="flex flex-col text-center items-center">
+              <div className="font-medium text-[1.2rem]">
+                {eventData?.ageRestriction}
+              </div>
+              <div className="text-gray-700 text-[0.9rem]">Age Restriction</div>
+            </div>
+          </div>
+          {canBookTicket && eventData && (
+            <div className="md:mt-4 space-y-2">
+              <BookTicketsDialog eventsData={eventData}>
+                <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
+                  Get Tickets
+                </button>
+              </BookTicketsDialog>
+            </div>
+          )}
+        </div>
       </div>
+
       <div className="lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] flex w-full">
         <div className="flex flex-col gap-4 w-full">
           <div className="flex justify-between mt-4">
