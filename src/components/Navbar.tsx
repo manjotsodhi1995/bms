@@ -3,7 +3,6 @@ import { Ref, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
-import pfp from "../assets/test/pfp.png";
 import bell from "../assets/test/bell.png";
 import { createRouteMatcher } from "@/utils/routeMatcher";
 import axios from "@/utils/middleware";
@@ -472,7 +471,7 @@ function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
   return (
     <div className="relative">
       <button onClick={toggleDropdown}>
-        <img src={pfp} alt="Profile" className="rounded-full w-8 h-8" />
+        <Avatar src={data?.displayPic} sx={{ height: 32, width: 32 }} />
       </button>
       {open && (
         <div
@@ -481,7 +480,7 @@ function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
         >
           {/* Your profile/settings content here */}
 
-          <Avatar src={pfp} sx={{ width: 82, height: 82 }} />
+          <Avatar src={data?.displayPic} sx={{ width: 82, height: 82 }} />
           {data && data.fname && data.lname && (
             <span className="py-2 mb-6">
               {data.fname} {data.lname}
