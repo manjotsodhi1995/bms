@@ -6,12 +6,15 @@ import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { MuiTelInput } from "mui-tel-input";
+import { AxiosError } from "axios";
 
 const Register = observer(() => {
   const [firstName, setFirstName] = useState(""); // State for first name input
   const [lastName, setLastName] = useState(""); // State for last name input
   const [gender, setGender] = useState("male"); // State for gender
   const [phone, setPhone] = useState("");
+  const [actualPhone, setActualPhone] = useState<string | null>("");
+  const [country, setCountry] = useState<string | null>("");
   const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -50,11 +53,19 @@ const Register = observer(() => {
     event.preventDefault();
     try {
       setLoading(true);
-      await auth.register(email, password, firstName, lastName, gender, phone);
+      await auth.register(
+        email,
+        password,
+        firstName,
+        lastName,
+        gender,
+        actualPhone,
+        country
+      );
       navigate("/");
     } catch (error: any) {
-      if (error.response && error.response.status === 400) {
-        setError("Invalid email or password. Please try again.");
+      if (error instanceof AxiosError) {
+        setError(error.response?.data.message);
       } else {
         setError("An error occurred during login. Please try again later.");
         console.error("Login error:", error);
@@ -133,7 +144,11 @@ const Register = observer(() => {
               <div className="">
                 <MuiTelInput
                   value={phone}
-                  onChange={setPhone}
+                  onChange={(v, info) => {
+                    setPhone(v);
+                    setActualPhone(info.nationalNumber);
+                    setCountry(`+${info.countryCallingCode}`);
+                  }}
                   name="phone"
                   id="phone"
                   placeholder="Phone"

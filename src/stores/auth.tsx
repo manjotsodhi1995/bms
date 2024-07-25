@@ -52,12 +52,13 @@ export class Auth {
     firstName: string,
     lastName: string,
     gender: string,
-    phone: string
+    phone: string | null,
+    country: string | null
   ) {
     const data = {
       fname: firstName,
       lname: lastName,
-      countryCode: "+91",
+      countryCode: country,
       phone: phone,
       fcmToken: "test token",
       email: email,
