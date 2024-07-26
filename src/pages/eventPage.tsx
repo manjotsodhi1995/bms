@@ -21,6 +21,7 @@ import { Loader2 } from "lucide-react";
 import { useLikesQuery } from "@/api/query/useLikesQuery";
 import { useFollowingQuery } from "@/api/query/useFollowingQuery";
 import Footer from "@/components/Footer";
+import toast from "react-hot-toast";
 
 const fetchEvent = async (slug?: string) => {
   const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
@@ -88,7 +89,15 @@ const EventPage = observer(() => {
           <div className="flex gap-4">
             <button
               disabled={likesMutation.isPending}
-              onClick={() => likesMutation.mutate()}
+              onClick={() => {
+                toast.promise(likesMutation.mutateAsync(), {
+                  loading: "Please wait",
+                  success: isLiked
+                    ? "Removed from favourites"
+                    : "Added to favourites",
+                  error: "An error occurred",
+                });
+              }}
               className={cn(
                 "bg-white rounded-full w-[50px] h-[50px] bg-opacity-40 items-center flex justify-center",
                 {

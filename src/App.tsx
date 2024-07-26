@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import { Toaster } from "react-hot-toast";
 
 import load from "./assets/Ghost.gif";
 import { useStore } from "./hooks/useStore";
@@ -81,6 +82,7 @@ const App = observer(() => {
 
   return (
     <div className="relative">
+      <Toaster />
       {/* <div className="relative overflow-hidden"> */}
       <BrowserRouter>
         <div className="home absolute -z-50">
@@ -96,7 +98,8 @@ const App = observer(() => {
             <div className="min-h-screen w-screen flex justify-center items-center">
               <img src={load} alt="" className="w-[10vw] h-[10vw]" />
             </div>
-          }>
+          }
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
