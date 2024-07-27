@@ -91,18 +91,18 @@ export const CheckoutStep = ({
               className="w-full p-2 mt-1 border border-gray-300 rounded-md"
             />
           </div>
-          <div>
-            <label htmlFor="confirm-email" className="text-sm font-medium">
-              Confirm Email
-            </label>
-            <input
-              id="confirm-email"
-              type="text"
-              value={confirmEmail}
-              onChange={(e) => setConfirmEmail(e.target.value)}
-              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
-            />
-          </div>
+          {/* <div> */}
+          {/*   <label htmlFor="confirm-email" className="text-sm font-medium"> */}
+          {/*     Confirm Email */}
+          {/*   </label> */}
+          {/*   <input */}
+          {/*     id="confirm-email" */}
+          {/*     type="text" */}
+          {/*     value={confirmEmail} */}
+          {/*     onChange={(e) => setConfirmEmail(e.target.value)} */}
+          {/*     className="w-full p-2 mt-1 border border-gray-300 rounded-md" */}
+          {/*   /> */}
+          {/* </div> */}
           <div>
             <label htmlFor="voucher-code" className="text-sm font-medium">
               Add voucher code
@@ -124,30 +124,30 @@ export const CheckoutStep = ({
                 setPaymentMethod(selected ? "card" : null)
               }
             />
-            <PaymentMethodCard
-              title="Paypal"
-              logo={PaymentMethodIcons.paypal()}
-              selected={paymentMethod === "paypal"}
-              onSelectedChange={(selected) =>
-                setPaymentMethod(selected ? "paypal" : null)
-              }
-            />
-            <PaymentMethodCard
-              title="Google Pay"
-              logo={PaymentMethodIcons.google()}
-              selected={paymentMethod === "googlepay"}
-              onSelectedChange={(selected) =>
-                setPaymentMethod(selected ? "googlepay" : null)
-              }
-            />
-            <PaymentMethodCard
-              title="Apple Pay"
-              logo={PaymentMethodIcons.apple()}
-              selected={paymentMethod === "applepay"}
-              onSelectedChange={(selected) =>
-                setPaymentMethod(selected ? "applepay" : null)
-              }
-            />
+            {/* <PaymentMethodCard */}
+            {/*   title="Paypal" */}
+            {/*   logo={PaymentMethodIcons.paypal()} */}
+            {/*   selected={paymentMethod === "paypal"} */}
+            {/*   onSelectedChange={(selected) => */}
+            {/*     setPaymentMethod(selected ? "paypal" : null) */}
+            {/*   } */}
+            {/* /> */}
+            {/* <PaymentMethodCard */}
+            {/*   title="Google Pay" */}
+            {/*   logo={PaymentMethodIcons.google()} */}
+            {/*   selected={paymentMethod === "googlepay"} */}
+            {/*   onSelectedChange={(selected) => */}
+            {/*     setPaymentMethod(selected ? "googlepay" : null) */}
+            {/*   } */}
+            {/* /> */}
+            {/* <PaymentMethodCard */}
+            {/*   title="Apple Pay" */}
+            {/*   logo={PaymentMethodIcons.apple()} */}
+            {/*   selected={paymentMethod === "applepay"} */}
+            {/*   onSelectedChange={(selected) => */}
+            {/*     setPaymentMethod(selected ? "applepay" : null) */}
+            {/*   } */}
+            {/* /> */}
           </div>
         </div>
 

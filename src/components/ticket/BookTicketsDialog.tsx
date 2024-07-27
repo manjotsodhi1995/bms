@@ -9,7 +9,6 @@ import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { TicketStep } from "@/stores/ticket";
 import { BookingStep } from "./steps/BookingStep";
-import { CartStep } from "./steps/CartStep";
 import { CheckoutStep } from "./steps/CheckoutStep";
 import { PaymentStep } from "./steps/PaymentStep";
 import { PaymentSuccessStep } from "./steps/PaymentSuccessStep";
@@ -44,19 +43,19 @@ const BookTicketsDialog = observer(
                 <BookingStep
                   onBack={() => setDialogOpen(false)}
                   eventsData={eventsData}
-                  onStepChange={() => setTicketStep("cart")}
-                />
-              )}
-              {ticketStep === "cart" && (
-                <CartStep
-                  onBack={() => setTicketStep("booking")}
-                  eventsData={eventsData}
                   onStepChange={() => setTicketStep("checkout")}
                 />
               )}
+              {/* {ticketStep === "cart" && ( */}
+              {/*   <CartStep */}
+              {/*     onBack={() => setTicketStep("booking")} */}
+              {/*     eventsData={eventsData} */}
+              {/*     onStepChange={() => setTicketStep("checkout")} */}
+              {/*   /> */}
+              {/* )} */}
               {ticketStep === "checkout" && (
                 <CheckoutStep
-                  onBack={() => setTicketStep("cart")}
+                  onBack={() => setTicketStep("booking")}
                   eventsData={eventsData}
                   onStepChange={() => setTicketStep("payment")}
                 />
