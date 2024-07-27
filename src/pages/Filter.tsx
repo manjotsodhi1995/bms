@@ -1,6 +1,10 @@
 import { useStore } from "@/hooks/useStore";
 import EventCard from "../components/EventCard";
 import { useQuery } from "@tanstack/react-query";
+import Calendar from "react-calendar";
+import { CalendarIcon } from "lucide-react";
+import { useState } from "react";
+import "react-calendar/dist/Calendar.css";
 
 function Filter() {
   const {
@@ -15,6 +19,8 @@ function Filter() {
     queryKey: ["filterEvents"],
     queryFn: fetchEvents,
   });
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const toggleCalendar = () => setCalendarOpen((p) => !p);
 
   return (
     <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
@@ -27,7 +33,13 @@ function Filter() {
           </h2>
         </div>
         <div className="border-gray-400 border-b mb-[50px] pl-[30px]">
-          <h3 className="font-medium mb-[20px]">Day</h3>
+          <p className="flex items-center w-full gap-2 mb-[20px] relative">
+            <h3 className="font-medium">Day</h3>
+            <CalendarIcon className="size-5" onClick={toggleCalendar} />
+          </p>
+          {calendarOpen && (
+            <Calendar className="absolute !w-[100vw] md:!w-[25vw] 2xl:text-xl" />
+          )}
           <div className="flex justify-between w-[200px]">
             <div className="flex">
               <input
