@@ -23,7 +23,7 @@ function Filter() {
   const toggleCalendar = () => setCalendarOpen((p) => !p);
 
   return (
-    <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
+    <div className="lg:pr-[5%] xl:pr-[7%] pr-[8vw] min-h-[80vh] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
       <div className="md:w-[20rem] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] h-fit rounded-3xl backdrop-blur-lg ml-2 bg-gray-300/10 border border-gray-200">
         {" "}
         {/* Fixed positioning and overflow */}
@@ -256,15 +256,15 @@ function Filter() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 pb-10 sm:w-[70vw] w-[100vw]">
+      <div className="flex flex-col gap-2 pb-10 w-full">
         {" "}
         {/* Adjusted margin-left */}
-        <div className="flex w-screen justify-center mt-4 sm:justify-normal">
-          <div className="font-medium lg:text-[1.4rem] text-[0.9rem] sm:ml-[50px]">
+        <div className="flex justify-center mt-4 sm:justify-normal">
+          <div className="font-medium lg:text-[1.4rem] text-[0.9rem] sm:ml-[00px]">
             Events
           </div>
         </div>
-        <div className="w-full grid lg:grid-cols-4 grid-cols-2 gap-4 p-4">
+        <div className="grid lg:grid-cols-4 grid-cols-2 gap-2 justify-between">
           {event.upcomingEvents.map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
