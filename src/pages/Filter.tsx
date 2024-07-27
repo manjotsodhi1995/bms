@@ -18,7 +18,7 @@ function Filter() {
 
   return (
     <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
-      <div className="md:w-[20rem] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] border h-fit rounded-3xl bg-white/50 backdrop-blur-lg ml-2">
+      <div className="md:w-[20rem] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] h-fit rounded-3xl backdrop-blur-lg ml-2 bg-gray-300/10 border border-gray-200">
         {" "}
         {/* Fixed positioning and overflow */}
         <div className="border-gray-400 border-b mb-[30px] pl-[30px]">
@@ -252,7 +252,7 @@ function Filter() {
             Events
           </div>
         </div>
-        <div className="w-full grid lg:grid-cols-4 xl:grid-cols-5 grid-cols-2 gap-4 p-4">
+        <div className="w-full grid lg:grid-cols-4 grid-cols-2 gap-4 p-4">
           {event.upcomingEvents.map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
