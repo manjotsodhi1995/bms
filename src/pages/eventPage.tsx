@@ -130,7 +130,7 @@ const EventPage = observer(() => {
         </div>
       </div>
       <div className="relative lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] flex justify-between md:flex-row flex-col gap-8 2xl:gap-16">
-        <div className="flex flex-col gap-2 md:w-[50%] lg:max-w-xl 2xl:max-w-5xl">
+        <div className="flex flex-col gap-2 md:w-[70%]">
           <div className="flex items-center gap-4">
             <div>
               <svg
@@ -340,7 +340,7 @@ const EventPage = observer(() => {
           </div>
         </div>
 
-        <div className="h-fit fixed bottom-0 z-10 left-0 bg-white py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[50%]">
+        <div className="h-fit fixed bottom-0 z-10 left-0 bg-white py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[30%]">
           <div className="mt-4 hidden md:flex justify-between gap-10">
             <div className="flex flex-col text-center items-center">
               <div className="font-medium text-[1.2rem]">
