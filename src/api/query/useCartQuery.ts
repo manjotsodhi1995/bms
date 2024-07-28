@@ -1,6 +1,7 @@
 import axios from "@/utils/middleware";
 import { API } from "..";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useCart } from "@/stores/cart";
 
 interface UpdateCart {
   eventDate: string;
@@ -13,6 +14,7 @@ interface UpdateCart {
 
 export const useCartQuery = (eventId?: string, eventDate?: string) => {
   const queryClient = useQueryClient();
+  const { setBasketId } = useCart();
 
   const updateCart = async (body: Partial<UpdateCart>) => {
     if (!eventId) return false;
@@ -25,6 +27,10 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
     const response = await axios.post(`${API.basket.fetch}/${eventId}`, {
       eventDate: eventDate ? eventDate.split(" ")[0] : null,
     });
+
+    if (response.status === 200) {
+      setBasketId(response.data.data._id);
+    }
     return response.data.data;
   };
 

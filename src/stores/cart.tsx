@@ -28,6 +28,8 @@ interface CartContextType {
   setCountry: Dispatch<SetStateAction<string>>;
   bookingId: string;
   setBookingId: Dispatch<SetStateAction<string>>;
+  basketId: string;
+  setBasketId: Dispatch<SetStateAction<string>>;
 }
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -42,6 +44,7 @@ const CartProvider = ({ children }: PropsWithChildren) => {
   const [expiryDate, setExpiryDate] = useState("");
   const [cvv, setCvv] = useState("");
   const [country, setCountry] = useState("");
+  const [basketId, setBasketId] = useState("");
 
   // TODO: Remove if not needed
   const [bookingId, setBookingId] = useState("");
@@ -67,6 +70,8 @@ const CartProvider = ({ children }: PropsWithChildren) => {
     setCountry,
     bookingId,
     setBookingId,
+    basketId,
+    setBasketId,
   };
 
   return (

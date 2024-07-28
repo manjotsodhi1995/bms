@@ -18,10 +18,10 @@ interface PaymentBody {
   customerEmail: string;
   customerAddress: string;
   customerPostCode: string;
+  basketId: string;
 }
 
 const sendPaymentDetails = async (body: PaymentBody) => {
-  console.log(body);
   const response = await axios.post(API.payments.direct, body);
   return response.data;
 };
@@ -44,6 +44,7 @@ export const PaymentStep = ({
     cvv,
     setCvv,
     setBookingId,
+    basketId,
   } = useCart();
 
   const { cartData } = useCartQuery(
@@ -61,7 +62,7 @@ export const PaymentStep = ({
   const { mutate, isPending, isError } = useMutation({
     mutationFn: sendPaymentDetails,
     onSuccess: (data: any) => {
-      if (data.transaction.transactionStatus === "SUCCESS") {
+      if (data.transaction.bookingStatus === "SUCCESS") {
         setBookingId(data.transaction.bookingId);
         onStepChange?.();
       }
@@ -81,6 +82,7 @@ export const PaymentStep = ({
       customerPostCode: "NN17 8YG",
       // customerAddress: country,
       // customerPostCode: country,
+      basketId: basketId,
     });
 
   const clearNumber = (value = "") => {
