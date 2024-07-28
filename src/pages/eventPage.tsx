@@ -21,6 +21,7 @@ import { Loader2 } from "lucide-react";
 import { useLikesQuery } from "@/api/query/useLikesQuery";
 import { useFollowingQuery } from "@/api/query/useFollowingQuery";
 import Footer from "@/components/Footer";
+import toast from "react-hot-toast";
 
 const fetchEvent = async (slug?: string) => {
   const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
@@ -88,7 +89,15 @@ const EventPage = observer(() => {
           <div className="flex gap-4">
             <button
               disabled={likesMutation.isPending}
-              onClick={() => likesMutation.mutate()}
+              onClick={() => {
+                toast.promise(likesMutation.mutateAsync(), {
+                  loading: "Please wait",
+                  success: isLiked
+                    ? "Removed from favourites"
+                    : "Added to favourites",
+                  error: "An error occurred",
+                });
+              }}
               className={cn(
                 "bg-white rounded-full w-[50px] h-[50px] bg-opacity-40 items-center flex justify-center",
                 {
@@ -121,7 +130,7 @@ const EventPage = observer(() => {
         </div>
       </div>
       <div className="relative lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] flex justify-between md:flex-row flex-col gap-8 2xl:gap-16">
-        <div className="flex flex-col gap-2 md:w-[50%] lg:max-w-xl 2xl:max-w-5xl">
+        <div className="flex flex-col gap-2 md:w-[70%]">
           <div className="flex items-center gap-4">
             <div>
               <svg
@@ -202,7 +211,7 @@ const EventPage = observer(() => {
               <div className="text-gray-700 text-[0.9rem]">Age Restriction</div>
             </div>
           </div>
-          <div className="grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
+          <div className="md:hidden grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
             {event.upcomingEvents.slice(0, 3).map((card, index) => (
               <div key={index} className="snap-center w-full" ref={carouselRef}>
                 <EventSlides {...card} />
@@ -331,7 +340,14 @@ const EventPage = observer(() => {
           </div>
         </div>
 
-        <div className="h-fit fixed bottom-0 z-10 left-0 bg-white py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[50%]">
+        <div className="h-fit fixed bottom-0 z-10 left-0 bg-white py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[30%]">
+          <div className="hidden md:grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
+            {event.upcomingEvents.slice(0, 3).map((card, index) => (
+              <div key={index} className="snap-center w-full" ref={carouselRef}>
+                <EventSlides {...card} />
+              </div>
+            ))}
+          </div>{" "}
           <div className="mt-4 hidden md:flex justify-between gap-10">
             <div className="flex flex-col text-center items-center">
               <div className="font-medium text-[1.2rem]">

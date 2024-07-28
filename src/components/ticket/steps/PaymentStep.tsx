@@ -18,10 +18,10 @@ interface PaymentBody {
   customerEmail: string;
   customerAddress: string;
   customerPostCode: string;
+  basketId: string;
 }
 
 const sendPaymentDetails = async (body: PaymentBody) => {
-  console.log(body);
   const response = await axios.post(API.payments.direct, body);
   return response.data;
 };
@@ -44,6 +44,7 @@ export const PaymentStep = ({
     cvv,
     setCvv,
     setBookingId,
+    basketId,
   } = useCart();
 
   const { cartData } = useCartQuery(
@@ -61,7 +62,7 @@ export const PaymentStep = ({
   const { mutate, isPending, isError } = useMutation({
     mutationFn: sendPaymentDetails,
     onSuccess: (data: any) => {
-      if (data.transaction.transactionStatus === "SUCCESS") {
+      if (data.transaction.bookingStatus === "SUCCESS") {
         setBookingId(data.transaction.bookingId);
         onStepChange?.();
       }
@@ -81,7 +82,37 @@ export const PaymentStep = ({
       customerPostCode: "NN17 8YG",
       // customerAddress: country,
       // customerPostCode: country,
+      basketId: basketId,
     });
+
+  const clearNumber = (value = "") => {
+    return value.replace(/\D+/g, "");
+  };
+  const handleCardNumberChange = (cardNumber: string) => {
+    if (!cardNumber) {
+      setCardNumber(cardNumber);
+    }
+
+    const clearValue = clearNumber(cardNumber);
+    let nextValue = `${clearValue.slice(0, 4)} ${clearValue.slice(
+      4,
+      8
+    )} ${clearValue.slice(8, 12)} ${clearValue.slice(12, 16)}`;
+    nextValue = nextValue.trim();
+    console.log(nextValue);
+    setCardNumber(nextValue);
+  };
+
+  const handleExpiryDateChange = (expiry: string) => {
+    const clearValue = clearNumber(expiry);
+    if (clearValue.length >= 3) {
+      setExpiryDate(
+        (_) => `${clearValue.slice(0, 2)}/${clearValue.slice(2, 4)}`
+      );
+      return;
+    }
+    setExpiryDate(clearValue);
+  };
 
   return (
     <Fragment>
@@ -103,10 +134,9 @@ export const PaymentStep = ({
               Card Number
               <input
                 id="cardNumber"
-                type="number"
                 placeholder="0000 0000 0000 0000"
                 value={cardNumber}
-                onChange={(e) => setCardNumber(e.target.value)}
+                onChange={(e) => handleCardNumberChange(e.target.value)}
                 className="w-full p-2 mt-1 border border-gray-300 rounded-md"
               />
               <VisaIcon className="absolute right-2 top-1/2 translate-y-1.5" />
@@ -122,7 +152,7 @@ export const PaymentStep = ({
                 type="text"
                 placeholder="MM / YY"
                 value={expiryDate}
-                onChange={(e) => setExpiryDate(e.target.value)}
+                onChange={(e) => handleExpiryDateChange(e.target.value)}
                 className="w-full p-2 mt-1 border border-gray-300 rounded-md"
               />
             </div>
@@ -213,7 +243,9 @@ export const PaymentStep = ({
             </p>
             <p className="flex items-center justify-between text-gray-600 text-sm">
               <span>Fees</span>
-              <span>${cartData ? cartData.totalTax : "0.00"}</span>
+              <span>
+                ${cartData ? cartData.totalAmount - cartData.subTotal : "0.00"}
+              </span>
             </p>
 
             <p className="flex items-center justify-between mt-4 text-black font-medium">

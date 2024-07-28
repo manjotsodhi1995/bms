@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import EventCard from "../EventCard";
-// import axios from "../../utils/middleware";
+import axios from "../../utils/middleware";
 import { useStore } from "../../hooks/useStore";
 import EventCardSkeleton from "../EventCardSkeleton";
-// import { API } from "@/api";
+import { API } from "@/api";
 import { useQuery } from "@tanstack/react-query";
-import Autocomplete from "react-google-autocomplete";
+import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+import { Loader2, MapPin } from "lucide-react";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 
-// interface Category {
-//   categoryId: string;
-//   categoryName: string;
-// }
+interface Category {
+  categoryId: string;
+  categoryName: string;
+}
 
-// const fetchCategories = async () => {
-//   const response = await axios.get(API.categories.getAllCategories);
-//   return response.data.data as Category[];
-// };
+const fetchCategories = async () => {
+  const response = await axios.get(API.categories.getAllCategories);
+  return response.data.data as Category[];
+};
 
 function Trending() {
   const {
@@ -26,23 +28,38 @@ function Trending() {
     return await event.fetchEvents(location);
   };
 
-  // const { data: categories } = useQuery({
-  //   queryKey: ["categoriesQuery"],
-  //   queryFn: fetchCategories,
-  // });
-  // Dont care about data as it will be added to event directly
+  const { data: categories } = useQuery({
+    queryKey: ["categoriesQuery"],
+    queryFn: fetchCategories,
+  });
   const [selectedLocation, setSelectedLocation] = useState("Dublin, Ireland");
-  const handleLocationChange = (place: any) => {
-    let location: string = place.formatted_address
-      ? place.formatted_address
-      : place.name;
-
-    setSelectedLocation(location);
-  };
+  const [completionsOpen, setCompletionsOpen] = useState(false);
+  const locationRef = useRef<HTMLDivElement>(null);
   const { data, isLoading: loading } = useQuery({
     queryKey: ["homepage", selectedLocation, "fetchAllEvents"],
     queryFn: () => fetchEvents(selectedLocation),
   });
+
+  const {
+    placesService,
+    placePredictions,
+    getPlacePredictions,
+    isPlacePredictionsLoading,
+  } = usePlacesService({
+    apiKey: "AIzaSyCEJYl0JjVBnPxlOZgvNkJ69PyLOSVzAmY",
+  });
+
+  useEffect(() => {
+    if (placePredictions.length)
+      placesService?.getDetails(
+        {
+          placeId: placePredictions[0].place_id,
+        },
+        () => setCompletionsOpen(true)
+      );
+  }, [placePredictions]);
+
+  useOnClickOutside(locationRef, () => setCompletionsOpen(false));
 
   return (
     <div className="lg:px-[8%] px-[8vw] mt-[7vh] flex flex-col gap-8">
@@ -50,35 +67,67 @@ function Trending() {
         <div className="lg:text-[1.2rem] text-[0.7rem] font-medium">
           Discover events in
         </div>
-        <Autocomplete
-          apiKey={"AIzaSyCEJYl0JjVBnPxlOZgvNkJ69PyLOSVzAmY"}
-          className="ml-4 py-1 px-4 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
-          onPlaceSelected={handleLocationChange}
-          defaultValue={selectedLocation}
-        />
+        <label htmlFor="location" className="relative">
+          <input
+            id="location"
+            className="ml-2 !py-0 !px-2 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
+            value={selectedLocation}
+            onChange={(e) => {
+              getPlacePredictions({ input: e.target.value });
+              setSelectedLocation(e.target.value);
+            }}
+          />
+          {completionsOpen && (
+            <div
+              ref={locationRef}
+              className="absolute w-full bg-white z-10 flex flex-col top-6 left-2 border-2 rounded text-sm"
+            >
+              {isPlacePredictionsLoading && (
+                <p className="w-full flex justify-center">
+                  <Loader2 className="size-4 text-gray-600 animate-spin" />
+                </p>
+              )}
+              {placePredictions.map((item) => (
+                <p
+                  key={item.place_id}
+                  className="flex w-full gap-2 hover:bg-gray-100 group rounded"
+                  onClick={() => {
+                    setSelectedLocation(item.description);
+                    setCompletionsOpen(false);
+                  }}
+                >
+                  <MapPin className="min-w-4 w-4 h-4 text-gray-400 group-hover:fill-red-300 group-hover:text-red-500" />
+                  <span className="line-clamp-1 group-hover:font-medium">
+                    {item.description}
+                  </span>
+                </p>
+              ))}
+            </div>
+          )}
+        </label>
       </div>
 
-      {/* <div className="flex flex-col gap-3"> */}
-      {/*   <h2 className="text-lg font-medium mb-2 lg:text-[1.4rem] text-[0.9rem]"> */}
-      {/*     <span className="inline-block transform -rotate-90 mr-2">▼</span>{" "} */}
-      {/*     Trending Categories */}
-      {/*   </h2> */}
-      {/**/}
-      {/*   <div className="flex w-full gap-4 overflow-x-auto"> */}
-      {/*     {categories && */}
-      {/*       categories.slice(0, 7).map((category: Category) => ( */}
-      {/*         <a */}
-      {/*           key={category.categoryId} */}
-      {/*           href={`/search?query=${encodeURIComponent( */}
-      {/*             category.categoryName */}
-      {/*           )}`} */}
-      {/*           className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200" */}
-      {/*         > */}
-      {/*           {category.categoryName} */}
-      {/*         </a> */}
-      {/*       ))} */}
-      {/*   </div> */}
-      {/* </div> */}
+      <div className="flex flex-col gap-3">
+        <h2 className="text-lg font-medium mb-2 lg:text-[1.4rem] text-[0.9rem]">
+          <span className="inline-block transform -rotate-90 mr-2">▼</span>{" "}
+          Trending Categories
+        </h2>
+
+        <div className="flex w-full gap-4 overflow-x-auto">
+          {categories &&
+            categories.slice(0, 7).map((category: Category) => (
+              <a
+                key={category.categoryId}
+                href={`/search?query=${encodeURIComponent(
+                  category.categoryName
+                )}`}
+                className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200"
+              >
+                {category.categoryName}
+              </a>
+            ))}
+        </div>
+      </div>
 
       <div className="flex flex-col gap-4">
         <div className="flex justify-between mt-4">

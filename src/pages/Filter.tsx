@@ -1,6 +1,10 @@
 import { useStore } from "@/hooks/useStore";
 import EventCard from "../components/EventCard";
 import { useQuery } from "@tanstack/react-query";
+import Calendar from "react-calendar";
+import { CalendarIcon } from "lucide-react";
+import { useState } from "react";
+import "react-calendar/dist/Calendar.css";
 
 function Filter() {
   const {
@@ -15,10 +19,12 @@ function Filter() {
     queryKey: ["filterEvents"],
     queryFn: fetchEvents,
   });
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const toggleCalendar = () => setCalendarOpen((p) => !p);
 
   return (
-    <div className="lg:pr-[2.5%] xl:pr-[3.5%] sm:pr-[4vw] min-h-[80vh] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
-      <div className="md:w-[20rem] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] border h-fit rounded-3xl bg-white/50 backdrop-blur-lg ml-2">
+    <div className="lg:pr-[5%] xl:pr-[7%] pr-[8vw] min-h-[80vh] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
+      <div className="md:w-[20rem] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] h-fit rounded-3xl backdrop-blur-lg ml-2 bg-gray-300/10 border border-gray-200">
         {" "}
         {/* Fixed positioning and overflow */}
         <div className="border-gray-400 border-b mb-[30px] pl-[30px]">
@@ -27,7 +33,13 @@ function Filter() {
           </h2>
         </div>
         <div className="border-gray-400 border-b mb-[50px] pl-[30px]">
-          <h3 className="font-medium mb-[20px]">Day</h3>
+          <p className="flex items-center w-full gap-2 mb-[20px] relative">
+            <h3 className="font-medium">Day</h3>
+            <CalendarIcon className="size-5" onClick={toggleCalendar} />
+          </p>
+          {calendarOpen && (
+            <Calendar className="absolute !w-[100vw] md:!w-[25vw] 2xl:text-xl" />
+          )}
           <div className="flex justify-between w-[200px]">
             <div className="flex">
               <input
@@ -244,15 +256,15 @@ function Filter() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 pb-10 sm:w-[70vw] w-[100vw]">
+      <div className="flex flex-col gap-2 pb-10 w-full">
         {" "}
         {/* Adjusted margin-left */}
-        <div className="flex w-screen justify-center mt-4 sm:justify-normal">
-          <div className="font-medium lg:text-[1.4rem] text-[0.9rem] sm:ml-[50px]">
+        <div className="flex justify-center mt-4 sm:justify-normal">
+          <div className="font-medium lg:text-[1.4rem] text-[0.9rem] sm:ml-[00px]">
             Events
           </div>
         </div>
-        <div className="w-full grid lg:grid-cols-4 xl:grid-cols-5 grid-cols-2 gap-4 p-4">
+        <div className="grid lg:grid-cols-4 grid-cols-2 gap-2 justify-between">
           {event.upcomingEvents.map((card, index) => (
             <EventCard key={index} {...card} />
           ))}

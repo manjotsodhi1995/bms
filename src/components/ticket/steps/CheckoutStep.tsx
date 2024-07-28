@@ -2,7 +2,6 @@ import { Fragment } from "react/jsx-runtime";
 import { TicketStepsProps } from ".";
 import { ChevronLeft } from "lucide-react";
 import PaymentMethodCard, {
-  PaymentMethodIcons,
   PaymentMethods,
 } from "@/components/ticket/PaymentMethodCard";
 import { useMemo, useState } from "react";
@@ -22,8 +21,8 @@ export const CheckoutStep = ({
     setLastName,
     email,
     setEmail,
-    confirmEmail,
-    setConfirmEmail,
+    // confirmEmail,
+    // setConfirmEmail,
     voucherCode,
     setVoucherCode,
   } = useCart();
@@ -91,18 +90,18 @@ export const CheckoutStep = ({
               className="w-full p-2 mt-1 border border-gray-300 rounded-md"
             />
           </div>
-          <div>
-            <label htmlFor="confirm-email" className="text-sm font-medium">
-              Confirm Email
-            </label>
-            <input
-              id="confirm-email"
-              type="text"
-              value={confirmEmail}
-              onChange={(e) => setConfirmEmail(e.target.value)}
-              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
-            />
-          </div>
+          {/* <div> */}
+          {/*   <label htmlFor="confirm-email" className="text-sm font-medium"> */}
+          {/*     Confirm Email */}
+          {/*   </label> */}
+          {/*   <input */}
+          {/*     id="confirm-email" */}
+          {/*     type="text" */}
+          {/*     value={confirmEmail} */}
+          {/*     onChange={(e) => setConfirmEmail(e.target.value)} */}
+          {/*     className="w-full p-2 mt-1 border border-gray-300 rounded-md" */}
+          {/*   /> */}
+          {/* </div> */}
           <div>
             <label htmlFor="voucher-code" className="text-sm font-medium">
               Add voucher code
@@ -124,30 +123,30 @@ export const CheckoutStep = ({
                 setPaymentMethod(selected ? "card" : null)
               }
             />
-            <PaymentMethodCard
-              title="Paypal"
-              logo={PaymentMethodIcons.paypal()}
-              selected={paymentMethod === "paypal"}
-              onSelectedChange={(selected) =>
-                setPaymentMethod(selected ? "paypal" : null)
-              }
-            />
-            <PaymentMethodCard
-              title="Google Pay"
-              logo={PaymentMethodIcons.google()}
-              selected={paymentMethod === "googlepay"}
-              onSelectedChange={(selected) =>
-                setPaymentMethod(selected ? "googlepay" : null)
-              }
-            />
-            <PaymentMethodCard
-              title="Apple Pay"
-              logo={PaymentMethodIcons.apple()}
-              selected={paymentMethod === "applepay"}
-              onSelectedChange={(selected) =>
-                setPaymentMethod(selected ? "applepay" : null)
-              }
-            />
+            {/* <PaymentMethodCard */}
+            {/*   title="Paypal" */}
+            {/*   logo={PaymentMethodIcons.paypal()} */}
+            {/*   selected={paymentMethod === "paypal"} */}
+            {/*   onSelectedChange={(selected) => */}
+            {/*     setPaymentMethod(selected ? "paypal" : null) */}
+            {/*   } */}
+            {/* /> */}
+            {/* <PaymentMethodCard */}
+            {/*   title="Google Pay" */}
+            {/*   logo={PaymentMethodIcons.google()} */}
+            {/*   selected={paymentMethod === "googlepay"} */}
+            {/*   onSelectedChange={(selected) => */}
+            {/*     setPaymentMethod(selected ? "googlepay" : null) */}
+            {/*   } */}
+            {/* /> */}
+            {/* <PaymentMethodCard */}
+            {/*   title="Apple Pay" */}
+            {/*   logo={PaymentMethodIcons.apple()} */}
+            {/*   selected={paymentMethod === "applepay"} */}
+            {/*   onSelectedChange={(selected) => */}
+            {/*     setPaymentMethod(selected ? "applepay" : null) */}
+            {/*   } */}
+            {/* /> */}
           </div>
         </div>
 
@@ -182,7 +181,9 @@ export const CheckoutStep = ({
             </p>
             <p className="flex items-center justify-between text-gray-600 text-sm">
               <span>Fees</span>
-              <span>${cartData ? cartData.totalTax : "0.00"}</span>
+              <span>
+                ${cartData ? cartData.totalAmount - cartData.subTotal : "0.00"}
+              </span>
             </p>
 
             <p className="flex items-center justify-between mt-4 text-black font-medium">

@@ -4,6 +4,7 @@ import { MouseEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { ShareEventDialog } from "./ShareEventDialog";
 import { useLikesQuery } from "@/api/query/useLikesQuery";
+import toast from "react-hot-toast";
 
 function EventCard(event: Partial<EventType>) {
   const [isHovered, setIsHovered] = useState(false);
@@ -17,7 +18,12 @@ function EventCard(event: Partial<EventType>) {
     e: MouseEvent<SVGSVGElement, globalThis.MouseEvent>
   ) => {
     e.preventDefault();
-    mutation.mutate();
+    mutation.mutateAsync();
+    toast.promise(mutation.mutateAsync(), {
+      loading: "Please wait",
+      success: isLiked ? "Removed from favourites" : "Added to favourites",
+      error: "An error occurred",
+    });
   };
 
   const onShareClicked = (
@@ -28,7 +34,7 @@ function EventCard(event: Partial<EventType>) {
   };
   return (
     <div
-      className="w-full place-self-center rounded-3xl shadow:lg transition-transform duration-300 ease-in-out  bg-white pb-2 border-[#BCBCBC36] border-2 cursor-pointer relative"
+      className="w-full h-full place-self-center rounded-3xl shadow:lg transition-transform duration-300 ease-in-out  bg-white pb-2 border-[#BCBCBC36] border-2 cursor-pointer relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ transform: isHovered ? "scale(1.02)" : "scale(1)" }}
