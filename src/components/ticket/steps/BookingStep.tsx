@@ -5,6 +5,7 @@ import { useBookingMatrixQuery } from "@/api/query/useBookingMatrixQuery";
 import { formatDate } from "@/utils";
 import { useCartQuery } from "@/api/query/useCartQuery";
 import { useMemo } from "react";
+import { AxiosError } from "axios";
 
 export const BookingStep = ({
   eventsData,
@@ -26,6 +27,17 @@ export const BookingStep = ({
     return tickets;
   }, [cartData]);
 
+  const error = useMemo(() => {
+    if (cartMutation.error instanceof AxiosError) {
+      return (
+        cartMutation.error?.response?.data.message ||
+        "An error occurred. Please try again"
+      );
+    } else {
+      return "An error occurred. Please try again";
+    }
+  }, [cartMutation.isError]);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
       <div>
@@ -41,6 +53,7 @@ export const BookingStep = ({
             <Loader2 className="animate-spin size-4" />
           </p>
         )}
+        {cartMutation.isError && <span className="ml-2 text-sm text-red-500">{error}</span>}
         {!isLoading &&
           data &&
           data.ticketCategories &&
