@@ -15,6 +15,8 @@ axios.interceptors.request.use(
       } catch (refreshError) {}
     } else if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
+    } else {
+      config.headers["is_guest_user"] = true;
     }
 
     return config;
