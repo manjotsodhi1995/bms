@@ -95,7 +95,9 @@ export const BookingStep = ({
           </p>
           <p className="flex items-center justify-between text-gray-600 text-sm">
             <span>Fees</span>
-            <span>${cartData ? cartData.totalTax : "0.00"}</span>
+            <span>
+              ${cartData ? cartData.totalAmount - cartData.subTotal : "0.00"}
+            </span>
           </p>
 
           <p className="flex items-center justify-between mt-4 text-black font-medium">

@@ -2,7 +2,6 @@ import { Fragment } from "react/jsx-runtime";
 import { TicketStepsProps } from ".";
 import { ChevronLeft } from "lucide-react";
 import PaymentMethodCard, {
-  PaymentMethodIcons,
   PaymentMethods,
 } from "@/components/ticket/PaymentMethodCard";
 import { useMemo, useState } from "react";
@@ -22,8 +21,8 @@ export const CheckoutStep = ({
     setLastName,
     email,
     setEmail,
-    confirmEmail,
-    setConfirmEmail,
+    // confirmEmail,
+    // setConfirmEmail,
     voucherCode,
     setVoucherCode,
   } = useCart();
@@ -182,7 +181,9 @@ export const CheckoutStep = ({
             </p>
             <p className="flex items-center justify-between text-gray-600 text-sm">
               <span>Fees</span>
-              <span>${cartData ? cartData.totalTax : "0.00"}</span>
+              <span>
+                ${cartData ? cartData.totalAmount - cartData.subTotal : "0.00"}
+              </span>
             </p>
 
             <p className="flex items-center justify-between mt-4 text-black font-medium">
