@@ -179,7 +179,7 @@ function Trending() {
         {/*       .slice(0, 3) */}
         {/*       .map((card, index) => <EventCard key={index} {...card} />)} */}
         {/* </div> */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-between gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-2">
           {loading && [...Array(5)].map((_) => <EventCardSkeleton />)}
           {!loading &&
             data &&
