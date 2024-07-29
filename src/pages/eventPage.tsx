@@ -343,7 +343,7 @@ const EventPage = observer(() => {
           </div>
         </div>
 
-        <div className="h-fit fixed bottom-0 z-10 left-0 bg-white py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[30%]">
+        <div className="h-fit fixed bottom-0 z-10 left-0 py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[30%]">
           <div className="hidden md:grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
             {event.upcomingEvents.slice(0, 3).map((card, index) => (
               <div key={index} className="snap-center w-full" ref={carouselRef}>
