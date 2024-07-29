@@ -64,7 +64,7 @@ function Trending() {
   return (
     <div className="lg:px-[8%] px-[8vw] mt-[7vh] flex flex-col gap-8">
       <div className="flex items-center mb-4">
-        <div className="lg:text-[1.2rem] text-[0.7rem] font-medium">
+        <div className="lg:text-[1.5rem] text-[0.7rem] font-medium">
           Discover events in
         </div>
         <label htmlFor="location" className="relative">
