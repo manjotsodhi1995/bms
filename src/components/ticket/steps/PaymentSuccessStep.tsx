@@ -1,7 +1,7 @@
 import { EventType } from "@/stores/event";
 import { TicketStepsProps } from ".";
 import EventCard from "@/components/EventCard";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, CircleCheck } from "lucide-react";
 
 const eventData = [
   {
@@ -42,8 +42,9 @@ export const PaymentSuccessStep = ({
       <div className="w-full flex flex-col items-center justify-center gap-10">
         <div className="flex flex-col items-center justify-center gap-10">
           <span className="text-xl font-semibold">Payment successfull!</span>
+          <CircleCheck className="size-20 text-green-500"/>
 
-          <div className="mt-10">
+          <div className="mt-2">
             <button
               className="mt-4 bg-black w-full text-white font-medium py-2 rounded-md"
               onClick={onStepChange}
