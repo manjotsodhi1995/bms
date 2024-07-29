@@ -70,7 +70,7 @@ function Trending() {
         <label htmlFor="location" className="relative">
           <input
             id="location"
-            className="ml-2 !py-0 !px-2 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
+            className="ml-4 !py-1 !px-2 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700 w-[9rem]"
             value={selectedLocation}
             onChange={(e) => {
               getPlacePredictions({ input: e.target.value });
