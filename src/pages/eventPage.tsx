@@ -5,7 +5,7 @@ import Share from "../assets/share.png";
 import three from "../assets/three.png";
 import axios from "../utils/middleware";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import EventCard from "../components/EventCard";
 import EventSlides from "@/components/eventStory";
 import BookTicketsDialog from "@/components/ticket/BookTicketsDialog";
@@ -65,7 +65,10 @@ const EventPage = observer(() => {
     let closingDate = new Date(eventData.bookingClosingDate).getTime();
     return !eventData.isSoldOut && Date.now() < closingDate;
   }, [eventData]);
-
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="w-full">
       {/* <Navbar /> */}
