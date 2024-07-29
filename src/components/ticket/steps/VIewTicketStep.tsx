@@ -3,18 +3,21 @@ import { TicketStepsProps } from ".";
 import { ChevronLeft } from "lucide-react";
 import QrCode from "@/assets/payment-methods/qrcode.svg";
 import ticket from "@/assets/payment-methods/ticket.svg";
+import { usePDF } from "react-to-pdf";
 
 interface ViewTicketStepProps extends TicketStepsProps {
-  onDownloadClicked: () => void;
   onShareClicked: () => void;
   showTitle?: boolean;
 }
 export const ViewTicketStep = ({
-  onDownloadClicked,
+  eventsData,
   onShareClicked,
   onBack,
   showTitle = true,
 }: ViewTicketStepProps) => {
+  const { toPDF, targetRef } = usePDF({
+    filename: eventsData?.title + "_ticket.pdf",
+  });
   return (
     <Fragment>
       {showTitle && (
@@ -28,6 +31,7 @@ export const ViewTicketStep = ({
       <div className="flex items-center justify-center">
         <div className="flex flex-col p-10 rounded-2xl items-center justify-center mt-10 w-4/5 border border-gray-200 ">
           <div
+            ref={targetRef}
             className="flex flex-col w-full bg-no-repeat bg-contain bg-center gap-20 py-20"
             style={{
               backgroundImage: `url(${ticket})`,
@@ -55,7 +59,8 @@ export const ViewTicketStep = ({
               <p className="flex flex-col">
                 <span className="text-sm text-gray-300">Location</span>
                 <span className="font-medium">
-                  Grand Avenue Center, Surabaya
+                  {eventsData?.venueAddress.name},
+                  {eventsData?.venueAddress.city}
                 </span>
               </p>
             </div>
@@ -63,7 +68,7 @@ export const ViewTicketStep = ({
           <div className="w-3/5 flex gap-2">
             <button
               className="mt-4 bg-black w-full text-white font-medium py-2 rounded-md"
-              onClick={onDownloadClicked}
+              onClick={() => toPDF()}
             >
               Download
             </button>

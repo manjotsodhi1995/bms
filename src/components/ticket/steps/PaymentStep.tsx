@@ -196,15 +196,15 @@ export const PaymentStep = ({
             )}
             <button
               disabled={isPending}
-              className="flex justify-center items-center gap-2 bg-black w-5/6 text-white font-thin py-3 rounded-md shadow-md disabled:cursor-not-allowed"
+              className="flex w-full justify-center items-center gap-2 bg-black 6 text-white font-thin py-3 rounded-md shadow-md disabled:cursor-not-allowed"
               onClick={onSubmit}
             >
-              Pay NOW
+              PAY NOW
               {isPending && <Loader2 className="animate-spin size-4" />}
             </button>
 
             <button
-              className="bg-gray-100 w-5/6 text-black font-thin py-3 rounded-md shadow-md"
+              className="bg-gray-100 w-full text-black font-thin py-3 rounded-md shadow-md"
               onClick={onBack}
             >
               CANCEL

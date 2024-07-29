@@ -1,39 +1,24 @@
-import { EventType } from "@/stores/event";
 import { TicketStepsProps } from ".";
 import EventCard from "@/components/EventCard";
 import { ChevronLeft, CircleCheck } from "lucide-react";
-
-const eventData = [
-  {
-    title: "Rhythms Live",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    posterUrl:
-      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-  },
-  {
-    title: "Rhythms Live",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    posterUrl:
-      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-  },
-  {
-    title: "Rhythms Live",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    posterUrl:
-      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-  },
-  {
-    title: "Rhythms Live",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    posterUrl:
-      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-  },
-] satisfies Partial<EventType>[];
+import { useQuery } from "@tanstack/react-query";
+import { useStore } from "@/hooks/useStore";
 
 export const PaymentSuccessStep = ({
   onStepChange,
   onBack,
 }: TicketStepsProps) => {
+  const {
+    root: { event },
+  } = useStore();
+  const fetchEvents = async (location: string) => {
+    return await event.fetchEvents(location);
+  };
+  const { data } = useQuery({
+    queryKey: ["homepage", "Dublin, Ireland", "fetchAllEvents"],
+    queryFn: () => fetchEvents("Dublin, Ireland"),
+  });
+
   return (
     <>
       <button onClick={onBack}>
@@ -42,7 +27,7 @@ export const PaymentSuccessStep = ({
       <div className="w-full flex flex-col items-center justify-center gap-10">
         <div className="flex flex-col items-center justify-center gap-10">
           <span className="text-xl font-semibold">Payment successfull!</span>
-          <CircleCheck className="size-20 text-green-500"/>
+          <CircleCheck className="size-20 text-green-500" />
 
           <div className="mt-2">
             <button
@@ -57,14 +42,14 @@ export const PaymentSuccessStep = ({
             </p>
           </div>
 
-          <div className="flex w-full gap-4 font-thin text-sm">
-            <button className="mt-4 bg-black w-full text-white font-medium py-2 rounded-md">
-              Add to groupchat
-            </button>
-            <button className="mt-4 bg-black w-full text-white font-medium py-2 rounded-md">
-              Rep this event
-            </button>
-          </div>
+          {/* <div className="flex w-full gap-4 font-thin text-sm"> */}
+          {/*   <button className="mt-4 bg-black w-full text-white font-medium py-2 rounded-md"> */}
+          {/*     Add to groupchat */}
+          {/*   </button> */}
+          {/*   <button className="mt-4 bg-black w-full text-white font-medium py-2 rounded-md"> */}
+          {/*     Rep this event */}
+          {/*   </button> */}
+          {/* </div> */}
         </div>
 
         <div className="lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] flex w-full">
@@ -74,7 +59,7 @@ export const PaymentSuccessStep = ({
             </span>
 
             <div className="flex gap-2 justify-around">
-              {eventData.slice(0, 2).map((card, index) => (
+              {data?.upcomingEvents.slice(0, 2).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>
