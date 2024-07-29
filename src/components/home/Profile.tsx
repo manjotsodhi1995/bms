@@ -39,7 +39,7 @@ function Profile() {
         </div>
         <div className="w-full flex justify-center">
           <Link
-            to="/affiliate"
+            to="/organizer"
             className="bg-white text-black font-semibold px-16 rounded-lg py-2"
           >
             Partner with us{" "}
