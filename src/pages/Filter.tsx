@@ -23,7 +23,8 @@ function Filter() {
   const toggleCalendar = () => setCalendarOpen((p) => !p);
 
   return (
-    <div className="lg:pr-[5%] xl:pr-[7%] pr-[8vw] min-h-[80vh] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
+    <div className="lg:pr-[5%] xl:pr-[7%] pr-[0vw] min-h-[80vh] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
+      {/* <div className="bg-red-400 min-h-4 min-w-4 p-24 rounded-full absolute"></div> */}
       <div className="z-10 md:w-[20rem] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] h-fit rounded-3xl backdrop-blur-lg ml-2 bg-gray-300/10 border border-gray-200">
         {" "}
         {/* Fixed positioning and overflow */}
@@ -264,7 +265,7 @@ function Filter() {
             Events
           </div>
         </div>
-        <div className="grid lg:grid-cols-4 grid-cols-2 gap-2 justify-between">
+        <div className="grid lg:grid-cols-4 grid-cols-1 gap-2 justify-between">
           {event.upcomingEvents.map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
