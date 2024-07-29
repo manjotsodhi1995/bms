@@ -107,13 +107,13 @@ const Navbar = observer(() => {
                 <a href="/" className="top-0 left-0 absolute py-8 px-[10%]"></a>
                 <div className="px-[10%] mt-[35%] 2xl:mt-[15vh] text-[20px] text-black ">
                   {!isAuthenticated && (
-                    <li className="underline">
+                    <li className="underline px-4 py-2 hover:bg-gray-100">
                       <Link to="/login">Sign up/Log in</Link>
                     </li>
                   )}
                   {isAuthenticated && (
                     <div>
-                      <li className="">
+                      <li className="mt-4 px-4 py-2 hover:bg-gray-100">
                         <Link
                           to="/mytickets"
                           className="flex justify-between"
@@ -122,7 +122,7 @@ const Navbar = observer(() => {
                           <div>My Tickets</div>
                         </Link>
                       </li>
-                      <li className="my-6">
+                      {/* <li className="my-6">
                         <Link
                           to="/"
                           className="flex justify-between"
@@ -130,8 +130,8 @@ const Navbar = observer(() => {
                         >
                           <div>Following</div>
                         </Link>
-                      </li>
-                      <li className="my-6">
+                      </li> */}
+                      {/* <li className="my-6">
                         <Link
                           to="/dashboard"
                           className="flex justify-between"
@@ -139,10 +139,10 @@ const Navbar = observer(() => {
                         >
                           <div>My Rep Portal</div>
                         </Link>
-                      </li>
-                      <li className="my-6">
+                      </li> */}
+                      <li className="my-6 px-4 py-2 hover:bg-gray-100">
                         <Link
-                          to="/"
+                          to="https://organizer-dashboard-bms.vercel.app/"
                           className="flex justify-between"
                           onClick={() => setIsNavOpen((prev) => !prev)}
                         >
@@ -152,8 +152,8 @@ const Navbar = observer(() => {
                     </div>
                   )}
 
-                  <li className="my-6">
-                    <div className="flex justify-between items-center">
+                  <li className="my-6 px-4 py-2 hover:bg-gray-100">
+                    <div className="flex justify-between items-center ">
                       <button
                         className={`flex justify-between w-full transition-all duration-300 ${
                           isNavOpen
@@ -208,27 +208,28 @@ const Navbar = observer(() => {
                     </div>
                   </li>
 
-                  <li className=" my-6">
+                  <li className=" my-6 px-4 py-2 hover:bg-gray-100">
                     <Link
                       to="/terms"
-                      className="flex justify-between"
+                      className="flex justify-between "
                       onClick={() => setIsNavOpen((prev) => !prev)}
                     >
                       <div>Terms & Conditions</div>
-                    </Link>
-                    <li className="my-6">
-                      <Link
-                        to="/privacy"
-                        className="flex justify-between"
-                        onClick={() => setIsNavOpen((prev) => !prev)}
-                      >
-                        <div>Privacy Policy</div>
-                      </Link>
-                    </li>
+                    </Link>{" "}
                   </li>
+                  <li className="my-6 px-4 py-2 hover:bg-gray-100">
+                    <Link
+                      to="/privacy"
+                      className="flex justify-between"
+                      onClick={() => setIsNavOpen((prev) => !prev)}
+                    >
+                      <div>Privacy Policy</div>
+                    </Link>
+                  </li>
+
                   {isAuthenticated && (
                     <button
-                      className="block w-full text-left hover:bg-gray-100"
+                      className="block w-full text-left hover:bg-gray-100 px-4 py-2 "
                       onClick={() => {
                         auth.logout();
                       }}
@@ -248,7 +249,7 @@ const Navbar = observer(() => {
               />
             </Link>
             {isAuthenticated && (
-              <div className="flex justify-center items-center ml-10 md:hidden">
+              <div className="flex justify-center items-center ml-10 md:hidden ">
                 <ProfileDropdown
                   ref={accountRef}
                   open={profileOpen}
