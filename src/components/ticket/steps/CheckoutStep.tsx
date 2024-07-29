@@ -150,7 +150,7 @@ export const CheckoutStep = ({
           </div>
         </div>
 
-        <div className="bg-white mt-10 p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
+        <div className="bg-white p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
           <img
             src={eventsData?.posterUrl}
             className="w-full h-52 object-fill rounded-lg"
