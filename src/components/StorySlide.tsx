@@ -38,6 +38,7 @@ function StorySlide({ src, index, currentIndex }: StorySlidesProps) {
           className="w-full md:rounded-3xl rounded-xl h-full object-cover"
           loop
           autoPlay
+          controls
           onLoad={handleImageLoad}
         ></video>
       </div>
