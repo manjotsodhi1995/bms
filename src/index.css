@@ -115,7 +115,7 @@ textarea::placeholder {
   height: 100%;
 }
 .home {
-  /* background: rgba( 255, 255, 255, 0.09 ); */
+  background: #f8f8f8;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 10px;
