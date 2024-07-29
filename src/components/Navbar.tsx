@@ -155,10 +155,8 @@ const Navbar = observer(() => {
                   <li className="my-6 px-4 py-2 hover:bg-gray-100">
                     <div className="flex justify-between items-center ">
                       <button
-                        className={`flex justify-between w-full transition-all duration-300 ${
-                          isNavOpen
-                            ? "bg-white"
-                            : "bg-gray-200 hover:bg-gray-300"
+                        className={`flex justify-between w-full transition-all duration-300
+
                         }`}
                         onClick={() => setIsDropOpen((prev) => !prev)}
                       >
