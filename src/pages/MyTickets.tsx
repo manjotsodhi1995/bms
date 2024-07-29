@@ -1,17 +1,28 @@
 import { Clock } from "lucide-react";
 import Footer from "../components/Footer";
-import TicketCard, { FAKE_TICKETS } from "../components/ticket/TicketCard";
+import TicketCard from "../components/ticket/TicketCard";
 import { Icons } from "@/components/Icons";
 import Calendar from "react-calendar";
 import { useState } from "react";
 import "react-calendar/dist/Calendar.css";
+import { useQuery } from "@tanstack/react-query";
+import axios from "@/utils/middleware";
+import { API } from "@/api";
 
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
+const fetchTickets = async () => {
+  const response = await axios(API.bookingRoutes.getTicket);
+  return response.data.data;
+};
+
 function MyTickets() {
-  const tickets = FAKE_TICKETS;
+  const { data } = useQuery({
+    queryKey: ["tickets"],
+    queryFn: fetchTickets,
+  });
   const [value, onChange] = useState<Value>(new Date());
 
   return (
@@ -29,7 +40,7 @@ function MyTickets() {
         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="flex w-full flex-col items-center">
             <div className="flex w-full flex-col gap-4">
-              {tickets.length === 0 ? (
+              {data?.eventTitle && data.eventTitle.length === 0 ? (
                 <p className="flex flex-col items-center gap-2">
                   <Icons.twoTickets className="size-52" />
                   <span className="text-sm text-neutral-500">
@@ -37,14 +48,18 @@ function MyTickets() {
                   </span>
                 </p>
               ) : (
-                tickets.map((ticket, idx) => (
+                data?.eventTitle.map((ticket: any, idx: number) => (
                   <TicketCard key={idx} {...ticket} />
                 ))
               )}
             </div>
           </div>
           <div>
-            <Calendar className="!w-[100vw] md:!w-[25vw] 2xl:text-xl" onChange={onChange} value={value} />
+            <Calendar
+              className="!w-[100vw] md:!w-[25vw] 2xl:text-xl"
+              onChange={onChange}
+              value={value}
+            />
           </div>
         </div>
       </div>
