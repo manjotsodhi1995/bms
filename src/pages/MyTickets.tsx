@@ -37,7 +37,7 @@ function MyTickets() {
             <span className="text-neutral-800">Past Bookings</span>
           </p>
         </div>
-        <div className="w-full flex flex-col md:flex-row justify-between items-center gap-10">
+        <div className="w-full flex flex-col md:flex-row justify-between gap-10">
           <div className="flex w-full flex-col items-center">
             <div className="flex w-full flex-col gap-4">
               {data?.eventTitle && data.eventTitle.length === 0 ? (
@@ -54,7 +54,7 @@ function MyTickets() {
               )}
             </div>
           </div>
-          <div>
+          <div className="sticky h-fit top-[10vh] bg-red-500">
             <Calendar
               className="!w-[100vw] md:!w-[25vw] 2xl:text-xl"
               onChange={onChange}
