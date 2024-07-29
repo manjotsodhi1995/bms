@@ -221,57 +221,8 @@ const EventPage = observer(() => {
               </div>
             ))}
           </div>{" "}
-          <div className="flex flex-col mt-4 gap-2">
-            <div className="font-medium text-[1.4rem]">About</div>
-            <div>{eventData?.description}</div>
-          </div>
-          <div className="w-[50%]">
-            <h1 className="font-medium text-[1.3rem]">Location</h1>
-            <iframe
-              src={`https://maps.google.com/maps?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}&hl=en;z=14&amp&output=embed`}
-              width="100%"
-              height="290"
-            />
-            <Link
-              to={`https://maps.google.com/?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}`}
-              className="px-2 py-2 border-black border-2 2xl:w-[12rem] w-[10rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center text-[0.8rem]"
-            >
-              GET DIRECTIONS
-            </Link>
-          </div>
-          {eventData?.organizer && (
-            <div className="flex items-center justify-between mt-4">
-              <div className="flex items-center gap-4">
-                <Avatar
-                  src={eventData.organizer._id}
-                  sx={{
-                    width: 56,
-                    height: 56,
-                  }}
-                />
-                <p className="flex flex-col">
-                  <Link
-                    to={`/organization/${eventData.organizer._id}`}
-                    className="font-medium text-lg"
-                  >
-                    {eventData.organizer.name}
-                  </Link>
-                  <span>Organizer</span>
-                </p>
-              </div>
-              <button
-                className="flex gap-2 px-4 py-1 border border-[#37548E] rounded-full text-[#60769D]"
-                onClick={() => followMutation.mutate()}
-                disabled={followMutation.isPending}
-              >
-                {isFollowing ? "Following" : "Follow"}
-                {followMutation.isPending && (
-                  <Loader2 className="animate-spin" />
-                )}
-              </button>
-            </div>
-          )}
           <div className="mt-4 flex flex-col gap-2">
+            <div className="font-medium text-[1.4rem]">Timings</div>
             <div className="flex gap-2">
               <div className="w-[30px] items-center flex justify-center">
                 <svg
@@ -332,6 +283,56 @@ const EventPage = observer(() => {
               <div>Last Entry at Fri 5th Jul at 9:00 AM (GMT+)</div>
             </div>
           </div>
+          <div className="flex flex-col mt-4 gap-2">
+            <div className="font-medium text-[1.4rem]">About</div>
+            <div>{eventData?.description}</div>
+          </div>
+          <div className="w-[50%]">
+            <h1 className="font-medium text-[1.3rem]">Location</h1>
+            <iframe
+              src={`https://maps.google.com/maps?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}&hl=en;z=14&amp&output=embed`}
+              width="100%"
+              height="290"
+            />
+            <Link
+              to={`https://maps.google.com/?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}`}
+              className="px-2 py-2 border-black border-2 2xl:w-[12rem] w-[10rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center text-[0.8rem]"
+            >
+              GET DIRECTIONS
+            </Link>
+          </div>
+          {eventData?.organizer && (
+            <div className="flex items-center justify-between mt-4">
+              <div className="flex items-center gap-4">
+                <Avatar
+                  src={eventData.organizer._id}
+                  sx={{
+                    width: 56,
+                    height: 56,
+                  }}
+                />
+                <p className="flex flex-col">
+                  <Link
+                    to={`/organization/${eventData.organizer._id}`}
+                    className="font-medium text-lg"
+                  >
+                    {eventData.organizer.name}
+                  </Link>
+                  <span>Organizer</span>
+                </p>
+              </div>
+              <button
+                className="flex gap-2 px-4 py-1 border border-[#37548E] rounded-full text-[#60769D]"
+                onClick={() => followMutation.mutate()}
+                disabled={followMutation.isPending}
+              >
+                {isFollowing ? "Following" : "Follow"}
+                {followMutation.isPending && (
+                  <Loader2 className="animate-spin" />
+                )}
+              </button>
+            </div>
+          )}
           <div className="underline font-medium mt-4 cursor-pointer text-xl">
             Refund Policy
           </div>
