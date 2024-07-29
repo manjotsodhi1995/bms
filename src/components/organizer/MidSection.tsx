@@ -5,19 +5,19 @@ import em from "../../assets/organizer/engage_monitor.png";
 const MidSection = () => {
   return (
     <>
-      <div className="flex items-center justify-center p-4 mb-6">
-        <div className="max-w-screen-lg w-full">
-          <h2 className="title text-3xl md:text-5xl font-semibold mb-4 text-center">
+      <div className="flex items-center justify-center pt-4 mb-6 ">
+        <div className="max-w-screen-xl w-full">
+          <h2 className="title text-3xl md:text-6xl font-semibold mb-4 md:mb-16 text-center">
             Ticketing
           </h2>
-          <section className="p-8 mb-10 bg-white flex flex-col md:flex-row items-center rounded-lg ">
+          <section className="p-8 mb-10  flex flex-col md:flex-row items-center rounded-lg ">
             <img
               src={ticket}
               alt="ticketing"
-              className="w-80 h-80 rounded-lg mb-8 md:mb-0"
+              className="w-2/3 h-2/3 rounded-3xl mb-8 md:mb-0"
             />
-            <div className="md:ml-8 text-center md:text-left text-gray-500">
-              <p className="mb-8">
+            <div className="md:ml-20 text-center md:text-left text-gray-600">
+              <p className="mb-8 ">
                 Select between individual, group or Table options.
               </p>
               <p className="mb-8">
@@ -25,12 +25,12 @@ const MidSection = () => {
                 general admission. Define pricing, availability, and any special
                 offers or discounts under voucher section.
               </p>
-              <p className="font-semibold mb-2 text-lg text-black">
+              <p className="font-semibold md:font-medium mb-2 text-xl md:text-2xl text-black">
                 Automate Sales with Actions
               </p>
               <p className="mb-4">
                 <strong className="text-black text-base">
-                  Create & Adjust -{" "}
+                  Create A Ticket -
                 </strong>
                 Ticket releases and implement surge pricing to optimize sales as
                 the event date approaches.
@@ -39,14 +39,14 @@ const MidSection = () => {
           </section>
         </div>
       </div>
-      <div className="flex items-center justify-center p-4 mb-6">
-        <div className="max-w-screen-lg w-full">
-          <h2 className="title text-3xl md:text-5xl font-semibold mb-4 text-center">
+      <div className="flex items-center justify-center md:p-4 mb-14">
+        <div className="max-w-screen-xl w-full">
+          <h2 className="title text-3xl md:text-6xl font-semibold mb-4 md:mb-20 text-center">
             Promote Your Event
           </h2>
-          <section className="p-8 mb-10 bg-white flex flex-col-reverse md:flex-row items-center rounded-lg ">
-            <div className="md:mr-8 text-center md:text-left ">
-              <p className="font-semibold text-lg mb-2">
+          <section className="p-8 md:mb-10 bg-white flex flex-col-reverse md:flex-row items-center rounded-lg ">
+            <div className="md:mr-20 text-center md:text-left ">
+              <p className="font-medium text-2xl mb-2">
                 Run Effective Campaign Emails
               </p>
               <p className="mb-8 text-gray-500 ">
@@ -55,7 +55,7 @@ const MidSection = () => {
                 preferences, previous event participation, or geographic
                 location.
               </p>
-              <p className="font-semibold text-lg mb-2">
+              <p className="font-medium text-2xl mb-2">
                 Reach Your Audience with Text Blasts via Email and WhatsApp
               </p>
               <p className="mb-8 text-gray-500">
@@ -63,7 +63,7 @@ const MidSection = () => {
                 share event details, and send reminders & Leverage the power of
                 instant messaging.
               </p>
-              <p className="font-semibold text-lg mb-2">
+              <p className="font-medium text-2xl mb-2">
                 Leverage Our Affiliate Program
               </p>
               <p className="mb-4 text-gray-500">
@@ -76,24 +76,24 @@ const MidSection = () => {
             <img
               src={pt}
               alt="ticketing"
-              className="w-80 h-80 rounded-lg mb-8 md:mb-0"
+              className="w-2/3 h-2/3 rounded-3xl mb-8 md:mb-0"
             />
           </section>
         </div>
       </div>
-      <div className="flex items-center justify-center p-4 mb-6">
-        <div className="max-w-screen-lg w-full">
-          <h2 className="title text-3xl md:text-5xl font-semibold mb-4 text-center">
+      <div className="flex items-center justify-center md:py-20 md:p-4 my-10">
+        <div className="max-w-screen-xl w-full">
+          <h2 className="title text-3xl md:text-5xl font-semibold mb-6 md:mb-10 text-center">
             Engage and Monitor Analytics
           </h2>
           <section className="p-8 mb-10 bg-white flex flex-col md:flex-row items-center rounded-lg ">
             <img
               src={em}
               alt="ticketing"
-              className="w-80 h-80 rounded-lg mb-8 md:mb-0"
+              className="w-2/3 h-2/3 rounded-3xl mb-8 md:mb-0"
             />
-            <div className="md:ml-8 text-center md:text-left text-gray-500">
-              <p className="font-semibold mb-2 text-lg text-black">
+            <div className="md:ml-20 text-center md:text-left text-gray-500">
+              <p className="font-medium mb-2 text-2xl text-black">
                 Real Time ave Analytics
               </p>
               <p className="mb-8">
@@ -101,7 +101,7 @@ const MidSection = () => {
                 with our real-time analytics dashboard, making data-driven
                 decisions easy.
               </p>
-              <p className="font-semibold mb-2 text-lg text-black">
+              <p className="font-medium mb-2 text-2xl text-black">
                 Traffic Monitoring
               </p>
               <p className="mb-8">
@@ -109,7 +109,7 @@ const MidSection = () => {
                 See how many visitors your page receives and identify peak times
                 of interest.
               </p>
-              <p className="font-semibold mb-2 text-lg text-black">
+              <p className="font-medium mb-2 text-2xl text-black">
                 Source Tracking
               </p>
               <p className="mb-8">

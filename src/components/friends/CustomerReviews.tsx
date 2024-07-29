@@ -69,59 +69,61 @@ const CustomerReviews: React.FC = () => {
   };
 
   return (
-    <div className="py-24 relative">
-      <div className="container mx-auto text-center">
-        <h2 className=" text-3xl md:text-4xl font-bold mb-8">
-          Customer reviews
-        </h2>
-        <div className="flex justify-center space-x-4 ">
-          {reviews
-            .slice(currentIndex, currentIndex + visibleReviews)
-            .map((review, index) => (
-              <CustomerReviewCard
-                key={index}
-                text={review.text}
-                rating={review.rating}
-                name={review.name}
-                role={review.role}
-                imgSrc={review.imgSrc}
+    <>
+      <div className="pb-32 relative">
+        <div className="container mx-auto text-center">
+          <h2 className="bg-color text-3xl md:text-5xl font-bold mb-14 md:mb-20">
+            Customer reviews
+          </h2>
+          <div className="flex justify-center space-x-4 ">
+            {reviews
+              .slice(currentIndex, currentIndex + visibleReviews)
+              .map((review, index) => (
+                <CustomerReviewCard
+                  key={index}
+                  text={review.text}
+                  rating={review.rating}
+                  name={review.name}
+                  role={review.role}
+                  imgSrc={review.imgSrc}
+                />
+              ))}
+          </div>
+          <button
+            className="absolute top-1/2 transform -translate-y-1/2 left-4 bg-gray-200 rounded-full p-2"
+            onClick={handlePrevClick}>
+            <svg
+              className="w-6 h-6 text-gray-700"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
               />
-            ))}
+            </svg>
+          </button>
+          <button
+            className="absolute top-1/2 transform -translate-y-1/2 right-4 bg-gray-200 rounded-full p-2"
+            onClick={handleNextClick}>
+            <svg
+              className="w-6 h-6 text-gray-700"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
         </div>
-        <button
-          className="absolute top-1/2 transform -translate-y-1/2 left-4 bg-gray-200 rounded-full p-2"
-          onClick={handlePrevClick}>
-          <svg
-            className="w-6 h-6 text-gray-700"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-        <button
-          className="absolute top-1/2 transform -translate-y-1/2 right-4 bg-gray-200 rounded-full p-2"
-          onClick={handleNextClick}>
-          <svg
-            className="w-6 h-6 text-gray-700"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
       </div>
-    </div>
+    </>
   );
 };
 

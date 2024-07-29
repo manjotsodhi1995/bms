@@ -65,6 +65,8 @@ const ReppedInPastDetails = lazy(
 );
 const FollowingPage = lazy(() => import("./pages/dashboard/following"));
 const Organizer = lazy(() => import("./pages/Organizer"));
+const ReferFriends = lazy(() => import("./pages/ReferFriends"));
+const ReferOrganizer = lazy(() => import("./pages/ReferOrganizer"));
 
 const App = observer(() => {
   const {
@@ -98,8 +100,7 @@ const App = observer(() => {
             <div className="min-h-screen w-screen flex justify-center items-center">
               <img src={load} alt="" className="w-[10vw] h-[10vw]" />
             </div>
-          }
-        >
+          }>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
@@ -195,6 +196,8 @@ const App = observer(() => {
               path="/upcoming-events/:location"
               element={<UpComingEventsInLocation />}
             />
+            <Route path="/refer-friends" element={<ReferFriends />} />
+            <Route path="/refer-organizer" element={<ReferOrganizer />} />
           </Routes>{" "}
         </Suspense>
       </BrowserRouter>
