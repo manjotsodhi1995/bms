@@ -41,12 +41,10 @@ textarea::placeholder {
   max-width: 100vw;
   position: relative;
 }
-
 .sw1 .swiper-slide {
-  width: 10vw;
+  width: 16vw;
   position: relative;
 }
-
 @media (max-width: 500px) {
   .sw1 .swiper-slide {
     width: 37vw !important;
