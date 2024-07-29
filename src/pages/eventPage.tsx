@@ -222,7 +222,7 @@ const EventPage = observer(() => {
             <div className="font-medium text-[1.4rem]">About</div>
             <div>{eventData?.description}</div>
           </div>
-          <div className="w-full">
+          <div className="w-[50%]">
             <h1 className="font-medium text-[1.3rem]">Location</h1>
             <iframe
               src={`https://maps.google.com/maps?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}&hl=en;z=14&amp&output=embed`}
