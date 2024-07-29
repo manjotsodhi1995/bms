@@ -66,9 +66,8 @@ const EventPage = observer(() => {
     return !eventData.isSoldOut && Date.now() < closingDate;
   }, [eventData]);
   useEffect(() => {
-    // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
-  }, []);
+  });
   return (
     <div className="w-full">
       {/* <Navbar /> */}
