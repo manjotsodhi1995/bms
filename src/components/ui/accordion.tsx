@@ -30,7 +30,7 @@ const AccordionTrigger = React.forwardRef<
       className="transition-all [&[data-state=open]>svg]:rotate-180"
       {...props}
     >
-      <ChevronDown className="size-7 stroke-1 shrink-0 transition-transform duration-200" />
+      {/* <ChevronDown className="size-7 stroke-1 shrink-0 transition-transform duration-200" /> */}
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
