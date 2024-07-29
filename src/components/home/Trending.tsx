@@ -32,6 +32,7 @@ function Trending() {
     queryKey: ["categoriesQuery"],
     queryFn: fetchCategories,
   });
+  const [temp, setTemp] = useState(true);
   const [selectedLocation, setSelectedLocation] = useState("Dublin, Ireland");
   const [completionsOpen, setCompletionsOpen] = useState(false);
   const locationRef = useRef<HTMLDivElement>(null);
@@ -58,7 +59,12 @@ function Trending() {
         () => setCompletionsOpen(true)
       );
   }, [placePredictions]);
-
+  const clear = () => {
+    if (temp) {
+      setSelectedLocation("");
+      setTemp(false);
+    }
+  };
   useOnClickOutside(locationRef, () => setCompletionsOpen(false));
 
   return (
@@ -72,6 +78,7 @@ function Trending() {
             id="location"
             className="ml-4 !py-1 !px-2 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700 w-[9rem]"
             value={selectedLocation}
+            onClick={clear}
             onChange={(e) => {
               getPlacePredictions({ input: e.target.value });
               setSelectedLocation(e.target.value);
