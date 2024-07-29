@@ -243,7 +243,7 @@ export const PaymentStep = ({
             </p>
             <p className="flex items-center justify-between text-gray-600 text-sm">
               <span>Fees</span>
-              <span>
+              <span className="mr-[1.6rem]">
                 ${cartData ? cartData.totalAmount - cartData.subTotal : "0.00"}
               </span>
             </p>

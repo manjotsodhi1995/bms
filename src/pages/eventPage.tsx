@@ -130,7 +130,7 @@ const EventPage = observer(() => {
         </div>
       </div>
       <div className="relative lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] flex justify-between md:flex-row flex-col gap-8 2xl:gap-16">
-        <div className="flex flex-col gap-2 md:w-[70%]">
+        <div className="flex flex-col gap-2 md:w-[55%]">
           <div className="flex items-center gap-4">
             <div>
               <svg
@@ -343,7 +343,7 @@ const EventPage = observer(() => {
           </div>
         </div>
 
-        <div className="h-fit fixed bottom-0 z-10 left-0 bg-white py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[30%]">
+        <div className="h-fit fixed bottom-0 z-10 left-0 py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[30%]">
           <div className="hidden md:grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
             {event.upcomingEvents.slice(0, 3).map((card, index) => (
               <div key={index} className="snap-center w-full" ref={carouselRef}>
