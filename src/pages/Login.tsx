@@ -112,7 +112,7 @@ const Login = observer(() => {
                 </div>
               </div>
 
-              <div className="w-full text-[1rem] flex flex-col gap-1">
+              <div className="w-full text-[1rem] flex flex-col gap-1 items-center">
                 <button
                   type="submit"
                   className="flex items-center justify-center gap-4 bg-black w-full text-white font-bold py-2 px-4 rounded"
@@ -122,7 +122,13 @@ const Login = observer(() => {
                 </button>
                 <div className="text-red-600">{error}</div>
               </div>
-              <GoogleLogin onSuccess={responseGoogle} />
+              <div className="w-full items-center flex justify-center">
+                <GoogleLogin
+                  onSuccess={responseGoogle}
+                  size="large"
+                  width={"500px"}
+                />
+              </div>
               <div className="flex w-full justify-around gap-2 items-center">
                 <div className="h-[2px] w-full bg-black"></div>
                 <div className="text-center">or</div>
