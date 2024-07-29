@@ -24,7 +24,7 @@ function Filter() {
 
   return (
     <div className="lg:pr-[5%] xl:pr-[7%] pr-[8vw] min-h-[80vh] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
-      <div className="md:w-[20rem] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] h-fit rounded-3xl backdrop-blur-lg ml-2 bg-gray-300/10 border border-gray-200">
+      <div className="z-10 md:w-[20rem] w-[100vw] min-h-[80vh] flex flex-col mt-[10px] pt-[40px] h-fit rounded-3xl backdrop-blur-lg ml-2 bg-gray-300/10 border border-gray-200">
         {" "}
         {/* Fixed positioning and overflow */}
         <div className="border-gray-400 border-b mb-[30px] pl-[30px]">
