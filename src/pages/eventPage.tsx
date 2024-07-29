@@ -67,7 +67,7 @@ const EventPage = observer(() => {
   }, [eventData]);
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
   return (
     <div className="w-full">
       {/* <Navbar /> */}
@@ -301,7 +301,7 @@ const EventPage = observer(() => {
             </Link>
           </div>
           {eventData?.organizer && (
-            <div className="flex items-center justify-between mt-4">
+            <div className="flex items-center gap-8">
               <div className="flex items-center gap-4">
                 <Avatar
                   src={eventData.organizer._id}
