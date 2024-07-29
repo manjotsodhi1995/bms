@@ -229,9 +229,12 @@ const EventPage = observer(() => {
               width="100%"
               height="290"
             />
-            <div className="px-2 py-2 border-black border-2 2xl:w-[12rem] w-[10rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center text-[0.8rem]">
+            <Link
+              to={`https://maps.google.com/?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}`}
+              className="px-2 py-2 border-black border-2 2xl:w-[12rem] w-[10rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center text-[0.8rem]"
+            >
               GET DIRECTIONS
-            </div>
+            </Link>
           </div>
           {eventData?.organizer && (
             <div className="flex items-center justify-between mt-4">
