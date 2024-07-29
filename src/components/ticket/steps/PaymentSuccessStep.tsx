@@ -1,36 +1,8 @@
-import { EventType } from "@/stores/event";
 import { TicketStepsProps } from ".";
 import EventCard from "@/components/EventCard";
 import { ChevronLeft, CircleCheck } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useStore } from "@/hooks/useStore";
-
-const eventData = [
-  {
-    title: "Rhythms Live",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    posterUrl:
-      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-  },
-  {
-    title: "Rhythms Live",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    posterUrl:
-      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-  },
-  {
-    title: "Rhythms Live",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    posterUrl:
-      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-  },
-  {
-    title: "Rhythms Live",
-    description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    posterUrl:
-      "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-  },
-] satisfies Partial<EventType>[];
 
 export const PaymentSuccessStep = ({
   onStepChange,

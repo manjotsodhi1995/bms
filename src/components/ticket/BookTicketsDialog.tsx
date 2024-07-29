@@ -78,7 +78,6 @@ const BookTicketsDialog = observer(
                 <ViewTicketStep
                   onBack={() => setTicketStep("payment-success")}
                   eventsData={eventsData}
-                  onDownloadClicked={() => setTicketStep("buy-another-tickets")}
                   onShareClicked={() => setTicketStep("share-ticket")}
                 />
               )}

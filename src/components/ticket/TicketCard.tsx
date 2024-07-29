@@ -73,7 +73,6 @@ function TicketCard({
         <div className=" p-12 backdrop-blur-md">
           <ViewTicketStep
             eventsData={null}
-            onDownloadClicked={() => {}}
             onShareClicked={() => {}}
             showTitle={false}
           />
