@@ -61,4 +61,7 @@ export const API = {
   payments: {
     direct: `${SERVER_BASE_URL}/payments/direct`,
   },
+  bookingRoutes: {
+    getTicket: `${SERVER_BASE_URL}/bookings/get-tickets`,
+  },
 } as const;
