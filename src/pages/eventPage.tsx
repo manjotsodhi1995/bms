@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import Like from "../assets/Like.png";
 import Share from "../assets/share.png";
-import three from "../assets/three.png";
 import axios from "../utils/middleware";
 import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
