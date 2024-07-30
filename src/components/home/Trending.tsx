@@ -69,14 +69,15 @@ function Trending() {
 
   return (
     <div className="lg:px-[8%] px-[8vw] mt-[7vh] flex flex-col gap-8">
-      <div className="flex items-center mb-4">
-        <div className="lg:text-[1.5rem] text-[0.7rem] font-medium">
-          Discover events in
+      <div className="flex flex-col gap-4 mb-4">
+        <div className="lg:text-[1.8rem] text-[0.8rem] font-medium">
+          Discover events
         </div>
-        <label htmlFor="location" className="relative">
+        <label htmlFor="location" className="relative w-fit">
+          <MapPin className="absolute top-2 left-1 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
           <input
             id="location"
-            className="ml-4 !py-1 !px-2 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700 w-[9rem]"
+            className="w-72 !px-8 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
             value={selectedLocation}
             onClick={clear}
             onChange={(e) => {
@@ -87,28 +88,28 @@ function Trending() {
           {completionsOpen && (
             <div
               ref={locationRef}
-              className="absolute w-full bg-white z-10 flex flex-col top-6 left-2 border-2 rounded text-sm"
+              className="absolute w-72 bg-white z-10 flex flex-col top-10 left-0 border-2 rounded text-sm"
             >
               {isPlacePredictionsLoading && (
                 <p className="w-full flex justify-center">
                   <Loader2 className="size-4 text-gray-600 animate-spin" />
                 </p>
               )}
-              {placePredictions.map((item) => (
-                <p
-                  key={item.place_id}
-                  className="flex w-full gap-2 hover:bg-gray-100 group rounded"
-                  onClick={() => {
-                    setSelectedLocation(item.description);
-                    setCompletionsOpen(false);
-                  }}
-                >
-                  <MapPin className="min-w-4 w-4 h-4 text-gray-400 group-hover:fill-red-300 group-hover:text-red-500" />
-                  <span className="line-clamp-1 group-hover:font-medium">
-                    {item.description}
-                  </span>
-                </p>
-              ))}
+              <div className="flex flex-col w-full">
+                {placePredictions.map((item) => (
+                  <p key={item.place_id} className="px-4 py-2 w-full hover:bg-gray-100 text-[0.9rem]">
+                    <span
+                      className="line-clamp-1"
+                      onClick={() => {
+                        setSelectedLocation(item.description);
+                        setCompletionsOpen(false);
+                      }}
+                    >
+                      {item.description}
+                    </span>
+                  </p>
+                ))}
+              </div>
             </div>
           )}
         </label>

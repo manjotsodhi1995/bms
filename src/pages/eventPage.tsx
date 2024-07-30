@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import Like from "../assets/Like.png";
 import Share from "../assets/share.png";
-import three from "../assets/three.png";
 import axios from "../utils/middleware";
 import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
@@ -125,9 +124,9 @@ const EventPage = observer(() => {
                 </div>
               </ShareEventDialog>
             )}
-            <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-black">
-              <img src={three} alt="" />
-            </div>
+            {/* <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-black"> */}
+            {/*   <img src={three} alt="" /> */}
+            {/* </div> */}
           </div>
         </div>
       </div>
@@ -301,38 +300,38 @@ const EventPage = observer(() => {
             </Link>
           </div>
           {eventData?.organizer && (
-            <div className="flex items-center gap-8">
-              <div className="flex items-center gap-4">
-                <Avatar
-                  src={eventData.organizer._id}
-                  sx={{
-                    width: 56,
-                    height: 56,
-                  }}
-                />
-                <p className="flex flex-col">
+            <div className="flex flex-col gap-2 mt-6">
+              <span className="text-xl font-medium">Organized By</span>
+              <div className="flex items-center gap-8">
+                <div className="flex items-center gap-4">
+                  <Avatar
+                    src={eventData.organizer._id}
+                    sx={{
+                      width: 56,
+                      height: 56,
+                    }}
+                  />
                   <Link
                     to={`/organization/${eventData.organizer._id}`}
                     className="font-medium text-lg"
                   >
                     {eventData.organizer.name}
                   </Link>
-                  <span>Organizer</span>
-                </p>
+                </div>
+                <button
+                  className="flex gap-2 px-4 py-1 border border-[#37548E] rounded-full text-[#60769D]"
+                  onClick={() => followMutation.mutate()}
+                  disabled={followMutation.isPending}
+                >
+                  {isFollowing ? "Following" : "Follow"}
+                  {followMutation.isPending && (
+                    <Loader2 className="animate-spin" />
+                  )}
+                </button>
               </div>
-              <button
-                className="flex gap-2 px-4 py-1 border border-[#37548E] rounded-full text-[#60769D]"
-                onClick={() => followMutation.mutate()}
-                disabled={followMutation.isPending}
-              >
-                {isFollowing ? "Following" : "Follow"}
-                {followMutation.isPending && (
-                  <Loader2 className="animate-spin" />
-                )}
-              </button>
             </div>
           )}
-          <div className="underline font-medium mt-4 cursor-pointer text-xl">
+          <div className="font-medium mt-4 cursor-pointer text-xl">
             Refund Policy
           </div>
           <div className="mt-20">
