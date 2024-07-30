@@ -53,6 +53,11 @@ const Register = observer(() => {
     event.preventDefault();
     try {
       setLoading(true);
+      if (password.length < 6) {
+        setError("Password must be more than 6 letters");
+        return;
+      }
+
       await auth.register(
         email,
         password,
@@ -196,8 +201,10 @@ const Register = observer(() => {
                 <div className="h-[2px] bg-black"></div>
                 <p className="text-center text-sm">
                   By registering, you agree to KAFSCO's{" "}
-                  <a href="/terms">T&Cs</a> and{" "}
-                  <a href="/privacy">Privacy Policy.</a>
+                  <a href="/terms" className="text-blue-600">
+                    T&Cs
+                  </a>{" "}
+                  and <a href="/privacy">Privacy Policy.</a>
                 </p>
                 <div>
                   <div className="text-red-500">{error}</div>
