@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import img from "../assets/Auth/login.png";
+import img from "../assets/Auth/login.jpg";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";

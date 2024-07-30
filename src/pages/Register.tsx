@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import img from "../assets/Auth/register.png";
+import img from "../assets/Auth/register.jpg";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
@@ -92,7 +92,7 @@ const Register = observer(() => {
           <div className="py-[7vh] 2xl:py-[12vh] px-[10vw] h-full md:w-[54vw]">
             <form
               onSubmit={handleSubmit}
-              className="h-full p-4 flex flex-col justify-around"
+              className="h-full p-4 flex flex-col justify-around w-[27rem]"
             >
               <div className="flex flex-col gap-2">
                 <h1 className="text-3xl font-bold text-center items-center">
