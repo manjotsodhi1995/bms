@@ -53,7 +53,9 @@ export const BookingStep = ({
             <Loader2 className="animate-spin size-4" />
           </p>
         )}
-        {cartMutation.isError && <span className="ml-2 text-sm text-red-500">{error}</span>}
+        {cartMutation.isError && (
+          <span className="ml-2 text-sm text-red-500">{error}</span>
+        )}
         {!isLoading &&
           data &&
           data.ticketCategories &&
@@ -96,20 +98,27 @@ export const BookingStep = ({
         <h3 className="mt-10 leading-tight text-xl font-medium w-full">
           Order Summary
         </h3>
-        <p className="flex w-full items-center justify-between font-medium">
-          <span>Ticket - {noOfTickets}</span>
-          <span>${cartData ? cartData.subTotal : "0.00"}</span>
-        </p>
+        <div className="flex w-full flex-col font-medium">
+          {cartData?.basket &&
+            cartData.basket.map((ticket: any) => (
+              <p className="flex w-full items-center justify-between">
+                <span>
+                  {ticket.noOfPersons} {ticket.categoryName}
+                </span>
+                <span>${Number(ticket.totalPrice).toFixed(2)}</span>
+              </p>
+            ))}
+        </div>
         <hr className="w-full border-t border-1 border-neutral-300" />
-        <div className="flex flex-col w-full px-4">
+        <div className="flex flex-col w-full">
           <p className="flex items-center justify-between text-gray-600 text-sm">
             <span>Subtotal</span>
             <span>${cartData ? cartData.subTotal : "0.00"}</span>
           </p>
           <p className="flex items-center justify-between text-gray-600 text-sm">
             <span>Fees</span>
-            <span className="mr-[1.6rem]">
-              ${cartData ? cartData.totalAmount - cartData.subTotal : "0.00"}
+            <span className="">
+              ${cartData ? Number(cartData.totalAmount - cartData.subTotal).toFixed(2) : "0.00"}
             </span>
           </p>
 

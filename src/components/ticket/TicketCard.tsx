@@ -1,8 +1,14 @@
 import { useState } from "react";
-import { Dialog, DialogClose, DialogContent, DialogTrigger } from "../ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTrigger,
+} from "../ui/dialog";
 import { ViewTicketStep } from "./steps/VIewTicketStep";
 import { formatDate } from "@/utils";
 import { X } from "lucide-react";
+import { EventType } from "@/stores/event";
 
 interface TicketCardProps {
   [key: string]: any;
@@ -36,9 +42,13 @@ function TicketCard(props: TicketCardProps) {
             </h1>
 
             <p className="text-[0.8rem] md:text-[1rem]">
-              {props?.venueAddress.name},{props?.venueAddress.city},
-              {props?.venueAddress.country}
+              <span className="font-medium">{props?.venueAddress.name}</span>
+              <br />
+              {props?.venueAddress.city}, {props?.venueAddress.country},{" "}
+              {props?.venueAddress.zipcode}
             </p>
+
+            <p className="font-medium">${props?.totalAmount}</p>
           </div>
         </div>
       </DialogTrigger>
@@ -49,7 +59,7 @@ function TicketCard(props: TicketCardProps) {
             <span className="sr-only">Close</span>
           </DialogClose>
           <ViewTicketStep
-            eventsData={null}
+            eventsData={props as EventType}
             onShareClicked={() => {}}
             showTitle={false}
           />
