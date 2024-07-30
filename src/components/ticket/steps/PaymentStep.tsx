@@ -1,5 +1,5 @@
 import { ChevronLeft, Loader2 } from "lucide-react";
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { TicketStepsProps } from ".";
 import { useCart } from "@/stores/cart";
 import { useCartQuery } from "@/api/query/useCartQuery";
@@ -46,6 +46,7 @@ export const PaymentStep = ({
     setBookingId,
     basketId,
   } = useCart();
+  const [error, setError] = useState("");
 
   const { cartData } = useCartQuery(
     eventsData?.eventId,
@@ -69,7 +70,26 @@ export const PaymentStep = ({
     },
   });
 
-  const onSubmit = () =>
+  const onSubmit = () => {
+    if (clearNumber(cardNumber).length < 16) {
+      setError("Enter a card number");
+      return;
+    }
+    if (cvv.length === 0) {
+      setError("Enter a cvv");
+      return;
+    }
+
+    if (expiryDate.length === 0) {
+      setError("Enter a expiry date");
+      return;
+    }
+    if (Number(expiryDate.split("/")[1]) < new Date().getFullYear() % 100) {
+      setError("The card is expired. Add a new one");
+      return;
+    }
+    setError("");
+
     mutate({
       amount: Number(cartData.totalAmount).toFixed(0),
       cardNumber: cardNumber,
@@ -84,6 +104,7 @@ export const PaymentStep = ({
       // customerPostCode: country,
       basketId: basketId,
     });
+  };
 
   const clearNumber = (value = "") => {
     return value.replace(/\D+/g, "");
@@ -99,7 +120,6 @@ export const PaymentStep = ({
       8
     )} ${clearValue.slice(8, 12)} ${clearValue.slice(12, 16)}`;
     nextValue = nextValue.trim();
-    console.log(nextValue);
     setCardNumber(nextValue);
   };
 
@@ -179,6 +199,7 @@ export const PaymentStep = ({
                 onChange={(e) => setCountry(e.target.value)}
                 className="w-full p-2 mt-1 border border-gray-300 rounded-md"
               >
+                <option value="Ireland">Ireland</option>
                 <option value="India">India</option>
                 <option value="USA">USA</option>
                 <option value="UK">UK</option>
@@ -193,6 +214,9 @@ export const PaymentStep = ({
               <p className="text-red-400 text-sm font-medium">
                 Could'nt complete payment. Please try again
               </p>
+            )}
+            {error.length > 0 && (
+              <p className="text-red-400 text-sm font-medium">{error}</p>
             )}
             <button
               disabled={isPending}
