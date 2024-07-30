@@ -31,7 +31,7 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
     if (response.status === 200) {
       setBasketId(response.data.data._id);
     }
-    return response.data.data;
+    return response.data.data.basket;
   };
 
   const { data: cartData } = useQuery({
