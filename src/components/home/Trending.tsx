@@ -97,7 +97,10 @@ function Trending() {
               )}
               <div className="flex flex-col w-full">
                 {placePredictions.map((item) => (
-                  <p key={item.place_id} className="px-4 py-2 w-full hover:bg-gray-100 text-[0.9rem]">
+                  <p
+                    key={item.place_id}
+                    className="px-4 py-2 w-full hover:bg-gray-100 text-[0.9rem]"
+                  >
                     <span
                       className="line-clamp-1"
                       onClick={() => {
@@ -121,9 +124,7 @@ function Trending() {
             categories.slice(0, 7).map((category: Category) => (
               <a
                 key={category.categoryId}
-                href={`/search?query=${encodeURIComponent(
-                  category.categoryName
-                )}`}
+                href={`/categories/${category.categoryId}`}
                 className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200 hover:bg-[#60769D] hover:text-white"
               >
                 {category.categoryName}

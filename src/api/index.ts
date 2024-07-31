@@ -19,8 +19,8 @@ export const API = {
     getAllFollowedOrganizers: `${SERVER_BASE_URL}/users/followed-organizers`,
 
     profile: `${SERVER_BASE_URL}/users/profile`,
+    update: `${SERVER_BASE_URL}/users/update`,
     // changePassword: `${SERVER_BASE_URL}/users/change-password`,
-    // update: `${SERVER_BASE_URL}/users/update`,
     // verify: `${SERVER_BASE_URL}/users/authorize`,
     // forgotPassword: `${SERVER_BASE_URL}/users/forgot-password`,
     // resetPassword: `${SERVER_BASE_URL}/users/reset-password`,
@@ -63,5 +63,8 @@ export const API = {
   },
   bookingRoutes: {
     getTicket: `${SERVER_BASE_URL}/bookings/get-tickets`,
+  },
+  content: {
+    upload: `${SERVER_BASE_URL}/contents/upload`,
   },
 } as const;

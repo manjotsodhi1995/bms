@@ -67,7 +67,7 @@ const FollowingPage = lazy(() => import("./pages/dashboard/following"));
 const Organizer = lazy(() => import("./pages/Organizer"));
 const ReferFriends = lazy(() => import("./pages/ReferFriends"));
 const ReferOrganizer = lazy(() => import("./pages/ReferOrganizer"));
-
+const CategoriesPage =  lazy(() => import("./pages/CategoriesPage"));
 const App = observer(() => {
   const {
     root: { auth },
@@ -168,6 +168,7 @@ const App = observer(() => {
 
             {/* Public Routes */}
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/categories/:categoryId" element={<CategoriesPage />} />
             <Route path="/dashboard" element={<DashBoard />} />
             <Route
               path="/settings"
