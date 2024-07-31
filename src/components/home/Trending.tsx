@@ -69,55 +69,6 @@ function Trending() {
 
   return (
     <div className="lg:px-[8%] px-[8vw] mt-[7vh] flex flex-col gap-8">
-      <div className="flex flex-col gap-4 mb-4">
-        <div className="lg:text-[1.8rem] text-[0.8rem] font-medium">
-          Discover events
-        </div>
-        <label htmlFor="location" className="relative w-fit">
-          <MapPin className="absolute top-2 left-1 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
-          <input
-            id="location"
-            className="w-72 !px-8 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
-            value={selectedLocation}
-            onClick={clear}
-            onChange={(e) => {
-              getPlacePredictions({ input: e.target.value });
-              setSelectedLocation(e.target.value);
-            }}
-          />
-          {completionsOpen && (
-            <div
-              ref={locationRef}
-              className="absolute w-72 bg-white z-10 flex flex-col top-10 left-0 border-2 rounded text-sm"
-            >
-              {isPlacePredictionsLoading && (
-                <p className="w-full flex justify-center">
-                  <Loader2 className="size-4 text-gray-600 animate-spin" />
-                </p>
-              )}
-              <div className="flex flex-col w-full">
-                {placePredictions.map((item) => (
-                  <p
-                    key={item.place_id}
-                    className="px-4 py-2 w-full hover:bg-gray-100 text-[0.9rem]"
-                  >
-                    <span
-                      className="line-clamp-1"
-                      onClick={() => {
-                        setSelectedLocation(item.description);
-                        setCompletionsOpen(false);
-                      }}
-                    >
-                      {item.description}
-                    </span>
-                  </p>
-                ))}
-              </div>
-            </div>
-          )}
-        </label>
-      </div>
-
       <div className="flex flex-col gap-3">
         <div className="flex w-full gap-4 overflow-x-auto">
           {categories &&
@@ -155,7 +106,51 @@ function Trending() {
                 ></path>
               </svg>
             </Link>
-            Events in {selectedLocation}
+            Events in{" "}
+            <label htmlFor="location" className="relative w-fit">
+              <MapPin className="absolute top-2 left-1 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
+              <input
+                id="location"
+                className="w-72 !px-8 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
+                value={selectedLocation}
+                placeholder="Search for a city"
+                onClick={clear}
+                onChange={(e) => {
+                  getPlacePredictions({ input: e.target.value });
+                  setSelectedLocation(e.target.value);
+                }}
+              />
+              {completionsOpen && (
+                <div
+                  ref={locationRef}
+                  className="absolute w-72 bg-white z-10 flex flex-col top-10 left-0 border-2 rounded text-sm"
+                >
+                  {isPlacePredictionsLoading && (
+                    <p className="w-full flex justify-center">
+                      <Loader2 className="size-4 text-gray-600 animate-spin" />
+                    </p>
+                  )}
+                  <div className="flex flex-col w-full">
+                    {placePredictions.map((item) => (
+                      <p
+                        key={item.place_id}
+                        className="px-4 py-2 w-full hover:bg-gray-100 text-[0.9rem]"
+                      >
+                        <span
+                          className="line-clamp-1"
+                          onClick={() => {
+                            setSelectedLocation(item.description);
+                            setCompletionsOpen(false);
+                          }}
+                        >
+                          {item.description}
+                        </span>
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </label>
           </div>
           <div className="hover:font-medium hover:underline">
             <Link to={`/events/${selectedLocation}`}>See More</Link>
