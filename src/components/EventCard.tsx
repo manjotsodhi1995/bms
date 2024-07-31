@@ -101,7 +101,7 @@ function EventCard(event: Partial<EventType>) {
                 </svg>
                 {event.venueAddress?.city}
               </div>
-              <div className="text-[#A48A00] font-medium text-[0.7rem] md:text-[0.9rem] lg:text-[1.1rem] 2xl:text-[1.4rem] pr-4">
+              <div className="text-[#A48A00] font-medium text-[0.7rem] md:text-[0.9rem] lg:text-[1.1rem] 2xl:text-[1.4rem] pr-4 hover:line-clamp-none line-clamp-2">
                 {event.title}
               </div>
               <div className="text-[0.4rem] md:text-[0.6rem] 2xl:text-[0.9rem] mt-1">

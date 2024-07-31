@@ -7,12 +7,17 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import Footer from "../components/Footer";
 import { API } from "@/api";
+import { Loader2 } from "lucide-react";
+import { useFollowingQuery } from "@/api/query/useFollowingQuery";
 interface od {
   name: string;
   slug: string;
   logoUrl: string;
 }
 const OrganizationProfile = observer(() => {
+  const {
+    root: { event },
+  } = useStore();
   const { orgId } = useParams();
   const navigate = useNavigate();
   const [organizationData, setOrganizationData] = useState<od | null>(null);
@@ -21,6 +26,8 @@ const OrganizationProfile = observer(() => {
   const {
     root: { auth },
   } = useStore();
+  const { data: isFollowing, mutation: followMutation } =
+    useFollowingQuery(orgId);
   useEffect(() => {
     if (!isLoading && !auth.isAuthenticated) {
       navigate("/");
@@ -85,10 +92,14 @@ const OrganizationProfile = observer(() => {
       {/* <Navbar /> */}
       {!isLoading && organizationData && (
         <div className="lg:px-[5%] xl:px-[7%] px-[8vw] w-screen flex flex-col gap-4 overflow-x-hidden">
-          <div className="w-full flex flex-col items-center text-center gap-6">
+          <div className="w-full flex flex-col items-center text-center gap-2">
             <div className="flex flex-col gap-4">
-              <div className="items-center flex justify-center">
-                <img src={`${organizationData.logoUrl}`} alt="" />
+              <div className="items-center flex justify-center ">
+                <img
+                  src={`${organizationData.logoUrl}`}
+                  className="w-[200px] h-[200px] rounded-full"
+                  alt=""
+                />
               </div>
               <div className="font-bold text-[1.5rem] md:text-[2rem]">
                 {organizationData.name}
@@ -97,14 +108,16 @@ const OrganizationProfile = observer(() => {
             <div className="lg:w-[60%]">{organizationData.slug}</div>
           </div>
           <div className="flex justify-center gap-6">
-            <button className="md:px-16 px-8 py-2 bg-gray-200 rounded-lg">
-              Follow
-            </button>
-            <button className="md:px-16 px-8 py-2 bg-black rounded-lg text-white">
-              Message
+            <button
+              className="flex gap-2 px-12 py-2 rounded-lg border bg-black text-white"
+              onClick={() => followMutation.mutate()}
+              disabled={followMutation.isPending}
+            >
+              {isFollowing ? "Following" : "Follow"}
+              {followMutation.isPending && <Loader2 className="animate-spin" />}
             </button>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full py-8">
             <div className="flex justify-between mt-4">
               <div className="font-medium lg:text-[1.4rem] text-[0.9rem]">
                 Upcoming Events
@@ -113,43 +126,43 @@ const OrganizationProfile = observer(() => {
                 <Link to="">See More</Link>
               </div>
             </div>
-            <div className="flex justify-around md:hidden gap-2">
-              {eventData.slice(0, 2).map((card, index) => (
+            <div className="grid grid-cols-2 md:hidden gap-2">
+              {event.upcomingEvents.slice(0, 2).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>
-            <div className="justify-around hidden md:flex lg:hidden">
-              {eventData.slice(0, 3).map((card, index) => (
+            <div className="hidden md:grid grid-cols-3 lg:hidden">
+              {event.upcomingEvents.slice(0, 3).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>
-            <div className="justify-around hidden lg:flex">
-              {eventData.slice(0, 4).map((card, index) => (
+            <div className="hidden lg:grid grid-cols-4">
+              {event.upcomingEvents.slice(0, 4).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-4 pb-10">
+          <div className="flex flex-col gap-4 w-full py-8">
             <div className="flex justify-between mt-4">
               <div className="font-medium lg:text-[1.4rem] text-[0.9rem]">
-                Past Events
+                Check out more Events
               </div>
               <div className="hover:font-medium hover:underline ">
                 <Link to="">See More</Link>
               </div>
             </div>
-            <div className="flex justify-around md:hidden gap-2">
-              {eventData.slice(0, 2).map((card, index) => (
+            <div className="grid grid-cols-2 md:hidden gap-2">
+              {event.upcomingEvents.slice(0, 2).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>
-            <div className="justify-around hidden md:flex lg:hidden">
-              {eventData.slice(0, 3).map((card, index) => (
+            <div className="hidden md:grid grid-cols-3 lg:hidden">
+              {event.upcomingEvents.slice(0, 3).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>
-            <div className="justify-around hidden lg:flex">
-              {eventData.slice(0, 4).map((card, index) => (
+            <div className="hidden lg:grid grid-cols-4">
+              {event.upcomingEvents.slice(0, 4).map((card, index) => (
                 <EventCard key={index} {...card} />
               ))}
             </div>

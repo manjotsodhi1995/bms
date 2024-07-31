@@ -4,14 +4,25 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import axios from "@/utils/middleware";
 import { API } from "@/api";
-
+interface Category {
+  categoryId: string;
+  categoryName: string;
+}
 const fetchEvents = async (id?: string) => {
   const response = await axios.get(
     `${API.events.fetchAllEvents}?category=${id}`
   );
   return response.data.data;
 };
+const fetchCategories = async () => {
+  const response = await axios.get(API.categories.getAllCategories);
+  return response.data.data as Category[];
+};
 function CategoriesPage() {
+  const { data: categories } = useQuery({
+    queryKey: ["categoriesQuery"],
+    queryFn: fetchCategories,
+  });
   const { categoryId } = useParams();
 
   const { data } = useQuery({
@@ -22,8 +33,28 @@ function CategoriesPage() {
   return (
     <div className="lg:px-[5%] xl:px-[7%] px-[8vw] min-h-[80vh]">
       <div className="flex flex-col gap-2 pb-10">
+        {" "}
+        <div className="flex flex-col gap-3">
+          <div className="flex w-full gap-4 overflow-x-auto mt-4">
+            {categories &&
+              categories.slice(0, 10).map((category) => (
+                <a
+                  key={category.categoryId}
+                  href={`/categories/${category.categoryId}`}
+                  className={`text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 ${
+                    category.categoryId === categoryId
+                      ? "bg-[#60769D] text-white"
+                      : "bg-[#EBEBEBB2] text-gray-800"
+                  } transition-colors duration-200 hover:bg-[#60769D] hover:text-white`}
+                >
+                  {category.categoryName}
+                </a>
+              ))}
+          </div>
+        </div>
         <div className="flex justify-between mt-4">
           <div className="font-medium lg:text-[1.4rem] text-[0.9rem] flex items-center gap-4">
+            {" "}
             <Link to="/filter">
               {" "}
               <svg
