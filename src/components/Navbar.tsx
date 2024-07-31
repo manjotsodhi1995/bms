@@ -356,7 +356,7 @@ const Navbar = observer(() => {
       .showMenuNav {
         display: block;
         position: absolute;
-        width: 28rem;
+        width: 24rem;
         height: 100vh;
         top: 0;
         left: 0;
