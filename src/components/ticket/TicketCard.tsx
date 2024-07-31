@@ -34,9 +34,9 @@ function TicketCard(props: TicketCardProps) {
           />
         </div>
         <div className="w-[10rem] h-[10rem] rounded-2xl">
-          {props?.posterUrl ? (
+          {props?.event?.posterUrl ? (
             <img
-              src={props?.posterUrl}
+              src={props?.event.posterUrl}
               alt="Event Logo"
               className="object-cover w-full h-full rounded-2xl"
             />
