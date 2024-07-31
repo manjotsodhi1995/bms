@@ -4,20 +4,29 @@ import { ChevronLeft } from "lucide-react";
 import QrCode from "@/assets/payment-methods/qrcode.svg";
 import ticket from "@/assets/payment-methods/ticket.svg";
 import { usePDF } from "react-to-pdf";
+import { useEffect } from "react";
+import { formatDate } from "@/utils";
 
 interface ViewTicketStepProps extends TicketStepsProps {
   onShareClicked: () => void;
   showTitle?: boolean;
+  instantDownload?: boolean;
 }
 export const ViewTicketStep = ({
   eventsData,
   onShareClicked,
   onBack,
   showTitle = true,
+  instantDownload = false,
 }: ViewTicketStepProps) => {
   const { toPDF, targetRef } = usePDF({
     filename: eventsData?.title + "_ticket.pdf",
   });
+  useEffect(() => {
+    if (instantDownload) {
+      toPDF();
+    }
+  }, []);
   return (
     <Fragment>
       {showTitle && (
@@ -45,12 +54,12 @@ export const ViewTicketStep = ({
 
             <div className="place-self-center -translate-y-8 flex flex-col gap-4">
               <p className="flex flex-col">
-                <span className="text-sm text-gray-300">Name</span>
-                <span className="font-medium">Adam Smith</span>
+                <span className="text-sm text-gray-300">Event Name</span>
+                <span className="font-medium">{eventsData?.event.title}</span>
               </p>
               <p className="flex flex-col">
                 <span className="text-sm text-gray-300">Date</span>
-                <span className="font-medium">December 17, 2022</span>
+                <span className="font-medium">{formatDate(new Date(eventsData?.eventDate))}</span>
               </p>
               <p className="flex flex-col">
                 <span className="text-sm text-gray-300">Time</span>

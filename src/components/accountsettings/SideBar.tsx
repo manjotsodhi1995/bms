@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "@/utils/middleware";
 import { API } from "@/api";
 import { Avatar } from "@mui/material";
+import { X } from "lucide-react";
 
 const fetchProfile = async () => {
   const response = await axios.get(API.users.profile);
@@ -26,6 +27,9 @@ const SideBar: React.FC<SideBarProps> = ({ onStateChange, initialState }) => {
   const [select, setSelect] = useState<string>(initialState);
   return (
     <div className="sm:w-[25%] sm:max-w-[350px] min-w-[200px] bg-gray-300 text-black flex flex-col items-center h-[99vh] w-screen sm:z-10">
+      <Link to="/" className="absolute top-2 left-4 hover:border-2 hover:border-black rounded">
+        <X className="size-8" />
+      </Link>
       <Avatar
         src={data?.displayPic}
         alt="Profile"

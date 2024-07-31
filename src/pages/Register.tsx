@@ -57,6 +57,18 @@ const Register = observer(() => {
         setError("Password must be more than 6 letters");
         return;
       }
+      if (firstName.length === 0) {
+        setError("First name is required");
+        return;
+      }
+      if (lastName.length === 0) {
+        setError("Last name is required");
+        return;
+      }
+      if (email.length === 0) {
+        setError("Email name is required");
+        return;
+      }
 
       await auth.register(
         email,
@@ -70,7 +82,11 @@ const Register = observer(() => {
       navigate("/");
     } catch (error: any) {
       if (error instanceof AxiosError) {
-        setError(error.response?.data.message);
+        setError(
+          error.response?.data?.message?.details
+            .map((d: any) => d.message)
+            .join(",")
+        );
       } else {
         setError("An error occurred during login. Please try again later.");
         console.error("Login error:", error);
@@ -105,6 +121,7 @@ const Register = observer(() => {
                   type="text"
                   name="firstName"
                   id="firstName"
+                  required={true}
                   value={firstName}
                   placeholder="First name"
                   className="w-full"
@@ -116,6 +133,7 @@ const Register = observer(() => {
                   type="text"
                   name="lastName"
                   id="lastName"
+                  required={true}
                   placeholder="Last name"
                   value={lastName}
                   className="w-full"
@@ -129,6 +147,7 @@ const Register = observer(() => {
                     type="radio"
                     name="gender"
                     value="male"
+                    required={true}
                     checked={gender === "male"}
                     onChange={handleInputChange}
                   />
@@ -139,6 +158,7 @@ const Register = observer(() => {
                     type="radio"
                     name="gender"
                     value="female"
+                    required={true}
                     checked={gender === "female"}
                     onChange={handleInputChange}
                   />
@@ -149,6 +169,7 @@ const Register = observer(() => {
               <div className="">
                 <MuiTelInput
                   value={phone}
+                  required={true}
                   onChange={(v, info) => {
                     setPhone(v);
                     setActualPhone(info.nationalNumber);
@@ -167,6 +188,7 @@ const Register = observer(() => {
                 <input
                   type="email"
                   name="email"
+                  required={true}
                   value={email}
                   placeholder="Email Address"
                   id="email"
@@ -179,6 +201,7 @@ const Register = observer(() => {
                 <input
                   type="password"
                   value={password}
+                  required={true}
                   placeholder="Password"
                   name="password"
                   id="password"

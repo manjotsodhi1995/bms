@@ -1,27 +1,80 @@
 import { API } from "@/api";
+import { cn } from "@/utils";
 import axios from "@/utils/middleware";
 import { Avatar } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
-import { Pencil } from "lucide-react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Loader2, Pencil } from "lucide-react";
+import { MuiTelInput } from "mui-tel-input";
 import { FormEvent, useState } from "react";
+
+interface UpdateProfile {
+  fname: string;
+  lname: string;
+  email: string;
+  countryCode: string | null;
+  phone: string | null;
+  gender: string;
+  displayPic: string;
+}
 
 const fetchProfile = async () => {
   const response = await axios.get(API.users.profile);
   return response.data.data;
 };
+
+const updateProfile = async (body: UpdateProfile) => {
+  const response = await axios.put(API.users.update, body);
+  return response.data.data;
+};
+
+const uploadFile = async (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  const response = await axios.postForm(API.content.upload, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return response.data.data;
+};
+
 const AccSettings = () => {
+  const queryClient = useQueryClient();
   const { data } = useQuery({
     queryKey: ["profile"],
     queryFn: fetchProfile,
+  });
+  const { mutate, isPending: updatePending } = useMutation({
+    mutationFn: updateProfile,
+    onSettled: async () => {
+      setFname("");
+      setLname("");
+      setEmail("");
+      setMobile("");
+      // setDob("");
+      setPassword("");
+      setGender("");
+      return await queryClient.invalidateQueries({
+        queryKey: ["profile"],
+      });
+    },
+  });
+  const { mutate: uploadFileMutation, isPending } = useMutation({
+    mutationFn: uploadFile,
+    onSuccess: (data) => {
+      setProfilePic(data.contentUrl);
+    },
   });
   const [fname, setFname] = useState<string>("");
   const [lname, setLname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [mobile, setMobile] = useState<string>("");
-  const [dob, setDob] = useState<string>("");
+  // const [dob, setDob] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [gender, setGender] = useState<string>("");
   const [profilePic, setProfilePic] = useState<string>("");
+  const [actualPhone, setActualPhone] = useState<string | null>("");
+  const [country, setCountry] = useState<string | null>("");
 
   const handleGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGender(event.target.value);
@@ -35,14 +88,15 @@ const AccSettings = () => {
 
   const formSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log("pass: " +password+","+lname+fname)
-    setFname("");
-    setLname("");
-    setEmail("");
-    setMobile("");
-    setDob("");
-    setPassword("");
-    setGender("");
+    mutate({
+      fname,
+      lname,
+      email,
+      countryCode: country,
+      phone: actualPhone,
+      gender,
+      displayPic: profilePic,
+    });
   };
 
   return (
@@ -63,67 +117,83 @@ const AccSettings = () => {
             type="file"
             onChange={(e) => {
               if (e.target.files) {
-                let img = URL.createObjectURL(e.target.files[0]);
-                if (img) {
-                  setProfilePic(img);
-                }
+                uploadFileMutation(e.target.files[0]);
               }
             }}
           />
           <label
             htmlFor="profilePic"
-            className="flex w-full justify-center gap-2 items-center"
+            className="relative flex w-fit justify-center gap-2 items-center"
           >
             <Avatar
               src={profilePic || data?.displayPic}
               sx={{ width: 100, height: 100 }}
+              className={cn({
+                "opacity-60": isPending,
+              })}
             />
+            {isPending && (
+              <Loader2 className="absolute left-8 size-10 animate-spin" />
+            )}
             <Pencil className="size-4" />
           </label>
         </div>
         <input
           type="text"
-          className="w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
           placeholder="First Name"
+          autoComplete="name"
           defaultValue={data?.fname}
           value={fname}
           onChange={handleInputChange(setFname)}
         />
         <input
           type="text"
-          className="w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
           placeholder="Last Name"
+          autoComplete="name"
           value={lname}
           defaultValue={data?.lname}
           onChange={handleInputChange(setLname)}
         />
         <input
           type="text"
-          className="w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          autoComplete="email"
           placeholder="Email Address"
           value={email}
           defaultValue={data?.email}
           onChange={handleInputChange(setEmail)}
         />
-        <input
-          type="text"
-          className="w-[80vw] md:max-w-[500px] sm:w-[50vw]   my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
-          placeholder="Mobile Number"
+
+        <MuiTelInput
           value={mobile}
-          defaultValue={data?.mobile}
-          onChange={handleInputChange(setMobile)}
+          required={true}
+          onChange={(v, info) => {
+            setMobile(v);
+            setActualPhone(info.nationalNumber);
+            setCountry(`+${info.countryCallingCode}`);
+          }}
+          name="phone"
+          id="phone"
+          autoComplete="cc-number"
+          placeholder="Mobile Number"
+          defaultCountry="US"
+          variant="outlined"
+          className="w-[80vw] md:max-w-[500px] sm:w-[50vw]"
         />
-        <input
-          type="text"
-          className="w-[80vw] md:max-w-[500px] sm:w-[50vw]  my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
-          placeholder="Date of Birth"
-          value={dob}
-          onChange={handleInputChange(setDob)}
-        />
+        {/* <input */}
+        {/*   type="text" */}
+        {/*   className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw]  my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black" */}
+        {/*   placeholder="Date of Birth" */}
+        {/*   value={dob} */}
+        {/*   onChange={handleInputChange(setDob)} */}
+        {/* /> */}
         <input
           type="password"
-          className="w-[80vw] md:max-w-[500px] sm:w-[50vw]   my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw]   my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
           placeholder="Change Password"
+          autoComplete="current-password"
           value={password}
           onChange={handleInputChange(setPassword)}
         />
@@ -154,9 +224,10 @@ const AccSettings = () => {
         <div className="flex w-full justify-center">
           <button
             type="submit"
-            className="bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]"
+            className="flex items-center gap-2 bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]"
           >
             SAVE CHANGES
+            {updatePending && <Loader2 className="size-4 animate-spin" />}
           </button>
         </div>
       </form>
