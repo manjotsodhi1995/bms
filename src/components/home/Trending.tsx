@@ -68,15 +68,15 @@ function Trending() {
   useOnClickOutside(locationRef, () => setCompletionsOpen(false));
 
   return (
-    <div className="lg:px-[8%] px-[8vw] mt-[7vh] flex flex-col gap-8">
+    <div className="lg:px-[8%] px-[8vw] mt-[2vh] flex flex-col gap-8">
       <div className="flex flex-col gap-3">
-        <div className="flex w-full gap-4 overflow-x-auto">
+        <div className="flex w-full gap-4 overflow-x-hidden">
           {categories &&
-            categories.slice(0, 7).map((category: Category) => (
+            categories.map((category: Category) => (
               <a
                 key={category.categoryId}
                 href={`/categories/${category.categoryId}`}
-                className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200 hover:bg-[#60769D] hover:text-white"
+                className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200 hover:bg-[#60769D] hover:text-white max-w-[150px]"
               >
                 {category.categoryName}
               </a>
@@ -178,7 +178,7 @@ function Trending() {
         {/*       .slice(0, 3) */}
         {/*       .map((card, index) => <EventCard key={index} {...card} />)} */}
         {/* </div> */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-between gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 justify-between gap-4">
           {loading && [...Array(5)].map((_) => <EventCardSkeleton />)}
           {!loading &&
             data &&
