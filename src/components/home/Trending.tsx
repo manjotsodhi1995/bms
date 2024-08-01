@@ -111,7 +111,7 @@ function Trending() {
               <MapPin className="absolute top-2 left-1 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
               <input
                 id="location"
-                className="w-72 !px-8 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
+                className="w-44 !px-8 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
                 value={selectedLocation}
                 placeholder="Search for a city"
                 onClick={clear}
