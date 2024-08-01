@@ -34,40 +34,7 @@ const OrganizationProfile = observer(() => {
     }
   });
   const accessToken = auth.accessToken;
-  const eventData = [
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-    {
-      title: "Rhythms Live",
-      description: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-      imageUrl:
-        "https://th.bing.com/th/id/R.17764304cf7ef9020b506960d52d2471?rik=NQouPpwX1%2bVVOA&pid=ImgRaw&r=0",
-      date: "DEC 24",
-      location: "Boston",
-    },
-  ];
+
   useEffect(() => {
     const fetchOrg = async () => {
       try {
