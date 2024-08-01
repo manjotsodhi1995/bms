@@ -21,6 +21,7 @@ export type EventType = {
   organizer: {
     _id: string;
     name: string;
+    logoUrl: string;
   };
   eventCategories: [
     {

@@ -305,7 +305,7 @@ const EventPage = observer(() => {
               <div className="flex items-center gap-8">
                 <div className="flex items-center gap-4">
                   <Avatar
-                    src={eventData.organizer._id}
+                    src={eventData.organizer.logoUrl}
                     sx={{
                       width: 56,
                       height: 56,
