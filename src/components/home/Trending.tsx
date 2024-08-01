@@ -76,7 +76,7 @@ function Trending() {
               <a
                 key={category.categoryId}
                 href={`/categories/${category.categoryId}`}
-                className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200 hover:bg-[#60769D] hover:text-white max-w-[150px]"
+                className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200 hover:bg-[#60769D] hover:text-white max-w-[280px]"
               >
                 {category.categoryName}
               </a>
