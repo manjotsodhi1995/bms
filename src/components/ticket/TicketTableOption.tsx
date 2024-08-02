@@ -4,14 +4,17 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import TicketCounter from "./TicketCounter";
+import { formatCurrency } from "@/utils";
 
 interface TicketTableOptionProps {
+  currency: string;
   currentBasket: any;
   ticket: any;
   onTicketUpdate: (ticket: number) => void;
   pending: boolean;
 }
 const TicketTableOption = ({
+  currency,
   ticket,
   onTicketUpdate,
   currentBasket,
@@ -33,8 +36,9 @@ const TicketTableOption = ({
             <p className="flex flex-col items-start ">
               <span className="text-lg">{ticket.categoryName}</span>
               <span className="text-gray-600 font-normal text-sm">
-                {ticket.categoryType === "IND" ? "₹" : "$"}
-                {ticket.categoryPricePerPerson}
+                {formatCurrency(ticket.categoryPricePerPerson, currency)}
+                {/* {ticket.categoryType === "IND" ? "₹" : "$"} */}
+                {/* {ticket.categoryPricePerPerson} */}
               </span>
             </p>
 

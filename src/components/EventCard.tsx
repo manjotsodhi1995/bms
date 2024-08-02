@@ -67,7 +67,7 @@ function EventCard(event: Partial<EventType>) {
               xmlns="http://www.w3.org/2000/svg"
               onClick={onLikeClicked}
               className={cn(
-                "size-6 absolute md:top-4 md:right-4 top-2 right-2 fill-white",
+                "size-6 absolute md:top-4 md:right-4 top-2 right-2 fill-white hover:fill-pink-700",
                 {
                   "fill-pink-700": isLiked,
                   "fill-pink-100": mutation.isPending,

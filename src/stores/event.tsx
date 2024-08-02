@@ -81,6 +81,9 @@ export class Event {
       if (location.includes(",")) {
         location = location.split(",")[0];
       }
+      if (location.length === 0) {
+        location = "Dublin";
+      }
       const response = await axios.get(
         `${API.events.fetchAllEvents}?city=${location}`
       );

@@ -14,6 +14,7 @@ const data = {
   _id: "666f259d14116a6cced20b70",
   title: "India Health Expo August",
   organizer: {
+    logoUrl: "",
     _id: "66488105413dec3b01552752",
     name: "My Test Organization",
   },

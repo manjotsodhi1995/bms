@@ -100,15 +100,15 @@ const Register = observer(() => {
   }, []);
   return (
     <>
-      <div className="md:flex">
-        <div className="md:w-[46vw] md:block hidden">
-          <img src={img} className="h-screen w-full" alt="" />
+      <div className="md:flex h-screen">
+        <div className="md:w-1/2 md:block hidden">
+          <img src={img} className="h-full w-full object-cover" alt="" />
         </div>
-        <div className="h-screen">
-          <div className="py-[7vh] 2xl:py-[12vh] px-[10vw] h-full md:w-[54vw]">
+        <div className="md:w-1/2 flex items-center justify-center">
+          <div className="px-[10vw]">
             <form
               onSubmit={handleSubmit}
-              className="h-full p-4 flex flex-col justify-around w-[27rem]"
+              className="h-full p-4 flex flex-col justify-around space-y-3"
             >
               <div className="flex flex-col gap-2">
                 <h1 className="text-3xl font-bold text-center items-center">
@@ -224,12 +224,12 @@ const Register = observer(() => {
                 <div className="h-[2px] bg-black"></div>
                 <p className="text-center text-sm">
                   By registering, you agree to KAFSCO's{" "}
-                  <a href="/terms" className="text-blue-600">
+                  <a target="blank" href="/terms" className="text-blue-600 font-bold">
                     T&Cs
                   </a>{" "}
-                  and <a href="/privacy">Privacy Policy.</a>
+                  and <a href="/privacy" className="font-bold">Privacy Policy.</a>
                 </p>
-                <div>
+                <div className="flex justify-center items-center font-bold gap-x-2">
                   <div className="text-red-500">{error}</div>
                   Already a member ?{" "}
                   <Link to="/login" className="text-[#8C3E87]">

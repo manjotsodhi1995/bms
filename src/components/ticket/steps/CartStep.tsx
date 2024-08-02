@@ -67,7 +67,7 @@ export const CartStep = ({
 
             <p className="flex items-center justify-between mt-4 text-black font-medium">
               <span>Total</span>
-              <span>${cartData ? cartData.totalAmount : "0.00"}</span>
+              <span>${cartData ? cartData.netPayableAmount : "0.00"}</span>
             </p>
           </div>
 
