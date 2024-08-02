@@ -67,4 +67,7 @@ export const API = {
   content: {
     upload: `${SERVER_BASE_URL}/contents/upload`,
   },
+  promo: {
+    apply: `${SERVER_BASE_URL}/promo-code/apply`,
+  },
 } as const;

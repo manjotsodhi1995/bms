@@ -14,7 +14,7 @@ interface UpdateCart {
 
 export const useCartQuery = (eventId?: string, eventDate?: string) => {
   const queryClient = useQueryClient();
-  const { setBasketId } = useCart();
+  const { setBasketId, voucherCode, basketId } = useCart();
 
   const updateCart = async (body: Partial<UpdateCart>) => {
     if (!eventId) return false;
@@ -29,10 +29,26 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
     });
 
     if (response.status === 200) {
-      setBasketId(response.data.data._id);
+      setBasketId(response.data.data.basket._id);
     }
-    return response.data.data.basket;
+    return response.data.data;
   };
+
+  const applyPromoCode = async () => {
+    const response = await axios.post(`${API.promo.apply}/${basketId}`, {
+      promoId: voucherCode,
+    });
+    return response.data.data;
+  };
+
+  const promoCodeMutation = useMutation({
+    mutationFn: applyPromoCode,
+    onSettled: async () => {
+      return await queryClient.invalidateQueries({
+        queryKey: ["cart", eventId],
+      });
+    },
+  });
 
   const { data: cartData } = useQuery({
     queryKey: ["cart", eventId],
@@ -52,5 +68,6 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
   return {
     cartData,
     cartMutation,
+    promoCodeMutation,
   };
 };
