@@ -12,7 +12,7 @@ import { BookingStep } from "./steps/BookingStep";
 import { CheckoutStep } from "./steps/CheckoutStep";
 import { PaymentStep } from "./steps/PaymentStep";
 import { PaymentSuccessStep } from "./steps/PaymentSuccessStep";
-import { ViewTicketStep } from "./steps/VIewTicketStep";
+import { ViewTicketStep } from "./steps/ViewTicketStep";
 import { BuyAnotherTicketsStep } from "./steps/BuyAnotherTicketStep";
 import { ShareTicketStep } from "./steps/ShareTicketStep";
 import type { EventType } from "@/stores/event";
