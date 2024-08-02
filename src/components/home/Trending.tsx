@@ -95,7 +95,7 @@ function Trending() {
                 viewBox="0 0 16 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="size-5"
+                className="size-5 hover:text-blue-800"
               >
                 <path
                   d="M14.6663 3.8335H7.16634M9.66634 12.1668H2.16634M9.66634 12.1668C9.66634 13.5475 10.7856 14.6668 12.1663 14.6668C13.5471 14.6668 14.6663 13.5475 14.6663 12.1668C14.6663 10.7861 13.5471 9.66683 12.1663 9.66683C10.7856 9.66683 9.66634 10.7861 9.66634 12.1668ZM6.33301 3.8335C6.33301 5.21421 5.21372 6.3335 3.83301 6.3335C2.4523 6.3335 1.33301 5.21421 1.33301 3.8335C1.33301 2.45278 2.4523 1.3335 3.83301 1.3335C5.21372 1.3335 6.33301 2.45278 6.33301 3.8335Z"
@@ -111,7 +111,7 @@ function Trending() {
               <MapPin className="absolute top-2 left-1 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
               <input
                 id="location"
-                className="w-44 !px-8 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
+                className="w-44 !px-8 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem] font-medium text-blue-700 lg:w-[18vw] xl:w-[14vw]"
                 value={selectedLocation}
                 placeholder="Search for a city"
                 onClick={clear}
@@ -178,7 +178,7 @@ function Trending() {
         {/*       .slice(0, 3) */}
         {/*       .map((card, index) => <EventCard key={index} {...card} />)} */}
         {/* </div> */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 justify-between gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 justify-between gap-6">
           {loading && [...Array(5)].map((_) => <EventCardSkeleton />)}
           {!loading &&
             data &&
