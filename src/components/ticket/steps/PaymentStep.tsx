@@ -1,12 +1,12 @@
 import { ChevronLeft, Loader2 } from "lucide-react";
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useState } from "react";
 import { TicketStepsProps } from ".";
 import { useCart } from "@/stores/cart";
 import { useCartQuery } from "@/api/query/useCartQuery";
-import { formatDate } from "@/utils";
 import { useMutation } from "@tanstack/react-query";
 import axios from "@/utils/middleware";
 import { API } from "@/api";
+import PreviewCard from "./PreviewCard";
 
 interface PaymentBody {
   amount: string;
@@ -52,13 +52,6 @@ export const PaymentStep = ({
     eventsData?.eventId,
     eventsData?.eventStart
   );
-  const noOfTickets = useMemo(() => {
-    if (!cartData) return 0;
-    const tickets = cartData.basket
-      ? cartData.basket.reduce((acc: number, d: any) => acc + d.noOfPersons, 0)
-      : 0;
-    return tickets;
-  }, [cartData]);
 
   const { mutate, isPending, isError } = useMutation({
     mutationFn: sendPaymentDetails,
@@ -91,7 +84,7 @@ export const PaymentStep = ({
     setError("");
 
     mutate({
-      amount: Number(cartData.totalAmount).toFixed(0),
+      amount: Number(cartData.basket.netPayableAmount).toFixed(0),
       cardNumber: cardNumber,
       cardExpiryMonth: expiryDate.split("/")[0],
       cardExpiryYear: expiryDate.split("/")[1],
@@ -136,7 +129,7 @@ export const PaymentStep = ({
 
   return (
     <Fragment>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 absolute left-4 top-4">
         <button onClick={onBack}>
           <ChevronLeft className="size-6" />
         </button>
@@ -236,48 +229,7 @@ export const PaymentStep = ({
           </div>
         </div>
 
-        <div className="bg-white p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
-          <img
-            src={eventsData?.posterUrl}
-            className="w-full h-52 object-fill rounded-lg"
-          />
-          <span className="leading-tight text-xl font-medium">
-            {eventsData?.title}
-          </span>
-          <p className="ml-4 md:ml-2 text-sm">
-            Wednesdays, {formatDate(new Date(eventsData?.eventStart!!))}
-            <br />
-            at {eventsData?.venueAddress.name}, {eventsData?.venueAddress.city},{" "}
-            {eventsData?.venueAddress.country},{" "}
-            {eventsData?.venueAddress.zipcode}
-          </p>
-
-          <h3 className="mt-10 leading-tight text-xl font-medium w-full">
-            Order Summary
-          </h3>
-          <p className="flex w-full items-center justify-between font-medium">
-            <span>Ticket - {noOfTickets}</span>
-            <span>${cartData ? cartData.subTotal : "0.00"}</span>
-          </p>
-          <hr className="w-full border-t border-1 border-neutral-300" />
-          <div className="flex flex-col w-full px-4">
-            <p className="flex items-center justify-between text-gray-600 text-sm">
-              <span>Subtotal</span>
-              <span>${cartData ? cartData.subTotal : "0.00"}</span>
-            </p>
-            <p className="flex items-center justify-between text-gray-600 text-sm">
-              <span>Fees</span>
-              <span className="mr-[1.6rem]">
-                ${cartData ? cartData.totalAmount - cartData.subTotal : "0.00"}
-              </span>
-            </p>
-
-            <p className="flex items-center justify-between mt-4 text-black font-medium">
-              <span>Total</span>
-              <span>${cartData ? cartData.totalAmount : "0.00"}</span>
-            </p>
-          </div>
-        </div>
+        <PreviewCard cartData={cartData} eventsData={eventsData} />
       </div>
     </Fragment>
   );

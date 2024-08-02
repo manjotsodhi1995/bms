@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogClose, DialogContent } from "../ui/dialog";
-import { ViewTicketStep } from "./steps/VIewTicketStep";
+import { ViewTicketStep } from "./steps/ViewTicketStep";
 import { formatDate } from "@/utils";
 import { Download, Eye, X } from "lucide-react";
 import { EventType } from "@/stores/event";

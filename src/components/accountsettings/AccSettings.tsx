@@ -5,7 +5,7 @@ import { Avatar } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Loader2, Pencil } from "lucide-react";
 import { MuiTelInput } from "mui-tel-input";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 interface UpdateProfile {
   fname: string;
@@ -40,10 +40,23 @@ const uploadFile = async (file: File) => {
 
 const AccSettings = () => {
   const queryClient = useQueryClient();
-  const { data } = useQuery({
+  const { data, isSuccess } = useQuery({
     queryKey: ["profile"],
     queryFn: fetchProfile,
   });
+
+  useEffect(() => {
+    if (!data) return;
+    setFname(data?.fname);
+    setLname(data?.lname);
+    setEmail(data?.email);
+    setGender(data?.gender);
+    setCountry(data?.countryCode);
+    setActualPhone(data?.phone);
+    setMobile(`${data?.countryCode}${data?.phone}`);
+    setProfilePic(data?.displayPic);
+  }, [data, isSuccess]);
+
   const { mutate, isPending: updatePending } = useMutation({
     mutationFn: updateProfile,
     onSettled: async () => {
@@ -52,7 +65,7 @@ const AccSettings = () => {
       setEmail("");
       setMobile("");
       // setDob("");
-      setPassword("");
+      // setPassword("");
       setGender("");
       return await queryClient.invalidateQueries({
         queryKey: ["profile"],
@@ -70,7 +83,6 @@ const AccSettings = () => {
   const [email, setEmail] = useState<string>("");
   const [mobile, setMobile] = useState<string>("");
   // const [dob, setDob] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
   const [gender, setGender] = useState<string>("");
   const [profilePic, setProfilePic] = useState<string>("");
   const [actualPhone, setActualPhone] = useState<string | null>("");
@@ -101,7 +113,7 @@ const AccSettings = () => {
 
   return (
     // flex flex-col sm:items-start 2xl:items-center items-center w-[80vw] mx-[5px] sm:w-[75%] lg:pl-[10%] sm:pl-[5%] bg-white mt-[50px]
-    <div className="flex flex-col sm:items-start 2xl:items-center items-center sm:w-[75%] w-full lg:pl-[10%] sm:pl-[5%] mt-[50px] bg-white 2xl:justify-center max-h-full">
+    <div className="flex flex-col sm:items-start 2xl:items-center items-center sm:w-[75%] w-full lg:pl-[10%] sm:pl-[5%] mt-[50px] 2xl:justify-center max-h-full">
       <h1 className="text-2xl font-medium my-2">Account Settings</h1>
       <form
         onSubmit={formSubmitHandler}
@@ -158,8 +170,9 @@ const AccSettings = () => {
         />
         <input
           type="text"
-          className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+          className="!py-5 w-[80vw] bg-gray-100 cursor-not-allowed md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
           autoComplete="email"
+          readOnly
           placeholder="Email Address"
           value={email}
           defaultValue={data?.email}
@@ -189,14 +202,14 @@ const AccSettings = () => {
         {/*   value={dob} */}
         {/*   onChange={handleInputChange(setDob)} */}
         {/* /> */}
-        <input
-          type="password"
-          className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw]   my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
-          placeholder="Change Password"
-          autoComplete="current-password"
-          value={password}
-          onChange={handleInputChange(setPassword)}
-        />
+        {/* <input */}
+        {/*   type="password" */}
+        {/*   className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw]   my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black" */}
+        {/*   placeholder="Change Password" */}
+        {/*   autoComplete="current-password" */}
+        {/*   value={password} */}
+        {/*   onChange={handleInputChange(setPassword)} */}
+        {/* /> */}
         <div className="flex flex-col items-start mt-1">
           <label className="flex items-center space-x-2 text-md mb-[5px]">
             <input

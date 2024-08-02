@@ -2,10 +2,10 @@ import { ChevronLeft, Loader2 } from "lucide-react";
 import TicketTableOption from "../TicketTableOption";
 import { TicketStepsProps } from ".";
 import { useBookingMatrixQuery } from "@/api/query/useBookingMatrixQuery";
-import { formatDate } from "@/utils";
 import { useCartQuery } from "@/api/query/useCartQuery";
 import { useMemo } from "react";
 import { AxiosError } from "axios";
+import PreviewCard from "./PreviewCard";
 
 export const BookingStep = ({
   eventsData,
@@ -21,8 +21,11 @@ export const BookingStep = ({
   );
   const noOfTickets = useMemo(() => {
     if (!cartData) return 0;
-    const tickets = cartData.basket
-      ? cartData.basket.reduce((acc: number, d: any) => acc + d.noOfPersons, 0)
+    const tickets = cartData.basket.basket
+      ? cartData.basket.basket.reduce(
+          (acc: number, d: any) => acc + d.noOfPersons,
+          0
+        )
       : 0;
     return tickets;
   }, [cartData]);
@@ -41,7 +44,7 @@ export const BookingStep = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
       <div>
-        <span className="flex items-center gap-2">
+        <span className="flex items-center gap-2 absolute left-4 top-4">
           <button onClick={onBack}>
             <ChevronLeft className="size-6" />
           </button>
@@ -58,10 +61,11 @@ export const BookingStep = ({
         )}
         {!isLoading &&
           data &&
-          data.ticketCategories &&
-          data.ticketCategories.map((ticket: any) => (
+          data?.matrix?.ticketCategories &&
+          data?.matrix?.ticketCategories.map((ticket: any) => (
             <TicketTableOption
-              currentBasket={cartData?.basket}
+              currency={data.currency}
+              currentBasket={cartData?.basket?.basket}
               ticket={ticket}
               key={ticket._id}
               pending={cartMutation.isPending}
@@ -79,55 +83,7 @@ export const BookingStep = ({
           ))}
         {isError && <p>There are no tickets available</p>}
       </div>
-
-      <div className="bg-white p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
-        <img
-          src={eventsData?.posterUrl}
-          className="w-full h-52 object-fill rounded-lg"
-        />
-        <span className="leading-tight text-xl font-medium">
-          {eventsData?.title}
-        </span>
-        <p className="ml-4 md:ml-2 text-sm">
-          Wednesdays, {formatDate(new Date(eventsData?.eventStart!!))}
-          <br />
-          at {eventsData?.venueAddress.name}, {eventsData?.venueAddress.city},{" "}
-          {eventsData?.venueAddress.country}, {eventsData?.venueAddress.zipcode}
-        </p>
-
-        <h3 className="mt-10 leading-tight text-xl font-medium w-full">
-          Order Summary
-        </h3>
-        <div className="flex w-full flex-col font-medium">
-          {cartData?.basket &&
-            cartData.basket.map((ticket: any) => (
-              <p className="flex w-full items-center justify-between">
-                <span>
-                  {ticket.noOfPersons} {ticket.categoryName}
-                </span>
-                <span>${Number(ticket.totalPrice).toFixed(2)}</span>
-              </p>
-            ))}
-        </div>
-        <hr className="w-full border-t border-1 border-neutral-300" />
-        <div className="flex flex-col w-full">
-          <p className="flex items-center justify-between text-gray-600 text-sm">
-            <span>Subtotal</span>
-            <span>${cartData ? cartData.subTotal : "0.00"}</span>
-          </p>
-          <p className="flex items-center justify-between text-gray-600 text-sm">
-            <span>Fees</span>
-            <span className="">
-              ${cartData ? Number(cartData.totalAmount - cartData.subTotal).toFixed(2) : "0.00"}
-            </span>
-          </p>
-
-          <p className="flex items-center justify-between mt-4 text-black font-medium">
-            <span>Total</span>
-            <span>${cartData ? cartData.totalAmount : "0.00"}</span>
-          </p>
-        </div>
-
+      <PreviewCard cartData={cartData} eventsData={eventsData}>
         <button
           disabled={noOfTickets === 0}
           className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed"
@@ -135,7 +91,7 @@ export const BookingStep = ({
         >
           Reserve
         </button>
-      </div>
+      </PreviewCard>
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import { Fragment } from "react/jsx-runtime";
 import { TicketStepsProps } from ".";
 import { ChevronLeft } from "lucide-react";
-import QrCode from "@/assets/payment-methods/qrcode.svg";
 import ticket from "@/assets/payment-methods/ticket.svg";
 import { usePDF } from "react-to-pdf";
 import { useEffect } from "react";
 import { formatDate } from "@/utils";
+import QRCode from "react-qr-code";
 
 interface ViewTicketStepProps extends TicketStepsProps {
   onShareClicked: () => void;
@@ -20,7 +20,7 @@ export const ViewTicketStep = ({
   instantDownload = false,
 }: ViewTicketStepProps) => {
   const { toPDF, targetRef } = usePDF({
-    filename: eventsData?.title + "_ticket.pdf",
+    filename: eventsData?.event?.title + "_ticket.pdf",
   });
   useEffect(() => {
     if (instantDownload) {
@@ -46,20 +46,24 @@ export const ViewTicketStep = ({
               backgroundImage: `url(${ticket})`,
             }}
           >
-            <img
-              src={QrCode}
-              alt=""
-              className="size-32 place-self-center -translate-y-6"
+            <QRCode
+              className="place-self-center -translate-y-0"
+              style={{ height: "7rem", width: "7rem" }}
+              value={eventsData?.qrCode || "NOT IMPLEMENTED"}
             />
 
             <div className="place-self-center -translate-y-8 flex flex-col gap-4">
               <p className="flex flex-col">
                 <span className="text-sm text-gray-300">Event Name</span>
-                <span className="font-medium">{eventsData?.event.title}</span>
+                <span className="font-medium">
+                  {eventsData?.title || eventsData?.event?.title}
+                </span>
               </p>
               <p className="flex flex-col">
                 <span className="text-sm text-gray-300">Date</span>
-                <span className="font-medium">{formatDate(new Date(eventsData?.eventDate))}</span>
+                <span className="font-medium">
+                  {formatDate(new Date(eventsData?.eventDate))}
+                </span>
               </p>
               <p className="flex flex-col">
                 <span className="text-sm text-gray-300">Time</span>

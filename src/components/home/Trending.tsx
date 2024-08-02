@@ -33,7 +33,7 @@ function Trending() {
     queryFn: fetchCategories,
   });
   const [temp, setTemp] = useState(true);
-  const [selectedLocation, setSelectedLocation] = useState("Dublin, Ireland");
+  const [selectedLocation, setSelectedLocation] = useState("");
   const [completionsOpen, setCompletionsOpen] = useState(false);
   const locationRef = useRef<HTMLDivElement>(null);
   const { data, isLoading: loading } = useQuery({
@@ -107,11 +107,11 @@ function Trending() {
               </svg>
             </Link>
             Events in{" "}
-            <label htmlFor="location" className="relative w-fit">
-              <MapPin className="absolute top-2 left-1 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
+            <label htmlFor="location" className="relative w-60">
+              <MapPin className="absolute top-1 left-1 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
               <input
                 id="location"
-                className="w-44 !px-8 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem] font-medium text-blue-700 lg:w-[18vw] xl:w-[14vw]"
+                className="w-44 !px-8 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
                 value={selectedLocation}
                 placeholder="Search for a city"
                 onClick={clear}
