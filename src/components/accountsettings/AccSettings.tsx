@@ -101,7 +101,7 @@ const AccSettings = () => {
 
   return (
     // flex flex-col sm:items-start 2xl:items-center items-center w-[80vw] mx-[5px] sm:w-[75%] lg:pl-[10%] sm:pl-[5%] bg-white mt-[50px]
-    <div className="flex flex-col sm:items-start 2xl:items-center items-center sm:w-[75%] w-full lg:pl-[10%] sm:pl-[5%] mt-[50px] bg-white 2xl:justify-center max-h-full">
+    <div className="flex flex-col sm:items-start 2xl:items-center items-center sm:w-[75%] w-full lg:pl-[10%] sm:pl-[5%] mt-[50px] 2xl:justify-center max-h-full">
       <h1 className="text-2xl font-medium my-2">Account Settings</h1>
       <form
         onSubmit={formSubmitHandler}
