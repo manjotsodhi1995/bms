@@ -69,14 +69,14 @@ const Login = observer(() => {
   return (
     <>
       <div className="md:flex w-full justify-between md:p-0 p-8 min-w-screen">
-        <div className="md:block hidden w-[70vw]">
+        <div className="md:block hidden w-full">
           <img src={img} className="h-screen w-full" alt="" />
         </div>
         <div className="h-screen flex justify-center w-full">
           <div className="flex justify-center h-full w-full">
             <form
               onSubmit={handleSubmit}
-              className="h-full flex flex-col justify-center gap-6 w-[25rem]"
+              className="h-full flex flex-col justify-center gap-6 w-[50%]"
             >
               <div className="flex flex-col gap-2 items-center">
                 <h1 className="text-3xl font-bold">Login</h1>
@@ -106,8 +106,8 @@ const Login = observer(() => {
                     className="w-full"
                     onChange={handleInputChange}
                   />
-                  <div className="text-[#8C3E87] text-end hover:text-[#763572]">
-                    <Link to="/forgot">Forgot Password?</Link>
+                  <div className="text-[#8C3E87] text-end hover:text-[#763572] font-bold">
+                    <Link to="/forgot">Forgot Password ?</Link>
                   </div>
                 </div>
               </div>
@@ -135,7 +135,7 @@ const Login = observer(() => {
                 <div className="w-full h-[2px] bg-black"></div>
               </div>
 
-              <div className="text-[0.9rem] flex justify-center gap-1">
+              <div className="text-[0.9rem] flex justify-center gap-1 font-semibold">
                 <Link to="/register" className="text-[#8C3E87]">
                   {" "}
                   Create an account
