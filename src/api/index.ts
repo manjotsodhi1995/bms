@@ -47,6 +47,7 @@ export const API = {
   basket: {
     fetch: `${SERVER_BASE_URL}/baskets/fetch`,
     update: `${SERVER_BASE_URL}/baskets/update`,
+    reset: `${SERVER_BASE_URL}/baskets/reset`,
   },
   bookingmatrix: {
     create: `${SERVER_BASE_URL}/bookingmatrix/create`,

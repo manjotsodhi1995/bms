@@ -41,6 +41,14 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
     return response.data.data;
   };
 
+  const resetCart = async () => {
+    if (!eventId) return false;
+    const response = await axios.post(`${API.basket.reset}/${eventId}`, {
+      eventDate: eventDate ? eventDate.split(" ")[0] : null,
+    });
+    return response.data.data;
+  };
+
   const promoCodeMutation = useMutation({
     mutationFn: applyPromoCode,
     onSettled: async () => {
@@ -65,9 +73,19 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
     },
   });
 
+  const resetCartMutation = useMutation({
+    mutationFn: resetCart,
+    onSettled: async () => {
+      return await queryClient.invalidateQueries({
+        queryKey: ["cart", eventId],
+      });
+    },
+  });
+
   return {
     cartData,
     cartMutation,
     promoCodeMutation,
+    resetCartMutation,
   };
 };
