@@ -112,6 +112,7 @@ function Hero() {
   // const swiperRef1 = useRef<typeof Swiper | null>(null);
   // const swiperRef2 = useRef<typeof Swiper | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  // const [open, setOpen] = useState(false);
   // const [clicked, setClicked] = useState(true);
 
   const handleSlideClick = (index: number) => {

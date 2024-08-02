@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import Like from "../assets/Like.png";
 import Share from "../assets/share.png";
@@ -21,6 +21,8 @@ import { useLikesQuery } from "@/api/query/useLikesQuery";
 import { useFollowingQuery } from "@/api/query/useFollowingQuery";
 import Footer from "@/components/Footer";
 import toast from "react-hot-toast";
+import EventStories from "@/components/EventStories";
+import type SwiperCore from "swiper";
 
 const fetchEvent = async (slug?: string) => {
   const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
@@ -28,6 +30,7 @@ const fetchEvent = async (slug?: string) => {
       is_guest_user: "yes",
     },
   });
+  // console.log(response)
   return response.data.data as EventType;
 };
 
@@ -42,7 +45,7 @@ const EventPage = observer(() => {
     queryKey: ["event", slug],
     queryFn: () => fetchEvent(slug),
   });
-
+  // console.log(eventData)
   const eventId = eventData?.eventId;
   const { data: isLiked, mutation: likesMutation } = useLikesQuery(eventId);
 
@@ -67,9 +70,57 @@ const EventPage = observer(() => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [open, setOpen] = useState(false);
+  // const [clicked, setClicked] = useState(true);
+
+  const handleSlideClick = (index: number) => {
+    // setTimeout(() => {
+    //   setClicked(false);
+    // }, 15000);
+    setActiveIndex(index);
+    // if (firstSwiper.current) {
+    //   firstSwiper.current.slideTo(activeIndex);
+    // }
+  };
+
+  const firstSwiper = useRef<SwiperCore | null>(null);
+  // const secondSwiper = useRef<SwiperCore | null>(null);
+  // const handleFirstSlideChange = (swiper: SwiperCore) => {
+  //   const { activeIndex } = swiper;
+  //   // Navigate to the corresponding slide in the second swiper
+  //   if (secondSwiper.current && secondSwiper.current.activeIndex !== activeIndex) {
+  //     secondSwiper.current.slideTo(activeIndex);
+  //   }
+  // };
+  // const handleSecondSlideChange = (swiper: SwiperCore) => {
+  //   const { activeIndex } = swiper;
+  //   // Navigate to the corresponding slide in the first swiper
+  //   if (firstSwiper.current && firstSwiper.current.activeIndex !== activeIndex && open==true) {
+  //     firstSwiper.current.slideTo(activeIndex);
+  //   }
+  // };
+  const handleNextClick = () => {
+    if (firstSwiper.current) {
+      firstSwiper.current.slideNext();
+    }
+  };
+
+  const handlePrevClick = () => {
+    if (firstSwiper.current) {
+      firstSwiper.current.slidePrev();
+    }
+  };
   return (
     <div className="w-full">
       {/* <Navbar /> */}
+      <EventStories
+        onOpen={open}
+        setOpen={setOpen}
+        activeIndex={activeIndex}
+        handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
+        handlePrevClick={handlePrevClick}
+      />
       <div
         style={{
           backgroundImage: `url(${eventData?.posterUrl})`,
@@ -213,9 +264,13 @@ const EventPage = observer(() => {
             </div>
           </div>
           <div className="md:hidden grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
-            {event.upcomingEvents.slice(0, 3).map((card, index) => (
+            {eventData?.stories.map((card:any, index:any) => (
               <div key={index} className="snap-center w-full" ref={carouselRef}>
-                <EventSlides {...card} />
+                <EventSlides  title={card.caption} posterUrl={card.posterUrl} onClick={() => {
+                  setOpen(true);
+                  handleSlideClick(index);
+                  console.log("clicked")
+                }}/>
               </div>
             ))}
           </div>{" "}
@@ -347,9 +402,15 @@ const EventPage = observer(() => {
 
         <div className="h-fit fixed bottom-0 z-10 left-0 py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[30%]">
           <div className="hidden md:grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
-            {event.upcomingEvents.slice(0, 3).map((card, index) => (
-              <div key={index} className="snap-center w-full" ref={carouselRef}>
-                <EventSlides {...card} />
+            {eventData?.stories.map((card:any, index:any) => (
+              <div key={index} className="snap-center w-full" ref={carouselRef} onClick={() => {
+                setOpen(true);
+                handleSlideClick(index);
+              }}>
+                <EventSlides title={card.caption} posterUrl={card.posterUrl}  onClick={() => {
+                  setOpen(true);
+                  
+                }}/>
               </div>
             ))}
           </div>{" "}
