@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Modal from "@mui/material/Modal"
-import Box from '@mui/material/Box';
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 import StorySlide from "./StorySlide";
-import { Swiper, SwiperSlide} from "swiper/react";
+import { useParams } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Controller, EffectCoverflow, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import {data}  from "../utils/stories"
 import { X } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { API } from "@/api";
+import type { EventType } from "@/stores/event";
+import axios from "../utils/middleware";
 
 
 interface StoryProps {
@@ -38,11 +42,26 @@ const style = {
   outline: 'none'
 };
 
+const fetchEvent = async (slug?: string) => {
+    const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
+      headers: {
+        is_guest_user: "yes",
+      },
+    });
+    // console.log(response)
+    return response.data.data as EventType;
+  };
+  
+
 
 const Stories: React.FC<StoryProps> = ({ onOpen, setOpen, activeIndex, handleNextClick,
   handlePrevClick,}) => {
   // const [childSwiper, setChildSwiper] = useState<SwiperCore | null>(null);
-
+  const { slug } = useParams();
+  const { data: eventData } = useQuery({
+      queryKey: ["event", slug],
+      queryFn: () => fetchEvent(slug),
+    });
   const [currentIndex, setCurrentIndex] = useState(activeIndex);
   useEffect(() => {
     setCurrentIndex(activeIndex);
@@ -53,15 +72,18 @@ const Stories: React.FC<StoryProps> = ({ onOpen, setOpen, activeIndex, handleNex
   const handleNext = () => {
     handleNextClick();
     // Perform additional actions here
-    setCurrentIndex((prev)=>(prev+1)%10)
+    setCurrentIndex((prev)=>(prev+1)%eventData?.stories.length)
   };
 
   const handlePrev = () => {
     handlePrevClick();
     // Perform additional actions here
-    setCurrentIndex((prev)=>(prev+9)%10)
+    setCurrentIndex((prev)=>(prev+(eventData?.stories.length-1))%eventData?.stories.length)
   };
 const handleClose = () => setOpen(false);
+
+
+  console.log(eventData)
   return (
     <Modal
     open={onOpen}
@@ -85,7 +107,7 @@ const handleClose = () => setOpen(false);
           navigation={true}
           grabCursor={true}
           centeredSlides={true}
-          loop={true}
+          loop={false}
           slidesPerView={3}
           autoplay={false}
           allowTouchMove={false}
@@ -103,10 +125,10 @@ const handleClose = () => setOpen(false);
         //   control: swiperInstance,
         // }}
         >
-           {data.map((card, index) => (
+           {eventData?.stories.map((card:any, index:any) => (
             // onClick={() => setOpen(true)}
             <SwiperSlide>
-              <StorySlide key={index} {...card} activeIndex={activeIndex} index={index} currentIndex={currentIndex}/>
+              <StorySlide key={index} VideoUrl={card.videoUrl} activeIndex={activeIndex} index={index} currentIndex={currentIndex}/>
             </SwiperSlide>
           ))}
         </Swiper>
