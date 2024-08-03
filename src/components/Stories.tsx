@@ -53,14 +53,14 @@ const Stories: React.FC<StoryProps> = ({ onOpen, setOpen, activeIndex, handleNex
   const handleNext = () => {
     handleNextClick();
     // Perform additional actions here
-    setCurrentIndex((prev)=>(prev+1)%10)
+    setCurrentIndex((prev)=>(prev+1)%urls.length)
   };
 
   const handlePrev = () => {
     handlePrevClick();
     // Perform additional actions here
-    setCurrentIndex((prev)=>(prev+9)%10)
-  };
+    setCurrentIndex((prev)=>(prev+(urls.length-1))%urls.length)
+  }
   // console.log(urls)
 const handleClose = () => setOpen(false);
   return (
@@ -104,7 +104,7 @@ const handleClose = () => setOpen(false);
         //   control: swiperInstance,
         // }}
         >
-           {urls.map((card:any, index) => (
+           {urls?.map((card:any, index) => (
             // onClick={() => setOpen(true)}
             <SwiperSlide>
               <StorySlide key={index} VideoUrl={card.videoUrl} activeIndex={activeIndex} index={index} currentIndex={currentIndex}/>
