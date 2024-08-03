@@ -10,91 +10,36 @@ import type SwiperCore from "swiper";
 import Stories from "../Stories";
 import c1 from "@/assets/c1.jpg";
 import c2 from "@/assets/c2.jpg";
+// import { data } from "@/utils/stories"
+import axios from "@/utils/middleware";
+import type { EventType } from "@/stores/event";
+import { useQuery } from "@tanstack/react-query";
 
 // import v1 from "../../assets/v1.mp4"/
+
+interface StoryItem {
+  videoUrl: string;
+  // Add other properties if needed
+}
+
 function Hero() {
-  const data = [
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v1.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v2.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v3.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v4.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v5.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v3.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v4.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v5.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v3.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v4.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v5.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v1.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v2.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v5.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v5.jpg",
-    },
-    {
-      title: "Match Events",
-      description: "1901 Thornridge Cir. Shiloh, Dublin 81063",
-      imageUrl: "/v5.jpg",
-    },
-  ];
+    // Define an asynchronous function to fetch data
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://kafsbackend-106f.onrender.com/api/v1/home-page');
+        // console.log(response)
+        return response.data.data as EventType;
+      } catch (err) {
+        console.log('Failed to fetch data');
+      }
+    };
+
+  
+    const { data: eventData } = useQuery({
+      queryKey: ["event"],
+      queryFn: () => fetchData(),
+    });
+    console.log(eventData);
   const [open, setOpen] = useState(false);
   // const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);
 
@@ -176,6 +121,7 @@ function Hero() {
         activeIndex={activeIndex}
         handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
         handlePrevClick={handlePrevClick}
+        urls = {eventData?.stories.map((item:StoryItem) => ({videoUrl: item.videoUrl}))}
       />
       <div className="flex flex-col items-center xl:mt-[-3rem] xl:gap-6 mt-[-2rem] lg:mt-[-2rem]">
         <div className="w-full">
@@ -235,14 +181,15 @@ function Hero() {
             onSwiper={(swiper) => (firstSwiper.current = swiper)}
             // onSlideChange={handleSeoSlideChange}
           >
-            {data.map((card, index) => (
+            {eventData?.stories.map((card:any, index:any) => (
               <SwiperSlide
                 onClick={() => {
                   setOpen(true);
                   handleSlideClick(index);
+                  console.log(card)
                 }}
               >
-                <HeroSlides key={index} {...card} />
+                <HeroSlides key={index} ImageUrl={card.posterUrl} title={card.caption} description={card.description}/>
               </SwiperSlide>
             ))}
           </Swiper>
