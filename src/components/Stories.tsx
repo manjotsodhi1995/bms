@@ -8,18 +8,18 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import {data}  from "../utils/stories"
 import { X } from "lucide-react";
 
 
 interface StoryProps {
   onOpen: boolean;
   setOpen: (open: boolean) => void;
-  activeIndex: number
+  activeIndex: number;
   // onSwiper: (swiper: SwiperCore) => void;
   // handleSlideChange: (swiper: SwiperCore) => void;
   handleNextClick: () => void; // Add handleNextClick to props
   handlePrevClick: () => void;
+  urls: object[]; 
 }
 
 
@@ -40,9 +40,9 @@ const style = {
 
 
 const Stories: React.FC<StoryProps> = ({ onOpen, setOpen, activeIndex, handleNextClick,
-  handlePrevClick,}) => {
+  handlePrevClick, urls}) => {
   // const [childSwiper, setChildSwiper] = useState<SwiperCore | null>(null);
-
+    console.log(urls)
   const [currentIndex, setCurrentIndex] = useState(activeIndex);
   useEffect(() => {
     setCurrentIndex(activeIndex);
@@ -53,14 +53,15 @@ const Stories: React.FC<StoryProps> = ({ onOpen, setOpen, activeIndex, handleNex
   const handleNext = () => {
     handleNextClick();
     // Perform additional actions here
-    setCurrentIndex((prev)=>(prev+1)%10)
+    setCurrentIndex((prev)=>(prev+1)%urls.length)
   };
 
   const handlePrev = () => {
     handlePrevClick();
     // Perform additional actions here
-    setCurrentIndex((prev)=>(prev+9)%10)
-  };
+    setCurrentIndex((prev)=>(prev+(urls.length-1))%urls.length)
+  }
+  // console.log(urls)
 const handleClose = () => setOpen(false);
   return (
     <Modal
@@ -81,18 +82,18 @@ const handleClose = () => setOpen(false);
           onNavigationNext={handleNext}
           onNavigationPrev={handlePrev}
           initialSlide={activeIndex}
-          spaceBetween={45}
+          spaceBetween={60}
           navigation={true}
           grabCursor={true}
           centeredSlides={true}
           loop={true}
-          slidesPerView={3}
+          slidesPerView={2}
           autoplay={false}
           allowTouchMove={false}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
-            depth: 300,
+            depth: 365,
             modifier: 1.5,
           }}
           modules={[EffectCoverflow, Navigation, Controller]}
@@ -103,10 +104,10 @@ const handleClose = () => setOpen(false);
         //   control: swiperInstance,
         // }}
         >
-           {data.map((card, index) => (
+           {urls?.map((card:any, index) => (
             // onClick={() => setOpen(true)}
             <SwiperSlide>
-              <StorySlide key={index} {...card} activeIndex={activeIndex} index={index} currentIndex={currentIndex}/>
+              <StorySlide key={index} VideoUrl={card.videoUrl} activeIndex={activeIndex} index={index} currentIndex={currentIndex}/>
             </SwiperSlide>
           ))}
         </Swiper>
