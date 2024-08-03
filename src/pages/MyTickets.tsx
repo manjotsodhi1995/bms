@@ -56,7 +56,7 @@ function MyTickets() {
           <div className="sticky h-fit top-[10vh] bg-white">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DateCalendar
-                className="!w-[100vw] md:!w-[25vw] 2xl:text-xl"
+                className="md:!w-[25vw]"
                 onChange={(newDate) =>
                   onChange(newDate ? dayjs(newDate) : null)
                 }
