@@ -61,11 +61,13 @@ export const CheckoutStep = ({
         <button onClick={onBack}>
           <ChevronLeft className="size-6" />
         </button>
-        <h2 className="text-2xl font-thin">Checkout</h2>
+        <h2 className="text-lg font-thin">Back</h2>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-        <div className="w-4/5 flex flex-col gap-2">
+      <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+        {" "}
+        <div className="w-4/5 md:w-full flex flex-col gap-2">
+          <h2 className="text-2xl font-bold mt-4 w-full">Checkout</h2>
           {error.length > 0 && (
             <p className="text-red-400 text-sm font-medium">{error}</p>
           )}
@@ -131,7 +133,7 @@ export const CheckoutStep = ({
               className="w-full p-2 mt-1 border border-gray-300 rounded-md"
             />
             <button
-              className="flex items-center gap-2 bg-black w-fit px-[0.5rem] py-[0.7rem] text-white font-medium rounded-md"
+              className="flex items-center gap-2 bg-black w-fit px-[0.5rem] py-[0.5rem] text-white font-medium rounded-md"
               onClick={() => {
                 toast.promise(promoCodeMutation.mutateAsync(), {
                   loading: "Applying Promo Code",
@@ -153,25 +155,25 @@ export const CheckoutStep = ({
               )}
             </button>
           </div>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full gap-2 mt-3 mb-2">
             <p className="flex gap-4 items-center text-sm">
               <input
-                className="size-5 accent-black"
+                className="size-4 accent-black"
                 type="checkbox"
                 id="keep-updated"
               />
-              <label htmlFor="keep-updated">
+              <label htmlFor="keep-updated" className="text-[0.8rem]">
                 Keep me updated on more events and news from event organizer.
               </label>
             </p>
 
             <p className="flex gap-4 items-center text-sm">
               <input
-                className="size-5 accent-black"
+                className="size-4 accent-black"
                 type="checkbox"
                 id="send-emails"
               />
-              <label htmlFor="send-emails">
+              <label htmlFor="send-emails" className="text-[0.8rem]">
                 Send me emails about the best events happening nearby or online.
               </label>
             </p>
@@ -211,7 +213,6 @@ export const CheckoutStep = ({
             {/* /> */}
           </div>
         </div>
-
         <PreviewCard cartData={cartData} eventsData={eventsData}>
           <button
             className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md"

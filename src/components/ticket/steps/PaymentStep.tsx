@@ -133,12 +133,12 @@ export const PaymentStep = ({
         <button onClick={onBack}>
           <ChevronLeft className="size-6" />
         </button>
-        <h2 className="text-2xl font-thin">Checkout</h2>
+        <h2 className="text-lg font-thin">Back</h2>
       </div>
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-        <div className="w-4/5 flex flex-col gap-2">
-          <h3 className="my-6 text-xl font-medium">Payment</h3>
+        <div className="w-4/5 md:w-full flex flex-col gap-2">
+          <h3 className="mb-6 text-xl font-bold">Payment</h3>
           <div>
             <label
               htmlFor="cardNumber"
