@@ -68,15 +68,15 @@ const Login = observer(() => {
 
   return (
     <>
-      <div className="md:flex w-full justify-between md:p-0 p-8 min-w-screen">
+      <div className="md:flex h-screen w-full justify-between max-sm:p-4 min-w-screen">
         <div className="md:block hidden w-[70vw] md:w-full">
           <img src={img} className="h-screen w-full" alt="" />
         </div>
-        <div className="h-screen flex justify-center w-full">
-          <div className="flex justify-center h-full w-full">
+        <div className="h-full flex justify-center w-full">
+          <div className="h-full flex justify-center w-full">
             <form
               onSubmit={handleSubmit}
-              className="h-full flex flex-col justify-center gap-6 w-[25rem] md:w-[50%]"
+              className="flex flex-col justify-center gap-6 w-[25rem] md:w-[50%]"
             >
               <div className="flex flex-col gap-2 items-center">
                 <h1 className="text-3xl font-bold">Login</h1>
@@ -126,7 +126,7 @@ const Login = observer(() => {
                 <GoogleLogin
                   onSuccess={responseGoogle}
                   size="large"
-                  width={"500px"}
+                  width={"380px"}
                 />
               </div>
               <div className="flex w-full justify-around gap-2 items-center">
