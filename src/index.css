@@ -41,12 +41,16 @@ textarea::placeholder {
   max-width: 100vw;
   position: relative;
 }
-@media (max-width: 1920px) {
+.sw1 .swiper-slide {
+  width: 10vw;
+  position: relative;
+}
+/* @media (max-width: 1920px) {
   .sw1 .swiper-slide {
     width: 15vw !important;
     position: relative;
   }
-}
+} */
 .sw1 .swiper-slide {
   width: 10vw;
   position: relative;

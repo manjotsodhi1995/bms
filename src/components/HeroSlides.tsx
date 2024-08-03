@@ -3,13 +3,13 @@ import { useState } from "react";
 interface HeroSlidesProps {
   title: string;
   description: string;
-  imageUrl: string;
+  ImageUrl: string;
 }
-function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
+function HeroSlides({ title, description, ImageUrl }: HeroSlidesProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
   console.log("isLoading", isLoading);
-  console.log(imageUrl);
+  console.log(ImageUrl);
   const handleImageLoad = () => {
     setIsLoading(false); // Set loading to false when image loads
   };
@@ -35,7 +35,7 @@ function HeroSlides({ title, description, imageUrl }: HeroSlidesProps) {
           onLoad={handleImageLoad}
         ></video> */}
         <img
-          src={imageUrl}
+          src={ImageUrl}
           className="w-full md:rounded-3xl rounded-xl h-full object-cover"
           onLoad={handleImageLoad}
         />

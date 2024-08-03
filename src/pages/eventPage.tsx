@@ -277,12 +277,11 @@ const EventPage = observer(() => {
           </div>
           <div className="md:hidden grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
             {eventData?.stories.map((card:any, index:any) => (
-              <div key={index} className="snap-center w-full" ref={carouselRef}>
-                <EventSlides  title={card.caption} posterUrl={card.posterUrl} onClick={() => {
-                  setOpen(true);
-                  handleSlideClick(index);
-                  console.log("clicked")
-                }}/>
+              <div key={index} className="snap-center w-full" ref={carouselRef} onClick={() => {
+                setOpen(true);
+                handleSlideClick(index);
+              }}>
+                <EventSlides  title={card.caption} posterUrl={card.posterUrl}/>
               </div>
             ))}
           </div>{" "}
@@ -425,10 +424,7 @@ const EventPage = observer(() => {
                 setOpen(true);
                 handleSlideClick(index);
               }}>
-                <EventSlides title={card.caption} posterUrl={card.posterUrl}  onClick={() => {
-                  setOpen(true);
-                  
-                }}/>
+                <EventSlides title={card.caption} posterUrl={card.posterUrl}/>
               </div>
             ))}
           </div>{" "}
