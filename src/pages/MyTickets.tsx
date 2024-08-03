@@ -2,16 +2,15 @@ import { Clock } from "lucide-react";
 import Footer from "../components/Footer";
 import TicketCard from "../components/ticket/TicketCard";
 import { Icons } from "@/components/Icons";
-import Calendar from "react-calendar";
 import { useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "@/utils/middleware";
 import { API } from "@/api";
-
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import dayjs, { Dayjs } from "dayjs";
 
 const fetchTickets = async () => {
   const response = await axios(API.bookingRoutes.getTicket);
@@ -23,7 +22,7 @@ function MyTickets() {
     queryKey: ["tickets"],
     queryFn: fetchTickets,
   });
-  const [value, onChange] = useState<Value>(new Date());
+  const [value, onChange] = useState<Dayjs | null>(dayjs());
 
   return (
     <>
@@ -54,13 +53,25 @@ function MyTickets() {
               )}
             </div>
           </div>
+          <div className="sticky h-fit top-[10vh] bg-white">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DateCalendar
+                className="!w-[100vw] md:!w-[25vw] 2xl:text-xl"
+                onChange={(newDate) =>
+                  onChange(newDate ? dayjs(newDate) : null)
+                }
+                value={value}
+              />
+            </LocalizationProvider>
+          </div>
+          {/* 
           <div className="sticky h-fit top-[10vh] bg-red-500">
             <Calendar
               className="!w-[100vw] md:!w-[25vw] 2xl:text-xl"
               onChange={onChange}
               value={value}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />
