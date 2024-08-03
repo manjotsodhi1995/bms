@@ -17,7 +17,7 @@ function StorySlide({ VideoUrl, index, currentIndex }: StorySlidesProps) {
 
   useEffect(() => {
     if (videoRef.current) {
-      if (currentIndex === index) {
+      if (currentIndex  === index) {
         videoRef.current.play();
       } else {
         videoRef.current.pause();
