@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react"
 interface StorySlidesProps {
   VideoUrl: string,
   index: number;
-  activeIndex: number,
-  currentIndex: number,
+  activeIndex: number;
+  currentIndex: number;
 }
 function StorySlide({ VideoUrl, index, currentIndex }: StorySlidesProps) {
   const [isLoading, setIsLoading] = useState(true); // Add loading state
