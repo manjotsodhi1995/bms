@@ -485,12 +485,12 @@ function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
               {data.fname} {data.lname}
             </span>
           )}
-          <a
+          {/* <a
             href="/payment"
             className="block w-full px-4 py-2 hover:bg-gray-100"
           >
             Payment Method
-          </a>
+          </a> */}
           <a
             href="/settings"
             className="block w-full px-4 py-2 hover:bg-gray-100"

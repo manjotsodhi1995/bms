@@ -69,14 +69,14 @@ function Trending() {
 
   return (
     <div className="lg:px-[8%] px-[8vw] mt-[2vh] flex flex-col gap-8">
-      <div className="flex flex-col gap-3">
-        <div className="flex w-full gap-4 overflow-x-hidden">
+      <div className="flex flex-col gap-3 overflow-x-hidden">
+        <div className="flex w-full gap-4">
           {categories &&
             categories.map((category: Category) => (
               <a
                 key={category.categoryId}
                 href={`/categories/${category.categoryId}`}
-                className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200 hover:bg-[#60769D] hover:text-white max-w-[280px]"
+                className="text-center whitespace-nowrap min-w-[9rem] h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200 hover:bg-[#60769D] hover:text-white max-w-[280px]"
               >
                 {category.categoryName}
               </a>
@@ -108,10 +108,10 @@ function Trending() {
             </Link>
             Events in{" "}
             <label htmlFor="location" className="relative w-60">
-              <MapPin className="absolute top-1 left-1 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
+              <MapPin className="absolute top-2 left-1 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
               <input
                 id="location"
-                className="w-44 !px-8 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
+                className="w-44 !px-8 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700 lg:w-[14vw]"
                 value={selectedLocation}
                 placeholder="Search for a city"
                 onClick={clear}

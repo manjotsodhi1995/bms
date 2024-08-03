@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import Like from "../assets/Like.png";
 import Share from "../assets/share.png";
@@ -21,6 +21,8 @@ import { useLikesQuery } from "@/api/query/useLikesQuery";
 import { useFollowingQuery } from "@/api/query/useFollowingQuery";
 import Footer from "@/components/Footer";
 import toast from "react-hot-toast";
+import EventStories from "@/components/EventStories";
+import type SwiperCore from "swiper";
 
 const fetchEvent = async (slug?: string) => {
   const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
@@ -28,6 +30,7 @@ const fetchEvent = async (slug?: string) => {
       is_guest_user: "yes",
     },
   });
+  // console.log(response)
   return response.data.data as EventType;
 };
 
@@ -42,7 +45,7 @@ const EventPage = observer(() => {
     queryKey: ["event", slug],
     queryFn: () => fetchEvent(slug),
   });
-
+  // console.log(eventData)
   const eventId = eventData?.eventId;
   const { data: isLiked, mutation: likesMutation } = useLikesQuery(eventId);
 
@@ -67,17 +70,66 @@ const EventPage = observer(() => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [open, setOpen] = useState(false);
+  // const [clicked, setClicked] = useState(true);
+
+  const handleSlideClick = (index: number) => {
+    // setTimeout(() => {
+    //   setClicked(false);
+    // }, 15000);
+    setActiveIndex(index);
+    // if (firstSwiper.current) {
+    //   firstSwiper.current.slideTo(activeIndex);
+    // }
+  };
+
+  const firstSwiper = useRef<SwiperCore | null>(null);
+  // const secondSwiper = useRef<SwiperCore | null>(null);
+  // const handleFirstSlideChange = (swiper: SwiperCore) => {
+  //   const { activeIndex } = swiper;
+  //   // Navigate to the corresponding slide in the second swiper
+  //   if (secondSwiper.current && secondSwiper.current.activeIndex !== activeIndex) {
+  //     secondSwiper.current.slideTo(activeIndex);
+  //   }
+  // };
+  // const handleSecondSlideChange = (swiper: SwiperCore) => {
+  //   const { activeIndex } = swiper;
+  //   // Navigate to the corresponding slide in the first swiper
+  //   if (firstSwiper.current && firstSwiper.current.activeIndex !== activeIndex && open==true) {
+  //     firstSwiper.current.slideTo(activeIndex);
+  //   }
+  // };
+  const handleNextClick = () => {
+    if (firstSwiper.current) {
+      firstSwiper.current.slideNext();
+    }
+  };
+
+  const handlePrevClick = () => {
+    if (firstSwiper.current) {
+      firstSwiper.current.slidePrev();
+    }
+  };
   return (
     <div className="w-full">
       {/* <Navbar /> */}
+      <EventStories
+        onOpen={open}
+        setOpen={setOpen}
+        activeIndex={activeIndex}
+        handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
+        handlePrevClick={handlePrevClick}
+      />
       <div
+        className="h-[50vw] md:h-full"
         style={{
           backgroundImage: `url(${eventData?.posterUrl})`,
           backgroundSize: "100%",
         }}
       >
-        <div className="flex text-white items-end lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] h-[60vh] bg-black bg-opacity-30 justify-between">
-          <div className="w-[40%] font-bold text-[2.5rem] flex flex-col gap-4">
+        <div className="flex text-white items-end lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] h-[50vw] md:h-[35vw] bg-black bg-opacity-30 justify-between">
+          <div className="hidden w-[40%] font-bold text-[2.5rem] md:flex flex-col gap-4">
             <div className="p-2 rounded-full border-2 border-white text-[1rem] w-[9rem] text-center">
               {" "}
               Movie
@@ -87,6 +139,7 @@ const EventPage = observer(() => {
               {eventData?.title}
             </div>
           </div>
+
           <div className="flex gap-4">
             <button
               disabled={likesMutation.isPending}
@@ -130,8 +183,18 @@ const EventPage = observer(() => {
           </div>
         </div>
       </div>
-      <div className="relative lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] flex justify-between md:flex-row flex-col gap-8 2xl:gap-16">
+      <div className="relative lg:px-[5%] xl:px-[7%] px-[8vw] py-[1.4rem] flex justify-between md:flex-row flex-col gap-8 2xl:gap-16">
         <div className="flex flex-col gap-2 md:w-[55%]">
+          <div className="font-bold text-[2.5rem] flex flex-col gap-2 md:hidden">
+            <div className="p-2 rounded-full border-2 border-black text-black text-[1rem] w-[7rem] text-center">
+              {" "}
+              {eventData?.genres}
+            </div>
+            <div className="leading-tight text-[1.7rem] md:text-[2.5rem]">
+              {" "}
+              {eventData?.title}
+            </div>
+          </div>
           <div className="flex items-center gap-4">
             <div>
               <svg
@@ -148,7 +211,7 @@ const EventPage = observer(() => {
               </svg>
             </div>
             <div>
-              <div className="font-medium text-[1.3rem]">
+              <div className="font-medium text-[1.1rem] md:text-[1.3rem]">
                 {eventData?.venueAddress.name}
               </div>
               <div className="text-gray-700">
@@ -195,7 +258,7 @@ const EventPage = observer(() => {
           <div className="mt-4 flex md:hidden justify-between gap-10">
             <div className="flex flex-col text-center items-center">
               <div className="font-medium text-[1.2rem]">
-                {eventData?.duration ? `${eventData.duration}h` : "4h"}
+                {eventData?.duration ? `${eventData.duration}h` : "--"}
               </div>
               <div className="text-gray-700 text-[0.9rem]">Duration</div>
             </div>
@@ -213,9 +276,13 @@ const EventPage = observer(() => {
             </div>
           </div>
           <div className="md:hidden grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
-            {event.upcomingEvents.slice(0, 3).map((card, index) => (
+            {eventData?.stories.map((card:any, index:any) => (
               <div key={index} className="snap-center w-full" ref={carouselRef}>
-                <EventSlides {...card} />
+                <EventSlides  title={card.caption} posterUrl={card.posterUrl} onClick={() => {
+                  setOpen(true);
+                  handleSlideClick(index);
+                  console.log("clicked")
+                }}/>
               </div>
             ))}
           </div>{" "}
@@ -239,7 +306,10 @@ const EventPage = observer(() => {
               <div>
                 Opens at{" "}
                 {eventData && formatDate(new Date(eventData.eventStart))} at
-                9:00 AM (GMT+)
+                {"  "}
+                {eventData && new Date(eventData.eventStart).getHours()}:
+                {eventData && new Date(eventData.eventStart).getMinutes()}
+                (GMT+)
               </div>
             </div>
             <div className="flex gap-2 items-center">
@@ -259,11 +329,14 @@ const EventPage = observer(() => {
               </div>
               <div>
                 Closes at{" "}
-                {eventData && formatDate(new Date(eventData.eventEnd))} at 9:00
-                AM (GMT+)
+                {eventData && formatDate(new Date(eventData.eventEnd))} at{" "}
+                {"  "}
+                {eventData && new Date(eventData.eventEnd).getHours()}:
+                {eventData && new Date(eventData.eventEnd).getMinutes()}
+                (GMT+)
               </div>
             </div>
-            <div className="flex gap-2 items-center">
+            <div className="gap-2 items-center hidden">
               <div className="w-[30px] items-center flex justify-center">
                 <svg
                   width="22"
@@ -285,7 +358,7 @@ const EventPage = observer(() => {
             <div className="font-medium text-[1.4rem]">About</div>
             <div>{eventData?.description}</div>
           </div>
-          <div className="w-[50%]">
+          <div className="md:w-[50%]">
             <h1 className="font-medium text-[1.3rem]">Location</h1>
             <iframe
               src={`https://maps.google.com/maps?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}&hl=en;z=14&amp&output=embed`}
@@ -313,7 +386,7 @@ const EventPage = observer(() => {
                   />
                   <Link
                     to={`/organization/${eventData.organizer._id}`}
-                    className="font-medium text-lg"
+                    className="font-medium md:text-lg text-sm"
                   >
                     {eventData.organizer.name}
                   </Link>
@@ -334,7 +407,7 @@ const EventPage = observer(() => {
           <div className="font-medium mt-4 cursor-pointer text-xl">
             Refund Policy
           </div>
-          <div className="mt-20">
+          {/* <div className="mt-20">
             <div className="font-medium text-[1.2rem]">
               Would you like to rep this event?
             </div>
@@ -342,14 +415,20 @@ const EventPage = observer(() => {
             <div className="px-2 py-2 text-[0.8rem] bg-black text-white text-center rounded-lg mt-2 w-[10rem]">
               REP THIS EVENT
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="h-fit fixed bottom-0 z-10 left-0 py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[30%]">
           <div className="hidden md:grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
-            {event.upcomingEvents.slice(0, 3).map((card, index) => (
-              <div key={index} className="snap-center w-full" ref={carouselRef}>
-                <EventSlides {...card} />
+            {eventData?.stories.map((card:any, index:any) => (
+              <div key={index} className="snap-center w-full" ref={carouselRef} onClick={() => {
+                setOpen(true);
+                handleSlideClick(index);
+              }}>
+                <EventSlides title={card.caption} posterUrl={card.posterUrl}  onClick={() => {
+                  setOpen(true);
+                  
+                }}/>
               </div>
             ))}
           </div>{" "}
@@ -380,6 +459,13 @@ const EventPage = observer(() => {
                   Get Tickets
                 </button>
               </BookTicketsDialog>
+            </div>
+          )}
+          {!canBookTicket && (
+            <div className="md:mt-4 space-y-2">
+              <div className="bg-black w-full text-white font-medium py-2 px-4 rounded text-center">
+                Sold Out!
+              </div>
             </div>
           )}
         </div>

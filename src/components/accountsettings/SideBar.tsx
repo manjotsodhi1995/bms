@@ -27,7 +27,10 @@ const SideBar: React.FC<SideBarProps> = ({ onStateChange, initialState }) => {
   const [select, setSelect] = useState<string>(initialState);
   return (
     <div className="sm:w-[25%] sm:max-w-[350px] min-w-[200px] bg-gray-300 text-black flex flex-col items-center h-[99vh] w-screen sm:z-10">
-      <Link to="/" className="absolute top-2 left-4 hover:border-2 hover:border-black rounded">
+      <Link
+        to="/"
+        className="absolute top-2 left-4 hover:border-2 hover:border-black rounded"
+      >
         <X className="size-8" />
       </Link>
       <Avatar
@@ -65,7 +68,7 @@ const SideBar: React.FC<SideBarProps> = ({ onStateChange, initialState }) => {
         </svg>
         <h2>Account Settings</h2>
       </div>
-      <div
+      {/* <div
         className={`flex my-1 w-full p-2 cursor-default  hover:cursor-pointer items-center group ${
           select == "pay" ? "bg-black text-white" : ""
         }`}
@@ -94,7 +97,7 @@ const SideBar: React.FC<SideBarProps> = ({ onStateChange, initialState }) => {
           </defs>
         </svg>
         <h2>Payment Method</h2>
-      </div>
+      </div> */}
       <Link to={"/"} className="flex w-full">
         <div
           className={`my-1 flex w-full p-2 cursor-default  hover:cursor-pointer items-center group ${
