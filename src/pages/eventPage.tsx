@@ -14,7 +14,7 @@ import { observer } from "mobx-react-lite";
 import { cn, formatDate } from "@/utils";
 import { ShareEventDialog } from "@/components/ShareEventDialog";
 import { API } from "@/api";
-import { Avatar } from "@mui/material";
+import { Avatar, dividerClasses } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { useLikesQuery } from "@/api/query/useLikesQuery";
@@ -276,12 +276,17 @@ const EventPage = observer(() => {
             </div>
           </div>
           <div className="md:hidden grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
-            {eventData?.stories.map((card:any, index:any) => (
-              <div key={index} className="snap-center w-full" ref={carouselRef} onClick={() => {
-                setOpen(true);
-                handleSlideClick(index);
-              }}>
-                <EventSlides  title={card.caption} posterUrl={card.posterUrl}/>
+            {eventData?.stories.map((card: any, index: any) => (
+              <div
+                key={index}
+                className="snap-center w-full"
+                ref={carouselRef}
+                onClick={() => {
+                  setOpen(true);
+                  handleSlideClick(index);
+                }}
+              >
+                <EventSlides title={card.caption} posterUrl={card.posterUrl} />
               </div>
             ))}
           </div>{" "}
@@ -354,8 +359,14 @@ const EventPage = observer(() => {
             </div>
           </div>
           <div className="flex flex-col mt-4 gap-2">
-            <div className="font-medium text-[1.4rem]">About</div>
-            <div>{eventData?.description}</div>
+            <div className="font-medium text-[1.4rem]">About</div>{" "}
+            {eventData?.description?.includes("\n") ? (
+              <pre className="font-sans max-w-[100%]">
+                {eventData?.description}
+              </pre>
+            ) : (
+              <div>{eventData?.description}</div>
+            )}
           </div>
           <div className="md:w-[50%]">
             <h1 className="font-medium text-[1.3rem]">Location</h1>
@@ -406,6 +417,7 @@ const EventPage = observer(() => {
           <div className="font-medium mt-4 cursor-pointer text-xl">
             Refund Policy
           </div>
+          <div>No Refunds will be issued</div>
           {/* <div className="mt-20">
             <div className="font-medium text-[1.2rem]">
               Would you like to rep this event?
@@ -419,19 +431,24 @@ const EventPage = observer(() => {
 
         <div className="h-fit fixed bottom-0 z-10 left-0 py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[30%]">
           <div className="hidden md:grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
-            {eventData?.stories.map((card:any, index:any) => (
-              <div key={index} className="snap-center w-full" ref={carouselRef} onClick={() => {
-                setOpen(true);
-                handleSlideClick(index);
-              }}>
-                <EventSlides title={card.caption} posterUrl={card.posterUrl}/>
+            {eventData?.stories.map((card: any, index: any) => (
+              <div
+                key={index}
+                className="snap-center w-full"
+                ref={carouselRef}
+                onClick={() => {
+                  setOpen(true);
+                  handleSlideClick(index);
+                }}
+              >
+                <EventSlides title={card.caption} posterUrl={card.posterUrl} />
               </div>
             ))}
           </div>{" "}
           <div className="mt-4 hidden md:flex justify-between gap-10">
             <div className="flex flex-col text-center items-center">
               <div className="font-medium text-[1.2rem]">
-                {eventData?.duration ? `${eventData.duration}h` : "4h"}
+                {eventData?.duration ? `${eventData.duration}` : "4h"}
               </div>
               <div className="text-gray-700 text-[0.9rem]">Duration</div>
             </div>

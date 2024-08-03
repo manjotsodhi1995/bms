@@ -23,23 +23,24 @@ interface StoryItem {
 }
 
 function Hero() {
-    // Define an asynchronous function to fetch data
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://kafsbackend-106f.onrender.com/api/v1/home-page');
-        // console.log(response)
-        return response.data.data as EventType;
-      } catch (err) {
-        console.log('Failed to fetch data');
-      }
-    };
+  // Define an asynchronous function to fetch data
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://kafsbackend-106f.onrender.com/api/v1/home-page"
+      );
+      // console.log(response)
+      return response.data.data as EventType;
+    } catch (err) {
+      console.log("Failed to fetch data");
+    }
+  };
 
-  
-    const { data: eventData } = useQuery({
-      queryKey: ["event"],
-      queryFn: () => fetchData(),
-    });
-    console.log(eventData);
+  const { data: eventData } = useQuery({
+    queryKey: ["event"],
+    queryFn: () => fetchData(),
+  });
+  console.log(eventData);
   const [open, setOpen] = useState(false);
   // const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);
 
@@ -121,7 +122,9 @@ function Hero() {
         activeIndex={activeIndex}
         handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
         handlePrevClick={handlePrevClick}
-        urls = {eventData?.stories.map((item:StoryItem) => ({videoUrl: item.videoUrl}))}
+        urls={eventData?.stories.map((item: StoryItem) => ({
+          videoUrl: item.videoUrl,
+        }))}
       />
       <div className="flex flex-col items-center xl:mt-[-3rem] xl:gap-6 mt-[-2rem] lg:mt-[-2rem]">
         <div className="w-full">
@@ -177,19 +180,22 @@ function Hero() {
             pagination={{ el: ".swiper-pagination", clickable: true }}
             modules={[EffectCoverflow, Autoplay]}
             className="swiper_container sw1 py-8"
-            // onInit={(swiper) =>setSwiperInstance(swiper)}
             onSwiper={(swiper) => (firstSwiper.current = swiper)}
-            // onSlideChange={handleSeoSlideChange}
           >
-            {eventData?.stories.map((card:any, index:any) => (
+            {eventData?.stories.map((card: any, index: any) => (
               <SwiperSlide
                 onClick={() => {
                   setOpen(true);
                   handleSlideClick(index);
-                  console.log(card)
+                  console.log(card);
                 }}
               >
-                <HeroSlides key={index} ImageUrl={card.posterUrl} title={card.caption} description={card.description}/>
+                <HeroSlides
+                  key={index}
+                  ImageUrl={card.posterUrl}
+                  title={card.caption}
+                  description={card.description}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
