@@ -65,7 +65,7 @@ const Stories: React.FC<StoryProps> = ({ onOpen, setOpen, activeIndex, handleNex
   const [currentIndex, setCurrentIndex] = useState(activeIndex);
   useEffect(() => {
     setCurrentIndex(activeIndex);
-  }, [activeIndex]);
+  }, [activeIndex, onOpen]);
   // const handleSlideChange = (swiper: SwiperCore) => {
   //   // setCurrentIndex(swiper.activeIndex);
   // };
