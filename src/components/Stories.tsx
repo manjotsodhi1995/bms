@@ -95,12 +95,12 @@ const Stories: React.FC<StoryProps> = ({
             modifier: 1.5,
           }}
           modules={[EffectCoverflow, Navigation, Controller]}
-          className="swiper_container sw1 py-8 px-[10px] sm:px-[0] sm:w-[700px] w-screen p-10"
-          //  onInit={setChildSwiper}
-          //  controller={{
-          //   by:"container",
-          //   control: swiperInstance,
-          // }}
+          className="swiper_container sw2 py-8 px-[10px] sm:px-[0] sm:w-[700px] w-screen p-10"
+        //  onInit={setChildSwiper}
+        //  controller={{
+        //   by:"container",
+        //   control: swiperInstance,
+        // }}
         >
           {urls?.map((card: any, index) => (
             // onClick={() => setOpen(true)}
