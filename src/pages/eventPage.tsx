@@ -23,6 +23,7 @@ import Footer from "@/components/Footer";
 import toast from "react-hot-toast";
 import EventStories from "@/components/EventStories";
 import type SwiperCore from "swiper";
+import Tooltip from "@mui/material/Tooltip";
 
 const fetchEvent = async (slug?: string) => {
   const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
@@ -141,40 +142,46 @@ const EventPage = observer(() => {
           </div>
 
           <div className="flex gap-4">
-            <button
-              disabled={likesMutation.isPending}
-              onClick={() => {
-                toast.promise(likesMutation.mutateAsync(), {
-                  loading: "Please wait",
-                  success: isLiked
-                    ? "Removed from favourites"
-                    : "Added to favourites",
-                  error: "An error occurred",
-                });
-              }}
-              className={cn(
-                "bg-white rounded-full w-[50px] h-[50px] bg-opacity-40 items-center flex justify-center",
-                {
-                  "bg-pink-700 bg-opacity-100": isLiked,
-                  "bg-pink-300": likesMutation.isPending,
-                }
-              )}
-            >
-              {likesMutation.isPending ? (
-                <Loader2 className="animate-spin" />
-              ) : (
-                <img src={Like} alt="" />
-              )}
-            </button>
+            <Tooltip title="LIKE" placement="top" arrow>
+              <button
+                disabled={likesMutation.isPending}
+                onClick={() => {
+                  toast.promise(likesMutation.mutateAsync(), {
+                    loading: "Please wait",
+                    success: isLiked
+                      ? "Removed from favourites"
+                      : "Added to favourites",
+                    error: "An error occurred",
+                  });
+                }}
+                className={cn(
+                  "bg-white rounded-full w-[50px] h-[50px] bg-opacity-40 items-center flex justify-center",
+                  {
+                    "bg-pink-700 bg-opacity-100": isLiked,
+                    "bg-pink-300": likesMutation.isPending,
+                  }
+                )}
+              >
+                {likesMutation.isPending ? (
+                  <Loader2 className="animate-spin" />
+                ) : (
+                  <div>
+                    <img src={Like} alt="" />
+                  </div>
+                )}
+              </button>
+            </Tooltip>
 
             {eventData && (
               <ShareEventDialog
                 imageUrl={eventData.posterUrl}
                 link={`/event/${eventData.slug}`}
               >
-                <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-blue-300">
-                  <img src={Share} alt="" />
-                </div>
+                <Tooltip title="SHARE" placement="top" arrow>
+                  <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-blue-300">
+                    <img src={Share} alt="" />
+                  </div>
+                </Tooltip>
               </ShareEventDialog>
             )}
             {/* <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-black"> */}
