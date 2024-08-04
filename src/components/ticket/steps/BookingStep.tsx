@@ -48,8 +48,9 @@ export const BookingStep = ({
           <button onClick={onBack}>
             <ChevronLeft className="size-6" />
           </button>
-          <h2 className="text-2xl font-thin">Tickets</h2>
+          <h2 className="text-lg font-thin">Back</h2>
         </span>
+        <h2 className="text-2xl font-bold mt-6 w-full">Tickets</h2>
         {isLoading && (
           <p className="flex gap-2 items-center text-gray-600">
             Loading

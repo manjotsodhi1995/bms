@@ -100,18 +100,18 @@ const Register = observer(() => {
   }, []);
   return (
     <>
-      <div className="md:flex h-screen">
+      <div className="flex h-screen ">
         <div className="md:w-1/2 md:block hidden">
-          <img src={img} className="h-full w-full object-cover" alt="" />
+          <img src={img} className="h-full w-full" alt="" />
         </div>
-        <div className="md:w-1/2 flex items-center justify-center">
-          <div className="px-[10vw]">
+        <div className="h-screen w-full md:w-1/2 flex justify-center items-center">
+          <div className="md:px-[10vw]">
             <form
               onSubmit={handleSubmit}
-              className="h-full p-4 flex flex-col justify-around space-y-3"
+              className="h-full p-4 w-full space-y-3"
             >
-              <div className="flex flex-col gap-2">
-                <h1 className="text-3xl font-bold text-center items-center">
+              <div className="">
+                <h1 className="text-3xl font-bold text-center">
                   Sign Up
                 </h1>
               </div>
