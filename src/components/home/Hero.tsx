@@ -8,8 +8,6 @@ import "swiper/css/navigation";
 import { useState, useRef, useEffect } from "react";
 import type SwiperCore from "swiper";
 import Stories from "../Stories";
-import c1 from "@/assets/c1.jpg";
-import c2 from "@/assets/c2.jpg";
 // import { data } from "@/utils/stories"
 import axios from "@/utils/middleware";
 import type { EventType } from "@/stores/event";

@@ -66,8 +66,8 @@ function Trending() {
     }
   };
   useOnClickOutside(locationRef, () => setCompletionsOpen(false));
-  const scrollContainerRef = useRef(null);
-  const categoryRef = useRef(null);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const categoryRef = useRef<HTMLAnchorElement | null>(null);
   const [categoryWidth, setCategoryWidth] = useState(0);
 
   // Effect to calculate the category width
