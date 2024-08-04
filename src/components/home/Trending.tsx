@@ -66,22 +66,75 @@ function Trending() {
     }
   };
   useOnClickOutside(locationRef, () => setCompletionsOpen(false));
+  const scrollContainerRef = useRef(null);
+  const categoryRef = useRef(null);
+  const [categoryWidth, setCategoryWidth] = useState(0);
 
+  // Effect to calculate the category width
+  useEffect(() => {
+    if (categoryRef.current) {
+      setCategoryWidth(categoryRef.current.offsetWidth + 16); // Add gap between items
+    }
+  }, [categoryRef.current, categories]);
+
+  // Function to scroll left
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -categoryWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // Function to scroll right
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: categoryWidth,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <div className="lg:px-[8%] px-[8vw] mt-[2vh] flex flex-col gap-8">
-      <div className="flex flex-col gap-3 overflow-x-hidden">
-        <div className="flex w-full gap-4">
+      <div className="relative w-full">
+        {/* Left Scroll Button */}
+        <button
+          onClick={scrollLeft}
+          className="absolute -left-7 top-0 z-10   h-full px-2 opacity-75 hover:opacity-100"
+          style={{ zIndex: 1 }}
+        >
+          &lt;
+        </button>
+
+        {/* Scrollable Categories */}
+        <div
+          ref={scrollContainerRef}
+          className="flex w-full gap-4 overflow-x-auto hide-scrollbar"
+          style={{ scrollBehavior: "smooth" }}
+        >
           {categories &&
-            categories.map((category: Category) => (
+            categories.map((category, index) => (
               <a
                 key={category.categoryId}
                 href={`/categories/${category.categoryId}`}
+                ref={index === 0 ? categoryRef : null} // Reference only the first category
                 className="text-center whitespace-nowrap min-w-[9rem] h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200 hover:bg-[#60769D] hover:text-white max-w-[280px]"
               >
                 {category.categoryName}
               </a>
             ))}
         </div>
+
+        {/* Right Scroll Button */}
+        <button
+          onClick={scrollRight}
+          className="absolute -right-7 top-0 z-10   h-full px-2 opacity-75 hover:opacity-100"
+          style={{ zIndex: 1 }}
+        >
+          &gt;
+        </button>
       </div>
 
       <div className="flex flex-col gap-4">

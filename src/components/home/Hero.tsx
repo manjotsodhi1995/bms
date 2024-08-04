@@ -29,7 +29,7 @@ function Hero() {
       const response = await axios.get(
         "https://kafsbackend-106f.onrender.com/api/v1/home-page"
       );
-      // console.log(response)
+      console.log(response);
       return response.data.data as EventType;
     } catch (err) {
       console.log("Failed to fetch data");
@@ -40,7 +40,6 @@ function Hero() {
     queryKey: ["event"],
     queryFn: () => fetchData(),
   });
-  console.log(eventData);
   const [open, setOpen] = useState(false);
   // const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);
 
@@ -142,24 +141,17 @@ function Hero() {
             modules={[Autoplay, Navigation]}
             className=""
           >
-            <SwiperSlide>
-              <div>
-                <img
-                  src={c1}
-                  className="w-[100vw] lg:h-[25vw] h-auto object-fill"
-                  alt=""
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div>
-                <img
-                  src={c2}
-                  className="w-[100vw] lg:h-[25vw] h-auto  object-fill"
-                  alt=""
-                />
-              </div>
-            </SwiperSlide>
+            {eventData?.carouselImages.map((card: any) => (
+              <SwiperSlide>
+                <div>
+                  <img
+                    src={card}
+                    className="w-[100vw] lg:h-[25vw] h-[50vw] object-cover"
+                    alt=""
+                  />
+                </div>{" "}
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <div className="">
@@ -173,9 +165,9 @@ function Hero() {
             autoplay={{ delay: 3000 }}
             coverflowEffect={{
               rotate: 0,
-              stretch: 0,
-              depth: 20,
-              modifier: 3,
+              stretch: 2,
+              depth: 14,
+              modifier: 2,
             }}
             pagination={{ el: ".swiper-pagination", clickable: true }}
             modules={[EffectCoverflow, Autoplay]}
@@ -187,7 +179,6 @@ function Hero() {
                 onClick={() => {
                   setOpen(true);
                   handleSlideClick(index);
-                  console.log(card);
                 }}
               >
                 <HeroSlides
