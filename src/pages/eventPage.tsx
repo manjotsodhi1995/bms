@@ -203,7 +203,7 @@ const EventPage = observer(() => {
           <div className="mt-4 flex md:hidden justify-between gap-10">
             <div className="flex flex-col text-center items-center">
               <div className="font-medium text-[1.2rem]">
-                {eventData?.duration ? `${eventData.duration}h` : "--"}
+                {eventData?.duration ? `${eventData.duration}` : "--"}
               </div>
               <div className="text-gray-700 text-[0.9rem]">Duration</div>
             </div>
