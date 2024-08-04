@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import Like from "../assets/Like.png";
-import Share from "../assets/share.png";
+// import Like from "../assets/Like.png";
+// import Share from "../assets/share.png";
 import axios from "../utils/middleware";
 import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
@@ -11,16 +11,16 @@ import BookTicketsDialog from "@/components/ticket/BookTicketsDialog";
 import type { EventType } from "@/stores/event";
 import { useStore } from "@/hooks/useStore";
 import { observer } from "mobx-react-lite";
-import { cn, formatDate } from "@/utils";
-import { ShareEventDialog } from "@/components/ShareEventDialog";
+import { formatDate } from "@/utils";
+// import { ShareEventDialog } from "@/components/ShareEventDialog";
 import { API } from "@/api";
-import { Avatar, dividerClasses } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
-import { useLikesQuery } from "@/api/query/useLikesQuery";
+// import { useLikesQuery } from "@/api/query/useLikesQuery";
 import { useFollowingQuery } from "@/api/query/useFollowingQuery";
 import Footer from "@/components/Footer";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import EventStories from "@/components/EventStories";
 import type SwiperCore from "swiper";
 
@@ -46,8 +46,8 @@ const EventPage = observer(() => {
     queryFn: () => fetchEvent(slug),
   });
   // console.log(eventData)
-  const eventId = eventData?.eventId;
-  const { data: isLiked, mutation: likesMutation } = useLikesQuery(eventId);
+  // const eventId = eventData?.eventId;
+  // const { data: isLiked, mutation: likesMutation } = useLikesQuery(eventId);
 
   const organizerId = eventData?.organizer._id;
   const { data: isFollowing, mutation: followMutation } =
