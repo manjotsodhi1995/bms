@@ -6,6 +6,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Loader2, Pencil } from "lucide-react";
 import { MuiTelInput } from "mui-tel-input";
 import { FormEvent, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 interface UpdateProfile {
   fname: string;
@@ -15,7 +16,7 @@ interface UpdateProfile {
   phone: string | null;
   gender: string;
   displayPic: string;
-  password: string;
+  // password: string;
 }
 
 const fetchProfile = async () => {
@@ -89,8 +90,6 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
   const [actualPhone, setActualPhone] = useState<string | null>("");
   const [country, setCountry] = useState<string | null>("");
 
-  console.log(password);
-
   const handleGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGender(event.target.value);
   };
@@ -103,16 +102,27 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
 
   const formSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate({
-      fname,
-      lname,
-      email,
-      countryCode: country,
-      phone: actualPhone,
-      password,
-      gender,
-      displayPic: profilePic,
-    });
+    const id = toast.loading("Saving changes...");
+    mutate(
+      {
+        fname,
+        lname,
+        email,
+        countryCode: country,
+        phone: actualPhone,
+        // password,
+        gender,
+        displayPic: profilePic,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Changes saved successfully", { id });
+        },
+        onError: () => {
+          toast.error("Failed to save Changes", { id });
+        },
+      }
+    );
   };
 
   return (
