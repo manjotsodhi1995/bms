@@ -4,6 +4,7 @@ import { ViewTicketStep } from "./steps/ViewTicketStep";
 import { formatDate } from "@/utils";
 import { Download, Eye, X } from "lucide-react";
 import { EventType } from "@/stores/event";
+import Tooltip from "@mui/material/Tooltip";
 
 interface TicketCardProps {
   [key: string]: any;
@@ -21,17 +22,21 @@ function TicketCard(props: TicketCardProps) {
     >
       <div className="relative w-full bg-white flex p-4 shadow-xl rounded-3xl gap-4 border">
         <div className="absolute flex  items-center gap-2 right-10">
-          <Eye
-            onClick={() => setOpen(true)}
-            className="size-8 text-gray-400 hover:text-black"
-          />
-          <Download
-            className="size-8 text-gray-400 hover:text-black"
-            onClick={() => {
-              setDownload(true);
-              setOpen(true);
-            }}
-          />
+          <Tooltip title="VIEW" placement="top" arrow>
+            <Eye
+              onClick={() => setOpen(true)}
+              className="size-8 text-gray-400 hover:text-black"
+            />
+          </Tooltip>
+          <Tooltip title="DOWNLOAD" placement="top" arrow>
+            <Download
+              className="size-8 text-gray-400 hover:text-black"
+              onClick={() => {
+                setDownload(true);
+                setOpen(true);
+              }}
+            />
+          </Tooltip>
         </div>
         <div className="w-[10rem] h-[10rem] rounded-2xl">
           {props?.event?.posterUrl ? (

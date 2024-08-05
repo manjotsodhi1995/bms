@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { Loader2, MapPin } from "lucide-react";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import Tooltip from "@mui/material/Tooltip";
 
 interface Category {
   categoryId: string;
@@ -139,8 +140,8 @@ function Trending() {
 
       <div className="flex flex-col gap-4">
         <div className="flex justify-between mt-4">
-          <div className="font-medium flex flex-col md:flex-row lg:text-[1.4rem] text-[0.9rem] items-start gap-2  whitespace-nowrap">
-            <div className="flex items-center gap-2">
+          <div className="font-medium lg:text-[1.4rem] text-[0.9rem] flex gap-2 items-center">
+            <Tooltip title="FILTER" placement="top" arrow>
               <Link to="/filter">
                 {" "}
                 <svg
@@ -160,8 +161,8 @@ function Trending() {
                   ></path>
                 </svg>
               </Link>
-              Events in{" "}
-            </div>
+            </Tooltip>
+            Events in{" "}
             <label htmlFor="location" className="relative w-60">
               <MapPin className="absolute top-1 lg:top-2 left-1 md:left-2 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
               <input

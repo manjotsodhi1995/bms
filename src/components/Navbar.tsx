@@ -14,6 +14,7 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import Tooltip from "@mui/material/Tooltip";
 
 const isExcludedRoute = createRouteMatcher([
   "/login",
@@ -326,16 +327,18 @@ const Navbar = observer(() => {
             )}
             {isAuthenticated && (
               <div className="flex justify-center gap-8 items-center min-w-[6vw]">
-                <div className="cursor-pointer" ref={notificationRef}>
-                  <NotificationsDropdown
-                    open={notificationOpen}
-                    onOpenChange={(v) => {
-                      setNotificationOpen(v);
-                      if (profileOpen) setProfileOpen((_) => false);
-                      if (calendarOpen) setCalendarOpen((_) => false);
-                    }}
-                  />
-                </div>
+                <Tooltip title="NOTIFICATION" arrow>
+                  <div className="cursor-pointer" ref={notificationRef}>
+                    <NotificationsDropdown
+                      open={notificationOpen}
+                      onOpenChange={(v) => {
+                        setNotificationOpen(v);
+                        if (profileOpen) setProfileOpen((_) => false);
+                        if (calendarOpen) setCalendarOpen((_) => false);
+                      }}
+                    />
+                  </div>
+                </Tooltip>
                 <div>
                   <ProfileDropdown
                     ref={accountRef}
@@ -495,7 +498,7 @@ function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
           </a> */}
           <a
             href="/settings"
-            className="block w-full px-4 py-2 hover:bg-gray-100"
+            className="block w-full text-center py-2 hover:bg-gray-100"
           >
             Account Settings
           </a>
