@@ -498,7 +498,7 @@ function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
           </a> */}
           <a
             href="/settings"
-            className="block w-full px-4 py-2 hover:bg-gray-100"
+            className="block w-full text-center py-2 hover:bg-gray-100"
           >
             Account Settings
           </a>
