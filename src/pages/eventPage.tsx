@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import Like from "../assets/Like.png";
-import Share from "../assets/share.png";
+// import Like from "../assets/Like.png";
+// import Share from "../assets/share.png";
 import axios from "../utils/middleware";
 import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
@@ -11,19 +11,18 @@ import BookTicketsDialog from "@/components/ticket/BookTicketsDialog";
 import type { EventType } from "@/stores/event";
 import { useStore } from "@/hooks/useStore";
 import { observer } from "mobx-react-lite";
-import { cn, formatDate } from "@/utils";
-import { ShareEventDialog } from "@/components/ShareEventDialog";
+import { formatDate } from "@/utils";
+// import { ShareEventDialog } from "@/components/ShareEventDialog";
 import { API } from "@/api";
 import { Avatar } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
-import { useLikesQuery } from "@/api/query/useLikesQuery";
+// import { useLikesQuery } from "@/api/query/useLikesQuery";
 import { useFollowingQuery } from "@/api/query/useFollowingQuery";
 import Footer from "@/components/Footer";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import EventStories from "@/components/EventStories";
 import type SwiperCore from "swiper";
-import Tooltip from "@mui/material/Tooltip";
 
 const fetchEvent = async (slug?: string) => {
   const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
@@ -47,8 +46,8 @@ const EventPage = observer(() => {
     queryFn: () => fetchEvent(slug),
   });
   // console.log(eventData)
-  const eventId = eventData?.eventId;
-  const { data: isLiked, mutation: likesMutation } = useLikesQuery(eventId);
+  // const eventId = eventData?.eventId;
+  // const { data: isLiked, mutation: likesMutation } = useLikesQuery(eventId);
 
   const organizerId = eventData?.organizer._id;
   const { data: isFollowing, mutation: followMutation } =
@@ -122,77 +121,16 @@ const EventPage = observer(() => {
         handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
         handlePrevClick={handlePrevClick}
       />
-      <div
-        className="h-[50vw] md:h-full"
-        style={{
-          backgroundImage: `url(${eventData?.posterUrl})`,
-          backgroundSize: "100%",
-        }}
-      >
-        <div className="flex text-white items-end lg:px-[5%] xl:px-[7%] px-[8vw] py-[2rem] h-[50vw] md:h-[35vw] bg-black bg-opacity-30 justify-between">
-          <div className="hidden w-[40%] font-bold text-[2.5rem] md:flex flex-col gap-4">
-            <div className="p-2 rounded-full border-2 border-white text-[1rem] w-[9rem] text-center">
-              {" "}
-              Movie
-            </div>
-            <div className="leading-tight text-[1.7rem] md:text-[2.5rem]">
-              {" "}
-              {eventData?.title}
-            </div>
-          </div>
-
-          <div className="flex gap-4">
-            <Tooltip title="LIKE" placement="top" arrow>
-              <button
-                disabled={likesMutation.isPending}
-                onClick={() => {
-                  toast.promise(likesMutation.mutateAsync(), {
-                    loading: "Please wait",
-                    success: isLiked
-                      ? "Removed from favourites"
-                      : "Added to favourites",
-                    error: "An error occurred",
-                  });
-                }}
-                className={cn(
-                  "bg-white rounded-full w-[50px] h-[50px] bg-opacity-40 items-center flex justify-center",
-                  {
-                    "bg-pink-700 bg-opacity-100": isLiked,
-                    "bg-pink-300": likesMutation.isPending,
-                  }
-                )}
-              >
-                {likesMutation.isPending ? (
-                  <Loader2 className="animate-spin" />
-                ) : (
-                  <div>
-                    <img src={Like} alt="" />
-                  </div>
-                )}
-              </button>
-            </Tooltip>
-
-            {eventData && (
-              <ShareEventDialog
-                imageUrl={eventData.posterUrl}
-                link={`/event/${eventData.slug}`}
-              >
-                <Tooltip title="SHARE" placement="top" arrow>
-                  <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-blue-300">
-                    <img src={Share} alt="" />
-                  </div>
-                </Tooltip>
-              </ShareEventDialog>
-            )}
-            {/* <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-black"> */}
-            {/*   <img src={three} alt="" /> */}
-            {/* </div> */}
-          </div>
-        </div>
+      <div className="h-[50vw] md:h-full flex justify-center">
+        <img
+          src={eventData?.posterUrl}
+          className="w-full md:h-[33vw] h-full"
+          alt=""
+        />
       </div>
       <div className="relative lg:px-[5%] xl:px-[7%] px-[8vw] py-[1.4rem] flex justify-between md:flex-row flex-col gap-8 2xl:gap-16">
         <div className="flex flex-col gap-2 md:w-[55%]">
-          <div className="font-bold text-[2.5rem] flex flex-col gap-2 md:hidden">
+          <div className="font-bold text-[2.5rem] flex flex-col gap-2">
             <div className="p-2 rounded-full border-2 border-black text-black text-[1rem] w-[7rem] text-center">
               {" "}
               {eventData?.genres}
@@ -213,7 +151,7 @@ const EventPage = observer(() => {
               >
                 <path
                   d="M9 4.5C8.25832 4.5 7.5333 4.71993 6.91661 5.13199C6.29993 5.54404 5.81928 6.12971 5.53545 6.81494C5.25162 7.50016 5.17736 8.25416 5.32205 8.98159C5.46675 9.70902 5.8239 10.3772 6.34835 10.9017C6.8728 11.4261 7.54098 11.7833 8.26841 11.9279C8.99584 12.0726 9.74984 11.9984 10.4351 11.7145C11.1203 11.4307 11.706 10.9501 12.118 10.3334C12.5301 9.7167 12.75 8.99168 12.75 8.25C12.75 7.25544 12.3549 6.30161 11.6517 5.59835C10.9484 4.89509 9.99456 4.5 9 4.5ZM9 10.5C8.55499 10.5 8.11998 10.368 7.74997 10.1208C7.37996 9.87357 7.09157 9.52217 6.92127 9.11104C6.75097 8.6999 6.70642 8.2475 6.79323 7.81105C6.88005 7.37459 7.09434 6.97368 7.40901 6.65901C7.72368 6.34434 8.12459 6.13005 8.56105 6.04323C8.9975 5.95642 9.4499 6.00097 9.86104 6.17127C10.2722 6.34157 10.6236 6.62996 10.8708 6.99997C11.118 7.36998 11.25 7.80499 11.25 8.25C11.25 8.84674 11.0129 9.41903 10.591 9.84099C10.169 10.2629 9.59674 10.5 9 10.5ZM9 0C6.81273 0.00248131 4.71575 0.872472 3.16911 2.41911C1.62247 3.96575 0.752481 6.06273 0.75 8.25C0.75 11.1938 2.11031 14.3138 4.6875 17.2734C5.84552 18.6108 7.14886 19.8151 8.57344 20.8641C8.69954 20.9524 8.84978 20.9998 9.00375 20.9998C9.15772 20.9998 9.30796 20.9524 9.43406 20.8641C10.856 19.8147 12.1568 18.6104 13.3125 17.2734C15.8859 14.3138 17.25 11.1938 17.25 8.25C17.2475 6.06273 16.3775 3.96575 14.8309 2.41911C13.2843 0.872472 11.1873 0.00248131 9 0ZM9 19.3125C7.45031 18.0938 2.25 13.6172 2.25 8.25C2.25 6.45979 2.96116 4.7429 4.22703 3.47703C5.4929 2.21116 7.20979 1.5 9 1.5C10.7902 1.5 12.5071 2.21116 13.773 3.47703C15.0388 4.7429 15.75 6.45979 15.75 8.25C15.75 13.6153 10.5497 18.0938 9 19.3125Z"
-                  fill="black"
+                  fill="#60769D"
                 />
               </svg>
             </div>
@@ -239,7 +177,7 @@ const EventPage = observer(() => {
               >
                 <path
                   d="M16.5 2H14.25V1.25C14.25 1.05109 14.171 0.860322 14.0303 0.71967C13.8897 0.579018 13.6989 0.5 13.5 0.5C13.3011 0.5 13.1103 0.579018 12.9697 0.71967C12.829 0.860322 12.75 1.05109 12.75 1.25V2H5.25V1.25C5.25 1.05109 5.17098 0.860322 5.03033 0.71967C4.88968 0.579018 4.69891 0.5 4.5 0.5C4.30109 0.5 4.11032 0.579018 3.96967 0.71967C3.82902 0.860322 3.75 1.05109 3.75 1.25V2H1.5C1.10218 2 0.720644 2.15804 0.43934 2.43934C0.158035 2.72064 0 3.10218 0 3.5V18.5C0 18.8978 0.158035 19.2794 0.43934 19.5607C0.720644 19.842 1.10218 20 1.5 20H16.5C16.8978 20 17.2794 19.842 17.5607 19.5607C17.842 19.2794 18 18.8978 18 18.5V3.5C18 3.10218 17.842 2.72064 17.5607 2.43934C17.2794 2.15804 16.8978 2 16.5 2ZM3.75 3.5V4.25C3.75 4.44891 3.82902 4.63968 3.96967 4.78033C4.11032 4.92098 4.30109 5 4.5 5C4.69891 5 4.88968 4.92098 5.03033 4.78033C5.17098 4.63968 5.25 4.44891 5.25 4.25V3.5H12.75V4.25C12.75 4.44891 12.829 4.63968 12.9697 4.78033C13.1103 4.92098 13.3011 5 13.5 5C13.6989 5 13.8897 4.92098 14.0303 4.78033C14.171 4.63968 14.25 4.44891 14.25 4.25V3.5H16.5V6.5H1.5V3.5H3.75ZM16.5 18.5H1.5V8H16.5V18.5Z"
-                  fill="black"
+                  fill="#60769D"
                 />
               </svg>
             </div>
@@ -256,7 +194,7 @@ const EventPage = observer(() => {
               >
                 <path
                   d="M5.75 1.25C5.75 1.05109 5.67098 0.860321 5.53033 0.719669C5.38968 0.579018 5.19891 0.5 5 0.5H2C1.60218 0.5 1.22064 0.658035 0.93934 0.939341C0.658035 1.22064 0.5 1.60217 0.5 2L0.5 20C0.5 20.3978 0.658035 20.7794 0.93934 21.0607C1.22064 21.342 1.60218 21.5 2 21.5H5C5.19891 21.5 5.38968 21.421 5.53033 21.2803C5.67098 21.1397 5.75 20.9489 5.75 20.75C5.75 20.1533 5.98705 19.581 6.40901 19.159C6.83097 18.7371 7.40326 18.5 8 18.5C8.59674 18.5 9.16903 18.7371 9.59099 19.159C10.0129 19.581 10.25 20.1533 10.25 20.75C10.25 20.9489 10.329 21.1397 10.4697 21.2803C10.6103 21.421 10.8011 21.5 11 21.5H14C14.3978 21.5 14.7794 21.342 15.0607 21.0607C15.342 20.7794 15.5 20.3978 15.5 20L15.5 2C15.5 1.60217 15.342 1.22064 15.0607 0.939341C14.7794 0.658035 14.3978 0.5 14 0.5H11C10.8011 0.5 10.6103 0.579018 10.4697 0.719669C10.329 0.860321 10.25 1.05109 10.25 1.25C10.25 1.84674 10.0129 2.41903 9.59099 2.84099C9.16903 3.26295 8.59674 3.5 8 3.5C7.40326 3.5 6.83097 3.26295 6.40901 2.84099C5.98705 2.41903 5.75 1.84674 5.75 1.25ZM11.675 20C11.5029 19.1523 11.043 18.3901 10.3732 17.8427C9.70343 17.2953 8.86502 16.9962 8 16.9962C7.13498 16.9962 6.29657 17.2953 5.62681 17.8427C4.95705 18.3901 4.49714 19.1523 4.325 20H2L2 14.75H14V20H11.675ZM11.675 2H14L14 13.25H2L2 2H4.325C4.49714 2.84772 4.95705 3.60986 5.62681 4.15728C6.29657 4.70471 7.13498 5.00376 8 5.00376C8.86502 5.00376 9.70343 4.70471 10.3732 4.15728C11.043 3.60986 11.5029 2.84772 11.675 2Z"
-                  fill="black"
+                  fill="#60769D"
                 />
               </svg>
             </div>
@@ -265,7 +203,7 @@ const EventPage = observer(() => {
           <div className="mt-4 flex md:hidden justify-between gap-10">
             <div className="flex flex-col text-center items-center">
               <div className="font-medium text-[1.2rem]">
-                {eventData?.duration ? `${eventData.duration}h` : "--"}
+                {eventData?.duration ? `${eventData.duration}` : "--"}
               </div>
               <div className="text-gray-700 text-[0.9rem]">Duration</div>
             </div>
@@ -283,15 +221,30 @@ const EventPage = observer(() => {
             </div>
           </div>
           <div className="md:hidden grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
-            {eventData?.stories.map((card:any, index:any) => (
-              <div key={index} className="snap-center w-full" ref={carouselRef} onClick={() => {
-                setOpen(true);
-                handleSlideClick(index);
-              }}>
-                <EventSlides  title={card.caption} posterUrl={card.posterUrl}/>
+            {eventData?.stories.map((card: any, index: any) => (
+              <div
+                key={index}
+                className="snap-center w-full"
+                ref={carouselRef}
+                onClick={() => {
+                  setOpen(true);
+                  handleSlideClick(index);
+                }}
+              >
+                <EventSlides title={card.caption} posterUrl={card.posterUrl} />
               </div>
             ))}
           </div>{" "}
+          <div className="flex flex-col mt-4 gap-2">
+            <div className="font-medium text-[1.4rem]">About</div>{" "}
+            {eventData?.description?.includes("\n") ? (
+              <div className="font-sans max-w-[100%] whitespace-pre-wrap flex">
+                {eventData?.description}
+              </div>
+            ) : (
+              <div>{eventData?.description}</div>
+            )}
+          </div>
           <div className="mt-4 flex flex-col gap-2">
             <div className="font-medium text-[1.4rem]">Timings</div>
             <div className="flex gap-2">
@@ -360,10 +313,6 @@ const EventPage = observer(() => {
               <div>Last Entry at Fri 5th Jul at 9:00 AM (GMT+)</div>
             </div>
           </div>
-          <div className="flex flex-col mt-4 gap-2">
-            <div className="font-medium text-[1.4rem]">About</div>
-            <div>{eventData?.description}</div>
-          </div>
           <div className="md:w-[50%]">
             <h1 className="font-medium text-[1.3rem]">Location</h1>
             <iframe
@@ -413,6 +362,7 @@ const EventPage = observer(() => {
           <div className="font-medium mt-4 cursor-pointer text-xl">
             Refund Policy
           </div>
+          <div>No Refunds will be issued</div>
           {/* <div className="mt-20">
             <div className="font-medium text-[1.2rem]">
               Would you like to rep this event?
@@ -426,19 +376,24 @@ const EventPage = observer(() => {
 
         <div className="h-fit fixed bottom-0 z-10 left-0 py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[30%]">
           <div className="hidden md:grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
-            {eventData?.stories.map((card:any, index:any) => (
-              <div key={index} className="snap-center w-full" ref={carouselRef} onClick={() => {
-                setOpen(true);
-                handleSlideClick(index);
-              }}>
-                <EventSlides title={card.caption} posterUrl={card.posterUrl}/>
+            {eventData?.stories.map((card: any, index: any) => (
+              <div
+                key={index}
+                className="snap-center w-full"
+                ref={carouselRef}
+                onClick={() => {
+                  setOpen(true);
+                  handleSlideClick(index);
+                }}
+              >
+                <EventSlides title={card.caption} posterUrl={card.posterUrl} />
               </div>
             ))}
           </div>{" "}
           <div className="mt-4 hidden md:flex justify-between gap-10">
             <div className="flex flex-col text-center items-center">
               <div className="font-medium text-[1.2rem]">
-                {eventData?.duration ? `${eventData.duration}h` : "4h"}
+                {eventData?.duration ? `${eventData.duration}` : "4h"}
               </div>
               <div className="text-gray-700 text-[0.9rem]">Duration</div>
             </div>

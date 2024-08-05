@@ -9,7 +9,7 @@ function EventSlides({ title, posterUrl }: any) {
   };
   return (
     <div
-      className="h-[25vh] md:rounded-3xl rounded-xl transition-transform duration-300 ease-in-out relative"
+      className="h-[8rem] md:h-[12rem] md:rounded-3xl rounded-xl transition-transform duration-300 ease-in-out relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ transform: isHovered ? "scale(1.1)" : "scale(1)" }}

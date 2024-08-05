@@ -8,8 +8,6 @@ import "swiper/css/navigation";
 import { useState, useRef, useEffect } from "react";
 import type SwiperCore from "swiper";
 import Stories from "../Stories";
-import c1 from "@/assets/c1.jpg";
-import c2 from "@/assets/c2.jpg";
 // import { data } from "@/utils/stories"
 import axios from "@/utils/middleware";
 import type { EventType } from "@/stores/event";
@@ -23,23 +21,23 @@ interface StoryItem {
 }
 
 function Hero() {
-    // Define an asynchronous function to fetch data
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://kafsbackend-106f.onrender.com/api/v1/home-page');
-        // console.log(response)
-        return response.data.data as EventType;
-      } catch (err) {
-        console.log('Failed to fetch data');
-      }
-    };
+  // Define an asynchronous function to fetch data
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://kafsbackend-106f.onrender.com/api/v1/home-page"
+      );
+      console.log(response);
+      return response.data.data as EventType;
+    } catch (err) {
+      console.log("Failed to fetch data");
+    }
+  };
 
-  
-    const { data: eventData } = useQuery({
-      queryKey: ["event"],
-      queryFn: () => fetchData(),
-    });
-    console.log(eventData);
+  const { data: eventData } = useQuery({
+    queryKey: ["event"],
+    queryFn: () => fetchData(),
+  });
   const [open, setOpen] = useState(false);
   // const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);
 
@@ -121,7 +119,9 @@ function Hero() {
         activeIndex={activeIndex}
         handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
         handlePrevClick={handlePrevClick}
-        urls = {eventData?.stories.map((item:StoryItem) => ({videoUrl: item.videoUrl}))}
+        urls={eventData?.stories.map((item: StoryItem) => ({
+          videoUrl: item.videoUrl,
+        }))}
       />
       <div className="flex flex-col items-center xl:mt-[-3rem] xl:gap-6 mt-[-2rem] lg:mt-[-2rem]">
         <div className="w-full">
@@ -139,24 +139,17 @@ function Hero() {
             modules={[Autoplay, Navigation]}
             className=""
           >
-            <SwiperSlide>
-              <div>
-                <img
-                  src={c1}
-                  className="w-[100vw] lg:h-[25vw] h-auto object-fill"
-                  alt=""
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div>
-                <img
-                  src={c2}
-                  className="w-[100vw] lg:h-[25vw] h-auto  object-fill"
-                  alt=""
-                />
-              </div>
-            </SwiperSlide>
+            {eventData?.carouselImages.map((card: any) => (
+              <SwiperSlide>
+                <div>
+                  <img
+                    src={card}
+                    className="w-[100vw] lg:h-[25vw] h-[50vw] object-cover"
+                    alt=""
+                  />
+                </div>{" "}
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <div className="">
@@ -170,26 +163,28 @@ function Hero() {
             autoplay={{ delay: 3000 }}
             coverflowEffect={{
               rotate: 0,
-              stretch: 0,
-              depth: 20,
-              modifier: 3,
+              stretch: 2,
+              depth: 14,
+              modifier: 2,
             }}
             pagination={{ el: ".swiper-pagination", clickable: true }}
             modules={[EffectCoverflow, Autoplay]}
             className="swiper_container sw1 py-8"
-            // onInit={(swiper) =>setSwiperInstance(swiper)}
             onSwiper={(swiper) => (firstSwiper.current = swiper)}
-            // onSlideChange={handleSeoSlideChange}
           >
-            {eventData?.stories.map((card:any, index:any) => (
+            {eventData?.stories.map((card: any, index: any) => (
               <SwiperSlide
                 onClick={() => {
                   setOpen(true);
                   handleSlideClick(index);
-                  console.log(card)
                 }}
               >
-                <HeroSlides key={index} ImageUrl={card.posterUrl} title={card.caption} description={card.description}/>
+                <HeroSlides
+                  key={index}
+                  ImageUrl={card.posterUrl}
+                  title={card.caption}
+                  description={card.description}
+                />
               </SwiperSlide>
             ))}
           </Swiper>

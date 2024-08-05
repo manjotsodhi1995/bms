@@ -40,9 +40,10 @@ export const useBookingMatrixQuery = (eventId?: string, eventDate?: string) => {
     if (!eventId) return false;
     const response = await axios.get(`${API.bookingmatrix.fetch}/${eventId}`, {
       params: {
-        eventDate: eventDate ? eventDate.split(" ")[0]: null,
+        eventDate: eventDate ? eventDate.split(" ")[0] : null,
       },
     });
+    console.log(response.data.data);
     return response.data.data;
   };
 
@@ -50,7 +51,7 @@ export const useBookingMatrixQuery = (eventId?: string, eventDate?: string) => {
     queryKey: ["bookingMatrix", eventId],
     queryFn: fetchBookingMatrix,
     enabled: !!eventId && !!eventDate,
-    retry: 2
+    retry: 2,
   });
 
   const createMutation = useMutation({
