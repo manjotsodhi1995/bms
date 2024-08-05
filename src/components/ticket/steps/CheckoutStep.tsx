@@ -10,6 +10,7 @@ import { useCart } from "@/stores/cart";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import PreviewCard from "./PreviewCard";
+import { Link } from "react-router-dom";
 
 export const CheckoutStep = ({
   eventsData,
@@ -29,6 +30,7 @@ export const CheckoutStep = ({
     setVoucherCode,
   } = useCart();
 
+  const accessToken = localStorage.getItem("accessToken");
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethods | null>(
     "card"
   );
@@ -68,6 +70,16 @@ export const CheckoutStep = ({
         {" "}
         <div className="w-4/5 md:w-full flex flex-col gap-2">
           <h2 className="text-2xl font-bold mt-4 w-full">Checkout</h2>
+          {!accessToken && (
+            <p className="text-xs">
+              Already a user ?{" "}
+              <span>
+                <Link to={"/login"} className="text-blue-800">
+                  Login
+                </Link>
+              </span>
+            </p>
+          )}
           {error.length > 0 && (
             <p className="text-red-400 text-sm font-medium">{error}</p>
           )}

@@ -1,38 +1,88 @@
-import msg from "../assets/contact/message.png"
+import msg from "../assets/contact/message.png";
 import lc from "../assets/contact/location.png";
 import ExpandableBox from "../components/Expandable";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
+import axios from "@/utils/middleware";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+
+interface ContactData {
+  fname: string;
+  lname: string;
+  phone: string;
+  email: string;
+  message: string;
+}
+
 const ContactUs = observer(() => {
-     const [firstName, setFirstName] = useState(""); // State for first name input
-     const [lastName, setLastName] = useState(""); // State for last name input
-     const [phone, setPhone] = useState("");
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
-    const handleInputChange = (event: any) => {
-      const { name, value } = event.target;
-      switch (name) {
-        case "firstName":
-          setFirstName(value);
-          break;
-        case "lastName":
-          setLastName(value);
-          break;
-        case "phone":
-          setPhone(value);
-          break;
-        case "email":
-          setEmail(value);
-              break;
-          case "message":
-              setMessage(value);
-              break;
-        default:
-          break;
+  const [firstName, setFirstName] = useState(""); // State for first name input
+  const [lastName, setLastName] = useState(""); // State for last name input
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const handleInputChange = (event: any) => {
+    const { name, value } = event.target;
+    switch (name) {
+      case "firstName":
+        setFirstName(value);
+        break;
+      case "lastName":
+        setLastName(value);
+        break;
+      case "phone":
+        setPhone(value);
+        break;
+      case "email":
+        setEmail(value);
+        break;
+      case "message":
+        setMessage(value);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const uploadContactData = async (data: ContactData) => {
+    await axios.post(
+      "https://kafsbackend-106f.onrender.com/api/v1/contactform/submit",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    };
-  const handleSubmit = async (event: any) => {
+    );
+  };
+
+  const mutation = useMutation({
+    mutationFn: uploadContactData,
+    onSuccess: () => {
+      toast.success(
+        "Thank you for contacting us! We'll get back to you shortly."
+      );
+      setFirstName("");
+      setLastName("");
+      setPhone("");
+      setEmail("");
+      setMessage("");
+    },
+    // onError: () => {
+    //   toast.error("Oops! Something went wrong. Please try again.");
+    // }
+  });
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const data: ContactData = {
+      fname: firstName,
+      lname: lastName,
+      phone,
+      email,
+      message,
+    };
+    mutation.mutate(data);
   };
 
   return (
