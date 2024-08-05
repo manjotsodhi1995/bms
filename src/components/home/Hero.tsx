@@ -1,6 +1,11 @@
 import HeroSlides from "../HeroSlides";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Autoplay, Navigation } from "swiper/modules";
+import {
+  EffectCoverflow,
+  Autoplay,
+  Navigation,
+  Pagination,
+} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -124,7 +129,7 @@ function Hero() {
         }))}
       />
       <div className="flex flex-col items-center xl:mt-[-3rem] xl:gap-6 mt-[-2rem] lg:mt-[-2rem]">
-        <div className="w-full">
+        <div className="w-full flex items-center">
           <Swiper
             spaceBetween={30}
             centeredSlides={true}
@@ -134,20 +139,21 @@ function Hero() {
             }}
             pagination={{
               clickable: true,
+              type: "bullets", // Ensure dots are displayed as bullets
             }}
             navigation={true}
-            modules={[Autoplay, Navigation]}
-            className=""
+            modules={[Autoplay, Navigation, Pagination]} // Include Pagination module
+            className="custom-swiper"
           >
-            {eventData?.carouselImages.map((card: any) => (
-              <SwiperSlide>
+            {eventData?.carouselImages.map((card: any, index: number) => (
+              <SwiperSlide key={index}>
                 <div>
                   <img
                     src={card}
                     className="w-[100vw] lg:h-[25vw] h-[50vw] object-cover"
                     alt=""
                   />
-                </div>{" "}
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
