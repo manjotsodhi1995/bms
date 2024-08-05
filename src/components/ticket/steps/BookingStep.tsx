@@ -87,7 +87,7 @@ export const BookingStep = ({
       <PreviewCard cartData={cartData} eventsData={eventsData}>
         <button
           disabled={noOfTickets === 0}
-          className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed"
+          className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500"
           onClick={onStepChange}
         >
           Reserve
