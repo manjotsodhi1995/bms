@@ -216,3 +216,57 @@ body {
   background: rgba(255, 255, 255, 1); /* Fully opaque white for active bullet */
   opacity: 1;
 }
+video::-webkit-media-controls-enclosure {
+  overflow: hidden;
+}
+
+video::-webkit-media-controls-panel {
+  width: calc(100% - 50px); /* Adjust this value as needed */
+}
+
+video::-webkit-media-controls-download-button {
+  display: none;
+}
+
+video::-webkit-media-controls-fullscreen-button {
+  margin-right: 10px; /* Adjust the margin for the fullscreen button */
+}
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.video {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.controls {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.control-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0 5px;
+}
+
+.progress-bar,
+.volume-control {
+  flex-grow: 1;
+  margin: 0 10px;
+}
