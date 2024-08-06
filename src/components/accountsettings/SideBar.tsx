@@ -1,22 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 interface SideBarProps {
   onStateChange: (newState: string) => void;
   initialState: string;
-  isVisible: any;
+  isVisible: boolean;
 }
+
+interface UpdateProfile {
+  displayPic: string;
+}
+
+import { Avatar } from "@mui/material";
+import { cn } from "@/utils";
 import { useStore } from "@/hooks/useStore";
-import { useQuery } from "@tanstack/react-query";
 import axios from "@/utils/middleware";
 import { API } from "@/api";
-import { Avatar } from "@mui/material";
-import { X } from "lucide-react";
+import { X, Pencil, Loader2 } from "lucide-react";
+// import toast from "react-hot-toast";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+// import toast from "react-hot-toast";
 
 const fetchProfile = async () => {
   const response = await axios.get(API.users.profile);
   return response.data.data;
 };
+
+const uploadFile = async (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  const response = await axios.postForm(API.content.upload, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return response.data.data;
+};
+
+const updateProfile = async (body: UpdateProfile) => {
+  const response = await axios.put(API.users.update, body);
+  return response.data.data;
+};
+
 const SideBar: React.FC<SideBarProps> = ({
   onStateChange,
   initialState,
@@ -25,11 +50,51 @@ const SideBar: React.FC<SideBarProps> = ({
   const {
     root: { auth },
   } = useStore();
-  const { data } = useQuery({
+  const { data, isSuccess } = useQuery({
     queryKey: ["profile"],
     queryFn: fetchProfile,
   });
+
+  useEffect(() => {
+    if (!data) return;
+    setProfilePic(data?.displayPic);
+  }, [data, isSuccess]);
+
+  const queryClient = useQueryClient();
   const [select, setSelect] = useState<string>(initialState);
+  const [profilePic, setProfilePic] = useState<string>("");
+
+  const { mutate: uploadFileMutation, isPending } = useMutation({
+    mutationFn: uploadFile,
+    onSuccess: (data: any) => {
+      setProfilePic(data.contentUrl);
+      // updateProfile(profilePic)
+    },
+  });
+
+  const { mutate } = useMutation({
+    mutationFn: updateProfile,
+    onSettled: async () => {
+      // setFname("");
+      // setLname("");
+      // setMobile("");
+      // setDob("");
+      // setPassword("");
+      // setGender("");
+      setProfilePic("");
+      return await queryClient.invalidateQueries({
+        queryKey: ["profile"],
+      });
+    },
+  });
+
+
+  const formSubmitHandler = (e: any) => {
+    e.preventDefault();
+    mutate({
+      displayPic: profilePic,
+    });
+  };
 
   return (
     <>
@@ -44,16 +109,35 @@ const SideBar: React.FC<SideBarProps> = ({
         >
           <X className="size-8" />
         </Link>
-        <div className="md:flex md:justify-center">
-          <Avatar
-            src={data?.displayPic}
-            alt="Profile"
-            sx={{
-              width: "100px",
-              height: "100px",
-              marginY: "60px",
+        <div className="mt-2 flex w-full justify-center max-sm:pl-5">
+          <input
+            accept="image/*"
+            className="hidden"
+            id="profilePic"
+            type="file"
+            onChange={(e) => {
+              if (e.target.files) {
+                uploadFileMutation(e.target.files[0]);
+              }
             }}
           />
+          <label
+            htmlFor="profilePic"
+            className="relative flex w-fit justify-center gap-2 items-center"
+          >
+            <Avatar
+              src={profilePic || data?.displayPic}
+              sx={{ width: 100, height: 100 }}
+              className={cn({
+                "opacity-60": isPending,
+              })}
+            />
+            {isPending && (
+              <Loader2 className="absolute left-8 size-10 animate-spin" />
+            )}
+            <Pencil className="size-4" />
+          </label>
+          <button onClick={formSubmitHandler}>change profile</button>
         </div>
         <div
           className={`flex my-1 w-full p-2 cursor-default  hover:cursor-pointer items-center group ${
