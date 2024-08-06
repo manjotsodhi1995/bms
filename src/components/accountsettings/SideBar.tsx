@@ -68,6 +68,7 @@ const SideBar: React.FC<SideBarProps> = ({
     mutationFn: uploadFile,
     onSuccess: (data: any) => {
       setProfilePic(data.contentUrl);
+      formSubmitHandler(data.contentUrl);
       // updateProfile(profilePic)
     },
   });
@@ -88,18 +89,16 @@ const SideBar: React.FC<SideBarProps> = ({
     },
   });
 
-
-  const formSubmitHandler = (e: any) => {
-    e.preventDefault();
+  const formSubmitHandler = (pic: any) => {
     mutate({
-      displayPic: profilePic,
+      displayPic: pic,
     });
   };
 
   return (
     <>
       <div
-        className={`h-[100vh] max-sm:fixed sm:w-[25%] sm:max-w-[350px] min-w-[200px] bg-gray-300 text-black flex flex-col items-center w-[40px] z-50 sm:z-10 md:block  ${
+        className={`h-[100vh] max-sm:fixed sm:w-[25%] sm:max-w-[350px] min-w-[200px] bg-gray-300 text-black flex flex-col items-center w-[40px] z-50 sm:z-10 md:block ${
           isVisible ? "block" : "hidden"
         }`}
       >
@@ -109,7 +108,7 @@ const SideBar: React.FC<SideBarProps> = ({
         >
           <X className="size-8" />
         </Link>
-        <div className="mt-2 flex w-full justify-center max-sm:pl-5">
+        <div className="mt-12 flex w-full justify-center max-sm:pl-5">
           <input
             accept="image/*"
             className="hidden"
@@ -137,10 +136,9 @@ const SideBar: React.FC<SideBarProps> = ({
             )}
             <Pencil className="size-4" />
           </label>
-          <button onClick={formSubmitHandler}>change profile</button>
         </div>
         <div
-          className={`flex my-1 w-full p-2 cursor-default  hover:cursor-pointer items-center group ${
+          className={`flex mt-6 my-1 w-full p-2 cursor-default  hover:cursor-pointer items-center group ${
             select == "acc" ? "bg-black text-white" : ""
           }`}
           onClick={() => {
