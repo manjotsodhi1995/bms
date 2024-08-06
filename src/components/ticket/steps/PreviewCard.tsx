@@ -48,16 +48,20 @@ const PreviewCard = ({ eventsData, cartData, children }: PreviewCardProps) => {
               formatCurrency(cartData.basket.subTotal, cartData.currency)}
           </span>
         </p>
-        <p className="flex items-center justify-between text-gray-600 text-sm">
-          <span>Fees</span>
-          <span>
-            {cartData &&
-              formatCurrency(
-                Number(cartData.basket.totalAmount - cartData.basket.subTotal),
-                cartData.currency
-              )}
-          </span>
-        </p>
+        {cartData.basket.totalAmount - cartData.basket.subTotal != 0 && (
+          <p className="flex items-center justify-between text-gray-600 text-sm">
+            <span>Fees</span>
+            <span>
+              {cartData &&
+                formatCurrency(
+                  Number(
+                    cartData.basket.totalAmount - cartData.basket.subTotal
+                  ),
+                  cartData.currency
+                )}
+            </span>
+          </p>
+        )}
         {cartData && cartData.basket?.promotionsApplied.length > 0 && (
           <p className="flex items-center justify-between text-gray-600 text-sm">
             <span>Disount Applied</span>
