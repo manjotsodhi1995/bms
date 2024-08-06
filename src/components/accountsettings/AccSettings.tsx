@@ -110,8 +110,6 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
     );
   };
 
-  
-
   return (
     // flex flex-col sm:items-start 2xl:items-center items-center w-[80vw] mx-[5px] sm:w-[75%] lg:pl-[10%] sm:pl-[5%] bg-white mt-[50px]
     <>
@@ -265,13 +263,21 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
               </label>
             </div>
             <div className="flex w-full justify-center">
-              <button
-                type="submit"
-                className="flex items-center gap-2 bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]"
-              >
-                SAVE CHANGES
-                {updatePending && <Loader2 className="size-4 animate-spin" />}
-              </button>
+              {!updatePending && (
+                <button
+                  type="submit"
+                  className="flex items-center gap-2 bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]"
+                >
+                  SAVE CHANGES
+                  {updatePending && <Loader2 className="size-4 animate-spin" />}
+                </button>
+              )}{" "}
+              {updatePending && (
+                <div className="flex items-center gap-2 bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]">
+                  Saving...
+                  {updatePending && <Loader2 className="size-4 animate-spin" />}
+                </div>
+              )}
             </div>
           </form>
         </div>
