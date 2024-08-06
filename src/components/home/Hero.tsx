@@ -145,17 +145,30 @@ function Hero() {
             modules={[Autoplay, Navigation, Pagination]} // Include Pagination module
             className="custom-swiper"
           >
-            {eventData?.carouselImages.map((card: any, index: number) => (
-              <SwiperSlide key={index}>
-                <div>
+            {eventData?.carouselImages.webImages.map(
+              (card: any, index: number) => (
+                <SwiperSlide key={index}>
                   <img
                     src={card}
                     className="w-[100vw] lg:h-[25vw] h-[50vw] object-cover"
                     alt=""
                   />
-                </div>
-              </SwiperSlide>
-            ))}
+                </SwiperSlide>
+              )
+            )}
+            {eventData?.carouselImages.webImages.map(
+              (card: any, index: number) => (
+                <SwiperSlide key={index}>
+                  <div>
+                    <img
+                      src={card}
+                      className="w-[100vw] lg:h-[25vw] h-[50vw] object-cover"
+                      alt=""
+                    />
+                  </div>
+                </SwiperSlide>
+              )
+            )}
           </Swiper>
         </div>
         <div className="">
