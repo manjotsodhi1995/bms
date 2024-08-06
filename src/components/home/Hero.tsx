@@ -130,46 +130,68 @@ function Hero() {
       />
       <div className="flex flex-col items-center xl:mt-[-3rem] xl:gap-6 mt-[-2rem] lg:mt-[-2rem]">
         <div className="w-full flex items-center">
-          <Swiper
-            spaceBetween={30}
-            centeredSlides={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-              type: "bullets", // Ensure dots are displayed as bullets
-            }}
-            navigation={true}
-            modules={[Autoplay, Navigation, Pagination]} // Include Pagination module
-            className="custom-swiper"
-          >
-            {eventData?.carouselImages.webImages.map(
-              (card: any, index: number) => (
-                <SwiperSlide key={index}>
-                  <img
-                    src={card}
-                    className="w-[100vw] lg:h-[25vw] h-[50vw] object-cover"
-                    alt=""
-                  />
-                </SwiperSlide>
-              )
-            )}
-            {eventData?.carouselImages.webImages.map(
-              (card: any, index: number) => (
-                <SwiperSlide key={index}>
-                  <div>
+          <div className="hidden md:flex w-full">
+            {" "}
+            <Swiper
+              spaceBetween={30}
+              centeredSlides={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+                type: "bullets", // Ensure dots are displayed as bullets
+              }}
+              navigation={true}
+              modules={[Autoplay, Navigation, Pagination]} // Include Pagination module
+              className="custom-swiper"
+            >
+              {" "}
+              {eventData?.carouselImages.webImages.map(
+                (card: any, index: number) => (
+                  <SwiperSlide key={index}>
                     <img
                       src={card}
-                      className="w-[100vw] lg:h-[25vw] h-[50vw] object-cover"
+                      className="h-[25vw] w-full object-cover"
                       alt=""
                     />
-                  </div>
-                </SwiperSlide>
-              )
-            )}
-          </Swiper>
+                  </SwiperSlide>
+                )
+              )}
+            </Swiper>
+          </div>
+          <div className="lg:hidden flex w-full">
+            <Swiper
+              spaceBetween={30}
+              centeredSlides={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+                type: "bullets", // Ensure dots are displayed as bullets
+              }}
+              navigation={true}
+              modules={[Autoplay, Navigation, Pagination]} // Include Pagination module
+              className="custom-swiper"
+            >
+              {eventData?.carouselImages.mobileImages.map(
+                (card: any, index: number) => (
+                  <SwiperSlide key={index}>
+                    <div>
+                      <img
+                        src={card}
+                        className=" w-full h-[56.25vw] object-cover"
+                        alt=""
+                      />
+                    </div>
+                  </SwiperSlide>
+                )
+              )}
+            </Swiper>
+          </div>
         </div>
         <div className="">
           <Swiper

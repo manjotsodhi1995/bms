@@ -200,12 +200,10 @@ body {
 .custom-swiper .swiper-pagination {
   bottom: 10px; /* Position the dots 10px from the bottom of the carousel */
   text-align: center; /* Center the dots horizontally */
-  width: 100%; /* Full width for centering */
+  width: 100vw !important; /* Full width for centering */
   z-index: 100; /* Ensure pagination is above other elements */
   position: absolute;
-  top: 0;
-  right: 0px;
-  border: 1px solid black; /* Absolute positioning inside the swiper container */
+  margin-bottom: 30px; /* Absolute positioning inside the swiper container */
 }
 
 .custom-swiper .swiper-pagination-bullet {
