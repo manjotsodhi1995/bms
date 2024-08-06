@@ -1,9 +1,7 @@
 import { API } from "@/api";
-import { cn } from "@/utils";
 import axios from "@/utils/middleware";
-import { Avatar } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Loader2, Pencil } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { MuiTelInput } from "mui-tel-input";
 import { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -15,8 +13,8 @@ interface UpdateProfile {
   countryCode: string | null;
   phone: string | null;
   gender: string;
-  displayPic: string;
-  // password: string;
+  password: string;
+  dob: string;
 }
 
 const fetchProfile = async () => {
@@ -26,17 +24,6 @@ const fetchProfile = async () => {
 
 const updateProfile = async (body: UpdateProfile) => {
   const response = await axios.put(API.users.update, body);
-  return response.data.data;
-};
-
-const uploadFile = async (file: File) => {
-  const formData = new FormData();
-  formData.append("file", file);
-  const response = await axios.postForm(API.content.upload, formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
   return response.data.data;
 };
 
@@ -56,7 +43,8 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
     setCountry(data?.countryCode);
     setActualPhone(data?.phone);
     setMobile(`${data?.countryCode}${data?.phone}`);
-    setProfilePic(data?.displayPic);
+    // setProfilePic(data?.displayPic);
+    setDob(data?.dob);
   }, [data, isSuccess]);
 
   const { mutate, isPending: updatePending } = useMutation({
@@ -65,7 +53,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
       setFname("");
       setLname("");
       setMobile("");
-      // setDob("");
+      setDob("");
       setPassword("");
       setGender("");
       return await queryClient.invalidateQueries({
@@ -73,22 +61,19 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
       });
     },
   });
-  const { mutate: uploadFileMutation, isPending } = useMutation({
-    mutationFn: uploadFile,
-    onSuccess: (data) => {
-      setProfilePic(data.contentUrl);
-    },
-  });
+
   const [fname, setFname] = useState<string>("");
   const [lname, setLname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [mobile, setMobile] = useState<string>("");
-  // const [dob, setDob] = useState<string>("");
+  const [dob, setDob] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [gender, setGender] = useState<string>("");
-  const [profilePic, setProfilePic] = useState<string>("");
   const [actualPhone, setActualPhone] = useState<string | null>("");
   const [country, setCountry] = useState<string | null>("");
+
+  console.log(password);
+  console.log(dob);
 
   const handleGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGender(event.target.value);
@@ -110,9 +95,9 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
         email,
         countryCode: country,
         phone: actualPhone,
-        // password,
+        password,
         gender,
-        displayPic: profilePic,
+        dob,
       },
       {
         onSuccess: () => {
@@ -124,6 +109,8 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
       }
     );
   };
+
+  
 
   return (
     // flex flex-col sm:items-start 2xl:items-center items-center w-[80vw] mx-[5px] sm:w-[75%] lg:pl-[10%] sm:pl-[5%] bg-white mt-[50px]
@@ -158,7 +145,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
           >
             <h2 className="mt-[20px] text-lg font-medium">Edit Profile</h2>
 
-            <div className="mt-2 flex w-full justify-center max-sm:pl-5">
+            {/* <div className="mt-2 flex w-full justify-center max-sm:pl-5">
               <input
                 accept="image/*"
                 className="hidden"
@@ -186,7 +173,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
                 )}
                 <Pencil className="size-4" />
               </label>
-            </div>
+            </div> */}
             <input
               type="text"
               className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
@@ -234,17 +221,19 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
                 className="w-[80vw] md:max-w-[500px] sm:w-[50vw]"
               />
             </div>
-            {/* <input
-            type="text"
-            className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw]  my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
-            placeholder="Date of Birth"
-            value={dob}
-            onChange={handleInputChange(setDob)}
-          /> */}
-            <div className="mt-2 md:mt-3">
+            <div className="mt-2">
+              <input
+                type="text"
+                className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw]  my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+                placeholder="Date of Birth"
+                value={dob}
+                onChange={handleInputChange(setDob)}
+              />
+            </div>
+            <div className="">
               <input
                 type="password"
-                className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+                className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
                 placeholder="Change Password"
                 autoComplete="current-password"
                 value={password}

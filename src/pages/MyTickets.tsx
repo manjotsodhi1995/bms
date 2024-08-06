@@ -11,6 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import dayjs, { Dayjs } from "dayjs";
+import UpcomingEvents from "../components/UpcomingEvents";
 
 const fetchTickets = async () => {
   const response = await axios(API.bookingRoutes.getTicket);
@@ -53,16 +54,22 @@ function MyTickets() {
               )}
             </div>
           </div>
-          <div className="sticky h-fit top-[10vh] bg-white">
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DateCalendar
-                className="md:!w-[25vw]"
-                onChange={(newDate) =>
-                  onChange(newDate ? dayjs(newDate) : null)
-                }
-                value={value}
-              />
-            </LocalizationProvider>
+          <div className="space-y-6">
+            {" "}
+            <div className="rounded-3xl h-fit top-[10vh] bg-white">
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DateCalendar
+                  className="md:!w-[25vw]"
+                  onChange={(newDate) =>
+                    onChange(newDate ? dayjs(newDate) : null)
+                  }
+                  value={value}
+                />
+              </LocalizationProvider>
+            </div>
+            <div>
+              <UpcomingEvents />
+            </div>
           </div>
           {/* 
           <div className="sticky h-fit top-[10vh] bg-red-500">

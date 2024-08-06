@@ -12,6 +12,10 @@ import { AxiosError } from "axios";
 import PreviewCard from "./PreviewCard";
 import { Link } from "react-router-dom";
 
+interface ErrorResponse {
+  message: string;
+}
+
 export const CheckoutStep = ({
   eventsData,
   onBack,
@@ -30,7 +34,10 @@ export const CheckoutStep = ({
     setVoucherCode,
   } = useCart();
 
+  const [checked, setChecked] = useState(false);
   const accessToken = localStorage.getItem("accessToken");
+  const [error, setError] = useState("");
+
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethods | null>(
     "card"
   );
@@ -38,7 +45,6 @@ export const CheckoutStep = ({
     eventsData?.eventId,
     eventsData?.eventStart
   );
-  const [error, setError] = useState("");
 
   const onContinueClicked = () => {
     if (firstName.length === 0) {
@@ -57,6 +63,7 @@ export const CheckoutStep = ({
     setError("");
     onStepChange!!();
   };
+
   return (
     <Fragment>
       <div className="flex items-center gap-2 absolute left-4 top-4">
@@ -145,18 +152,22 @@ export const CheckoutStep = ({
               className="w-full p-2 mt-1 border border-gray-300 rounded-md"
             />
             <button
-              className="flex items-center gap-2 bg-black w-fit px-[0.5rem] py-[0.5rem] text-white font-medium rounded-md"
+              disabled={
+                promoCodeMutation.isSuccess ||
+                (!promoCodeMutation.isIdle &&
+                  voucherCode.length !== 0 &&
+                  !promoCodeMutation.isError)
+              }
+              className="flex items-center gap-2 bg-black w-fit px-[0.5rem] py-[0.5rem] text-white font-medium rounded-md disabled:cursor-not-allowed disabled:bg-gray-500"
               onClick={() => {
                 toast.promise(promoCodeMutation.mutateAsync(), {
                   loading: "Applying Promo Code",
                   success: "Promo code applied successfully",
-                  error: () => {
-                    const message =
-                      (
-                        (promoCodeMutation.error as AxiosError).response
-                          ?.data as any
-                      )?.message || "An Error occurred";
-                    return message;
+                  error: (error) => {
+                    const axiosError = error as AxiosError<ErrorResponse>;
+                    const errorMessage =
+                      axiosError.response?.data?.message || "An error occurred";
+                    return errorMessage;
                   },
                 });
               }}
@@ -187,6 +198,17 @@ export const CheckoutStep = ({
               />
               <label htmlFor="send-emails" className="text-[0.8rem]">
                 Send me emails about the best events happening nearby or online.
+              </label>
+            </p>
+            <p className="flex gap-4 items-center text-sm">
+              <input
+                className="size-4 accent-black"
+                type="checkbox"
+                id="terms-condition"
+                onChange={(e) => setChecked(e.target.checked)}
+              />
+              <label htmlFor="send-emails" className="text-[0.8rem]">
+                I agree to the T&C and Privacy policy
               </label>
             </p>
           </div>
@@ -227,7 +249,13 @@ export const CheckoutStep = ({
         </div>
         <PreviewCard cartData={cartData} eventsData={eventsData}>
           <button
-            className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md"
+            disabled={
+              email.length === 0 ||
+              firstName.length === 0 ||
+              lastName.length === 0 ||
+              !checked
+            }
+            className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500"
             onClick={onContinueClicked}
           >
             Continue
