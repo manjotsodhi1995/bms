@@ -239,9 +239,9 @@ function Trending() {
               )}
             </label>
           </div>
-          <div className="hover:font-medium hover:underline">
+          {/* <div className="hover:font-medium hover:underline">
             <Link to={`/events/${selectedLocation}`}>See More</Link>
-          </div>
+          </div> */}
         </div>
         {/* <div className="grid grid-cols-2 justify-between md:hidden gap-2"> */}
         {/*   {loading && [...Array(2)].map((_) => <EventCardSkeleton />)} */}

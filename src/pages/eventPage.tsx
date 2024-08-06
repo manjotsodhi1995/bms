@@ -23,6 +23,7 @@ import Footer from "@/components/Footer";
 // import toast from "react-hot-toast";
 import EventStories from "@/components/EventStories";
 import type SwiperCore from "swiper";
+import { formatCurrency } from "@/utils";
 
 const fetchEvent = async (slug?: string) => {
   const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
@@ -55,11 +56,21 @@ const EventPage = observer(() => {
 
   const date = useMemo(() => {
     if (!eventData) return "Sat, Jun 12 - June 13 19:00";
-
     let start = formatDate(new Date(eventData.eventStart));
     let end = formatDate(new Date(eventData.eventEnd));
 
-    return `${start} - ${end}`;
+    const startTime =
+      "" +
+      new Date(eventData.eventStart).getHours() +
+      ":" +
+      new Date(eventData.eventStart).getMinutes();
+    const endTime =
+      "" +
+      new Date(eventData.eventEnd).getHours() +
+      ":" +
+      new Date(eventData.eventEnd).getMinutes();
+    console.log("Event details:", startTime);
+    return `${start}, ${startTime} - ${end}, ${endTime} (GMT+)`;
   }, [eventData]);
 
   const canBookTicket = useMemo(() => {
@@ -198,7 +209,13 @@ const EventPage = observer(() => {
                 />
               </svg>
             </div>
-            <div className="text-gray-700">2000-4000</div>
+            <div className="text-gray-700">
+              Starts at just{" "}
+              {formatCurrency(
+                eventData?.lowestTicketPrice,
+                eventData?.currency ? eventData.currency : "EUR"
+              )}
+            </div>
           </div>
           <div className="mt-4 flex md:hidden justify-between gap-10">
             <div className="flex flex-col text-center items-center">
