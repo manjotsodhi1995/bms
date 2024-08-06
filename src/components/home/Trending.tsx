@@ -70,13 +70,39 @@ function Trending() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const categoryRef = useRef<HTMLAnchorElement | null>(null);
   const [categoryWidth, setCategoryWidth] = useState(0);
+  const [isAtStart, setIsAtStart] = useState(true);
+  const [isAtEnd, setIsAtEnd] = useState(false);
 
   // Effect to calculate the category width
   useEffect(() => {
     if (categoryRef.current) {
       setCategoryWidth(categoryRef.current.offsetWidth + 16); // Add gap between items
     }
-  }, [categoryRef.current, categories]);
+  }, [categories]);
+
+  // Effect to check scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollContainerRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } =
+          scrollContainerRef.current;
+        setIsAtStart(scrollLeft === 0);
+        setIsAtEnd(scrollLeft + clientWidth >= scrollWidth);
+      }
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+      handleScroll(); // Initial check
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [categories]);
 
   // Function to scroll left
   const scrollLeft = () => {
@@ -103,7 +129,10 @@ function Trending() {
         {/* Left Scroll Button */}
         <button
           onClick={scrollLeft}
-          className="absolute -left-7 top-0 z-10   h-full px-2 opacity-75 hover:opacity-100"
+          disabled={isAtStart}
+          className={`absolute -left-7 top-0 bottom-0 z-10 bg-white shadow-md h-full px-2 opacity-75 hover:opacity-100 ${
+            isAtStart ? "hidden" : ""
+          }`}
           style={{ zIndex: 1 }}
         >
           &lt;
@@ -131,7 +160,9 @@ function Trending() {
         {/* Right Scroll Button */}
         <button
           onClick={scrollRight}
-          className="absolute -right-7 top-0 z-10   h-full px-2 opacity-75 hover:opacity-100"
+          className={`absolute -right-7 top-0 bottom-0 z-10 bg-white shadow-md h-full px-2 opacity-75 hover:opacity-100 ${
+            isAtEnd ? "hidden" : ""
+          }`}
           style={{ zIndex: 1 }}
         >
           &gt;
