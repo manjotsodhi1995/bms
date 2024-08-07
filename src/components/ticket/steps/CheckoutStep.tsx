@@ -76,7 +76,7 @@ export const CheckoutStep = ({
 
       <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
         {" "}
-        <div className="w-4/5 md:w-full flex flex-col gap-2">
+        <div className="w-full flex flex-col gap-2">
           <h2 className="text-2xl font-bold mt-4 w-full">Checkout</h2>
           {!accessToken && (
             <p className="text-xs">
@@ -240,7 +240,7 @@ export const CheckoutStep = ({
                 defaultChecked
                 onChange={(e) => setChecked(e.target.checked)}
               />
-              <label htmlFor="terms-conditions" className="text-[0.8rem]">
+              <label htmlFor="terms-condition" className="text-[0.8rem]">
                 I agree to the T&C and Privacy policy
               </label>
             </p>
