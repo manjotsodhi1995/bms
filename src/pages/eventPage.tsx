@@ -14,7 +14,7 @@ import { observer } from "mobx-react-lite";
 import { formatDate } from "@/utils";
 // import { ShareEventDialog } from "@/components/ShareEventDialog";
 import { API } from "@/api";
-import { Avatar } from "@mui/material";
+import { Avatar, Skeleton } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 // import { useLikesQuery } from "@/api/query/useLikesQuery";
@@ -25,17 +25,18 @@ import EventStories from "@/components/EventStories";
 import type SwiperCore from "swiper";
 import { formatCurrency } from "@/utils";
 
-const fetchEvent = async (slug?: string) => {
-  const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
-    headers: {
-      is_guest_user: "yes",
-    },
-  });
-  // console.log(response)
-  return response.data.data as EventType;
-};
-
 const EventPage = observer(() => {
+  const [isLoading, setIsLoading] = useState(false);
+  const fetchEvent = async (slug?: string) => {
+    setIsLoading(true);
+    const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
+      headers: {
+        is_guest_user: "yes",
+      },
+    });
+    setIsLoading(false);
+    return response.data.data as EventType;
+  };
   const {
     root: { event },
   } = useStore();
@@ -45,9 +46,6 @@ const EventPage = observer(() => {
     queryKey: ["event", slug],
     queryFn: () => fetchEvent(slug),
   });
-  // console.log(eventData)
-  // const eventId = eventData?.eventId;
-  // const { data: isLiked, mutation: likesMutation } = useLikesQuery(eventId);
 
   const organizerId = eventData?.organizer._id;
   const { data: isFollowing, mutation: followMutation } =
@@ -68,7 +66,6 @@ const EventPage = observer(() => {
       new Date(eventData.eventEnd).getHours() +
       ":" +
       new Date(eventData.eventEnd).getMinutes();
-    console.log("Event details:", startTime);
     return `${start}, ${startTime} - ${end}, ${endTime} (GMT+)`;
   }, [eventData]);
 
@@ -82,40 +79,17 @@ const EventPage = observer(() => {
   }, []);
   const [activeIndex, setActiveIndex] = useState(0);
   const [open, setOpen] = useState(false);
-  // const [clicked, setClicked] = useState(true);
-
   const handleSlideClick = (index: number) => {
-    // setTimeout(() => {
-    //   setClicked(false);
-    // }, 15000);
     setActiveIndex(index);
-    // if (firstSwiper.current) {
-    //   firstSwiper.current.slideTo(activeIndex);
-    // }
   };
 
   const firstSwiper = useRef<SwiperCore | null>(null);
-  // const secondSwiper = useRef<SwiperCore | null>(null);
-  // const handleFirstSlideChange = (swiper: SwiperCore) => {
-  //   const { activeIndex } = swiper;
-  //   // Navigate to the corresponding slide in the second swiper
-  //   if (secondSwiper.current && secondSwiper.current.activeIndex !== activeIndex) {
-  //     secondSwiper.current.slideTo(activeIndex);
-  //   }
-  // };
-  // const handleSecondSlideChange = (swiper: SwiperCore) => {
-  //   const { activeIndex } = swiper;
-  //   // Navigate to the corresponding slide in the first swiper
-  //   if (firstSwiper.current && firstSwiper.current.activeIndex !== activeIndex && open==true) {
-  //     firstSwiper.current.slideTo(activeIndex);
-  //   }
-  // };
   const handleNextClick = () => {
     if (firstSwiper.current) {
       firstSwiper.current.slideNext();
     }
   };
-
+  console.log(isLoading);
   const handlePrevClick = () => {
     if (firstSwiper.current) {
       firstSwiper.current.slidePrev();
@@ -131,19 +105,34 @@ const EventPage = observer(() => {
         handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
         handlePrevClick={handlePrevClick}
       />
-      <div className="h-[50vw] md:h-full flex justify-center">
-        <img
-          src={eventData?.posterUrl}
-          className="w-full md:h-[33vw] h-full"
-          alt=""
-        />
+      <div className="h-[50vw] md:h-full flex justify-center bg-gray-200">
+        {!isLoading && (
+          <img
+            src={eventData?.posterUrl}
+            className="w-full md:h-[33vw] h-full"
+            alt=""
+          />
+        )}{" "}
+        {isLoading && (
+          <Skeleton
+            variant="rounded"
+            width={"100%"}
+            height={"100%"}
+            sx={{
+              borderRadius: 6,
+            }}
+          />
+        )}
       </div>
       <div className="relative lg:px-[5%] xl:px-[7%] px-[8vw] py-[1.4rem] flex justify-between md:flex-row flex-col gap-8 2xl:gap-16">
         <div className="flex flex-col gap-2 md:w-[55%]">
           <div className="font-bold text-[2.5rem] flex flex-col gap-2">
             <div className="p-2 rounded-full border-2 border-black text-black text-[1rem] w-[7rem] text-center">
               {" "}
-              {eventData?.genres}
+              {!isLoading && eventData?.genres}{" "}
+              {isLoading && (
+                <Skeleton variant="rounded" width={100} height={30} />
+              )}
             </div>
             <div className="leading-tight text-[1.7rem] md:text-[2.5rem]">
               {" "}
@@ -339,6 +328,7 @@ const EventPage = observer(() => {
             <Link
               to={`https://maps.google.com/?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}`}
               className="px-2 py-2 border-black border-2 2xl:w-[12rem] w-[10rem] hover:text-white hover:bg-black mt-2 flex items-center text-center justify-center text-[0.8rem]"
+              target="_blank"
             >
               GET DIRECTIONS
             </Link>

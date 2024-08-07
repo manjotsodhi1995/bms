@@ -52,6 +52,7 @@ const BookTicketsDialogContent = ({
     if (!value) {
       resetCartMutation.mutate();
     }
+    setTicketStep("booking");
     setDialogOpen(value);
   };
   return (

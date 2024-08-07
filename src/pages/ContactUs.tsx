@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "@/utils/middleware";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import Footer from "@/components/Footer";
 
 interface ContactData {
   fname: string;
@@ -208,6 +209,7 @@ const ContactUs = observer(() => {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 });

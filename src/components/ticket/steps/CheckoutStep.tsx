@@ -4,7 +4,7 @@ import { ChevronLeft, Loader2 } from "lucide-react";
 import PaymentMethodCard, {
   PaymentMethods,
 } from "@/components/ticket/PaymentMethodCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCartQuery } from "@/api/query/useCartQuery";
 import { useCart } from "@/stores/cart";
 import toast from "react-hot-toast";
@@ -34,7 +34,7 @@ export const CheckoutStep = ({
     setVoucherCode,
   } = useCart();
 
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
   const accessToken = localStorage.getItem("accessToken");
   const [error, setError] = useState("");
   const [promoApplied, setPromoApplied] = useState(false);
@@ -46,7 +46,12 @@ export const CheckoutStep = ({
     eventsData?.eventId,
     eventsData?.eventStart
   );
-
+  useEffect(() => {
+    console.log(cartData.basket.discountTotal);
+    cartData.basket.discountTotal > 0
+      ? setPromoApplied(true)
+      : setPromoApplied(false);
+  }, []);
   const onContinueClicked = () => {
     if (firstName.length === 0) {
       setError("Please enter your first name");
@@ -194,7 +199,6 @@ export const CheckoutStep = ({
                         const errorMessage =
                           axiosError.response?.data?.message ||
                           "An error occurred";
-                        console.log(errorMessage);
                         return errorMessage;
                       },
                     })

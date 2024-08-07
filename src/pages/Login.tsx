@@ -78,6 +78,11 @@ const Login = observer(() => {
             className="flex flex-col justify-center gap-4"
           >
             <div className="flex flex-col gap-2 items-center">
+              <img
+                src="/logo-nobg.png"
+                alt="logo"
+                className="max-h-[10vh] max-w-[40vw]"
+              />
               <h1 className="text-3xl font-bold">Login</h1>
               {/* <h6 className="text-md">
                   Please enter your login details to sign in
