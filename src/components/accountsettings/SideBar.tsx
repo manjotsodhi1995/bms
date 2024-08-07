@@ -57,6 +57,7 @@ const SideBar: React.FC<SideBarProps> = ({
 
   useEffect(() => {
     if (!data) return;
+
     setProfilePic(data?.displayPic);
   }, [data, isSuccess]);
 
@@ -108,7 +109,7 @@ const SideBar: React.FC<SideBarProps> = ({
         >
           <X className="size-8" />
         </Link>
-        <div className="mt-12 flex w-full justify-center max-sm:pl-5">
+        <div className="mt-12 flex flex-col items-center w-full justify-center max-sm:pl-5">
           <input
             accept="image/*"
             className="hidden"
@@ -136,6 +137,14 @@ const SideBar: React.FC<SideBarProps> = ({
             )}
             <Pencil className="size-4" />
           </label>
+          <div className="mr-4 mt-2">
+            {" "}
+            {data?.displayPic != "" ? (
+              <button onClick={() => {}}>Remove Picture</button>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
         <div
           className={`flex mt-6 my-1 w-full p-2 cursor-default  hover:cursor-pointer items-center group ${
