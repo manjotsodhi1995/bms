@@ -178,30 +178,33 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
             <input
               type="text"
               className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
-              placeholder="First Name"
+              placeholder="First Name *"
               autoComplete="name"
               defaultValue={data?.fname}
               value={fname}
               onChange={handleInputChange(setFname)}
+              required
             />
             <input
               type="text"
               className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] md:my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
-              placeholder="Last Name"
+              placeholder="Last Name *"
               autoComplete="name"
               value={lname}
               defaultValue={data?.lname}
               onChange={handleInputChange(setLname)}
+              required
             />
             <input
               type="text"
               className="!py-5 w-[80vw] bg-gray-100 cursor-not-allowed md:max-w-[500px] sm:w-[50vw] md:my-3 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
               autoComplete="email"
               readOnly
-              placeholder="Email Address"
+              placeholder="Email Address *"
               value={email}
               defaultValue={data?.email}
               onChange={handleInputChange(setEmail)}
+              required
             />
 
             <div className="md:mt-2">
@@ -222,24 +225,25 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
                 className="w-[80vw] md:max-w-[500px] sm:w-[50vw]"
               />
             </div>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <div className="mt-4 md:mt-6 flex items-center space-x-5 w-full border border-gray-700 rounded-lg">
-                  <DatePicker
-                    className="w-full"
-                    format="DD-MM-YYYY *"
-                    value={dob}
-                    onChange={(newValue) => handleDateChange(newValue)}
-                  />
-                </div>
-              </LocalizationProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <div className="mt-4 md:mt-6 flex items-center space-x-5 w-full border border-gray-700 rounded-lg">
+                <DatePicker
+                  className="w-full"
+                  format="DD-MM-YYYY"
+                  value={dob}
+                  onChange={(newValue) => handleDateChange(newValue)}
+                />
+              </div>
+            </LocalizationProvider>
             <div className="mt-4 md:mt-5">
               <input
                 type="password"
                 className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
-                placeholder="Change Password"
+                placeholder="Password *"
                 autoComplete="current-password"
                 value={password}
                 onChange={handleInputChange(setPassword)}
+                required
               />
             </div>
             <div className="place-self-start">
