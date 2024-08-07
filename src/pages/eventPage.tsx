@@ -41,7 +41,6 @@ const EventPage = observer(() => {
   } = useStore();
   const carouselRef = useRef(null);
   const { slug } = useParams();
-
   const { data: eventData } = useQuery({
     queryKey: ["event", slug],
     queryFn: () => fetchEvent(slug),
@@ -74,7 +73,7 @@ const EventPage = observer(() => {
   }, [eventData]);
 
   const canBookTicket = useMemo(() => {
-    if (!eventData) return false;
+    if (!eventData) return true;
     let closingDate = new Date(eventData.bookingClosingDate).getTime();
     return !eventData.isSoldOut && Date.now() < closingDate;
   }, [eventData]);
