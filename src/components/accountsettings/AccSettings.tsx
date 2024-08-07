@@ -197,7 +197,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
             />
             <input
               type="text"
-              className="!py-5 w-[80vw] bg-gray-100 cursor-not-allowed md:max-w-[500px] sm:w-[50vw] md:my-3 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
+              className="!py-5 w-[80vw] bg-gray-100 cursor-not-allowed md:max-w-[500px] sm:w-[50vw] md:my-3 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black bg-white"
               autoComplete="email"
               readOnly
               placeholder="Email Address *"
@@ -222,11 +222,11 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
                 placeholder="Mobile Number"
                 defaultCountry="US"
                 variant="outlined"
-                className="w-[80vw] md:max-w-[500px] sm:w-[50vw]"
+                className="w-[80vw] md:max-w-[500px] sm:w-[50vw] bg-white"
               />
             </div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <div className="mt-4 md:mt-6 flex items-center space-x-5 w-full border border-gray-700 rounded-lg">
+              <div className="mt-4 md:mt-6 flex items-center space-x-5 w-full border border-gray-700 rounded-lg bg-white">
                 <DatePicker
                   className="w-full"
                   format="DD-MM-YYYY"
