@@ -237,9 +237,10 @@ export const CheckoutStep = ({
                 className="size-4 accent-black"
                 type="checkbox"
                 id="terms-condition"
+                defaultChecked
                 onChange={(e) => setChecked(e.target.checked)}
               />
-              <label htmlFor="send-emails" className="text-[0.8rem]">
+              <label htmlFor="terms-conditions" className="text-[0.8rem]">
                 I agree to the T&C and Privacy policy
               </label>
             </p>
