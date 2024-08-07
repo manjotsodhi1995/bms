@@ -37,11 +37,12 @@ export const CheckoutStep = ({
   const [checked, setChecked] = useState(false);
   const accessToken = localStorage.getItem("accessToken");
   const [error, setError] = useState("");
+  const [promoApplied, setPromoApplied] = useState(false);
 
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethods | null>(
     "card"
   );
-  const { cartData, promoCodeMutation } = useCartQuery(
+  const { cartData, promoCodeMutation, removePromoCodeMutation } = useCartQuery(
     eventsData?.eventId,
     eventsData?.eventStart
   );
@@ -149,34 +150,65 @@ export const CheckoutStep = ({
               type="text"
               value={voucherCode}
               onChange={(e) => setVoucherCode(e.target.value)}
+              disabled={promoApplied}
               className="w-full p-2 mt-1 border border-gray-300 rounded-md"
             />
-            <button
-              disabled={
-                promoCodeMutation.isSuccess ||
-                (!promoCodeMutation.isIdle &&
-                  voucherCode.length !== 0 &&
-                  !promoCodeMutation.isError)
-              }
-              className="flex items-center gap-2 bg-black w-fit px-[0.5rem] py-[0.5rem] text-white font-medium rounded-md disabled:cursor-not-allowed disabled:bg-gray-500"
-              onClick={() => {
-                toast.promise(promoCodeMutation.mutateAsync(), {
-                  loading: "Applying Promo Code",
-                  success: "Promo code applied successfully",
-                  error: (error) => {
-                    const axiosError = error as AxiosError<ErrorResponse>;
-                    const errorMessage =
-                      axiosError.response?.data?.message || "An error occurred";
-                    return errorMessage;
-                  },
-                });
-              }}
-            >
-              Apply
-              {promoCodeMutation.isPending && (
-                <Loader2 className="size-4 animate-spin" />
-              )}
-            </button>
+            {!promoApplied && (
+              <button
+                className="flex items-center gap-2 bg-black w-fit px-[0.5rem] py-[0.5rem] text-white font-medium rounded-md "
+                onClick={() => {
+                  toast
+                    .promise(promoCodeMutation.mutateAsync(), {
+                      loading: "Applying Promo Code",
+                      success: "Promo code applied successfully",
+                      error: (error) => {
+                        const axiosError = error as AxiosError<ErrorResponse>;
+                        const errorMessage =
+                          axiosError.response?.data?.message ||
+                          "An error occurred";
+                        return errorMessage;
+                      },
+                    })
+                    .then(() => {
+                      setPromoApplied(true);
+                    });
+                }}
+              >
+                Apply
+                {promoCodeMutation.isPending && (
+                  <Loader2 className="size-4 animate-spin" />
+                )}
+              </button>
+            )}
+
+            {promoApplied && (
+              <button
+                className="flex items-center gap-2 bg-black w-fit px-[0.5rem] py-[0.5rem] text-white font-medium rounded-md"
+                onClick={() => {
+                  toast
+                    .promise(removePromoCodeMutation.mutateAsync(), {
+                      loading: "Removing Promo Code",
+                      success: "Promo code removed successfully",
+                      error: (error) => {
+                        const axiosError = error as AxiosError<ErrorResponse>;
+                        const errorMessage =
+                          axiosError.response?.data?.message ||
+                          "An error occurred";
+                        console.log(errorMessage);
+                        return errorMessage;
+                      },
+                    })
+                    .then(() => {
+                      setPromoApplied(false);
+                    });
+                }}
+              >
+                Remove
+                {removePromoCodeMutation.isPending && (
+                  <Loader2 className="size-4 animate-spin" />
+                )}
+              </button>
+            )}
           </div>
           <div className="flex flex-col w-full gap-2 mt-3 mb-2">
             <p className="flex gap-4 items-center text-sm">

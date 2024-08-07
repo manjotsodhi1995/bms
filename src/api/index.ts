@@ -70,5 +70,6 @@ export const API = {
   },
   promo: {
     apply: `${SERVER_BASE_URL}/promo-code/apply`,
+    remove: `${SERVER_BASE_URL}/promo-code/remove`,
   },
 } as const;

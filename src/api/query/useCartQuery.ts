@@ -41,6 +41,14 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
     return response.data.data;
   };
 
+  const removePromoCode = async () => {
+    const response = await axios.post(`${API.promo.remove}/${basketId}`, {
+      promoId: voucherCode,
+    });
+    console.log(response.data)
+    return response.data.data;
+  };
+  
   const resetCart = async () => {
     if (!eventId) return false;
     const response = await axios.post(`${API.basket.reset}/${eventId}`, {
@@ -51,6 +59,15 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
 
   const promoCodeMutation = useMutation({
     mutationFn: applyPromoCode,
+    onSettled: async () => {
+      return await queryClient.invalidateQueries({
+        queryKey: ["cart", eventId],
+      });
+    },
+  });
+
+  const removePromoCodeMutation = useMutation({
+    mutationFn: removePromoCode,
     onSettled: async () => {
       return await queryClient.invalidateQueries({
         queryKey: ["cart", eventId],
@@ -87,5 +104,6 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
     cartMutation,
     promoCodeMutation,
     resetCartMutation,
+    removePromoCodeMutation
   };
 };
