@@ -102,7 +102,7 @@ const Register = observer(() => {
     <>
       <div className="flex h-screen ">
         <div className="md:w-1/2 md:block hidden">
-          <img src={img} className="h-full w-full" alt="" />
+          <img src={img} className="h-full w-full object-cover" alt="" />
         </div>
         <div className="h-screen w-full md:w-1/2 flex justify-center items-center">
           <div className="md:px-[10vw]">
@@ -111,9 +111,7 @@ const Register = observer(() => {
               className="h-full p-4 w-full space-y-3"
             >
               <div className="">
-                <h1 className="text-3xl font-bold text-center">
-                  Sign Up
-                </h1>
+                <h1 className="text-3xl font-bold text-center">Sign Up</h1>
               </div>
 
               <div className="w-full">
@@ -224,10 +222,17 @@ const Register = observer(() => {
                 <div className="h-[2px] bg-black"></div>
                 <p className="text-center text-sm">
                   By registering, you agree to KAFSCO's{" "}
-                  <a target="blank" href="/terms" className="text-blue-600 font-bold">
+                  <a
+                    target="blank"
+                    href="/terms"
+                    className="text-blue-600 font-bold"
+                  >
                     T&Cs
                   </a>{" "}
-                  and <a href="/privacy" className="font-bold">Privacy Policy.</a>
+                  and{" "}
+                  <a href="/privacy" className="font-bold">
+                    Privacy Policy.
+                  </a>
                 </p>
                 <div className="flex justify-center items-center font-bold gap-x-2">
                   <div className="text-red-500">{error}</div>
