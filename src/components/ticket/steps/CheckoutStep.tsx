@@ -150,6 +150,7 @@ export const CheckoutStep = ({
               type="text"
               value={voucherCode}
               onChange={(e) => setVoucherCode(e.target.value)}
+              disabled={promoApplied}
               className="w-full p-2 mt-1 border border-gray-300 rounded-md"
             />
             {!promoApplied && (
