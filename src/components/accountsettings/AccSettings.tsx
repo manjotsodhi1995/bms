@@ -5,6 +5,9 @@ import { Loader2 } from "lucide-react";
 import { MuiTelInput } from "mui-tel-input";
 import { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { Dayjs } from "dayjs";
 
 interface UpdateProfile {
   fname: string;
@@ -14,7 +17,7 @@ interface UpdateProfile {
   phone: string | null;
   gender: string;
   password: string;
-  dob: string;
+  dob?: string;
 }
 
 const fetchProfile = async () => {
@@ -44,7 +47,6 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
     setActualPhone(data?.phone);
     setMobile(`${data?.countryCode}${data?.phone}`);
     // setProfilePic(data?.displayPic);
-    setDob(data?.dob);
   }, [data, isSuccess]);
 
   const { mutate, isPending: updatePending } = useMutation({
@@ -53,7 +55,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
       setFname("");
       setLname("");
       setMobile("");
-      setDob("");
+      setDob(null);
       setPassword("");
       setGender("");
       return await queryClient.invalidateQueries({
@@ -65,15 +67,16 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
   const [fname, setFname] = useState<string>("");
   const [lname, setLname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [dob, setDob] = useState<Dayjs | null>(null);
   const [mobile, setMobile] = useState<string>("");
-  const [dob, setDob] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [gender, setGender] = useState<string>("");
   const [actualPhone, setActualPhone] = useState<string | null>("");
   const [country, setCountry] = useState<string | null>("");
 
-  console.log(password);
-  console.log(dob);
+  const handleDateChange = (newValue: Dayjs | null) => {
+    setDob(newValue);
+  };
 
   const handleGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGender(event.target.value);
@@ -97,7 +100,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
         phone: actualPhone,
         password,
         gender,
-        dob,
+        dob: dob ? dob.format("DD-MM-YYYY") : undefined,
       },
       {
         onSuccess: () => {
@@ -219,16 +222,17 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
                 className="w-[80vw] md:max-w-[500px] sm:w-[50vw]"
               />
             </div>
-            <div className="mt-2">
-              <input
-                type="text"
-                className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw]  my-2 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
-                placeholder="Date of Birth"
-                value={dob}
-                onChange={handleInputChange(setDob)}
-              />
-            </div>
-            <div className="">
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <div className="mt-4 md:mt-6 flex items-center space-x-5 w-full border border-gray-700 rounded-lg">
+                  <DatePicker
+                    className="w-full"
+                    format="DD-MM-YYYY *"
+                    value={dob}
+                    onChange={(newValue) => handleDateChange(newValue)}
+                  />
+                </div>
+              </LocalizationProvider>
+            <div className="mt-4 md:mt-5">
               <input
                 type="password"
                 className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
