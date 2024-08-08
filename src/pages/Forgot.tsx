@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
+import axios from "axios";
 const Forgot = observer(() => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -24,11 +25,20 @@ const Forgot = observer(() => {
     }
   };
 
+  const sendLink = async (email: any) => {
+    const response = await axios.post(
+      "https://kafsbackend-106f.onrender.com/api/v1/users/forgot-password",
+      { email }
+    );
+    console.log(response.data);
+    return response.data;
+  };
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      //   await auth.fetchToken(email);
-      navigate("/");
+      sendLink(email);
+      // navigate("/");
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
         setError("Invalid email or password. Please try again.");

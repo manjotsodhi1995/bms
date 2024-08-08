@@ -190,7 +190,7 @@ const App = observer(() => {
             <Route path="/affiliate" element={<Affiliate />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
 
             {/* Organizer Component */}
             <Route path="/organizer" element={<Organizer />} />
