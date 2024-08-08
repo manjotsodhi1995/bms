@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import toast from "react-hot-toast";
 import { Loader2 } from "lucide-react";
+import axios from "axios";
 
 const ResetPassword = observer(() => {
   const [error, setError] = useState<string | null>(null);
@@ -11,9 +12,22 @@ const ResetPassword = observer(() => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { token } = useParams();
   const {
     root: { auth },
   } = useStore();
+
+  console.log(token);
+
+  const changePassword = async (password: any) => {
+    const response = await axios.post(
+      `https://kafsbackend-106f.onrender.com/api/v1/users/reset-password?token=${token}`,
+
+      password
+    );
+    console.log(response.data);
+    return response.data;
+  };
 
   useEffect(() => {
     if (auth.isAuthenticated) navigate("/");
@@ -56,11 +70,9 @@ const ResetPassword = observer(() => {
     event.preventDefault();
     if (!validateForm()) return;
     setLoading(true);
-    console.log("loading", loading);
 
     try {
-      // Perform password reset logic here
-      // await auth.resetPassword(password);
+      changePassword(confirmPassword);
       toast.success("password changed successfully");
       navigate("/login");
     } catch (error: any) {
