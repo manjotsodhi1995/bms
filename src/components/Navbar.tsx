@@ -20,6 +20,7 @@ const isExcludedRoute = createRouteMatcher([
   "/login",
   "/register",
   "/forgot",
+  "/reset-password",
   "/help",
   "/helpdetail",
   "/contactus",
