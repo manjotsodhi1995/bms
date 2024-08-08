@@ -3,18 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import axios from "axios";
+import { Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
+
 const Forgot = observer(() => {
+  const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {
     root: { auth },
   } = useStore();
+
   useEffect(() => {
     if (auth.isAuthenticated) navigate("/");
-  }, []);
+  }, [auth.isAuthenticated, navigate]);
 
-  const [email, setEmail] = useState("");
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     switch (name) {
       case "email":
@@ -25,27 +30,44 @@ const Forgot = observer(() => {
     }
   };
 
-  const sendLink = async (email: any) => {
+  const validateEmail = (email: string) => {
+    // Basic email validation regex
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const sendLink = async (email: string) => {
     const response = await axios.post(
       "https://kafsbackend-106f.onrender.com/api/v1/users/forgot-password",
       { email }
     );
-    console.log(response.data);
     return response.data;
   };
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError(null);
+
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      sendLink(email);
-      // navigate("/");
+      await sendLink(email);
+      toast.success("Password reset email sent successfully!");
+      setEmail(""); // Clear email input after success
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
-        setError("Invalid email or password. Please try again.");
+        setError("Invalid email! Please try again.");
       } else {
-        setError("An error occurred during login. Please try again later.");
-        console.error("Login error:", error);
+        setError("An error occurred. Please try again later.");
+        console.error("Forgot password error:", error);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -69,20 +91,23 @@ const Forgot = observer(() => {
                     value={email}
                     placeholder="Email Address"
                     id="email"
-                    className="w-full"
+                    className="w-full border p-2 rounded"
                     onChange={handleInputChange}
+                    disabled={loading}
                   />
                 </div>
+                {error && <div className="text-red-600">{error}</div>}
               </div>
 
               <div className="w-full text-[1rem] flex flex-col gap-1">
                 <button
                   type="submit"
-                  className="bg-black w-full text-white font-bold py-2 px-4 rounded"
+                  className="bg-black w-full text-white font-bold py-2 px-4 rounded flex justify-center items-center gap-2"
+                  disabled={loading}
                 >
                   Send Link
+                  {loading && <Loader2 className="size-4 animate-spin" />}
                 </button>
-                <div className="text-red-600">{error}</div>
               </div>
               <div className="flex w-full justify-around gap-2 items-center">
                 <div className="h-[2px] w-full bg-black"></div>
