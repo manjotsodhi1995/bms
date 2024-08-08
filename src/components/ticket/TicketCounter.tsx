@@ -32,11 +32,9 @@ const TicketCounter = ({
       >
         <Minus className="size-5 stroke-1" />
       </button>
-      {pending ? (
-        <Loader2 className="size-4 animate-spin" />
-      ) : (
-        <span>{value}</span>
-      )}
+
+      <span>{value}</span>
+
       <button
         disabled={pending}
         className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center disabled:cursor-not-allowed"
