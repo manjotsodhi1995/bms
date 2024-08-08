@@ -13,7 +13,8 @@ const ResetPassword = observer(() => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const token = searchParams.get('token');  const {
+  const token = searchParams.get("token");
+  const {
     root: { auth },
   } = useStore();
 
@@ -22,7 +23,9 @@ const ResetPassword = observer(() => {
   const changePassword = async (password: any) => {
     const response = await axios.post(
       `https://kafsbackend-106f.onrender.com/api/v1/users/reset-password`,
-      password,
+      {
+        password,
+      },
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -76,7 +79,7 @@ const ResetPassword = observer(() => {
     setLoading(true);
 
     try {
-      changePassword(confirmPassword);
+      await changePassword(confirmPassword);
       toast.success("password changed successfully");
       navigate("/login");
     } catch (error: any) {
