@@ -7,7 +7,6 @@ interface PaymentMethodCardProps {
 
 const PaymentMethodCard = ({
   title,
-  logo,
   selected,
   onSelectedChange,
 }: PaymentMethodCardProps) => {

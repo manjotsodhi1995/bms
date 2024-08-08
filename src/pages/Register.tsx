@@ -234,7 +234,7 @@ const Register = observer(() => {
                     T&Cs
                   </a>{" "}
                   and{" "}
-                  <a href="/privacy" className="font-bold">
+                  <a href="/privacy" className="text-blue-600 font-bold">
                     Privacy Policy.
                   </a>
                 </p>

@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "@/utils/middleware";
 import { API } from "@/api";
 import PreviewCard from "./PreviewCard";
+import { countries } from "../../Country";
 
 interface PaymentBody {
   amount: string;
@@ -47,6 +48,8 @@ export const PaymentStep = ({
     basketId,
   } = useCart();
   const [error, setError] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState(countries);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const { cartData } = useCartQuery(
     eventsData?.eventId,
@@ -127,6 +130,20 @@ export const PaymentStep = ({
     setExpiryDate(clearValue);
   };
 
+  const handleInputChange = (e: any) => {
+    const query = e.target.value.toLowerCase();
+    setCountry(e.target.value);
+    setFilteredCountries(
+      countries.filter((country) => country.toLowerCase().includes(query))
+    );
+    setShowDropdown(true);
+  };
+
+  const handleOptionClick = (country: any) => {
+    setCountry(country);
+    setShowDropdown(false);
+  };
+
   return (
     <Fragment>
       <div className="flex items-center gap-2 absolute left-4 top-4">
@@ -183,23 +200,32 @@ export const PaymentStep = ({
               />
             </div>
           </div>
-          <div>
-            <label htmlFor="country" className="text-sm font-medium relative">
+          <div className="relative">
+            <label htmlFor="country" className="text-sm font-medium">
               Country
-              <select
+              <input
                 id="country"
                 value={country}
-                onChange={(e) => setCountry(e.target.value)}
+                onChange={handleInputChange}
                 className="w-full p-2 mt-1 border border-gray-300 rounded-md"
-              >
-                <option value="Ireland">Ireland</option>
-                <option value="India">India</option>
-                <option value="USA">USA</option>
-                <option value="UK">UK</option>
-                <option value="Australia">Australia</option>
-                <option value="Canada">Canada</option>
-              </select>
+                placeholder="Search for a country"
+                onBlur={() => setShowDropdown(false)}
+                onFocus={() => setShowDropdown(true)}
+              />
             </label>
+            {showDropdown && filteredCountries.length > 0 && (
+              <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-md max-h-40 overflow-y-auto mt-1">
+                {filteredCountries.map((country) => (
+                  <li
+                    key={country}
+                    onClick={() => handleOptionClick(country)}
+                    className="p-2 hover:bg-gray-200 cursor-pointer"
+                  >
+                    {country}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <div className="flex flex-col mt-10 gap-4">

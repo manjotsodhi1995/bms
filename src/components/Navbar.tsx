@@ -20,6 +20,7 @@ const isExcludedRoute = createRouteMatcher([
   "/login",
   "/register",
   "/forgot",
+  "/reset-password",
   "/help",
   "/helpdetail",
   "/contactus",
@@ -327,18 +328,16 @@ const Navbar = observer(() => {
             )}
             {isAuthenticated && (
               <div className="flex justify-center gap-8 items-center min-w-[6vw]">
-                <Tooltip title="NOTIFICATION" arrow>
-                  <div className="cursor-pointer" ref={notificationRef}>
-                    <NotificationsDropdown
-                      open={notificationOpen}
-                      onOpenChange={(v) => {
-                        setNotificationOpen(v);
-                        if (profileOpen) setProfileOpen((_) => false);
-                        if (calendarOpen) setCalendarOpen((_) => false);
-                      }}
-                    />
-                  </div>
-                </Tooltip>
+                <div className="cursor-pointer" ref={notificationRef}>
+                  <NotificationsDropdown
+                    open={notificationOpen}
+                    onOpenChange={(v) => {
+                      setNotificationOpen(v);
+                      if (profileOpen) setProfileOpen((_) => false);
+                      if (calendarOpen) setCalendarOpen((_) => false);
+                    }}
+                  />
+                </div>
                 <div>
                   <ProfileDropdown
                     ref={accountRef}
@@ -398,14 +397,17 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
   const toggleDropdown = () => onOpenChange(!open);
   const notifications = [
     {
+      img: "paymentDone.png",
       title: "Payment Successful",
       message: "You have successfully made a payment at Bpraak Concert",
     },
     {
+      img: "orderCancel.png",
       title: "Order Canceled",
       message: "You have successfully made a payment at Bpraak Concert", // You'll likely want to change this message
     },
     {
+      img: "newFeat.png",
       title: "New Features available",
       message: "You have successfully made a payment at Bpraak Concert", // You'll likely want to change this message
     },
@@ -414,38 +416,47 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
   return (
     <div className="relative">
       <button onClick={toggleDropdown}>
-        <img src={bell} alt="Notifications" />
+        <Tooltip title="NOTIFICATION" arrow>
+          <img src={bell} alt="Notifications" />
+        </Tooltip>
       </button>
       {open && (
-        <div className="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg z-20">
-          <div className="py-2">Notifications</div>
-          <div className="border-b p-2 flex">
+        <div className="absolute right-0 mt-4 w-80 bg-white rounded-3xl shadow-lg z-20">
+          <div className="py-4 bg-gray-100">Notifications</div>
+          <div className="border-b px-2 flex bg-gray-100">
             <button
               onClick={() => setActiveTab("Unread")}
-              className={`px-4 py-2 rounded-t-md focus:outline-none ${
-                activeTab === "Unread" ? "bg-gray-200" : ""
+              className={`px-4 py-2 rounded-t-md focus:outline-none text-lg ${
+                activeTab === "Unread" ? "border-b-4 border-black rounded" : ""
               }`}
             >
               Unread
             </button>
             <button
               onClick={() => setActiveTab("All")}
-              className={`px-4 py-2 rounded-t-md focus:outline-none ${
-                activeTab === "All" ? "bg-gray-200" : ""
+              className={`px-4 py-2 rounded-t-md focus:outline-none text-lg ${
+                activeTab === "All" ? "border-b-4 border-black rounded" : ""
               }`}
             >
               All
             </button>
           </div>
 
-          <div className="p-2">
+          <div className="py-2">
             {notifications.map((notification, index) => (
-              <div key={index} className="flex items-start space-x-2 mb-3">
-                <div className="text-left">
-                  <h6 className="font-semibold">{notification.title}</h6>
-                  <p className="text-sm text-gray-600">
-                    {notification.message}
-                  </p>
+              <div key={index} className="flex items-start space-x-2 mb-5">
+                <div className="text-left flex">
+                  <div>
+                    <img src={notification.img} alt="" />
+                  </div>
+                  <div>
+                    <h6 className="font-semibold text-lg">
+                      {notification.title}
+                    </h6>
+                    <p className="text-xs text-gray-600">
+                      {notification.message}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}

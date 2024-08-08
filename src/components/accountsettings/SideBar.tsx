@@ -96,6 +96,13 @@ const SideBar: React.FC<SideBarProps> = ({
     });
   };
 
+  const handleRemoveProfile = () => {
+    mutate({
+      displayPic: "",
+    });
+    setProfilePic("")
+  }
+
   return (
     <>
       <div
@@ -140,7 +147,7 @@ const SideBar: React.FC<SideBarProps> = ({
           <div className="mr-4 mt-2">
             {" "}
             {data?.displayPic != "" ? (
-              <button onClick={() => {}}>Remove Picture</button>
+              <button onClick={handleRemoveProfile}>Remove Picture</button>
             ) : (
               <></>
             )}

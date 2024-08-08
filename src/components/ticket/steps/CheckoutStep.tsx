@@ -87,7 +87,7 @@ export const CheckoutStep = ({
             <p className="text-xs">
               Already a user ?{" "}
               <span>
-                <Link to={"/login"} className="text-blue-800">
+                <Link to={"/login"} className="text-[#8C3E87] font-medium">
                   Login
                 </Link>
               </span>
@@ -287,10 +287,10 @@ export const CheckoutStep = ({
         <PreviewCard cartData={cartData} eventsData={eventsData}>
           <button
             disabled={
+              !checked || 
               email.length === 0 ||
               firstName.length === 0 ||
-              lastName.length === 0 ||
-              !checked
+              lastName.length === 0 
             }
             className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500"
             onClick={onContinueClicked}

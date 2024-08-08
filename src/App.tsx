@@ -19,6 +19,7 @@ const MyTickets = lazy(() => import("./pages/MyTickets"));
 const TermsAndConditions = lazy(() => import("./pages/termsAndConditions"));
 const Privacy = lazy(() => import("./pages/privacy"));
 const Forgot = lazy(() => import("./pages/Forgot"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const Filter = lazy(() => import("./pages/Filter"));
 const AccountSettings = lazy(() => import("./pages/AccountSettings"));
 const EventPage = lazy(() => import("./pages/eventPage"));
@@ -189,6 +190,7 @@ const App = observer(() => {
             <Route path="/affiliate" element={<Affiliate />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
 
             {/* Organizer Component */}
             <Route path="/organizer" element={<Organizer />} />
