@@ -51,7 +51,6 @@ function Filter() {
               />
               <h2>Today</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -63,7 +62,6 @@ function Filter() {
               />
               <h2>Tommorow</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -75,7 +73,6 @@ function Filter() {
               />
               <h2>This Week</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex mb-[20px]">
@@ -87,7 +84,6 @@ function Filter() {
               />
               <h2>This Month</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
         </div>
         <div className="border-gray-400 border-b mb-[50px] pl-[30px]">
@@ -102,7 +98,6 @@ function Filter() {
               />
               <h2>Free</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex mb-[20px]">
@@ -114,7 +109,6 @@ function Filter() {
               />
               <h2>Paid</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
         </div>
         <div className="border-gray-400 border-b mb-[50px] pl-[30px]">
@@ -129,7 +123,6 @@ function Filter() {
               />
               <h2>Music</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -141,7 +134,6 @@ function Filter() {
               />
               <h2>Comedy</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -153,7 +145,6 @@ function Filter() {
               />
               <h2>Sports</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -165,7 +156,6 @@ function Filter() {
               />
               <h2>Food & Drinks</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -177,7 +167,6 @@ function Filter() {
               />
               <h2>Theater</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -189,7 +178,6 @@ function Filter() {
               />
               <h2>Dance</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -201,7 +189,6 @@ function Filter() {
               />
               <h2>Art</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex mb-[20px]">
@@ -213,7 +200,6 @@ function Filter() {
               />
               <h2>Other</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
         </div>
         <div className="mb-[100px] pl-[30px]">
@@ -228,7 +214,6 @@ function Filter() {
               />
               <h2>Ahmedabad</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -240,7 +225,6 @@ function Filter() {
               />
               <h2>Gandhinagar</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
           <div className="flex justify-between w-[200px]">
             <div className="flex">
@@ -252,7 +236,6 @@ function Filter() {
               />
               <h2>Surat</h2>
             </div>
-            <h2 className="text-gray-600">32</h2>
           </div>
         </div>
       </div>
