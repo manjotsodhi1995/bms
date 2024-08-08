@@ -79,7 +79,7 @@ const Forgot = observer(() => {
                 <div className="text-center">or</div>
                 <div className="w-full h-[2px] bg-black"></div>
               </div>
-              <div className="text-[0.9rem]">
+              <div className="text-[0.9rem] text-center">
                 Need Help?
                 <Link to="/contactus" className="text-[#8C3E87]">
                   {" "}
