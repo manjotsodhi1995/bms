@@ -79,7 +79,7 @@ const ResetPassword = observer(() => {
     setLoading(true);
 
     try {
-      changePassword(confirmPassword);
+      await changePassword(confirmPassword);
       toast.success("password changed successfully");
       navigate("/login");
     } catch (error: any) {
