@@ -19,7 +19,7 @@ import type { EventType } from "@/stores/event";
 import CartProvider from "@/stores/cart";
 import { X } from "lucide-react";
 import { useCartQuery } from "@/api/query/useCartQuery";
-import bgImage from "../../assets/popupBg.png";
+import bgImage from "../../assets/bgImage.png";
 interface BookTicketsDialogProps extends DialogProps {
   eventsData: EventType | null;
 }
