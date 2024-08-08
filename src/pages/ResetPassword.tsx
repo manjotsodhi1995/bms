@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import toast from "react-hot-toast";
@@ -12,8 +12,8 @@ const ResetPassword = observer(() => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { token } = useParams();
-  const {
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token');  const {
     root: { auth },
   } = useStore();
 
@@ -21,9 +21,13 @@ const ResetPassword = observer(() => {
 
   const changePassword = async (password: any) => {
     const response = await axios.post(
-      `https://kafsbackend-106f.onrender.com/api/v1/users/reset-password?token=${token}`,
-
-      password
+      `https://kafsbackend-106f.onrender.com/api/v1/users/reset-password`,
+      password,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     console.log(response.data);
     return response.data;
