@@ -3,13 +3,11 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { Toaster } from "react-hot-toast";
-
-import load from "./assets/Ghost.gif";
 import { useStore } from "./hooks/useStore";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Navbar from "./components/Navbar";
-import Bg from "./components/Bg";
-
+import bg from "./assets/background.png";
+import { Loader2 } from "lucide-react";
 const DashBoard = lazy(() => import("./pages/dashboard/Dashboard"));
 const OrganizationProfile = lazy(
   () => import("./pages/OrganizationDescription")
@@ -68,7 +66,7 @@ const FollowingPage = lazy(() => import("./pages/dashboard/following"));
 const Organizer = lazy(() => import("./pages/Organizer"));
 const ReferFriends = lazy(() => import("./pages/ReferFriends"));
 const ReferOrganizer = lazy(() => import("./pages/ReferOrganizer"));
-const CategoriesPage =  lazy(() => import("./pages/CategoriesPage"));
+const CategoriesPage = lazy(() => import("./pages/CategoriesPage"));
 const App = observer(() => {
   const {
     root: { auth },
@@ -88,20 +86,17 @@ const App = observer(() => {
       <Toaster />
       {/* <div className="relative overflow-hidden"> */}
       <BrowserRouter>
-        <div className="home absolute -z-50">
-          <Bg />
+        <div className="home -z-10 fixed">
+          <img src={bg} alt="" />
         </div>
-        <div className="home min-h-full min-w-[100vw] -z-10 absolute"></div>
-        <div className="home min-h-full min-w-[100vw] -z-10 absolute"></div>
-        <div className="home min-h-full min-w-[100vw] -z-10 absolute"></div>
-
         {<Navbar />}
         <Suspense
           fallback={
             <div className="min-h-screen w-screen flex justify-center items-center">
-              <img src={load} alt="" className="w-[10vw] h-[10vw]" />
+              <Loader2 size={40} />
             </div>
-          }>
+          }
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
@@ -169,7 +164,10 @@ const App = observer(() => {
 
             {/* Public Routes */}
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/categories/:categoryId" element={<CategoriesPage />} />
+            <Route
+              path="/categories/:categoryId"
+              element={<CategoriesPage />}
+            />
             <Route path="/dashboard" element={<DashBoard />} />
             <Route
               path="/settings"
