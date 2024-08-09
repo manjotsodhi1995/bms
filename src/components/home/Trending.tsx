@@ -150,7 +150,7 @@ function Trending() {
                 key={category.categoryId}
                 href={`/categories/${category.categoryId}`}
                 ref={index === 0 ? categoryRef : null} // Reference only the first category
-                className="text-center whitespace-nowrap min-w-[9rem] h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200 hover:bg-[#60769D] hover:text-white max-w-[280px]"
+                className="text-center whitespace-nowrap min-w-[9rem] h-10 py-2 px-4 rounded-full font-medium border-2 bg-[white] text-gray-800 transition-colors duration-200 hover:bg-[#60769D] hover:text-white max-w-[280px]"
               >
                 {category.categoryName}
               </a>
@@ -198,7 +198,7 @@ function Trending() {
               <MapPin className="absolute top-1 lg:top-2 left-1 md:left-2 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
               <input
                 id="location"
-                className="w-44 !px-8 md:px-10 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem] font-medium text-blue-700 lg:w-[18vw] 2xl:w-[14vw] pl-4"
+                className="bg-white w-44 !px-8 md:px-10 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem] font-medium text-blue-700 lg:w-[18vw] 2xl:w-[14vw] pl-4"
                 value={selectedLocation}
                 placeholder="Search for a city"
                 onClick={clear}
