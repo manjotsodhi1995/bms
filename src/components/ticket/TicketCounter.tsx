@@ -1,5 +1,5 @@
 import { cn } from "@/utils";
-import { Plus, Minus, Loader2 } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 
 interface TicketCounterProps {
   value: number;
