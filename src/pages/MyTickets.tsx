@@ -1,4 +1,3 @@
-import { Clock } from "lucide-react";
 import Footer from "../components/Footer";
 import TicketCard from "../components/ticket/TicketCard";
 import { Icons } from "@/components/Icons";
@@ -24,6 +23,7 @@ function MyTickets() {
     queryFn: fetchTickets,
   });
   const [value, onChange] = useState<Dayjs | null>(dayjs());
+  const [activeTab, setActiveTab] = useState("Upcoming Events");
 
   return (
     <>
@@ -32,30 +32,63 @@ function MyTickets() {
           <h3 className="md:text-[1.6rem] 2xl:text-[2rem] text-[1.5rem] font-medium">
             Your Tickets
           </h3>
-          <p className="flex flex-col items-center">
+          {/* <p className="flex flex-col items-center">
             <Clock className="size-6 fill-black text-white" />
             <span className="text-neutral-800">Past Bookings</span>
-          </p>
+          </p> */}
         </div>
         <div className="w-full flex flex-col md:flex-row justify-between gap-10">
-          <div className="flex w-full flex-col items-center">
-            <div className="flex w-full flex-col gap-4">
-              {data?.eventTitle && data.eventTitle.length === 0 ? (
-                <p className="flex flex-col items-center gap-2">
-                  <Icons.twoTickets className="size-52" />
-                  <span className="text-sm text-neutral-500">
-                    You don't seem to have any recent bookings
-                  </span>
-                </p>
-              ) : (
-                data?.eventTitle.map((ticket: any, idx: number) => (
-                  <TicketCard key={idx} {...ticket} />
-                ))
-              )}
+          <div className="flex w-full flex-col items-center gap-4 hover:cursor-pointer">
+            <div className="flex bg-white py-1 w-full rounded-full border px-1">
+              <div
+                onClick={() => setActiveTab("Upcoming Events")}
+                className={`w-1/2 py-3 text-center text-black font-medium transform transition-all duration-300   ${
+                  activeTab === "Upcoming Events"
+                    ? "bg-[#677497] rounded-full text-white"
+                    : ""
+                }`}
+              >
+                Upcoming Events{" "}
+              </div>{" "}
+              <div
+                onClick={() => setActiveTab("Past Events")}
+                className={`w-1/2 py-3 text-center text-black font-medium transform transition-all duration-300  ${
+                  activeTab === "Past Events"
+                    ? "bg-[#677497] rounded-full text-white"
+                    : ""
+                }`}
+              >
+                Past Events
+              </div>{" "}
             </div>
+            {activeTab === "Upcoming Events" ? (
+              <div className="flex w-full flex-col gap-4">
+                {data?.eventTitle && data.eventTitle.length === 0 ? (
+                  <p className="flex flex-col items-center gap-2">
+                    <Icons.twoTickets className="size-52" />
+                    <span className="text-sm text-neutral-500">
+                      You don't seem to have any recent bookings
+                    </span>
+                  </p>
+                ) : (
+                  data?.eventTitle.map((ticket: any, idx: number) => (
+                    <TicketCard key={idx} {...ticket} />
+                  ))
+                )}
+              </div>
+            ) : (
+              <p className="flex flex-col items-center gap-2">
+                <Icons.twoTickets className="size-52" />
+                <span className="text-sm text-neutral-500">
+                  You don't seem to have any past bookings
+                </span>
+              </p>
+            )}
           </div>
           <div className="space-y-6">
-            {" "}
+            <div>
+              <UpcomingEvents />
+            </div>{" "}
             <div className="rounded-3xl h-fit top-[10vh] bg-white">
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateCalendar
@@ -66,9 +99,6 @@ function MyTickets() {
                   value={value}
                 />
               </LocalizationProvider>
-            </div>
-            <div>
-              <UpcomingEvents />
             </div>
           </div>
           {/* 
