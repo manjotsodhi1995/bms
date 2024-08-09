@@ -56,10 +56,8 @@ const Stories: React.FC<StoryProps> = ({
 
   const handlePrev = () => {
     handlePrevClick();
-    // Perform additional actions here
     setCurrentIndex((prev) => (prev + (urls.length - 1)) % urls.length);
   };
-  // console.log(urls)
   const handleClose = () => setOpen(false);
   return (
     <Modal
@@ -69,14 +67,12 @@ const Stories: React.FC<StoryProps> = ({
       sx={{ border: "none" }}
     >
       <Box sx={style}>
-        {" "}
         <X
           className="text-white size-12 cursor-pointer text-right"
           onClick={handleClose}
         />
         <Swiper
           effect={"coverflow"}
-          // onSlideChange={handleSlideChange}
           onNavigationNext={handleNext}
           onNavigationPrev={handlePrev}
           initialSlide={activeIndex}
@@ -96,14 +92,8 @@ const Stories: React.FC<StoryProps> = ({
           }}
           modules={[EffectCoverflow, Navigation, Controller]}
           className="swiper_container sw2 py-8 px-[10px] sm:px-[0] sm:w-[700px] w-screen p-10"
-        //  onInit={setChildSwiper}
-        //  controller={{
-        //   by:"container",
-        //   control: swiperInstance,
-        // }}
         >
           {urls?.map((card: any, index) => (
-            // onClick={() => setOpen(true)}
             <SwiperSlide>
               <StorySlide
                 key={index}
