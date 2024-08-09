@@ -19,7 +19,7 @@ import type { EventType } from "@/stores/event";
 import CartProvider from "@/stores/cart";
 import { X } from "lucide-react";
 import { useCartQuery } from "@/api/query/useCartQuery";
-
+import bgImage from "../../assets/bgImage.png";
 interface BookTicketsDialogProps extends DialogProps {
   eventsData: EventType | null;
 }
@@ -59,6 +59,7 @@ const BookTicketsDialogContent = ({
     <Dialog open={dialogOpen} onOpenChange={closeDialog}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="overflow-y-auto p-1 max-w-screen-lg max-h-[calc(100dvh)]">
+        <img src={bgImage} className="fixed -z-10" alt="" />
         <div className=" p-6 py-8 backdrop-blur-md">
           <DialogClose className="absolute right-4 top-4 opacity-70 rounded-sm ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
             <X className="size-6" />
