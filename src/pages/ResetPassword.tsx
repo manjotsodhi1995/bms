@@ -5,6 +5,7 @@ import { useStore } from "../hooks/useStore";
 import toast from "react-hot-toast";
 import { Loader2 } from "lucide-react";
 import axios from "axios";
+import img from "../assets/Auth/login.jpg";
 
 const ResetPassword = observer(() => {
   const [error, setError] = useState<string | null>(null);
@@ -18,7 +19,11 @@ const ResetPassword = observer(() => {
     root: { auth },
   } = useStore();
 
-  console.log(token);
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, [token, navigate]);
 
   const changePassword = async (password: any) => {
     const response = await axios.post(
@@ -159,12 +164,8 @@ const ResetPassword = observer(() => {
           </form>
         </div>
       </div>
-      <div className="md:block hidden w-[100vw]">
-        <img
-          src="https://s3-alpha-sig.figma.com/img/47e4/b820/4111f62d6918498ca268c0d1d066f374?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IMqM74Ji7T8K39bZt6UcuwSwVpEjDyDdXeNnc-nmeMwy3bCWCbZ7LlTnVkrjo-oWDnezdXJx0llWheOOOOQEihsXnQceBq16~EpHUojEoFTYQ0uCBCmJVIRmBnjMul7prExsD7U60qm2EOdsvFIouG-KbR3EpPtq4WmI5mZp86gZs8Xll9DhP2vl7SdZS0f~sLZwjI~zWQb7ZiW-nP1qVdf5P2lwM43OBhpQxdSYtzd19azaJH2RUM8xdg-l7uMaOnEnZ-dYM6JPZ1lXh3av1ChXzwlbmf6RKGYyOm4wFoUCNXsoauqdan70Q5-O2AMKz76ok5uJlI2AJefzAAvihw__"
-          className="h-screen w-full"
-          alt="Password Reset Illustration"
-        />
+      <div className="md:block hidden w-[70vw] md:w-full">
+        <img src={img} className="h-screen w-full object-cover" alt="" />
       </div>
     </div>
   );

@@ -23,7 +23,6 @@ const isExcludedRoute = createRouteMatcher([
   "/reset-password",
   "/help",
   "/helpdetail",
-  "/contactus",
   "/settings",
   "/payment",
   "/dashboard(.*)",
@@ -422,11 +421,11 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
       </button>
       {open && (
         <div className="absolute right-0 mt-4 w-80 bg-white rounded-3xl shadow-lg z-20">
-          <div className="py-4 bg-gray-100">Notifications</div>
-          <div className="border-b px-2 flex bg-gray-100">
+          <div className="py-4 bg-gray-100 text-xl">Notifications</div>
+          <div className="border-b px-2 flex gap-x-6 bg-gray-100">
             <button
               onClick={() => setActiveTab("Unread")}
-              className={`px-4 py-2 rounded-t-md focus:outline-none text-lg ${
+              className={`px-4 py-2 rounded-t-md focus:outline-none text-sm ${
                 activeTab === "Unread" ? "border-b-4 border-black rounded" : ""
               }`}
             >
@@ -434,7 +433,7 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
             </button>
             <button
               onClick={() => setActiveTab("All")}
-              className={`px-4 py-2 rounded-t-md focus:outline-none text-lg ${
+              className={`px-4 py-2 rounded-t-md focus:outline-none text-sm ${
                 activeTab === "All" ? "border-b-4 border-black rounded" : ""
               }`}
             >
@@ -453,7 +452,7 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
                     <h6 className="font-semibold text-lg">
                       {notification.title}
                     </h6>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-gray-600 mr-4">
                       {notification.message}
                     </p>
                   </div>
