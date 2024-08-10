@@ -118,7 +118,7 @@ const Register = observer(() => {
                   alt="logo"
                   className="max-h-[10vh] max-w-[40vw]"
                 />
-                <h1 className="text-3xl font-bold text-center">Sign Up</h1>
+                <h1 className="text-3xl font-bold text-center">User Sign Up</h1>
               </div>
 
               <div className="w-full">

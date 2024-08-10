@@ -90,7 +90,7 @@ const Login = observer(() => {
                 alt="logo"
                 className="max-h-[10vh] max-w-[40vw]"
               />
-              <h1 className="text-3xl font-bold">Login</h1>
+              <h1 className="text-3xl font-bold">User Login</h1>
               {/* <h6 className="text-md">
                   Please enter your login details to sign in
                 </h6> */}
