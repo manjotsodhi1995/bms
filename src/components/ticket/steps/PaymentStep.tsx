@@ -206,7 +206,7 @@ export const PaymentStep = ({
           <div className="flex flex-col mt-10 gap-4">
             {isError && (
               <p className="text-red-400 text-sm font-medium">
-                Could'nt complete payment. Please try again
+                Couldn't complete payment. Please try again
               </p>
             )}
             {error.length > 0 && (

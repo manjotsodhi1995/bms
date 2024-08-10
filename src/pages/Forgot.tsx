@@ -75,6 +75,11 @@ const Forgot = observer(() => {
               className="h-full flex flex-col justify-center gap-6 w-[25rem]"
             >
               <div className="flex flex-col gap-2 text-center items-center">
+              <img
+                src="/logo-nobg.png"
+                alt="logo"
+                className="max-h-[10vh] max-w-[40vw]"
+              />
                 <h1 className="text-3xl font-bold">Forgot Password?</h1>
               </div>
               <div className="flex flex-col gap-4">

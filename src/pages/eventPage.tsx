@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-// import Like from "../assets/Like.png";
-// import Share from "../assets/share.png";
+import Like from "../assets/Like.png";
+import Share from "../assets/share.png";
 import axios from "../utils/middleware";
 import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
@@ -11,16 +11,16 @@ import BookTicketsDialog from "@/components/ticket/BookTicketsDialog";
 import type { EventType } from "@/stores/event";
 import { useStore } from "@/hooks/useStore";
 import { observer } from "mobx-react-lite";
-import { formatDate } from "@/utils";
-// import { ShareEventDialog } from "@/components/ShareEventDialog";
+import { cn, formatDate } from "@/utils";
+import { ShareEventDialog } from "@/components/ShareEventDialog";
 import { API } from "@/api";
 import { Avatar, Skeleton } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
-// import { useLikesQuery } from "@/api/query/useLikesQuery";
+import { useLikesQuery } from "@/api/query/useLikesQuery";
 import { useFollowingQuery } from "@/api/query/useFollowingQuery";
 import Footer from "@/components/Footer";
-// import toast from "react-hot-toast";
+import toast from "react-hot-toast";
 import EventStories from "@/components/EventStories";
 import type SwiperCore from "swiper";
 import { formatCurrency } from "@/utils";
@@ -66,7 +66,7 @@ const EventPage = observer(() => {
       new Date(eventData.eventEnd).getHours() +
       ":" +
       new Date(eventData.eventEnd).getMinutes();
-    return `${start}, ${startTime} - ${end}, ${endTime} (GMT+)`;
+    return `${start}, ${startTime} - ${end}, ${endTime} (GMT+1)`;
   }, [eventData]);
 
   const canBookTicket = useMemo(() => {
@@ -95,6 +95,8 @@ const EventPage = observer(() => {
       firstSwiper.current.slidePrev();
     }
   };
+  const eventId = eventData?.eventId;
+  const { data: isLiked, mutation: likesMutation } = useLikesQuery(eventId);
   return (
     <div className="w-full">
       {/* <Navbar /> */}
@@ -105,13 +107,65 @@ const EventPage = observer(() => {
         handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
         handlePrevClick={handlePrevClick}
       />
-      <div className="h-[50vw] lg:h-full flex justify-center bg-gray-200">
+      <div className="relative h-[50vw] lg:h-full flex justify-center bg-gray-200">
         {!isLoading && (
-          <img
-            src={eventData?.posterUrl}
-            className="w-full lg:h-[33vw] h-full"
-            alt=""
-          />
+          <>
+            <img
+              src={eventData?.posterUrl}
+              className="w-full lg:h-[33vw] h-full"
+              alt=""
+            />
+            <div className="flex gap-4 absolute bottom-4 right-4">
+              <button
+                disabled={likesMutation.isPending}
+                onClick={() => {
+                  toast.promise(likesMutation.mutateAsync(), {
+                    loading: "Please wait",
+                    success: isLiked
+                      ? "Removed from favourites"
+                      : "Added to favourites",
+                    error: "An error occurred",
+                  });
+                }}
+                className={cn(
+                  "bg-white rounded-full w-[50px] h-[50px] bg-opacity-40 items-center flex justify-center hover:bg-blue-300",
+                  {
+                    "bg-pink-700 bg-opacity-100": isLiked,
+                    "bg-pink-300": likesMutation.isPending,
+                  }
+                )}
+              >
+                {likesMutation.isPending ? (
+                  <Loader2 className="animate-spin" />
+                ) : (
+                  <img src={Like} alt="" />
+                )}
+              </button>
+              <div>
+                {eventData && (
+                  <ShareEventDialog
+                    imageUrl={eventData.posterUrl}
+                    link={`/event/${eventData.slug}`}
+                  >
+                    <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-blue-300">
+                      <img src={Share} alt="" />
+                    </div>
+                  </ShareEventDialog>
+                )}
+
+                {/* {eventData && (
+              <ShareEventDialog
+                imageUrl={eventData.posterUrl}
+                link={/event/${eventData.slug}}
+              >
+                <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-blue-300">
+                  <img src={Share} alt="" />
+                </div>
+              </ShareEventDialog>
+             )} */}
+              </div>
+            </div>
+          </>
         )}{" "}
         {isLoading && (
           <Skeleton
