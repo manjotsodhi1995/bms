@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 const Login = observer(() => {
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {
@@ -34,7 +34,6 @@ const Login = observer(() => {
 
   const responseGoogle = async (response: CredentialResponse) => {
     try {
-      console.log(response);
       setLoading(true);
       if (!response.credential) {
         throw new Error("Cannot Login");
@@ -42,8 +41,7 @@ const Login = observer(() => {
       await auth.googleLogin(response.credential);
       navigate("/");
     } catch (error: any) {
-      setError("An error occurred during login. Please try again later.");
-      console.error("Login error:", error);
+      toast.error("An error occurred during login. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -56,10 +54,9 @@ const Login = observer(() => {
       navigate("/");
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
-        setError("Invalid email or password. Please try again.");
+        toast.error("Invalid email or password. Please try again.");
       } else {
-        setError("An error occurred during login. Please try again later.");
-        console.error("Login error:", error);
+        toast.error("Please try again later.");
       }
     } finally {
       setLoading(false);
@@ -92,6 +89,7 @@ const Login = observer(() => {
               <input
                 type="email"
                 name="email"
+                required
                 value={email}
                 placeholder="Email Address"
                 id="email"
@@ -101,6 +99,7 @@ const Login = observer(() => {
               <input
                 type="password"
                 value={password}
+                required
                 placeholder="Password"
                 name="password"
                 id="password"
@@ -120,7 +119,6 @@ const Login = observer(() => {
                 Sign In
                 {loading && <Loader2 className="size-4 animate-spin" />}
               </button>
-              <div className="text-red-600">{error}</div>
             </div>
             <div className="w-full items-center flex justify-center">
               <GoogleLogin
