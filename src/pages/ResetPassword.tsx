@@ -8,7 +8,6 @@ import axios from "axios";
 import img from "../assets/Auth/login.jpg";
 
 const ResetPassword = observer(() => {
-  const [error, setError] = useState<string | null>(null);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,16 +36,12 @@ const ResetPassword = observer(() => {
         },
       }
     );
-    console.log(response.data);
     return response.data;
   };
 
   useEffect(() => {
     if (auth.isAuthenticated) navigate("/");
   }, [auth.isAuthenticated, navigate]);
-
-  console.log("password", password);
-  console.log("confirmPassword", confirmPassword);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -64,15 +59,15 @@ const ResetPassword = observer(() => {
 
   const validateForm = () => {
     if (!password || !confirmPassword) {
-      setError("Both fields are required*.");
+      toast.error("Both fields are required*.");
       return false;
     }
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return false;
     }
     if (password.length < 8) {
-      setError("Password must be at least 8 characters long.");
+      toast.error("Password must be at least 6 characters long.");
       return false;
     }
     return true;
@@ -89,12 +84,11 @@ const ResetPassword = observer(() => {
       navigate("/login");
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
-        setError("Invalid request. Please try again.");
+        toast.error("Invalid request. Please try again.");
       } else {
-        setError(
+        toast.error(
           "An error occurred during the password reset. Please try again later."
         );
-        console.error("Password reset error:", error);
       }
     } finally {
       setLoading(false);
@@ -137,7 +131,6 @@ const ResetPassword = observer(() => {
                   disabled={loading}
                 />
               </div>
-              {error && <div className="text-red-600 text-sm">{error}</div>}
             </div>
             <div className="text-[1rem] w-full flex flex-col gap-1 justify-center items-center">
               <button

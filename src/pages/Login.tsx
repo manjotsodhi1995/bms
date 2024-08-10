@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 const Login = observer(() => {
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {
@@ -34,20 +34,22 @@ const Login = observer(() => {
 
   const responseGoogle = async (response: CredentialResponse) => {
     try {
-      console.log(response);
       setLoading(true);
       if (!response.credential) {
-        throw new Error("Cannot Login");
+        throw new Error("Google login failed. No credentials received.");
       }
       await auth.googleLogin(response.credential);
       navigate("/");
     } catch (error: any) {
-      setError("An error occurred during login. Please try again later.");
-      console.error("Login error:", error);
+      const errorMessage =
+        error.response?.data?.message ||
+        "An error occurred during Google login. Please try again later.";
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
   };
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
@@ -55,11 +57,16 @@ const Login = observer(() => {
       await auth.fetchToken(email, password);
       navigate("/");
     } catch (error: any) {
-      if (error.response && error.response.status === 400) {
-        setError("Invalid email or password. Please try again.");
+      const statusCode = error.response?.status;
+      const errorMessage = error.response?.data?.message;
+      if (statusCode === 400) {
+        toast.error("Invalid email or password. Please try again.");
+      } else if (statusCode === 401) {
+        toast.error("Unauthorized access. Please check your credentials.");
+      } else if (errorMessage) {
+        toast.error(errorMessage);
       } else {
-        setError("An error occurred during login. Please try again later.");
-        console.error("Login error:", error);
+        toast.error("An error occurred. Please try again later.");
       }
     } finally {
       setLoading(false);
@@ -92,6 +99,7 @@ const Login = observer(() => {
               <input
                 type="email"
                 name="email"
+                required
                 value={email}
                 placeholder="Email Address"
                 id="email"
@@ -101,6 +109,7 @@ const Login = observer(() => {
               <input
                 type="password"
                 value={password}
+                required
                 placeholder="Password"
                 name="password"
                 id="password"
@@ -120,7 +129,6 @@ const Login = observer(() => {
                 Sign In
                 {loading && <Loader2 className="size-4 animate-spin" />}
               </button>
-              <div className="text-red-600">{error}</div>
             </div>
             <div className="w-full items-center flex justify-center">
               <GoogleLogin

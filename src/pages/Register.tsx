@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { MuiTelInput } from "mui-tel-input";
 import { AxiosError } from "axios";
+import toast from "react-hot-toast";
 const Register = observer(() => {
   const [firstName, setFirstName] = useState(""); // State for first name input
   const [lastName, setLastName] = useState(""); // State for last name input
@@ -14,7 +15,6 @@ const Register = observer(() => {
   const [phone, setPhone] = useState("");
   const [actualPhone, setActualPhone] = useState<string | null>("");
   const [country, setCountry] = useState<string | null>("");
-  const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -53,19 +53,19 @@ const Register = observer(() => {
     try {
       setLoading(true);
       if (password.length < 6) {
-        setError("Password must be more than 6 letters");
+        toast.error("Password must be more than 6 letters");
         return;
       }
       if (firstName.length === 0) {
-        setError("First name is required");
+        toast.error("First name is required");
         return;
       }
       if (lastName.length === 0) {
-        setError("Last name is required");
+        toast.error("Last name is required");
         return;
       }
       if (email.length === 0) {
-        setError("Email name is required");
+        toast.error("Email name is required");
         return;
       }
 
@@ -81,14 +81,17 @@ const Register = observer(() => {
       navigate("/");
     } catch (error: any) {
       if (error instanceof AxiosError) {
-        setError(
-          error.response?.data?.message?.details
+        if (error.response?.status === 409) {
+          toast.error("User already exists. Please login.");
+        } else {
+          const err = error.response?.data?.message?.details
             .map((d: any) => d.message)
-            .join(",")
-        );
+            .join(",");
+
+          toast.error(err);
+        }
       } else {
-        setError("An error occurred during login. Please try again later.");
-        console.error("Login error:", error);
+        toast.error("Please try again later.");
       }
     } finally {
       setLoading(false);
@@ -125,7 +128,7 @@ const Register = observer(() => {
                   id="firstName"
                   required={true}
                   value={firstName}
-                  placeholder="First name"
+                  placeholder="First name *"
                   className="w-full"
                   onChange={handleInputChange}
                 />
@@ -136,7 +139,7 @@ const Register = observer(() => {
                   name="lastName"
                   id="lastName"
                   required={true}
-                  placeholder="Last name"
+                  placeholder="Last name *"
                   value={lastName}
                   className="w-full"
                   onChange={handleInputChange}
@@ -179,7 +182,7 @@ const Register = observer(() => {
                   }}
                   name="phone"
                   id="phone"
-                  placeholder="Phone"
+                  placeholder="Phone*"
                   defaultCountry="US"
                   variant="outlined"
                   className="w-full"
@@ -192,7 +195,7 @@ const Register = observer(() => {
                   name="email"
                   required={true}
                   value={email}
-                  placeholder="Email Address"
+                  placeholder="Email Address *"
                   id="email"
                   className="w-full"
                   onChange={handleInputChange}
@@ -204,7 +207,7 @@ const Register = observer(() => {
                   type="password"
                   value={password}
                   required={true}
-                  placeholder="Password"
+                  placeholder="Password *"
                   name="password"
                   id="password"
                   className="w-full"
@@ -239,7 +242,7 @@ const Register = observer(() => {
                   </a>
                 </p>
                 <div className="flex justify-center items-center font-bold gap-x-2">
-                  <div className="text-red-500">{error}</div>
+                  {/* <div className="text-red-500">{error}</div> */}
                   Already a member ?{" "}
                   <Link to="/login" className="text-[#8C3E87]">
                     Login
