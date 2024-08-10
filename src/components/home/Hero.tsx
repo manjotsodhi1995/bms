@@ -130,7 +130,7 @@ function Hero() {
       />
       <div className="flex flex-col items-center xl:mt-[-3rem] xl:gap-6 mt-[-2rem] lg:mt-[-2rem]">
         <div className="w-full flex items-center">
-          <div className="hidden md:flex w-full">
+          <div className="hidden lg:flex w-full">
             {" "}
             <Swiper
               spaceBetween={30}
@@ -167,7 +167,7 @@ function Hero() {
               centeredSlides={true}
               autoplay={{
                 delay: 2500,
-                disableOnInteraction: false,
+                disableOnInteraction: true,
               }}
               pagination={{
                 clickable: true,

@@ -45,10 +45,10 @@ const PreviewCard = ({ eventsData, cartData, children }: PreviewCardProps) => {
           <span>Subtotal</span>
           <span>
             {cartData &&
-              formatCurrency(cartData.basket.subTotal, cartData.currency)}
+              formatCurrency(cartData?.basket?.subTotal, cartData?.currency)}
           </span>
         </p>
-        {cartData.basket.totalAmount - cartData.basket.subTotal != 0 && (
+        {cartData?.basket.totalAmount - cartData?.basket.subTotal != 0 && (
           <p className="flex items-center justify-between text-gray-600 text-sm">
             <span>Fees</span>
             <span>
@@ -62,7 +62,7 @@ const PreviewCard = ({ eventsData, cartData, children }: PreviewCardProps) => {
             </span>
           </p>
         )}
-        {cartData && cartData.basket?.promotionsApplied.length > 0 && (
+        {cartData && cartData?.basket?.promotionsApplied.length > 0 && (
           <p className="flex items-center justify-between text-gray-600 text-sm">
             <span>Disount Applied</span>
             <span className="text-black font-medium">

@@ -105,11 +105,11 @@ const EventPage = observer(() => {
         handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
         handlePrevClick={handlePrevClick}
       />
-      <div className="h-[50vw] md:h-full flex justify-center bg-gray-200">
+      <div className="h-[50vw] lg:h-full flex justify-center bg-gray-200">
         {!isLoading && (
           <img
             src={eventData?.posterUrl}
-            className="w-full md:h-[33vw] h-full"
+            className="w-full lg:h-[33vw] h-full"
             alt=""
           />
         )}{" "}
@@ -124,8 +124,8 @@ const EventPage = observer(() => {
           />
         )}
       </div>
-      <div className="relative lg:px-[5%] xl:px-[7%] px-[8vw] py-[1.4rem] flex justify-between md:flex-row flex-col gap-8 2xl:gap-16">
-        <div className="flex flex-col gap-2 md:w-[55%]">
+      <div className="relative lg:px-[5%] xl:px-[7%] px-[8vw] py-[1.4rem] flex justify-between lg:flex-row flex-col gap-8 2xl:gap-16">
+        <div className="flex flex-col gap-2 lg:w-[55%]">
           <div className="font-bold text-[2.5rem] flex flex-col gap-2">
             <div className="p-2 rounded-full border-2 border-black text-black text-[1rem] w-[7rem] text-center">
               {" "}
@@ -134,7 +134,7 @@ const EventPage = observer(() => {
                 <Skeleton variant="rounded" width={100} height={30} />
               )}
             </div>
-            <div className="leading-tight text-[1.7rem] md:text-[2.5rem]">
+            <div className="leading-tight text-[1.7rem] lg:text-[2.5rem]">
               {" "}
               {eventData?.title}
             </div>
@@ -155,7 +155,7 @@ const EventPage = observer(() => {
               </svg>
             </div>
             <div>
-              <div className="font-medium text-[1.1rem] md:text-[1.3rem]">
+              <div className="font-medium text-[1.1rem] lg:text-[1.3rem]">
                 {eventData?.venueAddress.name}
               </div>
               <div className="text-gray-700">
@@ -205,7 +205,7 @@ const EventPage = observer(() => {
               )}
             </div>
           </div>
-          <div className="mt-4 flex md:hidden justify-between gap-10">
+          <div className="mt-4 flex lg:hidden justify-between gap-10">
             <div className="flex flex-col text-center items-center">
               <div className="font-medium text-[1.2rem]">
                 {eventData?.duration ? `${eventData.duration}` : "--"}
@@ -225,7 +225,7 @@ const EventPage = observer(() => {
               <div className="text-gray-700 text-[0.9rem]">Age Restriction</div>
             </div>
           </div>
-          <div className="md:hidden grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
+          <div className="lg:hidden grid grid-cols-3 lg:grid-cols-3 gap-2 mt-4">
             {eventData?.stories.map((card: any, index: any) => (
               <div
                 key={index}
@@ -318,7 +318,7 @@ const EventPage = observer(() => {
               <div>Last Entry at Fri 5th Jul at 9:00 AM (GMT+)</div>
             </div>
           </div>
-          <div className="md:w-[50%]">
+          <div className="lg:w-[50%]">
             <h1 className="font-medium text-[1.3rem]">Location</h1>
             <iframe
               src={`https://maps.google.com/maps?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}&hl=en;z=14&amp&output=embed`}
@@ -347,7 +347,7 @@ const EventPage = observer(() => {
                   />
                   <Link
                     to={`/organization/${eventData.organizer._id}`}
-                    className="font-medium md:text-lg text-sm"
+                    className="font-medium lg:text-lg text-sm"
                   >
                     {eventData.organizer.name}
                   </Link>
@@ -380,8 +380,8 @@ const EventPage = observer(() => {
           </div> */}
         </div>
 
-        <div className="h-fit fixed bottom-0 z-10 left-0 py-2 px-2 md:sticky md:top-[10vh] flex flex-col w-full md:max-w-[30%]">
-          <div className="hidden md:grid grid-cols-3 md:grid-cols-3 gap-2 mt-4">
+        <div className="h-fit bg-white lg:bg-transparent py-4 fixed bottom-0 z-10 left-0 px-2 lg:sticky lg:top-[10vh] flex flex-col w-full lg:max-w-[30%]">
+          <div className="hidden lg:grid grid-cols-3 lg:grid-cols-3 gap-2 mt-4">
             {eventData?.stories.map((card: any, index: any) => (
               <div
                 key={index}
@@ -396,7 +396,7 @@ const EventPage = observer(() => {
               </div>
             ))}
           </div>{" "}
-          <div className="mt-4 hidden md:flex justify-between gap-10">
+          <div className="mt-4 hidden lg:flex justify-between gap-10">
             <div className="flex flex-col text-center items-center">
               <div className="font-medium text-[1.2rem]">
                 {eventData?.duration ? `${eventData.duration}` : "4h"}
@@ -417,7 +417,7 @@ const EventPage = observer(() => {
             </div>
           </div>
           {canBookTicket && eventData && (
-            <div className="md:mt-4 space-y-2">
+            <div className="lg:mt-4 space-y-2 bg-white">
               <BookTicketsDialog eventsData={eventData}>
                 <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
                   Get Tickets
@@ -426,7 +426,7 @@ const EventPage = observer(() => {
             </div>
           )}
           {!canBookTicket && (
-            <div className="md:mt-4 space-y-2">
+            <div className="lg:mt-4 space-y-2">
               <div className="bg-black w-full text-white font-medium py-2 px-4 rounded text-center">
                 Sold Out!
               </div>
@@ -445,17 +445,22 @@ const EventPage = observer(() => {
               <Link to="">See More</Link>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:hidden gap-2">
+          <div className="grid grid-cols-1 md:hidden gap-2">
+            {event.upcomingEvents.slice(0, 1).map((card, index) => (
+              <EventCard key={index} {...card} />
+            ))}
+          </div>
+          <div className="hidden md:grid grid-cols-2 gap-4 lg:hidden">
             {event.upcomingEvents.slice(0, 2).map((card, index) => (
               <EventCard key={index} {...card} />
             ))}
           </div>
-          <div className="hidden md:grid grid-cols-3 lg:hidden">
-            {event.upcomingEvents.slice(0, 3).map((card, index) => (
+          <div className="hidden lg:grid grid-cols-3 gap-4 2xl:hidden">
+            {event.upcomingEvents.slice(0, 4).map((card, index) => (
               <EventCard key={index} {...card} />
             ))}
           </div>
-          <div className="hidden lg:grid grid-cols-4">
+          <div className="hidden 2xl:grid grid-cols-4 gap-4">
             {event.upcomingEvents.slice(0, 4).map((card, index) => (
               <EventCard key={index} {...card} />
             ))}

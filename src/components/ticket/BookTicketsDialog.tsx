@@ -5,7 +5,7 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { TicketStep } from "@/stores/ticket";
 import { BookingStep } from "./steps/BookingStep";
@@ -48,6 +48,9 @@ const BookTicketsDialogContent = ({
     eventsData?.eventId,
     eventsData?.eventStart
   );
+  useEffect(() => {
+    resetCartMutation.mutate();
+  }, []);
   const closeDialog = (value: boolean) => {
     if (!value) {
       resetCartMutation.mutate();
