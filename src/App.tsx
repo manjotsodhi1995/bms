@@ -184,7 +184,7 @@ const App = observer(() => {
             <Route path="/register" element={<Register />} />
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/help" element={<Help />} />
-            <Route path="/helpdetails" element={<HelpDetail />} />
+            <Route path="/helpdetails/:id" element={<HelpDetail />} />
             <Route path="/affiliate" element={<Affiliate />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />
