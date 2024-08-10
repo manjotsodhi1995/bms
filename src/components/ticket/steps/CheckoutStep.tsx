@@ -42,9 +42,11 @@ export const CheckoutStep = ({
     setVoucherCode,
   } = useCart();
 
+  const accessToken = localStorage.getItem("accessToken");
   const { data, isSuccess } = useQuery({
     queryKey: ["profile"],
     queryFn: fetchProfile,
+    enabled: !!accessToken,
   });
 
   useEffect(() => {
@@ -54,8 +56,15 @@ export const CheckoutStep = ({
     setEmail(data?.email);
   }, [data, isSuccess]);
 
+  useEffect(() => {
+    if (!accessToken) {
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+    }
+  }, []);
+
   const [checked, setChecked] = useState(true);
-  const accessToken = localStorage.getItem("accessToken");
   const [error, setError] = useState("");
   const [promoApplied, setPromoApplied] = useState(false);
 
@@ -224,7 +233,7 @@ export const CheckoutStep = ({
                     })
                     .then(() => {
                       setPromoApplied(false);
-                      setVoucherCode("")
+                      setVoucherCode("");
                     });
                 }}
               >
