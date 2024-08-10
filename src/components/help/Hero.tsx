@@ -1,51 +1,49 @@
-import i1 from "../../assets/help/Wrench.png"
-import i2 from "../../assets/help/Vector (5).png"; import i3 from "../../assets/help/Vector (6).png";
 import { Link } from "react-router-dom";
+import axios from "../../utils/middleware";
+import { useEffect, useState } from "react";
+
+interface DataTypes {
+  logo: string;
+  _id: string;
+  title: string;
+  description: string;
+}
 function Hero() {
+  const [data, setData] = useState<DataTypes[]>([]);
+
+  const getData = async () => {
+    const response = await axios.get(
+      "https://kafsbackend-106f.onrender.com/api/v1/help-center"
+    );
+    // console.log(response.data.data[0]._id);
+
+    setData(response.data.data);
+    return response.data.data;
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className="lg:px-[5%] xl:px-[7%] px-[8vw] py-[7vh]">
       <div className="text-[1.5rem]">How can we help?</div>
       <div className="grid lg:grid-rows-2 lg:grid-cols-3 md:grid-cols-2 grid-cols-1  items-center justify-center place-items-center mt-8">
-        <div className="text-center flex flex-col items-center p-2 gap-4 py-8 rounded-2xl hover:bg-black hover:text-white lg:w-[25vw] ">
-          <img src={i1} alt="" className="" />
-          <div className="text-[1.5rem] font-medium">Buying Tickets</div>
-          <div>Buying accessing and transferring your tickets.</div>
-          <div>
-            <Link to="/" className="flex justify-between font-medium">
-              <div>Learn More</div> <div>→</div>
-            </Link>
+        {data.map((d) => (
+          <div className="text-center flex flex-col items-center p-2 gap-4 py-8 rounded-3xl hover:shadow-xl transform transition-all duration-300  lg:w-[25vw] ">
+            <img src={d.logo} alt="" />
+            <div className="text-[1.5rem] font-medium">{d.title}</div>
+            <div>{d.description}</div>
+            <div>
+              <Link
+                to={`/helpdetails/${d._id}`}
+                className="flex justify-between font-medium"
+              >
+                <div>Learn More</div> <div>→</div>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="text-center flex flex-col items-center p-2 gap-4 py-8 rounded-2xl hover:bg-black hover:text-white lg:w-[25vw] ">
-          <img src={i1} alt="" className="" />
-          <div className="text-[1.5rem] font-medium">Selling Tickets</div>
-          <div>Buying accessing and transferring your tickets.</div>
-          <div>
-            <Link to="/" className="flex justify-between font-medium">
-              <div>Learn More</div> <div>→</div>
-            </Link>
-          </div>
-        </div>
-        <div className="text-center flex flex-col items-center p-2 gap-4 py-8 rounded-2xl hover:bg-black hover:text-white lg:w-[25vw] ">
-          <img src={i2} alt="" className="" />
-          <div className="text-[1.5rem] font-medium">Features</div>
-          <div>Buying accessing and transferring your tickets.</div>
-          <div>
-            <Link to="/" className="flex justify-between font-medium">
-              <div>Learn More</div> <div>→</div>
-            </Link>
-          </div>
-        </div>
-        <div className="text-center flex flex-col items-center p-2 gap-4 py-8 rounded-2xl hover:bg-black hover:text-white lg:w-[25vw] ">
-          <img src={i3} alt="" className="" />
-          <div className="text-[1.5rem] font-medium">Account</div>
-          <div>Buying accessing and transferring your tickets.</div>
-          <div>
-            <Link to="/" className="flex justify-between font-medium">
-              <div>Learn More</div> <div>→</div>
-            </Link>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

@@ -63,7 +63,7 @@ function MyTickets() {
             </div>
             {activeTab === "Upcoming Events" ? (
               <div className="flex w-full flex-col gap-4">
-                {data?.eventTitle && data.eventTitle.length === 0 ? (
+                {data?.bookings && data?.bookings.length === 0 ? (
                   <p className="flex flex-col items-center gap-2">
                     <Icons.twoTickets className="size-52" />
                     <span className="text-sm text-neutral-500">
@@ -71,7 +71,7 @@ function MyTickets() {
                     </span>
                   </p>
                 ) : (
-                  data?.eventTitle.map((ticket: any, idx: number) => (
+                  data?.bookings.map((ticket: any, idx: number) => (
                     <TicketCard key={idx} {...ticket} />
                   ))
                 )}
