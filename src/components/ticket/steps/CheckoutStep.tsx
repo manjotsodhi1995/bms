@@ -11,10 +11,18 @@ import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import PreviewCard from "./PreviewCard";
 import { Link } from "react-router-dom";
+import axios from "@/utils/middleware";
+import { API } from "@/api";
+import { useQuery } from "@tanstack/react-query";
 
 interface ErrorResponse {
   message: string;
 }
+
+const fetchProfile = async () => {
+  const response = await axios.get(API.users.profile);
+  return response.data.data;
+};
 
 export const CheckoutStep = ({
   eventsData,
@@ -33,6 +41,18 @@ export const CheckoutStep = ({
     voucherCode,
     setVoucherCode,
   } = useCart();
+
+  const { data, isSuccess } = useQuery({
+    queryKey: ["profile"],
+    queryFn: fetchProfile,
+  });
+
+  useEffect(() => {
+    if (!data) return;
+    setFirstName(data?.fname);
+    setLastName(data?.lname);
+    setEmail(data?.email);
+  }, [data, isSuccess]);
 
   const [checked, setChecked] = useState(true);
   const accessToken = localStorage.getItem("accessToken");
