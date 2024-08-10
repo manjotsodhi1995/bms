@@ -239,11 +239,10 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
               <input
                 type="password"
                 className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
-                placeholder="Password *"
+                placeholder="Password"
                 autoComplete="current-password"
                 value={password}
                 onChange={handleInputChange(setPassword)}
-                required
               />
             </div>
             <div className="place-self-start">
