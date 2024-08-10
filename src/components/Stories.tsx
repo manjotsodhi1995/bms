@@ -91,7 +91,7 @@ const Stories: React.FC<StoryProps> = ({
             modifier: 1.5,
           }}
           modules={[EffectCoverflow, Navigation, Controller]}
-          className="swiper_container sw2 py-8 px-[10px] sm:px-[0] sm:w-[700px] w-screen p-10"
+          className="swiper_container sw2 sm:w-[600px] lg:w-[900px] min-[2000px]:w-[1400px] w-[108vw]"
         >
           {urls?.map((card: any, index) => (
             <SwiperSlide>
