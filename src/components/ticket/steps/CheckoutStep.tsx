@@ -204,6 +204,7 @@ export const CheckoutStep = ({
                     })
                     .then(() => {
                       setPromoApplied(false);
+                      setVoucherCode("")
                     });
                 }}
               >
