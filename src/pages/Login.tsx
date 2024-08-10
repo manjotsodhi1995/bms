@@ -36,16 +36,20 @@ const Login = observer(() => {
     try {
       setLoading(true);
       if (!response.credential) {
-        throw new Error("Cannot Login");
+        throw new Error("Google login failed. No credentials received.");
       }
       await auth.googleLogin(response.credential);
       navigate("/");
     } catch (error: any) {
-      toast.error("An error occurred during login. Please try again later.");
+      const errorMessage =
+        error.response?.data?.message ||
+        "An error occurred during Google login. Please try again later.";
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
   };
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
@@ -53,10 +57,16 @@ const Login = observer(() => {
       await auth.fetchToken(email, password);
       navigate("/");
     } catch (error: any) {
-      if (error.response && error.response.status === 400) {
+      const statusCode = error.response?.status;
+      const errorMessage = error.response?.data?.message;
+      if (statusCode === 400) {
         toast.error("Invalid email or password. Please try again.");
+      } else if (statusCode === 401) {
+        toast.error("Unauthorized access. Please check your credentials.");
+      } else if (errorMessage) {
+        toast.error(errorMessage);
       } else {
-        toast.error("Please try again later.");
+        toast.error("An error occurred. Please try again later.");
       }
     } finally {
       setLoading(false);

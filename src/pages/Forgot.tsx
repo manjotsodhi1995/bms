@@ -5,10 +5,10 @@ import { useStore } from "../hooks/useStore";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
+import img from "../assets/Auth/login.jpg";
 
 const Forgot = observer(() => {
   const [email, setEmail] = useState("");
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {
@@ -46,10 +46,9 @@ const Forgot = observer(() => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError(null);
 
     if (!validateEmail(email)) {
-      setError("Please enter a valid email address.");
+      toast.error("Please enter a valid email address.");
       return;
     }
 
@@ -58,14 +57,9 @@ const Forgot = observer(() => {
     try {
       await sendLink(email);
       toast.success("Password reset email sent successfully!");
-      setEmail(""); // Clear email input after success
+      setEmail("");
     } catch (error: any) {
-      if (error.response && error.response.status === 400) {
-        setError("Invalid email! Please try again.");
-      } else {
-        setError("An error occurred. Please try again later.");
-        console.error("Forgot password error:", error);
-      }
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -96,7 +90,6 @@ const Forgot = observer(() => {
                     disabled={loading}
                   />
                 </div>
-                {error && <div className="text-red-600">{error}</div>}
               </div>
 
               <div className="w-full text-[1rem] flex flex-col gap-1">
@@ -124,12 +117,8 @@ const Forgot = observer(() => {
             </form>
           </div>
         </div>
-        <div className="md:block hidden w-[100vw]">
-          <img
-            src="https://s3-alpha-sig.figma.com/img/47e4/b820/4111f62d6918498ca268c0d1d066f374?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IMqM74Ji7T8K39bZt6UcuwSwVpEjDyDdXeNnc-nmeMwy3bCWCbZ7LlTnVkrjo-oWDnezdXJx0llWheOOOOQEihsXnQceBq16~EpHUojEoFTYQ0uCBCmJVIRmBnjMul7prExsD7U60qm2EOdsvFIouG-KbR3EpPtq4WmI5mZp86gZs8Xll9DhP2vl7SdZS0f~sLZwjI~zWQb7ZiW-nP1qVdf5P2lwM43OBhpQxdSYtzd19azaJH2RUM8xdg-l7uMaOnEnZ-dYM6JPZ1lXh3av1ChXzwlbmf6RKGYyOm4wFoUCNXsoauqdan70Q5-O2AMKz76ok5uJlI2AJefzAAvihw__"
-            className="h-screen w-full"
-            alt=""
-          />
+        <div className="md:block hidden w-[70vw] md:w-full">
+          <img src={img} className="h-screen w-full object-cover" alt="" />
         </div>
       </div>
     </>

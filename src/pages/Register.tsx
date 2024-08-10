@@ -81,10 +81,15 @@ const Register = observer(() => {
       navigate("/");
     } catch (error: any) {
       if (error instanceof AxiosError) {
-        const err = error.response?.data?.message?.details
-          .map((d: any) => d.message)
-          .join(",");
-        toast.error(err);
+        if (error.response?.status === 409) {
+          toast.error("User already exists. Please login.");
+        } else {
+          const err = error.response?.data?.message?.details
+            .map((d: any) => d.message)
+            .join(",");
+
+          toast.error(err);
+        }
       } else {
         toast.error("Please try again later.");
       }
