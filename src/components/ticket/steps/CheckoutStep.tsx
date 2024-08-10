@@ -219,17 +219,6 @@ export const CheckoutStep = ({
               <input
                 className="size-4 accent-black"
                 type="checkbox"
-                id="keep-updated"
-              />
-              <label htmlFor="keep-updated" className="text-[0.8rem]">
-                Keep me updated on more events and news from event organizer.
-              </label>
-            </p>
-
-            <p className="flex gap-4 items-center text-sm">
-              <input
-                className="size-4 accent-black"
-                type="checkbox"
                 id="send-emails"
               />
               <label htmlFor="send-emails" className="text-[0.8rem]">
@@ -287,10 +276,10 @@ export const CheckoutStep = ({
         <PreviewCard cartData={cartData} eventsData={eventsData}>
           <button
             disabled={
-              !checked || 
+              !checked ||
               email.length === 0 ||
               firstName.length === 0 ||
-              lastName.length === 0 
+              lastName.length === 0
             }
             className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500"
             onClick={onContinueClicked}
