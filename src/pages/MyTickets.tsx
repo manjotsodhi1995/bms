@@ -6,11 +6,8 @@ import "react-calendar/dist/Calendar.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "@/utils/middleware";
 import { API } from "@/api";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import dayjs, { Dayjs } from "dayjs";
 import UpcomingEvents from "../components/UpcomingEvents";
+import { Calender } from "../components/Calender";
 
 const fetchTickets = async () => {
   const response = await axios(API.bookingRoutes.getTicket);
@@ -22,7 +19,10 @@ function MyTickets() {
     queryKey: ["tickets"],
     queryFn: fetchTickets,
   });
-  const [value, onChange] = useState<Dayjs | null>(dayjs());
+
+  const upcomingEvents = data?.bookings.filter((t: any) => !t.isPastEvent);
+  const pastEvents = data?.bookings.filter((t: any) => t.isPastEvent);
+
   const [activeTab, setActiveTab] = useState("Upcoming Events");
 
   return (
@@ -63,7 +63,7 @@ function MyTickets() {
             </div>
             {activeTab === "Upcoming Events" ? (
               <div className="flex w-full flex-col gap-4">
-                {data?.bookings && data?.bookings.length === 0 ? (
+                {upcomingEvents && upcomingEvents.length === 0 ? (
                   <p className="flex flex-col items-center gap-2">
                     <Icons.twoTickets className="size-52" />
                     <span className="text-sm text-neutral-500">
@@ -71,18 +71,26 @@ function MyTickets() {
                     </span>
                   </p>
                 ) : (
-                  data?.bookings.map((ticket: any, idx: number) => (
+                  upcomingEvents?.map((ticket: any, idx: number) => (
                     <TicketCard key={idx} {...ticket} />
                   ))
                 )}
               </div>
             ) : (
-              <p className="flex flex-col items-center gap-2">
-                <Icons.twoTickets className="size-52" />
-                <span className="text-sm text-neutral-500">
-                  You don't seem to have any past bookings
-                </span>
-              </p>
+              <div className="flex w-full flex-col gap-4">
+                {pastEvents && pastEvents.length === 0 ? (
+                  <p className="flex flex-col items-center gap-2">
+                    <Icons.twoTickets className="size-52" />
+                    <span className="text-sm text-neutral-500">
+                      You don't seem to have any recent bookings
+                    </span>
+                  </p>
+                ) : (
+                  pastEvents?.map((ticket: any, idx: number) => (
+                    <TicketCard key={idx} {...ticket} />
+                  ))
+                )}
+              </div>
             )}
           </div>
           <div className="space-y-6">
@@ -90,7 +98,7 @@ function MyTickets() {
               <UpcomingEvents />
             </div>{" "}
             <div className="rounded-3xl h-fit top-[10vh] bg-white">
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
+              {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateCalendar
                   className="md:!w-[25vw]"
                   onChange={(newDate) =>
@@ -98,7 +106,8 @@ function MyTickets() {
                   }
                   value={value}
                 />
-              </LocalizationProvider>
+              </LocalizationProvider> */}
+              <Calender />
             </div>
           </div>
           {/* 
