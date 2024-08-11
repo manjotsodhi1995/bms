@@ -212,14 +212,14 @@ const EventPage = observer(() => {
               <div className="font-medium text-[1.1rem] lg:text-[1.3rem]">
                 {eventData?.venueAddress.name}
               </div>
-              <div className="text-gray-700">
+              <div className="text-gray-700 font-medium">
                 {" "}
                 {eventData?.venueAddress.city},{eventData?.venueAddress.country}
                 ,{eventData?.venueAddress.zipcode}
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 font-medium">
             <div>
               <svg
                 width="18"
@@ -234,7 +234,7 @@ const EventPage = observer(() => {
                 />
               </svg>
             </div>
-            <div className="text-gray-700">{date}</div>
+            <div className="text-gray-900 font-medium">{date}</div>
           </div>
           <div className="flex items-center gap-4">
             <div>
@@ -251,7 +251,7 @@ const EventPage = observer(() => {
                 />
               </svg>
             </div>
-            <div className="text-gray-700">
+            <div className="text-gray-900 font-medium">
               Starts at just{" "}
               {formatCurrency(
                 eventData?.lowestTicketPrice,
@@ -327,7 +327,7 @@ const EventPage = observer(() => {
                 {"  "}
                 {eventData && new Date(eventData.eventStart).getHours()}:
                 {eventData && new Date(eventData.eventStart).getMinutes()}
-                (GMT+)
+                (GMT+1)
               </div>
             </div>
             <div className="flex gap-2 items-center">

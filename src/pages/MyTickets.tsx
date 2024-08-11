@@ -64,7 +64,7 @@ function MyTickets() {
             {activeTab === "Upcoming Events" ? (
               <div className="flex w-full flex-col gap-4">
                 {upcomingEvents && upcomingEvents.length === 0 ? (
-                  <p className="flex flex-col items-center gap-2">
+                  <p className="flex flex-col items-center gap-2 pt-16">
                     <Icons.twoTickets className="size-52" />
                     <span className="text-sm text-neutral-500">
                       You don't seem to have any recent bookings
@@ -95,7 +95,7 @@ function MyTickets() {
           </div>
           <div className="space-y-6">
             <div>
-              <UpcomingEvents />
+              <Calender />
             </div>{" "}
             <div className="rounded-3xl h-fit top-[10vh] bg-white">
               {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -107,7 +107,8 @@ function MyTickets() {
                   value={value}
                 />
               </LocalizationProvider> */}
-              <Calender />
+
+              <UpcomingEvents />
             </div>
           </div>
           {/* 

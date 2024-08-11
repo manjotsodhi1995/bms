@@ -54,10 +54,10 @@ const UpcomingEvents = () => {
 
   useEffect(() => {
     upcomingEventsData();
-  },[]);
+  }, []);
 
   return (
-    <div className="bg-white rounded-3xl space-y-2 pb-4">
+    <div className="bg-white rounded-3xl space-y-2 pb-4 border-2">
       <h1 className="px-6 py-4 font-semibold">Upcoming events</h1>
       {UpcomingEvent.length === 0 ? (
         <p className="text-center">No upcoming events</p>

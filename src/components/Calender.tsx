@@ -106,29 +106,32 @@ export function Calender() {
   }, []);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar
-        loading={isLoading}
-        renderLoading={() => <DayCalendarSkeleton />}
-        slots={{
-          day: ServerDay,
-        }}
-        slotProps={{
-          day: {
-            highlightedDays,
-          } as any,
-        }}
-      />
-      <div className="flex justify-center gap-14 pb-4">
-        <div className="flex items-center gap-2">
-          <div className="h-3 w-3 rounded-full bg-[#677497]"></div>
-          <div className="text-sm">Liked</div>
+    <div className="bg-white border-2  rounded-3xl flex items-center flex-col ">
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DateCalendar
+          sx={{ margin: "0px" }}
+          loading={isLoading}
+          renderLoading={() => <DayCalendarSkeleton />}
+          slots={{
+            day: ServerDay,
+          }}
+          slotProps={{
+            day: {
+              highlightedDays,
+            } as any,
+          }}
+        />
+        <div className="flex justify-center gap-14 pb-4">
+          <div className="flex items-center gap-2">
+            <div className="h-3 w-3 rounded-full bg-[#677497]"></div>
+            <div className="text-sm">Liked</div>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-3 w-3 rounded-full bg-[#700f71]"></div>
+            <div className="text-sm">Purchased</div>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="h-3 w-3 rounded-full bg-[#700f71]"></div>
-          <div className="text-sm">Purchased</div>
-        </div>
-      </div>
-    </LocalizationProvider>
+      </LocalizationProvider>
+    </div>
   );
 }
