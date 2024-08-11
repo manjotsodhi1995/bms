@@ -22,6 +22,10 @@ function MyTickets() {
     queryKey: ["tickets"],
     queryFn: fetchTickets,
   });
+
+  const upcomingEvents = data?.bookings.filter((t: any) => !t.isPastEvent);
+  const pastEvents = data?.bookings.filter((t: any) => t.isPastEvent);
+
   const [value, onChange] = useState<Dayjs | null>(dayjs());
   const [activeTab, setActiveTab] = useState("Upcoming Events");
 
@@ -63,7 +67,7 @@ function MyTickets() {
             </div>
             {activeTab === "Upcoming Events" ? (
               <div className="flex w-full flex-col gap-4">
-                {data?.bookings && data?.bookings.length === 0 ? (
+                {upcomingEvents && upcomingEvents.length === 0 ? (
                   <p className="flex flex-col items-center gap-2">
                     <Icons.twoTickets className="size-52" />
                     <span className="text-sm text-neutral-500">
@@ -71,18 +75,26 @@ function MyTickets() {
                     </span>
                   </p>
                 ) : (
-                  data?.bookings.map((ticket: any, idx: number) => (
+                  upcomingEvents?.map((ticket: any, idx: number) => (
                     <TicketCard key={idx} {...ticket} />
                   ))
                 )}
               </div>
             ) : (
-              <p className="flex flex-col items-center gap-2">
-                <Icons.twoTickets className="size-52" />
-                <span className="text-sm text-neutral-500">
-                  You don't seem to have any past bookings
-                </span>
-              </p>
+              <div className="flex w-full flex-col gap-4">
+                {pastEvents && pastEvents.length === 0 ? (
+                  <p className="flex flex-col items-center gap-2">
+                    <Icons.twoTickets className="size-52" />
+                    <span className="text-sm text-neutral-500">
+                      You don't seem to have any recent bookings
+                    </span>
+                  </p>
+                ) : (
+                  pastEvents?.map((ticket: any, idx: number) => (
+                    <TicketCard key={idx} {...ticket} />
+                  ))
+                )}
+              </div>
             )}
           </div>
           <div className="space-y-6">
