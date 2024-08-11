@@ -138,7 +138,7 @@ const ContactUs = observer(() => {
                   </div>
                   <div className="">
                     <input
-                      type="tel" // Use type="tel" for better phone number input
+                      type="number" // Use type="tel" for better phone number input
                       name="phone"
                       id="phone"
                       value={phone}
@@ -153,7 +153,7 @@ const ContactUs = observer(() => {
                       type="email"
                       name="email"
                       value={email}
-                      placeholder="Email Address"
+                      placeholder="Email Address*"
                       id="email"
                       className="w-full"
                       onChange={handleInputChange}
@@ -163,7 +163,7 @@ const ContactUs = observer(() => {
                     <textarea
                       name="message"
                       value={message}
-                      placeholder="Message"
+                      placeholder="Message*"
                       id="message"
                       className="w-full h-[150px] text-start text-clip"
                       onChange={handleInputChange}
