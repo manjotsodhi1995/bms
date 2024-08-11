@@ -11,9 +11,6 @@ import { Loader2 } from "lucide-react";
 import { useFollowingQuery } from "@/api/query/useFollowingQuery";
 
 const OrganizationProfile = observer(() => {
-  const {
-    root: { event },
-  } = useStore();
   const { orgId } = useParams();
   const navigate = useNavigate();
   const [organizationData, setOrganizationData] = useState<any>(null);
