@@ -6,11 +6,8 @@ import "react-calendar/dist/Calendar.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "@/utils/middleware";
 import { API } from "@/api";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import dayjs, { Dayjs } from "dayjs";
 import UpcomingEvents from "../components/UpcomingEvents";
+import { Calender } from "../components/Calender";
 
 const fetchTickets = async () => {
   const response = await axios(API.bookingRoutes.getTicket);
@@ -26,7 +23,6 @@ function MyTickets() {
   const upcomingEvents = data?.bookings.filter((t: any) => !t.isPastEvent);
   const pastEvents = data?.bookings.filter((t: any) => t.isPastEvent);
 
-  const [value, onChange] = useState<Dayjs | null>(dayjs());
   const [activeTab, setActiveTab] = useState("Upcoming Events");
 
   return (
@@ -102,7 +98,7 @@ function MyTickets() {
               <UpcomingEvents />
             </div>{" "}
             <div className="rounded-3xl h-fit top-[10vh] bg-white">
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
+              {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateCalendar
                   className="md:!w-[25vw]"
                   onChange={(newDate) =>
@@ -110,7 +106,8 @@ function MyTickets() {
                   }
                   value={value}
                 />
-              </LocalizationProvider>
+              </LocalizationProvider> */}
+              <Calender />
             </div>
           </div>
           {/* 
