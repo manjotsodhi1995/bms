@@ -54,7 +54,7 @@ const UpcomingEvents = () => {
 
   useEffect(() => {
     upcomingEventsData();
-  });
+  },[]);
 
   return (
     <div className="bg-white rounded-3xl space-y-2 pb-4">
