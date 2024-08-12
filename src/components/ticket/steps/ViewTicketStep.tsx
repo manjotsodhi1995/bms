@@ -6,7 +6,6 @@ import { usePDF } from "react-to-pdf";
 import { useEffect } from "react";
 import { formatDate } from "@/utils";
 import QRCode from "react-qr-code";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 interface ViewTicketStepProps extends TicketStepsProps {
   onShareClicked: () => void;
