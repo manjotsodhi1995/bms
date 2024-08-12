@@ -42,7 +42,6 @@ function Hero() {
 
   return (
     <div className="lg:px-[5%] xl:px-[7%] px-[8vw] py-[7vh] flex flex-col gap-8">
-      <div className="text-[1.5rem]">{data?.title}</div>
       <div className="p-8">
         <div className="flex flex-col gap-4">
           <div>
