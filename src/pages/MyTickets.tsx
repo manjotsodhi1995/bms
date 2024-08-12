@@ -93,7 +93,7 @@ function MyTickets() {
               </div>
             )}
           </div>
-          <div className="space-y-6 w-[320px]">
+          <div className="space-y-6 w-[330px] place-self-center">
             <div>
               <Calender />
             </div>{" "}
