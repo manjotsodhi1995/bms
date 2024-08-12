@@ -100,7 +100,7 @@ const EventPage = observer(() => {
   return (
     <div className="w-full ">
       {/* <Navbar /> */}
-      <div className="home top-0 -z-10 fixed min-h-screen md:flex hidden">
+      <div className="home -z-10 fixed min-h-screen md:flex hidden">
         <img src={bg} alt="" className="min-h-screen" />
       </div>
       <EventStories
