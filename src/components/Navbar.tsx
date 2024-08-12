@@ -477,7 +477,7 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
         </Tooltip>
       </button>
       {open && (
-        <div className="absolute right-0 mt-4 w-80 bg-white rounded-3xl shadow-lg z-20">
+        <div className="absolute right-0 mt-4 w-80 bg-white rounded-3xl shadow-lg z-20 top-8">
           <div className="py-4 bg-gray-100 text-xl">Notifications</div>
           <div className="border-b px-2 flex gap-x-6 bg-gray-100">
             <button
@@ -549,7 +549,7 @@ function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
       {open && (
         <div
           ref={ref}
-          className="absolute flex flex-col items-center -right-24 mt-2 w-96 bg-white rounded-md shadow-lg z-20"
+          className="absolute flex flex-col items-center -right-24 top-8 mt-2 w-96 bg-white rounded-md shadow-lg z-20"
         >
           {/* Your profile/settings content here */}
 

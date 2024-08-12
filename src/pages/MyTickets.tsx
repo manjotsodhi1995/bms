@@ -8,7 +8,6 @@ import axios from "@/utils/middleware";
 import { API } from "@/api";
 import UpcomingEvents from "../components/UpcomingEvents";
 import { Calender } from "../components/Calender";
-import bg from "../assets/background.png";
 const fetchTickets = async () => {
   const response = await axios(API.bookingRoutes.getTicket);
   return response.data.data;
@@ -28,9 +27,6 @@ function MyTickets() {
   return (
     <>
       {" "}
-      <div className="home top-0 -z-10 fixed min-h-screen md:flex hidden">
-        <img src={bg} alt="" className="min-h-screen" />
-      </div>
       <div className="flex flex-col gap-8 px-4 lg:px-40 mb-10">
         {" "}
         <div className="flex w-full items-center justify-between">
