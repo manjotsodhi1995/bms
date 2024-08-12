@@ -6,7 +6,8 @@ import { usePDF } from "react-to-pdf";
 import { useEffect } from "react";
 import { formatDate } from "@/utils";
 import QRCode from "react-qr-code";
-
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 interface ViewTicketStepProps extends TicketStepsProps {
   onShareClicked: () => void;
   showTitle?: boolean;
@@ -27,6 +28,7 @@ export const ViewTicketStep = ({
       toPDF();
     }
   }, []);
+
   return (
     <Fragment>
       {showTitle && (
@@ -41,7 +43,7 @@ export const ViewTicketStep = ({
         <div className="flex flex-col p-10 rounded-2xl items-center justify-center mt-10 w-4/5 border border-gray-200 ">
           <div
             ref={targetRef}
-            className="flex flex-col w-full bg-no-repeat bg-contain bg-center gap-20 py-20"
+            className="flex flex-col w-full bg-no-repeat bg-contain bg-center gap-20 py-20 "
             style={{
               backgroundImage: `url(${ticket})`,
             }}
@@ -52,7 +54,7 @@ export const ViewTicketStep = ({
               value={eventsData?.qrCode || "NOT IMPLEMENTED"}
             />
 
-            <div className="place-self-center -translate-y-8 flex flex-col gap-4">
+            <div className="place-self-center -translate-y-8 flex flex-col gap-4 max-w-[277px]">
               <p className="flex flex-col">
                 <span className="text-sm text-gray-300">Event Name</span>
                 <span className="font-medium">
@@ -79,12 +81,14 @@ export const ViewTicketStep = ({
             </div>
           </div>
           <div className="w-3/5 flex gap-2">
-            <button
-              className="mt-4 bg-black w-full text-white font-medium py-2 rounded-md"
-              onClick={() => toPDF()}
+            <Link
+              to={eventsData?.ticketPdf}
+              className="w-full flex items-center justify-center"
             >
-              Download
-            </button>
+              <div className="mt-4 bg-black w-full text-center text-white font-medium py-2 rounded-md">
+                Download
+              </div>
+            </Link>
             <button
               className="mt-4 bg-black w-full text-white font-medium py-2 rounded-md"
               onClick={onShareClicked}
