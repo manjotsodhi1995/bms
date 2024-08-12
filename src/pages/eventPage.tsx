@@ -24,7 +24,7 @@ import toast from "react-hot-toast";
 import EventStories from "@/components/EventStories";
 import type SwiperCore from "swiper";
 import { formatCurrency } from "@/utils";
-
+import bg from "../assets/background.png";
 const EventPage = observer(() => {
   const [isLoading, setIsLoading] = useState(false);
   const fetchEvent = async (slug?: string) => {
@@ -98,8 +98,11 @@ const EventPage = observer(() => {
   const eventId = eventData?.eventId;
   const { data: isLiked, mutation: likesMutation } = useLikesQuery(eventId);
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {/* <Navbar /> */}
+      <div className="home top-0 -z-10 fixed min-h-screen md:flex hidden">
+        <img src={bg} alt="" className="min-h-screen" />
+      </div>
       <EventStories
         onOpen={open}
         setOpen={setOpen}
