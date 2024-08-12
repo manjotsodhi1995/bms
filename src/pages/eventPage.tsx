@@ -234,7 +234,7 @@ const EventPage = observer(() => {
                 />
               </svg>
             </div>
-            <div className="text-gray-900 font-medium">{date}</div>
+            <div className="text-gray-900 font-medium text-sm">{date}</div>
           </div>
           <div className="flex items-center gap-4">
             <div>
@@ -251,7 +251,7 @@ const EventPage = observer(() => {
                 />
               </svg>
             </div>
-            <div className="text-gray-900 font-medium">
+            <div className="text-gray-900 font-medium text-sm">
               Starts at just{" "}
               {formatCurrency(
                 eventData?.lowestTicketPrice,
