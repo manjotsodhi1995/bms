@@ -37,7 +37,7 @@ const Navbar = observer(() => {
     if (search.trim() !== "") {
       navigate(`/search?city=Dublin&title=${search}`);
     }
-  }, [search, navigate]);
+  }, [search]);
 
   // (event: any) => {
   //   if (event.key === "Enter") {
