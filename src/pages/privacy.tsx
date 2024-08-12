@@ -1,23 +1,16 @@
+import Footer from "@/components/Footer";
+
 function Privacy() {
   return (
     <div className="min-h-screen">
-      <div className="fixed">
-        {" "}
-        {/* <Navbar /> */}
-      </div>
+      <div className="fixed"> {/* <Navbar /> */}</div>
       <div className="lg:px-[5%] xl:px-[7%] px-[8vw] md:flex pt-[15vh] justify-between w-full h-[100%] pb-[10vh]">
         <div className="flex flex-col gap-8 md:w-[32%] mt-28 font-medium">
           <li>
-            <a>
-              {" "}
-              WHAT INFORMATION DO WE COLLECT?
-            </a>
+            <a> WHAT INFORMATION DO WE COLLECT?</a>
           </li>
           <li>
-            <a>
-              {" "}
-              HOW DO WE PROCESS YOUR INFORMATION?
-            </a>
+            <a> HOW DO WE PROCESS YOUR INFORMATION?</a>
           </li>
           <li>
             <a>
@@ -27,64 +20,34 @@ function Privacy() {
             </a>
           </li>
           <li>
-            <a>
-              {" "}
-              WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
-            </a>
+            <a> WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a>
           </li>
           <li>
-            <a>
-              {" "}
-              DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?
-            </a>
+            <a> DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</a>
           </li>
           <li>
-            <a>
-              {" "}
-              HOW DO WE HANDLE YOUR SOCIAL LOGINS?{" "}
-            </a>
+            <a> HOW DO WE HANDLE YOUR SOCIAL LOGINS? </a>
           </li>
           <li>
-            <a>
-              {" "}
-              HOW LONG DO WE KEEP YOUR INFORMATION?
-            </a>
+            <a> HOW LONG DO WE KEEP YOUR INFORMATION?</a>
           </li>
           <li>
-            <a >
-              {" "}
-              HOW DO WE KEEP YOUR INFORMATION SAFE?
-            </a>
+            <a> HOW DO WE KEEP YOUR INFORMATION SAFE?</a>
           </li>
           <li>
-            <a>
-              {" "}
-              DO WE COLLECT INFORMATION FROM MINORS?
-            </a>
+            <a> DO WE COLLECT INFORMATION FROM MINORS?</a>
           </li>
           <li>
-            <a >
-              {" "}
-              WHAT ARE YOUR PRIVACY RIGHTS?
-            </a>
+            <a> WHAT ARE YOUR PRIVACY RIGHTS?</a>
           </li>
           <li>
-            <a>
-              {" "}
-              CONTROLS FOR DO-NOT-TRACK FEATURES
-            </a>
+            <a> CONTROLS FOR DO-NOT-TRACK FEATURES</a>
           </li>
           <li>
-            <a>
-              {" "}
-              DO WE MAKE UPDATES TO THIS NOTICE?
-            </a>
+            <a> DO WE MAKE UPDATES TO THIS NOTICE?</a>
           </li>
           <li>
-            <a>
-              {" "}
-              HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
-            </a>
+            <a> HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>
           </li>
           <li>
             <a>
@@ -103,13 +66,11 @@ function Privacy() {
                 Kafsco) ("we," "us," or "our"), describes how and why we might
                 collect, store, use, and/or share ("process") your information
                 when you use our services ("Services"), such as when you: Visit
-                our website at{" "}
-                <a>http://Www.kafsco.com</a>, or
-                any website of ours that links to this privacy notice Download
-                and use our mobile application (Kafsco), or any other
-                application of ours that links to this privacy notice Engage
-                with us in other related ways, including any sales, marketing,
-                or events <br />
+                our website at <a>http://Www.kafsco.com</a>, or any website of
+                ours that links to this privacy notice Download and use our
+                mobile application (Kafsco), or any other application of ours
+                that links to this privacy notice Engage with us in other
+                related ways, including any sales, marketing, or events <br />
                 <br /> Questions or concerns? Reading this privacy notice will
                 help you understand your privacy rights and choices. If you do
                 not agree with our policies and practices, please do not use our
@@ -143,10 +104,7 @@ function Privacy() {
                 personal information depending on how you interact with us and
                 the Services, the choices you make, and the products and
                 features you use. Learn more about{" "}
-                <a>
-                  personal information you disclose to us
-                </a>
-                .
+                <a>personal information you disclose to us</a>.
               </p>
               <p>
                 <strong>
@@ -154,11 +112,7 @@ function Privacy() {
                 </strong>{" "}
                 We may process sensitive personal information when necessary
                 with your consent or as otherwise permitted by applicable law.
-                Learn more about{" "}
-                <a>
-                  sensitive information we process
-                </a>
-                .
+                Learn more about <a>sensitive information we process</a>.
               </p>
               <p>
                 <strong>
@@ -173,11 +127,7 @@ function Privacy() {
                 prevention, and to comply with law. We may also process your
                 information for other purposes with your consent. We process
                 your information only when we have a valid legal reason to do
-                so. Learn more about{" "}
-                <a>
-                  how we process your information
-                </a>
-                .
+                so. Learn more about <a>how we process your information</a>.
               </p>
               <p>
                 <strong>
@@ -186,10 +136,7 @@ function Privacy() {
                 </strong>{" "}
                 We may share information in specific situations and with
                 specific categories of third parties. Learn more about{" "}
-                <a>
-                  when and with whom we share your personal information
-                </a>
-                .
+                <a>when and with whom we share your personal information</a>.
               </p>
               <p>
                 <strong>How do we keep your information safe?</strong> We have
@@ -200,38 +147,24 @@ function Privacy() {
                 guarantee that hackers, cybercriminals, or other unauthorized
                 third parties will not be able to defeat our security and
                 improperly collect, access, steal, or modify your information.
-                Learn more about{" "}
-                <a>
-                  how we keep your information safe
-                </a>
-                .
+                Learn more about <a>how we keep your information safe</a>.
               </p>
               <p>
                 <strong>What are your rights?</strong> Depending on where you
                 are located geographically, the applicable privacy law may mean
                 you have certain rights regarding your personal information.
-                Learn more about{" "}
-                <a>
-                  your privacy rights
-                </a>
-                .
+                Learn more about <a>your privacy rights</a>.
               </p>
               <p>
                 <strong>How do you exercise your rights?</strong> The easiest
                 way to exercise your rights is by submitting a{" "}
-                <a>
-                  data subject access request
-                </a>
-                , or by contacting us. We will consider and act upon any request
-                in accordance with applicable data protection laws.
+                <a>data subject access request</a>, or by contacting us. We will
+                consider and act upon any request in accordance with applicable
+                data protection laws.
               </p>
               <p>
                 Want to learn more about what we do with any information we
-                collect?{" "}
-                <a>
-                  Review the privacy notice in full
-                </a>
-                .
+                collect? <a>Review the privacy notice in full</a>.
               </p>
               <p>
                 <br />
@@ -314,10 +247,7 @@ function Privacy() {
                 media account. If you choose to register in this way, we will
                 collect certain profile information about you from the social
                 media provider, as described in the section called "
-                <a>
-                  HOW DO WE HANDLE YOUR SOCIAL LOGINS?
-                </a>
-                " below.
+                <a>HOW DO WE HANDLE YOUR SOCIAL LOGINS?</a>" below.
               </p>
               <p>
                 <strong>Application Data.</strong> If you use our
@@ -525,10 +455,7 @@ function Privacy() {
                   marketing purposes, if this is in accordance with your
                   marketing preferences. You can opt out of our marketing emails
                   at any time. For more information, see "
-                  <a>
-                    WHAT ARE YOUR PRIVACY RIGHTS?
-                  </a>
-                  " below.
+                  <a>WHAT ARE YOUR PRIVACY RIGHTS?</a>" below.
                 </li>
               </ul>
               <ul>
@@ -588,10 +515,7 @@ function Privacy() {
                   you have given us permission (i.e., consent) to use your
                   personal information for a specific purpose. You can withdraw
                   your consent at any time. Learn more about{" "}
-                  <a>
-                    withdrawing your consent
-                  </a>
-                  .
+                  <a>withdrawing your consent</a>.
                 </li>
               </ul>
               <ul>
@@ -765,26 +689,14 @@ function Privacy() {
                 Advertising Features that we may use include: Google Analytics
                 Demographics and Interests Reporting. To opt out of being
                 tracked by Google Analytics across the Services, visit
-                <a>
-                  https://tools.google.com/dlpage/gaoptout
-                </a>
-                . You can opt out of Google Analytics Advertising Features
-                through
-                <a>Ads Settings</a> and
-                Ad Settings for mobile apps. Other opt out means include
-                <a>
-                  http://optout.networkadvertising.org/
-                </a>{" "}
-                and
-                <a >
-                  http://www.networkadvertising.org/mobile-choice
-                </a>
-                . For more information on the privacy practices of Google,
-                please visit the
-                <a >
-                  Google Privacy &amp; Terms page
-                </a>
-                .
+                <a>https://tools.google.com/dlpage/gaoptout</a>. You can opt out
+                of Google Analytics Advertising Features through
+                <a>Ads Settings</a> and Ad Settings for mobile apps. Other opt
+                out means include
+                <a>http://optout.networkadvertising.org/</a> and
+                <a>http://www.networkadvertising.org/mobile-choice</a>. For more
+                information on the privacy practices of Google, please visit the
+                <a>Google Privacy &amp; Terms page</a>.
               </p>
               <ol start={6}>
                 <li>
@@ -944,10 +856,7 @@ function Privacy() {
                 processing of your personal information. You can make such a
                 request by contacting us by using the contact details provided
                 in the section "
-                <a href="">
-                  HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
-                </a>
-                " below.
+                <a href="">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>" below.
               </p>
               <p>
                 We will consider and act upon any request in accordance with
@@ -957,14 +866,8 @@ function Privacy() {
                 If you are located in the EEA or UK and you believe we are
                 unlawfully processing your personal information, you also have
                 the right to complain to your
-                <a href="">
-                  Member State data protection authority
-                </a>{" "}
-                or{" "}
-                <a href="">
-                  UK data protection authority
-                </a>
-                .
+                <a href="">Member State data protection authority</a> or{" "}
+                <a href="">UK data protection authority</a>.
               </p>
               <p>
                 If you are located in Switzerland, you may contact the
@@ -979,10 +882,8 @@ function Privacy() {
                 right to withdraw your consent at any time. You can withdraw
                 your consent at any time by contacting us by using the contact
                 details provided in the section "
-                <a href="">
-                  HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
-                </a>
-                " below or updating your preferences.
+                <a href="">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>" below
+                or updating your preferences.
               </p>
               <p>
                 However, please note that this will not affect the lawfulness of
@@ -999,12 +900,10 @@ function Privacy() {
                 in the emails that we send, replying "STOP" or "UNSUBSCRIBE" to
                 the SMS messages that we send, or by contacting us using the
                 details provided in the section "
-                <a href="">
-                  HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
-                </a>
-                " below. You will then be removed from the marketing lists.
-                However, we may still communicate with you &mdash; for example,
-                to send you service-related messages that are necessary for the
+                <a href="">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>" below.
+                You will then be removed from the marketing lists. However, we
+                may still communicate with you &mdash; for example, to send you
+                service-related messages that are necessary for the
                 administration and use of your account, to respond to service
                 requests, or for other non-marketing purposes.
               </p>
@@ -1111,16 +1010,13 @@ function Privacy() {
                 your personal information. These rights may be limited in some
                 circumstances by applicable law. To request to review, update,
                 or delete your personal information, please fill out and submit
-                a{" "}
-                <a href="">
-                  data subject access request
-                </a>
-                .
+                a <a href="">data subject access request</a>.
               </p>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

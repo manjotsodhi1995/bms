@@ -1,11 +1,9 @@
+import Footer from "@/components/Footer";
 
 function TermsAndConditions() {
   return (
     <div className="min-h-screen">
-      <div className="fixed">
-        {" "}
-        {/* <Navbar /> */}
-      </div>
+      <div className="fixed"> {/* <Navbar /> */}</div>
       <div className="lg:px-[5%] xl:px-[7%] px-[8vw] md:flex pt-[18vh] justify-between w-full h-[100%] pb-[10vh]">
         <div className="flex flex-col justify-center h-[85vh] gap-8 md:w-[32%] font-medium">
           <div>1. Introduction</div>
@@ -34,7 +32,9 @@ function TermsAndConditions() {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <div className="font-medium text-[1.4rem]">2. Your use of the platform</div>
+              <div className="font-medium text-[1.4rem]">
+                2. Your use of the platform
+              </div>
               <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -46,7 +46,9 @@ function TermsAndConditions() {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <div className="font-medium text-[1.4rem]">3. Our relationship with you</div>
+              <div className="font-medium text-[1.4rem]">
+                3. Our relationship with you
+              </div>
               <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -58,7 +60,9 @@ function TermsAndConditions() {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <div className="font-medium text-[1.4rem]">4. Our Obligations</div>
+              <div className="font-medium text-[1.4rem]">
+                4. Our Obligations
+              </div>
               <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -70,7 +74,9 @@ function TermsAndConditions() {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <div className="font-medium text-[1.4rem]">5. Your Obligations</div>
+              <div className="font-medium text-[1.4rem]">
+                5. Your Obligations
+              </div>
               <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -82,7 +88,9 @@ function TermsAndConditions() {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <div className="font-medium text-[1.4rem]">6. Ticket and Sales</div>
+              <div className="font-medium text-[1.4rem]">
+                6. Ticket and Sales
+              </div>
               <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -96,6 +104,7 @@ function TermsAndConditions() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

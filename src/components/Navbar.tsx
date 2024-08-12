@@ -470,7 +470,7 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
     activeTab === "Unread" ? unreadNotifications : readNotifications;
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center">
       <button onClick={toggleDropdown}>
         <Tooltip title="NOTIFICATION" arrow>
           <img src={bell} alt="Notifications" />
@@ -540,7 +540,7 @@ function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
   const toggleDropdown = () => onOpenChange(!open);
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center">
       <button onClick={toggleDropdown}>
         <Tooltip title="PROFILE" arrow>
           <Avatar src={data?.displayPic} sx={{ height: 32, width: 32 }} />
