@@ -37,7 +37,7 @@ function MyTickets() {
             <span className="text-neutral-800">Past Bookings</span>
           </p> */}
         </div>
-        <div className="w-full flex flex-col md:flex-row justify-between gap-10">
+        <div className="w-full flex flex-col md:flex-row justify-between gap-24">
           <div className="flex w-full flex-col items-center gap-4 hover:cursor-pointer">
             <div className="flex bg-white py-1 w-full rounded-full border px-1">
               <div
@@ -93,7 +93,7 @@ function MyTickets() {
               </div>
             )}
           </div>
-          <div className="space-y-6">
+          <div className="space-y-6 w-[320px]">
             <div>
               <Calender />
             </div>{" "}
