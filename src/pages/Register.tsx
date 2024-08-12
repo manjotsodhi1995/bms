@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 const Register = observer(() => {
   const [firstName, setFirstName] = useState(""); // State for first name input
   const [lastName, setLastName] = useState(""); // State for last name input
-  const [gender, setGender] = useState("male"); // State for gender
+  const [gender, setGender] = useState(""); // State for gender
   const [phone, setPhone] = useState("");
   const [actualPhone, setActualPhone] = useState<string | null>("");
   const [country, setCountry] = useState<string | null>("");
@@ -185,7 +185,7 @@ const Register = observer(() => {
                   placeholder="Phone*"
                   defaultCountry="US"
                   variant="outlined"
-                  className="w-full"
+                  className="w-full bg-white"
                 />
               </div>
 
