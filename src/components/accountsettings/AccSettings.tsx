@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Dayjs } from "dayjs";
+import FormDialog from "./ChangePassword";
 
 interface UpdateProfile {
   fname: string;
@@ -16,7 +17,6 @@ interface UpdateProfile {
   countryCode: string | null;
   phone: string | null;
   gender: string;
-  password: string;
   dob?: string;
 }
 
@@ -56,7 +56,6 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
       setLname("");
       setMobile("");
       setDob(null);
-      setPassword("");
       setGender("");
       return await queryClient.invalidateQueries({
         queryKey: ["profile"],
@@ -69,7 +68,6 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
   const [email, setEmail] = useState<string>("");
   const [dob, setDob] = useState<Dayjs | null>(null);
   const [mobile, setMobile] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
   const [gender, setGender] = useState<string>("");
   const [actualPhone, setActualPhone] = useState<string | null>("");
   const [country, setCountry] = useState<string | null>("");
@@ -98,7 +96,6 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
         email,
         countryCode: country,
         phone: actualPhone,
-        password,
         gender,
         dob: dob ? dob.format("DD-MM-YYYY") : undefined,
       },
@@ -236,14 +233,14 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
               </div>
             </LocalizationProvider>
             <div className="mt-4 md:mt-5">
-              <input
+              {/* <input
                 type="password"
                 className="!py-5 w-[80vw] md:max-w-[500px] sm:w-[50vw] mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black"
                 placeholder="Password"
                 autoComplete="current-password"
                 value={password}
                 onChange={handleInputChange(setPassword)}
-              />
+              /> */}
             </div>
             <div className="place-self-start">
               <label className="flex space-x-2 text-md mb-[5px]">
@@ -269,7 +266,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
                 <span>Female</span>
               </label>
             </div>
-            <div className="flex w-full justify-center">
+            <div className="flex place-self-center gap-x-4">
               {!updatePending && (
                 <button
                   type="submit"
@@ -285,6 +282,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
                   {updatePending && <Loader2 className="size-4 animate-spin" />}
                 </div>
               )}
+              <FormDialog email={email} />
             </div>
           </form>
         </div>
