@@ -66,7 +66,7 @@ const Navbar = observer(() => {
     showNavbar && (
       <>
         <div className="h-[10vh]" />
-        <div className="fixed top-0 bg-white/60 backdrop-blur-lg lg:px-[5%] xl:px-[7%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left 2xl:text-[1.5rem] w-screen z-20 gap-8">
+        <div className="fixed top-0 bg-white/20 backdrop-blur-lg lg:px-[5%] xl:px-[7%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left 2xl:text-[1.5rem] w-screen z-20 gap-8">
           <nav className="flex gap-8">
             <div
               className="HAMBURGER-ICON space-y-2 flex flex-col justify-center cursor-pointer"

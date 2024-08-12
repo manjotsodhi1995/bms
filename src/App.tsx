@@ -6,8 +6,9 @@ import { Toaster } from "react-hot-toast";
 import { useStore } from "./hooks/useStore";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Navbar from "./components/Navbar";
-import bg from "./assets/background.png";
+import bg from "./assets/bg3.png";
 import { Loader2 } from "lucide-react";
+import mbg from "./assets/mobileBg.png";
 const DashBoard = lazy(() => import("./pages/dashboard/Dashboard"));
 const OrganizationProfile = lazy(
   () => import("./pages/OrganizationDescription")
@@ -86,8 +87,11 @@ const App = observer(() => {
       <Toaster />
       {/* <div className="relative overflow-hidden"> */}
       <BrowserRouter>
-        <div className="home -z-10 fixed min-h-screen">
+        <div className="home -z-10 fixed min-h-screen md:flex hidden">
           <img src={bg} alt="" className="min-h-screen" />
+        </div>{" "}
+        <div className="home -z-10 fixed min-h-screen md:hidden">
+          <img src={mbg} alt="" className="min-h-screen" />
         </div>
         {<Navbar />}
         <Suspense
