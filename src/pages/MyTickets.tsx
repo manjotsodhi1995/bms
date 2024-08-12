@@ -84,7 +84,7 @@ function MyTickets() {
             ) : (
               <div className="flex w-full flex-col gap-4">
                 {pastEvents && pastEvents.length === 0 ? (
-                  <p className="flex flex-col items-center gap-2">
+                  <p className="flex flex-col items-center gap-2 pt-16">
                     <Icons.twoTickets className="size-52" />
                     <span className="text-sm text-neutral-500">
                       You don't seem to have any recent bookings
