@@ -1,31 +1,31 @@
 import { useSearchParams } from "react-router-dom";
 import EventCard from "../components/EventCard";
-import { useStore } from "@/hooks/useStore";
+// import { useStore } from "@/hooks/useStore";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+// import { data } from "@/utils/stories";
+import axios from "@/utils/middleware";
 function SearchPage() {
   const [searchParams] = useSearchParams();
+  const title = searchParams.get("title");
 
   const fetchEvents = async () => {
-    await event.fetchEvents();
-    console.log(event);
+    const response = await axios.get(
+      `https://kafsbackend-106f.onrender.com/api/v1/events/fetch?city=Dublin&title=${title}`
+    );
+    return response.data.data.upcomingEvents;
   };
 
-  const {
-    root: { event },
-  } = useStore();
-
-  const { data: _ } = useQuery({
-    queryKey: ["homepage", "fetchAllEvents"],
+  const { data: events } = useQuery({
+    queryKey: ["searchEvents", title],
     queryFn: fetchEvents,
+    enabled: !!title,
   });
-
-  const searchKeywords = searchParams.get("query");
 
   return (
     <div className="lg:px-[5%] xl:px-[7%] px-[8vw] min-h-[80vh]">
       <div className="font-medium flex gap-2 items-center">
-        See all results for {`"${searchKeywords}"`}
+        See all results for {`"${title}"`}
         <svg
           width="18"
           height="16"
@@ -65,9 +65,10 @@ function SearchPage() {
           </div>
         </div>
         <div className="justify-center w-full grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4">
-          {event.upcomingEvents.map((card, index) => (
-            <EventCard key={index} {...card} />
-          ))}
+          {events &&
+            events.map((event: any, index: any) => (
+              <EventCard key={index} {...event} />
+            ))}
         </div>
       </div>
     </div>

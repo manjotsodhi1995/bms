@@ -1,27 +1,43 @@
+import { EventType } from "@/stores/event";
 import { useState } from "react";
 import { Dialog, DialogClose, DialogContent } from "../ui/dialog";
 import { ViewTicketStep } from "./steps/ViewTicketStep";
 import { formatDate } from "@/utils";
 import { Download, Eye, X } from "lucide-react";
-import { EventType } from "@/stores/event";
 import Tooltip from "@mui/material/Tooltip";
+import { Link } from "react-router-dom";
 
 interface TicketCardProps {
   [key: string]: any;
 }
+
 function TicketCard(props: TicketCardProps) {
   const [open, setOpen] = useState(false);
-  const [download, setDownload] = useState(false);
+
+  const handleShare = () => {
+    if (props.shareUrl) {
+      if (navigator.share) {
+        navigator
+          .share({
+            title: "Check out this ticket!",
+            url: props.shareUrl,
+          })
+          .catch(console.error);
+      } else {
+        window.open(props.shareUrl, "_blank");
+      }
+    }
+  };
+
   return (
     <Dialog
       open={open}
       onOpenChange={(v) => {
         setOpen(v);
-        setDownload(false);
       }}
     >
       <div className="relative w-full bg-white flex p-4 shadow-xl rounded-3xl gap-4 border">
-        <div className="absolute flex  items-center gap-2 right-10">
+        <div className="absolute flex items-center gap-2 right-10">
           <Tooltip title="VIEW" placement="top" arrow>
             <Eye
               onClick={() => setOpen(true)}
@@ -29,13 +45,9 @@ function TicketCard(props: TicketCardProps) {
             />
           </Tooltip>
           <Tooltip title="DOWNLOAD" placement="top" arrow>
-            <Download
-              className="size-8 text-gray-400 hover:text-black"
-              onClick={() => {
-                setDownload(true);
-                setOpen(true);
-              }}
-            />
+            <Link to={props.ticketPdf} target="blank">
+              <Download className="size-8 text-gray-400 hover:text-black" />
+            </Link>
           </Tooltip>
         </div>
         <div className="w-[10rem] h-[10rem] rounded-2xl">
@@ -50,9 +62,6 @@ function TicketCard(props: TicketCardProps) {
           )}
         </div>
         <div className="">
-          {/* <div className="p-2 rounded-full border-2 border-black w-[9rem] text-center"> */}
-          {/*   {genre} */}
-          {/* </div> */}
           <p className="text-[#B8B8B8] mt-4">
             {formatDate(new Date(props?.eventDate!!))}
           </p>
@@ -71,16 +80,16 @@ function TicketCard(props: TicketCardProps) {
         </div>
       </div>
       <DialogContent className="overflow-y-auto p-1 max-w-screen-lg max-h-[calc(100dvh)]">
-        <div className=" p-12 backdrop-blur-md">
+        <div className="p-12 backdrop-blur-md">
           <DialogClose className="absolute right-4 top-4 opacity-70 rounded-sm ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
             <X className="size-6" />
             <span className="sr-only">Close</span>
           </DialogClose>
           <ViewTicketStep
             eventsData={props as EventType}
-            onShareClicked={() => {}}
+            onShareClicked={handleShare}
             showTitle={false}
-            instantDownload={download}
+            instantDownload={false}
           />
         </div>
       </DialogContent>
