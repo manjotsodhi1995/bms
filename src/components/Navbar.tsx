@@ -396,27 +396,78 @@ interface NavbarDropdownProps {
   ref?: Ref<HTMLDivElement>;
 }
 
+type Notification = {
+  _id: string;
+  title: string;
+  description: string;
+  icon: string;
+  isRead: boolean;
+};
+
 function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
   const [activeTab, setActiveTab] = useState("Unread");
+  const [unreadNotifications, setUnreadNotifications] = useState<
+    Notification[]
+  >([]);
+  const [readNotifications, setReadNotifications] = useState<Notification[]>(
+    []
+  );
 
-  const toggleDropdown = () => onOpenChange(!open);
-  const notifications = [
-    {
-      img: "paymentDone.png",
-      title: "Payment Successful",
-      message: "You have successfully made a payment at Bpraak Concert",
-    },
-    {
-      img: "orderCancel.png",
-      title: "Order Canceled",
-      message: "You have successfully made a payment at Bpraak Concert", // You'll likely want to change this message
-    },
-    {
-      img: "newFeat.png",
-      title: "New Features available",
-      message: "You have successfully made a payment at Bpraak Concert", // You'll likely want to change this message
-    },
-  ];
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get(
+        "https://kafsbackend-106f.onrender.com/api/v1/notifications/fetch"
+      );
+      const fetchedNotifications = response.data.data;
+
+      const unread = fetchedNotifications.filter(
+        (notification: any) => !notification.isRead
+      );
+      const read = fetchedNotifications.filter(
+        (notification: any) => notification.isRead
+      );
+
+      setUnreadNotifications(unread);
+      setReadNotifications(read);
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+    }
+  };
+
+  const markNotificationsAsRead = async () => {
+    if (unreadNotifications.length > 0) {
+      try {
+        const notificationIds = unreadNotifications.map(
+          (notification) => notification._id
+        );
+        await axios.patch(
+          "https://kafsbackend-106f.onrender.com/api/v1/notifications/read",
+          {
+            notificationIds,
+          }
+        );
+        setUnreadNotifications([]);
+      } catch (error) {
+        console.error("Error marking notifications as read:", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    markNotificationsAsRead();
+  }, [onOpenChange]);
+
+  const toggleDropdown = () => {
+    if (open) {
+      markNotificationsAsRead();
+    } else {
+      fetchNotifications();
+    }
+    onOpenChange(!open);
+  };
+
+  const filteredNotifications =
+    activeTab === "Unread" ? unreadNotifications : readNotifications;
 
   return (
     <div className="relative">
@@ -448,18 +499,18 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
           </div>
 
           <div className="py-2">
-            {notifications.map((notification, index) => (
+            {filteredNotifications.map((notification, index) => (
               <div key={index} className="flex items-start space-x-2 mb-5">
                 <div className="text-left flex">
                   <div>
-                    <img src={notification.img} alt="" />
+                    <img src={notification.icon} alt="" />
                   </div>
                   <div>
                     <h6 className="font-semibold text-lg">
                       {notification.title}
                     </h6>
                     <p className="text-xs text-gray-600 mr-4">
-                      {notification.message}
+                      {notification.description}
                     </p>
                   </div>
                 </div>
