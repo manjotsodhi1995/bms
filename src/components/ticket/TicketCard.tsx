@@ -36,7 +36,10 @@ function TicketCard(props: TicketCardProps) {
         setOpen(v);
       }}
     >
-      <div className="relative w-full bg-white flex p-4 shadow-xl rounded-3xl gap-4 border">
+      <div
+        className="relative w-full bg-white flex p-4 shadow-xl rounded-3xl gap-4 border"
+        onClick={() => setOpen(true)}
+      >
         <div className="absolute flex items-center gap-2 right-10">
           <Tooltip title="VIEW" placement="top" arrow>
             <Eye
