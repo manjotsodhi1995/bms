@@ -482,7 +482,9 @@ function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
   return (
     <div className="relative">
       <button onClick={toggleDropdown}>
-        <Avatar src={data?.displayPic} sx={{ height: 32, width: 32 }} />
+        <Tooltip title="PROFILE" arrow>
+          <Avatar src={data?.displayPic} sx={{ height: 32, width: 32 }} />
+        </Tooltip>
       </button>
       {open && (
         <div

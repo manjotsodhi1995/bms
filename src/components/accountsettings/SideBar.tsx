@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Avatar } from "@mui/material";
+import { cn } from "@/utils";
+import { useStore } from "@/hooks/useStore";
+import axios from "@/utils/middleware";
+import { API } from "@/api";
+import { X, Pencil, Loader2, Plus } from "lucide-react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 interface SideBarProps {
   onStateChange: (newState: string) => void;
@@ -9,17 +17,8 @@ interface SideBarProps {
 
 interface UpdateProfile {
   displayPic: string;
+  email: string;
 }
-
-import { Avatar } from "@mui/material";
-import { cn } from "@/utils";
-import { useStore } from "@/hooks/useStore";
-import axios from "@/utils/middleware";
-import { API } from "@/api";
-import { X, Pencil, Loader2 } from "lucide-react";
-// import toast from "react-hot-toast";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-// import toast from "react-hot-toast";
 
 const fetchProfile = async () => {
   const response = await axios.get(API.users.profile);
@@ -50,6 +49,7 @@ const SideBar: React.FC<SideBarProps> = ({
   const {
     root: { auth },
   } = useStore();
+  const [email, setEmail] = useState<string>("");
   const { data, isSuccess } = useQuery({
     queryKey: ["profile"],
     queryFn: fetchProfile,
@@ -57,7 +57,7 @@ const SideBar: React.FC<SideBarProps> = ({
 
   useEffect(() => {
     if (!data) return;
-
+    setEmail(data.email);
     setProfilePic(data?.displayPic);
   }, [data, isSuccess]);
 
@@ -70,19 +70,13 @@ const SideBar: React.FC<SideBarProps> = ({
     onSuccess: (data: any) => {
       setProfilePic(data.contentUrl);
       formSubmitHandler(data.contentUrl);
-      // updateProfile(profilePic)
     },
   });
 
   const { mutate } = useMutation({
     mutationFn: updateProfile,
     onSettled: async () => {
-      // setFname("");
-      // setLname("");
-      // setMobile("");
-      // setDob("");
-      // setPassword("");
-      // setGender("");
+      setEmail("");
       setProfilePic("");
       return await queryClient.invalidateQueries({
         queryKey: ["profile"],
@@ -92,16 +86,30 @@ const SideBar: React.FC<SideBarProps> = ({
 
   const formSubmitHandler = (pic: any) => {
     mutate({
+      email,
       displayPic: pic,
     });
+    toast.success("Profile Changed successfully");
   };
 
   const handleRemoveProfile = () => {
-    mutate({
-      displayPic: "",
-    });
-    setProfilePic("")
-  }
+    mutate(
+      {
+        email,
+        displayPic: "",
+      },
+      {
+        onSuccess: () => {
+          toast.success("Profile removed successfully");
+          setProfilePic("");
+          queryClient.invalidateQueries({ queryKey: ["profile"] });
+        },
+        onError: () => {
+          toast.error("Failed to remove profile picture.");
+        },
+      }
+    );
+  };
 
   return (
     <>
@@ -142,7 +150,13 @@ const SideBar: React.FC<SideBarProps> = ({
             {isPending && (
               <Loader2 className="absolute left-8 size-10 animate-spin" />
             )}
-            <Pencil className="size-4" />
+            {profilePic === "" ? (
+              <div className="absolute bottom-0 right-0 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                <Plus className="text-white w-4 h-4" />
+              </div>
+            ) : (
+              <Pencil className="size-4" />
+            )}{" "}
           </label>
           <div className="mr-4 mt-2">
             {" "}
