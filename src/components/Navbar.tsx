@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Ref, useRef, useState } from "react";
+import { Ref, useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
@@ -31,12 +31,21 @@ const Navbar = observer(() => {
     root: { auth },
   } = useStore();
   const [search, setSearch] = useState("");
-  const handleSubmit = (event: any) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      navigate(`/search?query=${search}`);
+  console.log(search);
+
+  useEffect(() => {
+    if (search.trim() !== "") {
+      navigate(`/search?city=Dublin&title=${search}`);
     }
-  };
+  }, [search, navigate]);
+
+  // (event: any) => {
+  //   if (event.key === "Enter") {
+  //     event.preventDefault();
+  //     navigate(`/search?city=Dublin&title=${search}`);
+  //     setSearch("");
+  //   }
+  // };
   const isAuthenticated = auth.isAuthenticated;
   const [isNavOpen, setIsNavOpen] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -266,7 +275,7 @@ const Navbar = observer(() => {
               type="text"
               className="w-full px-4 py-3 pl-[20px] text-gray-700 bg-[#FBFBFF] shadow-lg bg-opacity-50 border-1 border-white outline-none rounded-3xl"
               onFocus={handleFocus}
-              onKeyDown={handleSubmit}
+              // onKeyDown={handleSubmit}
               onChange={(e) => setSearch(e.target.value)}
               value={search}
             />
