@@ -113,11 +113,13 @@ const Register = observer(() => {
               className="h-full p-4 w-full space-y-3"
             >
               <div className="flex flex-col items-center">
+              <Link to={"/"}>
                 <img
                   src="/logo-nobg.png"
                   alt="logo"
                   className="max-h-[10vh] max-w-[40vw]"
                 />
+              </Link>
                 <h1 className="text-3xl font-bold text-center">User Sign Up</h1>
               </div>
 
