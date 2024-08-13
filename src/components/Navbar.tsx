@@ -472,7 +472,7 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
   return (
     <div className="relative flex items-center">
       <button onClick={toggleDropdown}>
-        <Tooltip title="NOTIFICATION" arrow>
+        <Tooltip title="NOTIFICATIONS" arrow>
           <img src={bell} alt="Notifications" />
         </Tooltip>
       </button>

@@ -85,11 +85,13 @@ const Login = observer(() => {
             className="flex flex-col justify-center gap-4"
           >
             <div className="flex flex-col gap-2 items-center">
-              <img
-                src="/logo-nobg.png"
-                alt="logo"
-                className="max-h-[10vh] max-w-[40vw]"
-              />
+              <Link to={"/"}>
+                <img
+                  src="/logo-nobg.png"
+                  alt="logo"
+                  className="max-h-[10vh] max-w-[40vw]"
+                />
+              </Link>
               <h1 className="text-3xl font-bold">User Login</h1>
               {/* <h6 className="text-md">
                   Please enter your login details to sign in
@@ -143,10 +145,11 @@ const Login = observer(() => {
               <div className="w-full h-[2px] bg-black"></div>
             </div>
 
-            <div className="text-[0.9rem] flex justify-center gap-1 font-semibold">
+            <div className="text-[0.9rem] flex justify-center gap-2 font-semibold">
+              {" "}
+              <span className="text-black">Don't have an account ?</span>{" "}
               <Link to="/register" className="text-[#8C3E87]">
-                {" "}
-                Create an account
+                Sign up{" "}
               </Link>
             </div>
             {/* <div className="flex flex-col gap-4">
