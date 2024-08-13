@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Hero from "../components/help/Hero";
 import Navbar from "../components/help/Navbar";
 function Help() {
@@ -5,6 +6,7 @@ function Help() {
     <div>
       <Navbar />
       <Hero />
+      <Footer />
     </div>
   );
 }

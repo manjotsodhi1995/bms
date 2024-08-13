@@ -75,7 +75,7 @@ export default function FormDialog({ email }: any) {
                 type="password"
                 name="oldPass"
                 value={oldPass}
-                placeholder="old Passssword"
+                placeholder="Old Password*"
                 id="oldPass"
                 className="w-full border p-2 rounded"
                 onChange={(e) => setOldPass(e.target.value)}
@@ -86,7 +86,7 @@ export default function FormDialog({ email }: any) {
                 type="password"
                 name="newPass"
                 value={newPass}
-                placeholder="New Password *"
+                placeholder="New Password*"
                 id="confirmPass"
                 className="w-full border p-2 rounded"
                 onChange={(e) => setNewPass(e.target.value)}
@@ -97,7 +97,7 @@ export default function FormDialog({ email }: any) {
                 type="password"
                 name="confirmPass"
                 value={confirmPass}
-                placeholder="Confirm Password *"
+                placeholder="Confirm Password*"
                 id="confirmPass"
                 className="w-full border p-2 rounded"
                 onChange={(e) => setConfirmPass(e.target.value)}

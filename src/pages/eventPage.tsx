@@ -24,7 +24,6 @@ import toast from "react-hot-toast";
 import EventStories from "@/components/EventStories";
 import type SwiperCore from "swiper";
 import { formatCurrency } from "@/utils";
-
 const EventPage = observer(() => {
   const [isLoading, setIsLoading] = useState(false);
   const fetchEvent = async (slug?: string) => {
@@ -98,8 +97,9 @@ const EventPage = observer(() => {
   const eventId = eventData?.eventId;
   const { data: isLiked, mutation: likesMutation } = useLikesQuery(eventId);
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {/* <Navbar /> */}
+
       <EventStories
         onOpen={open}
         setOpen={setOpen}
@@ -234,7 +234,7 @@ const EventPage = observer(() => {
                 />
               </svg>
             </div>
-            <div className="text-gray-900 font-medium">{date}</div>
+            <div className="text-gray-900 font-medium text-sm">{date}</div>
           </div>
           <div className="flex items-center gap-4">
             <div>
@@ -251,7 +251,7 @@ const EventPage = observer(() => {
                 />
               </svg>
             </div>
-            <div className="text-gray-900 font-medium">
+            <div className="text-gray-900 font-medium text-sm">
               Starts at just{" "}
               {formatCurrency(
                 eventData?.lowestTicketPrice,

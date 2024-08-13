@@ -13,7 +13,7 @@ interface TicketCardProps {
 
 function TicketCard(props: TicketCardProps) {
   const [open, setOpen] = useState(false);
-
+  console.log(props);
   const handleShare = () => {
     if (props.shareUrl) {
       if (navigator.share) {
@@ -36,7 +36,10 @@ function TicketCard(props: TicketCardProps) {
         setOpen(v);
       }}
     >
-      <div className="relative w-full bg-white flex p-4 shadow-xl rounded-3xl gap-4 border">
+      <div
+        className="relative w-full bg-white flex p-4 shadow-xl rounded-3xl gap-4 border"
+        onClick={() => setOpen(true)}
+      >
         <div className="absolute flex items-center gap-2 right-10">
           <Tooltip title="VIEW" placement="top" arrow>
             <Eye
@@ -50,7 +53,7 @@ function TicketCard(props: TicketCardProps) {
             </Link>
           </Tooltip>
         </div>
-        <div className="w-[10rem] h-[10rem] rounded-2xl">
+        <div className="max-w-[10rem] max-h-[10rem] object-cover rounded-2xl">
           {props?.event?.posterUrl ? (
             <img
               src={props?.event.posterUrl}

@@ -37,7 +37,7 @@ const Navbar = observer(() => {
     if (search.trim() !== "") {
       navigate(`/search?city=Dublin&title=${search}`);
     }
-  }, [search, navigate]);
+  }, [search]);
 
   // (event: any) => {
   //   if (event.key === "Enter") {
@@ -470,14 +470,14 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
     activeTab === "Unread" ? unreadNotifications : readNotifications;
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center">
       <button onClick={toggleDropdown}>
         <Tooltip title="NOTIFICATIONS" arrow>
           <img src={bell} alt="Notifications" />
         </Tooltip>
       </button>
       {open && (
-        <div className="absolute right-0 mt-4 w-80 bg-white rounded-3xl shadow-lg z-20">
+        <div className="absolute right-0 mt-4 w-80 bg-white rounded-3xl shadow-lg z-20 top-8">
           <div className="py-4 bg-gray-100 text-xl">Notifications</div>
           <div className="border-b px-2 flex gap-x-6 bg-gray-100">
             <button
@@ -540,7 +540,7 @@ function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
   const toggleDropdown = () => onOpenChange(!open);
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center">
       <button onClick={toggleDropdown}>
         <Tooltip title="PROFILE" arrow>
           <Avatar src={data?.displayPic} sx={{ height: 32, width: 32 }} />
@@ -549,7 +549,7 @@ function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
       {open && (
         <div
           ref={ref}
-          className="absolute flex flex-col items-center -right-24 mt-2 w-96 bg-white rounded-md shadow-lg z-20"
+          className="absolute flex flex-col items-center -right-24 top-8 mt-2 w-96 bg-white rounded-md shadow-lg z-20"
         >
           {/* Your profile/settings content here */}
 
