@@ -14,7 +14,7 @@ function Filter() {
     await event.fetchEvents();
   };
 
-  // Dont care about data as it will be added to event directly
+
   const { data: _ } = useQuery({
     queryKey: ["filterEvents"],
     queryFn: fetchEvents,
