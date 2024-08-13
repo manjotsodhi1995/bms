@@ -115,7 +115,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
     <>
       <div className="max-md:h-[100vh] md:items-start sm:w-[75%] w-full lg:pl-[10%] sm:pl-[5%] max-h-[100vh] md:mt-[50px]">
         <div
-          className={`block md:hidden flex justify-start items-start max-md:pt-4 ${
+          className={`md:hidden flex justify-start items-start max-md:pt-4 ${
             isVisible ? "pl-60" : "pl-4"
           }`}
           onClick={toggleSidebar}
@@ -194,7 +194,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
             />
             <input
               type="text"
-              className="!py-5 w-[80vw] bg-gray-100 cursor-not-allowed md:max-w-[500px] sm:w-[50vw] md:my-3 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black bg-white"
+              className="!py-5 w-[80vw]  cursor-not-allowed md:max-w-[500px] sm:w-[50vw] md:my-3 mb-[15px] h-[30px] border-gray-700 focus:outline-[0.25px] focus:placeholder:invisible placeholder:text-black bg-white"
               autoComplete="email"
               readOnly
               placeholder="Email Address *"

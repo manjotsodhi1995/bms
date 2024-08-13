@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { useStore } from "./hooks/useStore";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Navbar from "./components/Navbar";
-import bg from "./assets/bg3.png";
+import bg from "./assets/background.png";
 import { Loader2 } from "lucide-react";
 import mbg from "./assets/mobileBg.png";
 const DashBoard = lazy(() => import("./pages/dashboard/Dashboard"));

@@ -64,7 +64,7 @@ function SearchPage() {
             Events
           </div>
         </div>
-        <div className="justify-center w-full grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4">
+        <div className="justify-center w-full grid 2xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
           {events &&
             events.map((event: any, index: any) => (
               <EventCard key={index} {...event} />

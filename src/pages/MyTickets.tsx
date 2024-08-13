@@ -8,7 +8,6 @@ import axios from "@/utils/middleware";
 import { API } from "@/api";
 import UpcomingEvents from "../components/UpcomingEvents";
 import { Calender } from "../components/Calender";
-
 const fetchTickets = async () => {
   const response = await axios(API.bookingRoutes.getTicket);
   return response.data.data;
@@ -27,7 +26,9 @@ function MyTickets() {
 
   return (
     <>
+      {" "}
       <div className="flex flex-col gap-8 px-4 lg:px-40 mb-10">
+        {" "}
         <div className="flex w-full items-center justify-between">
           <h3 className="md:text-[1.6rem] 2xl:text-[2rem] text-[1.5rem] font-medium">
             Your Tickets
@@ -79,7 +80,7 @@ function MyTickets() {
             ) : (
               <div className="flex w-full flex-col gap-4">
                 {pastEvents && pastEvents.length === 0 ? (
-                  <p className="flex flex-col items-center gap-2">
+                  <p className="flex flex-col items-center gap-2 pt-16">
                     <Icons.twoTickets className="size-52" />
                     <span className="text-sm text-neutral-500">
                       You don't seem to have any recent bookings
