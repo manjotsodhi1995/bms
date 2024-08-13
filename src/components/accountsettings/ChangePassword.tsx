@@ -61,7 +61,7 @@ export default function FormDialog({ email }: any) {
     <React.Fragment>
       <button
         type="button"
-        className="flex items-center gap-2 bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]"
+        className="flex items-center gap-2 bg-black text-white w-full p-[5px] px-[10px] pl-12 py-2 text-sm mx-auto mt-2 sm:my-0 my-[20px]"
         onClick={handleClickOpen}
       >
         Change Password{" "}

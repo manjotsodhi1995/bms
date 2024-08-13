@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Dayjs } from "dayjs";
-import FormDialog from "./ChangePassword";
+// import FormDialog from "./ChangePassword";
 
 interface UpdateProfile {
   fname: string;
@@ -109,6 +109,14 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
       }
     );
   };
+
+  const handleDiscard = async () => {
+    setFname("")
+    setLname("")
+    setDob(null)
+    setMobile("")
+    setActualPhone("")
+  }
 
   return (
     // flex flex-col sm:items-start 2xl:items-center items-center w-[80vw] mx-[5px] sm:w-[75%] lg:pl-[10%] sm:pl-[5%] bg-white mt-[50px]
@@ -267,6 +275,15 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
               </label>
             </div>
             <div className="flex place-self-center gap-x-4">
+            
+                <button
+                  type="button"
+                  onClick={handleDiscard}
+                  className="flex items-center gap-2 bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]"
+                >
+                  DISCARD CHANGES
+                  {updatePending && <Loader2 className="size-4 animate-spin" />}
+                </button>
               {!updatePending && (
                 <button
                   type="submit"
@@ -282,7 +299,14 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
                   {updatePending && <Loader2 className="size-4 animate-spin" />}
                 </div>
               )}
-              <FormDialog email={email} />
+          
+              {/* {updatePending && (
+                <div className="flex items-center gap-2 bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]">
+                  Saving...
+                  {updatePending && <Loader2 className="size-4 animate-spin" />}
+                </div>
+              )} */}
+              {/* <FormDialog email={email} /> */}
             </div>
           </form>
         </div>
