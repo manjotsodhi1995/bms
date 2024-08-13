@@ -14,7 +14,6 @@ function Filter() {
     await event.fetchEvents();
   };
 
-
   const { data: _ } = useQuery({
     queryKey: ["filterEvents"],
     queryFn: fetchEvents,
