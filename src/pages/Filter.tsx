@@ -25,10 +25,10 @@ function Filter() {
   return (
     <div className="lg:pr-[5%] xl:pr-[7%] pr-[0vw] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
       {/* <div className="bg-red-400 min-h-4 min-w-4 p-24 rounded-full absolute"></div> */}
-      <div className="z-10 md:w-[25rem] w-[100vw] flex flex-col mt-[50px] pt-[40px] h-[1005] rounded-r-xl backdrop-blur-2xl ml-1 pl-2 bg-white/10 border-r border-t border-b border-white/20 shadow-lg">
-      {" "}
+      <div className="z-10 md:w-[25rem] w-[100vw] flex flex-col mt-[50px] pt-[40px] h-[1005] rounded-r-xl backdrop-blur-2xl ml-1 pl-2 bg-white/50 border-r border-t border-b border-white/20 shadow-lg ">
+        {" "}
         {/* Fixed positioning and overflow */}
-        <div className="border-gray-400 border-b mb-[30px] pl-[30px]">
+        <div className="border-gray-400 border-b mb-[30px] pl-[30px] ">
           <h2 className="text-xl font-medium mt-[10px] mb-[20px]">
             Filter By:
           </h2>
@@ -248,7 +248,7 @@ function Filter() {
             Events
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-4">
           {event.upcomingEvents.map((card, index) => (
             <EventCard key={index} {...card} />
           ))}
