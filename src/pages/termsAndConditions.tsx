@@ -1,8 +1,8 @@
 import Footer from "@/components/Footer";
 function TermsAndConditions() {
   return (
-    <div className="min-h-screen">
-      <div className="fixed"> {/* <Navbar /> */}</div>
+    <>
+      {" "}
       <div className="lg:px-[5%] xl:px-[7%] px-[8vw] md:flex pt-[18vh] justify-between w-full h-[100%] pb-[10vh]">
         <div className="flex flex-col justify-center h-[85vh] gap-8 md:w-[32%] font-medium">
           <div>1. Introduction</div>
@@ -116,7 +116,9 @@ function TermsAndConditions() {
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="font-medium text-[1.4rem]" id="5">5. Refunds</div>
+            <div className="font-medium text-[1.4rem]" id="5">
+              5. Refunds
+            </div>
             <div>
               <ul className="list-disc ml-8 space-y-3">
                 <li>
@@ -222,7 +224,9 @@ function TermsAndConditions() {
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="font-medium text-[1.4rem]" id="8">8. User Conduct</div>
+            <div className="font-medium text-[1.4rem]" id="8">
+              8. User Conduct
+            </div>
             <div>
               <ul className="list-disc ml-8 space-y-3">
                 <li>
@@ -289,7 +293,9 @@ function TermsAndConditions() {
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="font-medium text-[1.4rem]" id="11">11. Indemnification</div>
+            <div className="font-medium text-[1.4rem]" id="11">
+              11. Indemnification
+            </div>
             <div>
               You agree to indemnify, defend, and hold harmless Kafsco, its
               affiliates, and their respective officers, directors, employees,
@@ -300,7 +306,9 @@ function TermsAndConditions() {
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="font-medium text-[1.4rem]" id="12">12. Termination</div>
+            <div className="font-medium text-[1.4rem]" id="12">
+              12. Termination
+            </div>
             <div>
               <ul className="list-disc ml-8 space-y-3">
                 <li>
@@ -320,7 +328,9 @@ function TermsAndConditions() {
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="font-medium text-[1.4rem]" id="13">13. Governing Law</div>
+            <div className="font-medium text-[1.4rem]" id="13">
+              13. Governing Law
+            </div>
             <div>
               These Terms are governed by and construed in accordance with the
               laws of Ireland. Any disputes arising under or in connection with
@@ -329,7 +339,9 @@ function TermsAndConditions() {
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="font-medium text-[1.4rem]" id="14">14. Amendments</div>
+            <div className="font-medium text-[1.4rem]" id="14">
+              14. Amendments
+            </div>
             <div>
               Kafsco reserves the right to modify these Terms at any time. We
               will notify you of any significant changes by posting the new
@@ -342,79 +354,83 @@ function TermsAndConditions() {
               15. Contact Information
             </div>
             <div className="space-y-3">
-            <div className="flex flex-col gap-4">
-              <div className="font-medium text-[1.4rem]">
-                2. Your use of the platform
+              <div className="flex flex-col gap-4">
+                <div className="font-medium text-[1.4rem]">
+                  2. Your use of the platform
+                </div>
+                <div>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </div>
               </div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <div className="flex flex-col gap-4">
+                <div className="font-medium text-[1.4rem]">
+                  3. Our relationship with you
+                </div>
+                <div>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col gap-4">
-              <div className="font-medium text-[1.4rem]">
-                3. Our relationship with you
+              <div className="flex flex-col gap-4">
+                <div className="font-medium text-[1.4rem]">
+                  4. Our Obligations
+                </div>
+                <div>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </div>
               </div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <div className="flex flex-col gap-4">
+                <div className="font-medium text-[1.4rem]">
+                  5. Your Obligations
+                </div>
+                <div>
+                  If you have any questions about these Terms, please contact us
+                  at:
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col gap-4">
-              <div className="font-medium text-[1.4rem]">
-                4. Our Obligations
-              </div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
-            </div>
-            <div className="flex flex-col gap-4">
-              <div className="font-medium text-[1.4rem]">
-                5. Your Obligations
-              </div>
-              <div>
-                If you have any questions about these Terms, please contact us
-                at:
-              </div>
-            </div>
-            <div className="flex flex-col gap-4">
-              <div className="font-medium text-[1.4rem]">
-                6. Ticket and Sales
-              </div>
-              <div>
-                <ul className="list-disc ml-8">
-                  <li>
-                    <span className="font-bold">Email :-</span>
-                    kafscoteam@gmail.com
-                  </li>
-                  <li>
-                    <span className="font-bold">Address :-</span>
-                    Kafsco Inc., 123 SummerHill Road, Dublin, Ireland
-                  </li>
-                </ul>
+              <div className="flex flex-col gap-4">
+                <div className="font-medium text-[1.4rem]">
+                  6. Ticket and Sales
+                </div>
+                <div>
+                  <ul className="list-disc ml-8">
+                    <li>
+                      <span className="font-bold">Email :-</span>
+                      kafscoteam@gmail.com
+                    </li>
+                    <li>
+                      <span className="font-bold">Address :-</span>
+                      Kafsco Inc., 123 SummerHill Road, Dublin, Ireland
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
 
