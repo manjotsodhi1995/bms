@@ -8,6 +8,7 @@ import { Loader2 } from "lucide-react";
 import { MuiTelInput } from "mui-tel-input";
 import { AxiosError } from "axios";
 import toast from "react-hot-toast";
+import Footer from "@/components/Footer";
 const Register = observer(() => {
   const [firstName, setFirstName] = useState(""); // State for first name input
   const [lastName, setLastName] = useState(""); // State for last name input
@@ -113,13 +114,13 @@ const Register = observer(() => {
               className="h-full p-4 w-full space-y-3"
             >
               <div className="flex flex-col items-center">
-              <Link to={"/"}>
-                <img
-                  src="/logo-nobg.png"
-                  alt="logo"
-                  className="max-h-[10vh] max-w-[40vw]"
-                />
-              </Link>
+                <Link to={"/"}>
+                  <img
+                    src="/logo-nobg.png"
+                    alt="logo"
+                    className="max-h-[10vh] max-w-[40vw]"
+                  />
+                </Link>
                 <h1 className="text-3xl font-bold text-center">User Sign Up</h1>
               </div>
 
@@ -243,7 +244,7 @@ const Register = observer(() => {
                     Privacy Policy.
                   </a>
                 </p>
-                <div className="flex justify-center items-center font-bold gap-x-2">
+                <div className="flex justify-center items-center font-semibold gap-x-2">
                   {/* <div className="text-red-500">{error}</div> */}
                   Already a member ?{" "}
                   <Link to="/login" className="text-[#8C3E87]">
@@ -255,6 +256,7 @@ const Register = observer(() => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 });

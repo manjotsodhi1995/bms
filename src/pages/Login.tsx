@@ -6,6 +6,7 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
+import Footer from "@/components/Footer";
 const Login = observer(() => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -161,6 +162,7 @@ const Login = observer(() => {
           </form>
         </div>
       </div>
+      <Footer />
     </>
   );
 });

@@ -6,6 +6,7 @@ import axios from "axios";
 import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import img from "../assets/Auth/login.jpg";
+import Footer from "@/components/Footer";
 
 const Forgot = observer(() => {
   const [email, setEmail] = useState("");
@@ -68,20 +69,20 @@ const Forgot = observer(() => {
   return (
     <>
       <div className="md:flex w-full justify-between">
-        <div className="h-screen flex justify-center w-full bg-white">
+        <div className="h-screen flex justify-center w-full ">
           <div className="flex justify-center h-full w-full">
             <form
               onSubmit={handleSubmit}
               className="h-full flex flex-col justify-center gap-6 w-[25rem]"
             >
               <div className="flex flex-col gap-2 text-center items-center">
-              <Link to={"/"}>
-                <img
-                  src="/logo-nobg.png"
-                  alt="logo"
-                  className="max-h-[10vh] max-w-[40vw]"
-                />
-              </Link>
+                <Link to={"/"}>
+                  <img
+                    src="/logo-nobg.png"
+                    alt="logo"
+                    className="max-h-[10vh] max-w-[40vw]"
+                  />
+                </Link>
                 <h1 className="text-3xl font-bold">Forgot Password?</h1>
               </div>
               <div className="flex flex-col gap-4">
@@ -128,6 +129,7 @@ const Forgot = observer(() => {
           <img src={img} className="h-screen w-full object-cover" alt="" />
         </div>
       </div>
+      <Footer />
     </>
   );
 });
