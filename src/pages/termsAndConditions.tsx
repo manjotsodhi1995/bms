@@ -1,17 +1,57 @@
-import Footer from "@/components/Footer";
 function TermsAndConditions() {
   return (
-    <>
-      {" "}
-      <div className="lg:px-[5%] xl:px-[7%] px-[8vw] md:flex pt-[18vh] justify-between w-full h-[100%] pb-[10vh]">
-        <div className="flex flex-col justify-center h-[85vh] gap-8 md:w-[32%] font-medium">
-          <div>1. Introduction</div>
-          <div>2. Your use of the platform</div>
-          <div>3. Our relationship with you</div>
-          <div>4. Our Obligations</div>
-          <div>5. Your Obligations</div>
-          <div>6. Ticket and Sales</div>
-          <div>7. Pricing & Fees</div>
+    <div className="flex justify-between gap-8 ml-10 mt-7">
+      <div className="fixed flex flex-col gap-4 w-[50vw]">
+        {/* <div>2. Your use of the platform</div> */}
+        <a href="#1" className="hover:underline">
+          1. Introduction
+        </a>
+        <a href="#2" className="hover:underline">
+          2. Account Registration
+        </a>
+        <a href="#3" className="hover:underline">
+          3. Event Creation and Management
+        </a>
+        <a href="#4" className="hover:underline">
+          4. Fees and Payments
+        </a>
+        <a href="#5" className="hover:underline">
+          5. Refunds
+        </a>
+        <a href="#6" className="hover:underline">
+          6. Affiliation Program
+        </a>
+        <a href="#7" className="hover:underline">
+          7. Earning Commissions
+        </a>
+        <a href="#8" className="hover:underline">
+          8. User Conduct
+        </a>
+        <a href="#9" className="hover:underline">
+          9. Intellectual Property
+        </a>
+        <a href="#10" className="hover:underline">
+          10. Limitation of Liability
+        </a>
+        <a href="#11" className="hover:underline">
+          11. Indemnification
+        </a>
+        <a href="#12" className="hover:underline">
+          11. Indemnification
+        </a>
+        <a href="#13" className="hover:underline">
+          13. Governing Law
+        </a>
+        <a href="#14" className="hover:underline">
+          14. Amendments
+        </a>
+        <a href="#15" className="hover:underline">
+          15. Contact Information
+        </a>
+      </div>
+      <div className="h-full mr-10 ml-80 pl-4 pb-8  md:border-l md:border-gray-900">
+        <div className="capitalize font-semibold text-[2rem]">
+          TERMS AND CONDITIONS
         </div>
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
@@ -354,83 +394,27 @@ function TermsAndConditions() {
               15. Contact Information
             </div>
             <div className="space-y-3">
-              <div className="flex flex-col gap-4">
-                <div className="font-medium text-[1.4rem]">
-                  2. Your use of the platform
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </div>
+              <div>
+                If you have any questions about these Terms, please contact us
+                at:
               </div>
-              <div className="flex flex-col gap-4">
-                <div className="font-medium text-[1.4rem]">
-                  3. Our relationship with you
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <div className="font-medium text-[1.4rem]">
-                  4. Our Obligations
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <div className="font-medium text-[1.4rem]">
-                  5. Your Obligations
-                </div>
-                <div>
-                  If you have any questions about these Terms, please contact us
-                  at:
-                </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <div className="font-medium text-[1.4rem]">
-                  6. Ticket and Sales
-                </div>
-                <div>
-                  <ul className="list-disc ml-8">
-                    <li>
-                      <span className="font-bold">Email :-</span>
-                      kafscoteam@gmail.com
-                    </li>
-                    <li>
-                      <span className="font-bold">Address :-</span>
-                      Kafsco Inc., 123 SummerHill Road, Dublin, Ireland
-                    </li>
-                  </ul>
-                </div>
+              <div>
+                <ul className="list-disc ml-8">
+                  <li>
+                    <span className="font-bold">Email :-</span>
+                    kafscoteam@gmail.com
+                  </li>
+                  <li>
+                    <span className="font-bold">Address :-</span>
+                    Kafsco Inc., 123 SummerHill Road, Dublin, Ireland
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 }
 
