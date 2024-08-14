@@ -27,7 +27,11 @@ export const ViewTicketStep = ({
       toPDF();
     }
   }, []);
-
+  function getTimeFromDate(date: any) {
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
+  }
   return (
     <Fragment>
       {showTitle && (
@@ -63,12 +67,15 @@ export const ViewTicketStep = ({
               <p className="flex flex-col">
                 <span className="text-sm text-gray-300">Date</span>
                 <span className="font-medium">
-                  {formatDate(new Date(eventsData?.eventDate))}
+                  {formatDate(new Date(eventsData?.eventDate)) || "NA"}
                 </span>
               </p>
               <p className="flex flex-col">
                 <span className="text-sm text-gray-300">Time</span>
-                <span className="font-medium">4:00 - 10:00 PM</span>
+                <span className="font-medium">
+                  {getTimeFromDate(new Date(eventsData?.event.eventStart)) ||
+                    "NA"}
+                </span>
               </p>
               <p className="flex flex-col">
                 <span className="text-sm text-gray-300">Location</span>
