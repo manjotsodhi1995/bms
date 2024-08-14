@@ -9,7 +9,6 @@ import { X, Pencil, Loader2, Plus } from "lucide-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import FormDialog from "./ChangePassword";
-
 interface SideBarProps {
   onStateChange: (newState: string) => void;
   initialState: string;
@@ -230,7 +229,7 @@ const SideBar: React.FC<SideBarProps> = ({
 
         <Link to={"/"} className="flex w-full">
           <div
-            className={`my-1 flex w-full p-2 cursor-default  hover:cursor-pointer items-center group mt-2 ${
+            className={`my-3 flex w-full p-2 cursor-default  hover:cursor-pointer items-center group mt-2 ${
               select == "log" ? "bg-black text-white" : ""
             }`}
             onClick={() => {
