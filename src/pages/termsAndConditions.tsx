@@ -1,6 +1,6 @@
 function TermsAndConditions() {
   return ( <div className="flex justify-between gap-8 ml-10 mt-7">
-    <div className="fixed flex flex-col gap-4 w-[50vw]">
+    <div className="fixed flex flex-col gap-4 w-[50vw] mt-4">
       {/* <div>2. Your use of the platform</div> */}
       <a href="#1" className="hover:underline">
         1. Introduction
