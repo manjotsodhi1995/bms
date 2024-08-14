@@ -31,7 +31,7 @@ function MyTickets() {
         {" "}
         <div className="flex w-full items-center justify-between">
           <h3 className="md:text-[1.6rem] 2xl:text-[2rem] text-[1.5rem] font-medium">
-            Your Tickets
+            My Tickets
           </h3>
           {/* <p className="flex flex-col items-center">
             <Clock className="size-6 fill-black text-white" />
@@ -49,7 +49,7 @@ function MyTickets() {
                     : ""
                 }`}
               >
-                Upcoming Events{" "}
+                Upcoming Bookings{" "}
               </div>{" "}
               <div
                 onClick={() => setActiveTab("Past Events")}
@@ -59,7 +59,7 @@ function MyTickets() {
                     : ""
                 }`}
               >
-                Past Events
+                Past Bookings
               </div>{" "}
             </div>
             {activeTab === "Upcoming Events" ? (
@@ -94,7 +94,7 @@ function MyTickets() {
               </div>
             )}
           </div>
-          <div className="space-y-6 w-[330px] place-self-center">
+          <div className="space-y-6 w-[330px]">
             <div>
               <Calender />
             </div>{" "}

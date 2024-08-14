@@ -251,7 +251,7 @@ const EventPage = observer(() => {
                 />
               </svg>
             </div>
-            <div className="text-gray-900 font-medium text-sm">
+            <div className="text-gray-900 pl-[3px] font-medium text-sm">
               Starts at just{" "}
               {formatCurrency(
                 eventData?.lowestTicketPrice,
