@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, ReactNode } from "react";
 interface ExpandableBoxProps {
   title: string;
-  content: string;
+  content: ReactNode;
   className?: string;
 }
 const ExpandableBox = ({ title, content, className }: ExpandableBoxProps) => {

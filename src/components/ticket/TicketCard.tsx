@@ -2,7 +2,7 @@ import { EventType } from "@/stores/event";
 import { useState } from "react";
 import { Dialog, DialogClose, DialogContent } from "../ui/dialog";
 import { ViewTicketStep } from "./steps/ViewTicketStep";
-import { formatDate } from "@/utils";
+import { formatCurrency, formatDate } from "@/utils";
 import { Download, Eye, X } from "lucide-react";
 import Tooltip from "@mui/material/Tooltip";
 import { Link } from "react-router-dom";
@@ -79,7 +79,10 @@ function TicketCard(props: TicketCardProps) {
             {props?.venueAddress.zipcode}
           </p>
 
-          <p className="font-medium">${props?.totalAmount}</p>
+          <p className="font-medium">{formatCurrency(
+                props?.totalAmount,
+                props?.currency ? props.currency : "EUR"
+              )}</p>
         </div>
       </div>
       <DialogContent className="overflow-y-auto p-1 max-w-screen-lg max-h-[calc(100dvh)]">
