@@ -49,7 +49,7 @@ function MyTickets() {
                     : ""
                 }`}
               >
-                Upcoming Events{" "}
+                Upcoming Bookings{" "}
               </div>{" "}
               <div
                 onClick={() => setActiveTab("Past Events")}
@@ -59,7 +59,7 @@ function MyTickets() {
                     : ""
                 }`}
               >
-                Past Events
+                Past Bookings
               </div>{" "}
             </div>
             {activeTab === "Upcoming Events" ? (
@@ -94,7 +94,7 @@ function MyTickets() {
               </div>
             )}
           </div>
-          <div className="space-y-6 w-[330px] place-self-center">
+          <div className="space-y-6 w-[330px]">
             <div>
               <Calender />
             </div>{" "}
