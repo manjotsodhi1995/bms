@@ -349,10 +349,15 @@ function Filter() {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12">
-          {event.upcomingEvents.map((card, index) => (
-            <EventCard key={index} {...card} />
-          ))}
+          {dayResult.length > 0 ? (
+            dayResult.map((event, index) => (
+              <EventCard key={index} {...event} />
+            ))
+          ) : (
+            <div>No events found</div>
+          )}
         </div>
+        
       </div>
     </div>
   );
