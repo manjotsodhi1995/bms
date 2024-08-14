@@ -111,12 +111,15 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
   };
 
   const handleDiscard = async () => {
-    setFname("")
-    setLname("")
-    setDob(null)
-    setMobile("")
-    setActualPhone("")
-  }
+    if (!data) return;
+    setFname(data?.fname);
+    setLname(data?.lname);
+    setEmail(data?.email);
+    setGender(data?.gender);
+    setCountry(data?.countryCode);
+    setActualPhone(data?.phone);
+    setMobile(`${data?.countryCode}${data?.phone}`);
+  };
 
   return (
     // flex flex-col sm:items-start 2xl:items-center items-center w-[80vw] mx-[5px] sm:w-[75%] lg:pl-[10%] sm:pl-[5%] bg-white mt-[50px]
@@ -275,15 +278,14 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
               </label>
             </div>
             <div className="flex place-self-center gap-x-4">
-            
-                <button
-                  type="button"
-                  onClick={handleDiscard}
-                  className="flex items-center gap-2 bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]"
-                >
-                  DISCARD CHANGES
-                  {updatePending && <Loader2 className="size-4 animate-spin" />}
-                </button>
+              <button
+                type="button"
+                onClick={handleDiscard}
+                className="flex items-center bg-gray-100 text-black font-thin py-3 rounded-md shadow-md gap-2 border-2rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]"
+              >
+                DISCARD CHANGES
+                {updatePending && <Loader2 className="size-4 animate-spin" />}
+              </button>
               {!updatePending && (
                 <button
                   type="submit"
@@ -299,7 +301,6 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
                   {updatePending && <Loader2 className="size-4 animate-spin" />}
                 </div>
               )}
-          
               {/* {updatePending && (
                 <div className="flex items-center gap-2 bg-black text-white rounded-md w-fit p-[5px] px-[10px] text-sm mx-auto mt-2 sm:my-0 my-[20px]">
                   Saving...

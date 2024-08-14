@@ -34,7 +34,7 @@ function Trending() {
     queryFn: fetchCategories,
   });
   const [temp, setTemp] = useState(true);
-  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("Dublin, Ireland");
   const [completionsOpen, setCompletionsOpen] = useState(false);
   const locationRef = useRef<HTMLDivElement>(null);
   const { data, isLoading: loading } = useQuery({
