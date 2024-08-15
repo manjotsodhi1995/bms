@@ -68,7 +68,7 @@ const Stories: React.FC<StoryProps> = ({
     >
       <Box sx={style}>
         <X
-          className="text-white size-12 cursor-pointer absolute top-4 md:right-4 right-16 text-right"
+          className="text-white size-12 cursor-pointer absolute top-4 md:right-4 right-16 text-right z-20"
           onClick={handleClose}
         />
         <Swiper
