@@ -11,12 +11,12 @@ const PreviewCard = ({ eventsData, cartData, children }: PreviewCardProps) => {
     <div className="bg-white p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
       <img
         src={eventsData?.posterUrl}
-        className="w-full h-52 object-cover rounded-lg"
+        className="w-full h-52 object-cover rounded-lg md:flex hidden"
       />
-      <span className="leading-tight text-xl font-medium">
+      <span className="leading-tight text-xl font-medium md:flex hidden">
         {eventsData?.title}
       </span>
-      <p className="ml-4 md:ml-2 text-sm">
+      <p className="ml-4 md:ml-2 text-sm md:flex hidden">
         Wednesdays, {formatDate(new Date(eventsData?.eventStart!!))}
         <br />
         at {eventsData?.venueAddress.name}, {eventsData?.venueAddress.city},{" "}
