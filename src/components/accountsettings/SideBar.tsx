@@ -229,7 +229,7 @@ const SideBar: React.FC<SideBarProps> = ({
 
         <Link to={"/"} className="flex w-full">
           <div
-            className={`my-3 flex w-full p-2 cursor-default  hover:cursor-pointer items-center group mt-2 ${
+            className={`flex w-full p-2 cursor-default hover:cursor-pointer items-center group mt-2 ${
               select == "log" ? "bg-black text-white" : ""
             }`}
             onClick={() => {
