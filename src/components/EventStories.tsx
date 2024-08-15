@@ -97,7 +97,7 @@ const Stories: React.FC<StoryProps> = ({
       <Box sx={style}>
         {" "}
         <X
-          className="text-white size-12 cursor-pointer text-right"
+          className="text-white size-12 cursor-pointer text-right  absolute top-4 md:right-4 right-16"
           onClick={handleClose}
         />
         <Swiper
@@ -120,7 +120,7 @@ const Stories: React.FC<StoryProps> = ({
             modifier: 1.5,
           }}
           modules={[EffectCoverflow, Navigation, Controller]}
-          className="swiper_container sw2 sm:w-[600px] lg:w-[900px] min-[2000px]:w-[1400px] w-[108vw]"
+          className="swiper_container sw2 sm:w-[600px] lg:w-[900px] min-[2000px]:w-[1400px] w-[108vw] "
           //  onInit={setChildSwiper}
           //  controller={{
           //   by:"container",

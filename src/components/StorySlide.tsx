@@ -25,7 +25,7 @@ function StorySlide({ VideoUrl, index, currentIndex }: StorySlidesProps) {
     }
   }, [currentIndex, index]);
   return (
-    <div className="md:rounded-3xl rounded-xl transition-transform duration-300 ease-in-out lg:h-[40rem] 2xl:h-[50rem] 2xl:w-[30rem] min-[2000px]:h-[75rem] min-[2000px]:w-[45rem] lg:w-[26rem]  h-[30rem] w-[15rem]">
+    <div className="md:rounded-3xl rounded-xl transition-transform duration-300 ease-in-out lg:h-[40rem] 2xl:h-[50rem] 2xl:w-[30rem] min-[2000px]:h-[75rem] min-[2000px]:w-[45rem] lg:w-[26rem]  h-[25rem] w-[13rem]">
       <video
         src={VideoUrl}
         ref={videoRef}
