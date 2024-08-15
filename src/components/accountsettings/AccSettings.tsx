@@ -124,7 +124,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
   return (
     // flex flex-col sm:items-start 2xl:items-center items-center w-[80vw] mx-[5px] sm:w-[75%] lg:pl-[10%] sm:pl-[5%] bg-white mt-[50px]
     <>
-      <div className="max-md:h-[100vh] md:items-start sm:w-[75%] w-full lg:pl-[10%] sm:pl-[5%] max-h-[100vh] md:mt-[50px]">
+      <div className="max-md:h-[100vh] md:items-start sm:w-[75%] w-full lg:pl-[10%] sm:pl-[5%] max-h-[100vh] md:mt-[40px]">
         <div
           className={`md:hidden flex justify-start items-start max-md:pt-4 ${
             isVisible ? "pl-60" : "pl-4"
@@ -277,7 +277,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
                 <span>Female</span>
               </label>
             </div>
-            <div className="flex place-self-center gap-x-4">
+            <div className="flex place-self-center mt-[50px] gap-x-4">
               <button
                 type="button"
                 onClick={handleDiscard}
