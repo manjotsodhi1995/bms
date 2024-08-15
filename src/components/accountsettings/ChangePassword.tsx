@@ -61,7 +61,7 @@ export default function FormDialog({ email }: any) {
     <React.Fragment>
       <button
         type="button"
-        className="flex items-center ml-[18px] py-1 gap-1 text-black w-full text-md mt-2"
+        className="flex items-center ml-[17px] py-1 gap-1 text-black w-full text-md mt-2"
         onClick={handleClickOpen}
       >
         <LockIcon /> Change Password{" "}
