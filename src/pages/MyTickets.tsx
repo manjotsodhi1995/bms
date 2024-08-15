@@ -83,7 +83,7 @@ function MyTickets() {
                   <p className="flex flex-col items-center gap-2 pt-16">
                     <Icons.twoTickets className="size-52" />
                     <span className="text-sm text-neutral-500">
-                      You don't seem to have any recent bookings
+                      You don't seem to have any past bookings
                     </span>
                   </p>
                 ) : (

@@ -549,7 +549,7 @@ function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
       {open && (
         <div
           ref={ref}
-          className="absolute flex flex-col items-center -right-24 top-8 mt-2 w-96 bg-white rounded-md shadow-lg z-20"
+          className="absolute flex flex-col items-center -right-12 top-8 mt-2 w-80 bg-white rounded-md shadow-lg z-20"
         >
           {/* Your profile/settings content here */}
 
@@ -610,7 +610,7 @@ function MyCalendarDropdown({ open, onOpenChange }: NavbarDropdownProps) {
       </button>
 
       {open && (
-        <div className="absolute flex flex-col items-center -right-24 mt-2 w-96 bg-white rounded-md shadow-lg z-20">
+        <div className="absolute flex flex-col items-center -right-24 mt-2 bg-white rounded-xl shadow-lg z-20">
           <Calender />
         </div>
       )}
