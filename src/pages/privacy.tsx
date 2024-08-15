@@ -82,7 +82,7 @@ function Privacy() {
           </li>
         </div>
         <div className="flex flex-col w-full pt-4 gap-10 md:border-l pl-4 border-black">
-          <div className="capitalize font-semibold text-[2rem]">PRIVACY</div>
+          <div className="capitalize font-semibold text-[2rem]">PRIVACY POLICY</div>
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <div>

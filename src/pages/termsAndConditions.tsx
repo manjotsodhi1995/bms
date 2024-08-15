@@ -40,7 +40,7 @@ function TermsAndConditions() {
             11. Indemnification
           </a>
           <a href="#12" className="hover:underline">
-          12. Termination
+            12. Termination
           </a>
           <a href="#13" className="hover:underline">
             13. Governing Law
