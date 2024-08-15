@@ -4,61 +4,85 @@ function Privacy() {
   return (
     <div className="min-h-screen">
       <div className="fixed"> {/* <Navbar /> */}</div>
-      <div className="lg:px-[5%] xl:px-[7%] px-[8vw] md:flex pt-[15vh] justify-between w-full h-[100%] pb-[10vh]">
-        <div className="flex flex-col gap-8 md:w-[32%] mt-28 font-medium">
+      <div className="lg:px-[5%] xl:px-[7%] px-[8vw] md:flex justify-between w-full h-[100%] pb-[10vh]">
+        <div className="flex flex-col gap-5 md:w-[30%] pr-2 mt-6 font-medium">
           <li>
-            <a> WHAT INFORMATION DO WE COLLECT?</a>
+            <a href="#1" className="hover:underline">
+              WHAT INFORMATION DO WE COLLECT?
+            </a>
           </li>
           <li>
-            <a> HOW DO WE PROCESS YOUR INFORMATION?</a>
+            <a href="#2" className="hover:underline">
+              HOW DO WE PROCESS YOUR INFORMATION?
+            </a>
           </li>
           <li>
-            <a>
+            <a href="#3" className="hover:underline">
               {" "}
               WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL
               INFORMATION?
             </a>
           </li>
           <li>
-            <a> WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a>
+            <a href="#4" className="hover:underline">
+              WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
+            </a>
           </li>
           <li>
-            <a> DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</a>
+            <a href="#5" className="hover:underline">
+              DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?
+            </a>
           </li>
           <li>
-            <a> HOW DO WE HANDLE YOUR SOCIAL LOGINS? </a>
+            <a href="#6" className="hover:underline">
+              HOW DO WE HANDLE YOUR SOCIAL LOGINS?{" "}
+            </a>
           </li>
           <li>
-            <a> HOW LONG DO WE KEEP YOUR INFORMATION?</a>
+            <a href="#7" className="hover:underline">
+              HOW LONG DO WE KEEP YOUR INFORMATION?
+            </a>
           </li>
           <li>
-            <a> HOW DO WE KEEP YOUR INFORMATION SAFE?</a>
+            <a href="#8" className="hover:underline">
+              HOW DO WE KEEP YOUR INFORMATION SAFE?
+            </a>
           </li>
           <li>
-            <a> DO WE COLLECT INFORMATION FROM MINORS?</a>
+            <a href="#9" className="hover:underline">
+              DO WE COLLECT INFORMATION FROM MINORS?
+            </a>
           </li>
           <li>
-            <a> WHAT ARE YOUR PRIVACY RIGHTS?</a>
+            <a href="#10" className="hover:underline">
+              WHAT ARE YOUR PRIVACY RIGHTS?
+            </a>
           </li>
           <li>
-            <a> CONTROLS FOR DO-NOT-TRACK FEATURES</a>
+            <a href="#11" className="hover:underline">
+              CONTROLS FOR DO-NOT-TRACK FEATURES
+            </a>
           </li>
           <li>
-            <a> DO WE MAKE UPDATES TO THIS NOTICE?</a>
+            <a href="#12" className="hover:underline">
+              DO WE MAKE UPDATES TO THIS NOTICE?
+            </a>
           </li>
           <li>
-            <a> HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>
+            <a href="#13" className="hover:underline">
+              HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
+            </a>
           </li>
           <li>
-            <a>
+            <a href="#14" className="hover:underline">
               {" "}
               HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM
               YOU?
             </a>
           </li>
         </div>
-        <div className="flex flex-col w-full pt-8 gap-10">
-          <div className="capitalize font-semibold text-[2rem]">PRIVACY</div>
+        <div className="flex flex-col w-full pt-4 gap-10 md:border-l pl-4 border-black">
+          <div className="capitalize font-semibold text-[2rem]">PRIVACY POLICY</div>
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <div>
@@ -176,7 +200,7 @@ function Privacy() {
                 <br />
               </p>
               <ol>
-                <li>
+                <li id="1">
                   <strong> WHAT INFORMATION DO WE COLLECT?</strong>
                 </li>
               </ol>
@@ -366,7 +390,7 @@ function Privacy() {
                 </li>
               </ul>
               <ol start={2}>
-                <li>
+                <li id="2">
                   <strong> HOW DO WE PROCESS YOUR INFORMATION?</strong>
                 </li>
               </ol>
@@ -483,7 +507,7 @@ function Privacy() {
                 </li>
               </ul>
               <ol start={3}>
-                <li>
+                <li id="3">
                   <strong>
                     {" "}
                     WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR INFORMATION?
@@ -578,7 +602,7 @@ function Privacy() {
                 </li>
               </ul>
               <ol start={4}>
-                <li>
+                <li id="4">
                   <strong>
                     {" "}
                     WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
@@ -640,7 +664,7 @@ function Privacy() {
                 </li>
               </ul>
               <ol start={5}>
-                <li>
+                <li id="5">
                   <strong>
                     {" "}
                     DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?
@@ -699,7 +723,7 @@ function Privacy() {
                 <a>Google Privacy &amp; Terms page</a>.
               </p>
               <ol start={6}>
-                <li>
+                <li id="6">
                   <strong> HOW DO WE HANDLE YOUR SOCIAL LOGINS?</strong>
                 </li>
               </ol>
@@ -736,7 +760,7 @@ function Privacy() {
                 apps.
               </p>
               <ol start={7}>
-                <li>
+                <li id="7">
                   <strong> HOW LONG DO WE KEEP YOUR INFORMATION?</strong>
                 </li>
               </ol>
@@ -769,7 +793,7 @@ function Privacy() {
                 possible.
               </p>
               <ol start={8}>
-                <li>
+                <li id="8">
                   <strong> HOW DO WE KEEP YOUR INFORMATION SAFE?</strong>
                 </li>
               </ol>
@@ -798,7 +822,7 @@ function Privacy() {
                 access the Services within a secure environment.
               </p>
               <ol start={9}>
-                <li>
+                <li id="9">
                   <strong> DO WE COLLECT INFORMATION FROM MINORS?</strong>
                 </li>
               </ol>
@@ -826,7 +850,7 @@ function Privacy() {
                 hello@kafsco.com.
               </p>
               <ol start={10}>
-                <li>
+                <li id="10">
                   <strong> WHAT ARE YOUR PRIVACY RIGHTS?</strong>
                 </li>
               </ol>
@@ -938,7 +962,7 @@ function Privacy() {
                 may email us at kafscoteam@gmail.com.
               </p>
               <ol start={11}>
-                <li>
+                <li id="11">
                   <strong> CONTROLS FOR DO-NOT-TRACK FEATURES</strong>
                 </li>
               </ol>
@@ -956,7 +980,7 @@ function Privacy() {
                 about that practice in a revised version of this privacy notice.
               </p>
               <ol start={12}>
-                <li>
+                <li id="12">
                   <strong> DO WE MAKE UPDATES TO THIS NOTICE?</strong>
                 </li>
               </ol>
@@ -980,7 +1004,7 @@ function Privacy() {
                 information.
               </p>
               <ol start={13}>
-                <li>
+                <li id="13">
                   <strong> HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</strong>
                 </li>
               </ol>
@@ -993,7 +1017,7 @@ function Privacy() {
               <p>Dublin</p>
               <p>Ireland</p>
               <ol start={14}>
-                <li>
+                <li id="14">
                   <strong>
                     {" "}
                     HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT
