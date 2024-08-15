@@ -106,7 +106,7 @@ export function Calender() {
   }, []);
 
   return (
-    <div className="bg-white border-2  rounded-3xl flex items-center flex-col ">
+    <div className="bg-white border-2  rounded-3xl flex items-center flex-col p-4">
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
           sx={{ margin: "0px" }}
