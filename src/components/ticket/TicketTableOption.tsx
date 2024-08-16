@@ -31,7 +31,7 @@ const TicketTableOption = ({
   return (
     <Accordion type="single" collapsible className="py-1">
       <AccordionItem value="item-1">
-        <AccordionTrigger className="w-full bg-white rounded-md px-4 m-2 shadow-md">
+        <AccordionTrigger className="w-full bg-white rounded-md px-4 my-2 md:m-2 shadow-md">
           <div className="flex w-full items-center justify-between">
             <p className="flex flex-col items-start ">
               <span className="text-lg">{ticket.categoryName}</span>

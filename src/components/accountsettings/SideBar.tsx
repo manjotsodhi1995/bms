@@ -13,6 +13,7 @@ interface SideBarProps {
   onStateChange: (newState: string) => void;
   initialState: string;
   isVisible: boolean;
+  toggleSidebar:any;
 }
 
 interface UpdateProfile {
@@ -45,6 +46,7 @@ const SideBar: React.FC<SideBarProps> = ({
   onStateChange,
   initialState,
   isVisible,
+  toggleSidebar
 }) => {
   const {
     root: { auth },
@@ -114,7 +116,7 @@ const SideBar: React.FC<SideBarProps> = ({
   return (
     <>
       <div
-        className={`h-[100vh] max-sm:fixed sm:w-[25%] sm:max-w-[350px] min-w-[200px] bg-gray-300 text-black flex flex-col items-center w-[40px] z-50 sm:z-10 md:block ${
+        className={`h-[100vh] max-sm:fixed sm:w-[25%] sm:max-w-[350px] min-w-[250px] bg-gray-300 text-black flex flex-col items-center w-[40px] z-50 sm:z-10 md:block ${
           isVisible ? "block" : "hidden"
         }`}
       >
@@ -124,6 +126,28 @@ const SideBar: React.FC<SideBarProps> = ({
         >
           <X className="size-8" />
         </Link>
+
+        <div
+          className={`md:hidden flex justify-start items-start max-md:pt-4 ${
+            isVisible ? "place-self-end pr-2" : "hidden"
+          }`}
+          onClick={toggleSidebar}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </div>
         <div className="mt-12 flex flex-col items-center w-full justify-center max-sm:pl-5">
           <input
             accept="image/*"

@@ -30,7 +30,7 @@ const updateProfile = async (body: UpdateProfile) => {
   return response.data.data;
 };
 
-const AccSettings = ({ toggleSidebar, isVisible }: any) => {
+const AccSettings = ({ toggleSidebar }: any) => {
   const queryClient = useQueryClient();
   const { data, isSuccess } = useQuery({
     queryKey: ["profile"],
@@ -126,9 +126,7 @@ const AccSettings = ({ toggleSidebar, isVisible }: any) => {
     <>
       <div className="max-md:h-[100vh] md:items-start sm:w-[75%] w-full lg:pl-[10%] sm:pl-[5%] max-h-[100vh] md:mt-[40px]">
         <div
-          className={`md:hidden flex justify-start items-start max-md:pt-4 ${
-            isVisible ? "pl-60" : "pl-4"
-          }`}
+          className={`md:hidden flex justify-start items-start max-md:pt-4 pl-8`}
           onClick={toggleSidebar}
         >
           <svg
