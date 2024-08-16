@@ -70,7 +70,7 @@ export default function FormDialog({ email }: any) {
         <DialogTitle>Change Password</DialogTitle>
         <DialogContent>
           <div className="flex flex-col justify-center items-center gap-4">
-            <div className="w-96">
+            <div className="w-full sm:w-96">
               <input
                 type="password"
                 name="oldPass"
@@ -81,7 +81,7 @@ export default function FormDialog({ email }: any) {
                 onChange={(e) => setOldPass(e.target.value)}
               />
             </div>
-            <div className="w-96">
+            <div className="w-full sm:w-96">
               <input
                 type="password"
                 name="newPass"
@@ -92,7 +92,7 @@ export default function FormDialog({ email }: any) {
                 onChange={(e) => setNewPass(e.target.value)}
               />
             </div>
-            <div className="w-96">
+            <div className="w-full sm:w-96">
               <input
                 type="password"
                 name="confirmPass"
