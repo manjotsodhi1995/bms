@@ -6,10 +6,17 @@ import { CalendarIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import axios from "@/utils/middleware";
+import FilterAccordian from "../components/FilterAccordian";
 
 interface DayResult {
   liveEvents: Event[];
   upcomingEvents: Event[];
+}
+
+interface Filters {
+  day: string[];
+  pricing: string[];
+  category: string[];
 }
 
 function Filter() {
@@ -20,11 +27,13 @@ function Filter() {
     await event.fetchEvents();
   };
 
-  const [filters, setFilters] = useState<any>({
+  const [filters, setFilters] = useState<Filters>({
     day: [],
     pricing: [],
     category: [],
   });
+
+  console.log(filters.category);
 
   const [dayResult, setDayResult] = useState<DayResult>({
     liveEvents: [],
@@ -33,11 +42,17 @@ function Filter() {
 
   const [categories, setCategories] = useState<any[]>([]);
 
+  console.log(categories);
+
   const fetchCategory = async () => {
-    const res = await axios.get(
-      `https://kafsbackend-106f.onrender.com/api/v1/events/fetch?city=Dublin`
-    );
-    setCategories(res.data.data.trendingCategories);
+    try {
+      const res = await axios.get(
+        `https://kafsbackend-106f.onrender.com/api/v1/categories/getallcategories`
+      );
+      setCategories(res.data.data);
+    } catch (error) {
+      console.log("Error fetching categories", error);
+    }
   };
 
   const fetchData = async () => {
@@ -51,7 +66,7 @@ function Filter() {
 
     const categoryQuery =
       filters.category.length > 0
-        ? `category=${filters.category.join("&category=")}`
+        ? filters.category.map((id: string) => `category=${id}`).join("&")
         : "";
 
     try {
@@ -89,14 +104,21 @@ function Filter() {
 
   return (
     <div className="lg:pr-[5%] xl:pr-[7%] pr-[0vw] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
-      <div className="z-10 md:w-[25rem] w-[100vw] flex flex-col mt-[50px] pt-[40px] h-[1005] rounded-r-xl backdrop-blur-2xl ml-1 pl-2 bg-white/10 border-r border-t border-b border-white/20 shadow-lg">
+      <div className="z-10 md:w-[25rem] w-[100vw] flex flex-col mt-[50px] pt-[40px] h-[1005] rounded-r-xl backdrop-blur-2xl max-sm:p-4 sm:ml-1 sm:pl-2 bg-white/10 border-r border-t border-b border-white/20 shadow-lg">
         {" "}
         <div className="border-gray-400 border-b mb-[30px] pl-[30px] ">
           <h2 className="text-xl font-medium mt-[10px] mb-[20px]">
             Filter By:
           </h2>
         </div>
-        <div className="border-gray-400 border-b space-y-3 mb-[50px] pl-[30px]">
+        <div>
+          <FilterAccordian
+            categories={categories}
+            setFilters={setFilters}
+            filters={filters}
+          />
+        </div>
+        <div className="hidden sm:block border-gray-400 border-b space-y-3 mb-[50px] pl-[30px]">
           <p className="flex items-center w-full gap-2 mb-[20px] relative">
             <h3 className="font-medium text-xl">Day</h3>
             <CalendarIcon className="size-5" onClick={toggleCalendar} />
@@ -193,7 +215,7 @@ function Filter() {
             </div>
           </div>
         </div>
-        <div className="border-gray-400 border-b space-y-3 mb-[50px] pl-[30px]">
+        <div className="hidden sm:block border-gray-400 border-b space-y-3 mb-[50px] pl-[30px]">
           <h3 className="font-medium mb-[20px] text-xl">Pricing</h3>
           <div className="max-sm:text-sm flex justify-between w-[200px]">
             <div className="flex">
@@ -240,20 +262,20 @@ function Filter() {
             </div>
           </div>
         </div>
-        <div className="border-gray-400 border-b space-y-3 mb-[50px] pl-[30px]">
+        <div className="hidden sm:block border-gray-400 border-b space-y-3 mb-[50px] pl-[30px]">
           <h3 className="font-medium mb-[20px] text-xl">Categories</h3>
           <div className="max-sm:text-sm flex space-y-3 flex-col justify-between w-[200px]">
             {categories.map((data: any) => (
-              <div className="flex" key={data._id}>
+              <div className="flex" key={data.categoryId}>
                 <input
                   type="checkbox"
-                  value={data._id}
+                  value={data.categoryId}
                   onChange={(e) => {
                     setFilters((prev: any) => {
                       const updatedCategory = e.target.checked
                         ? [...prev.category, e.target.value]
                         : prev.category.filter(
-                            (id: any) => id !== e.target.value
+                            (categoryId: any) => categoryId !== e.target.value
                           );
 
                       return {
@@ -271,12 +293,10 @@ function Filter() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-6 w-full ml-4 mt-14">
+      <div className="flex flex-col gap-6 w-full md:ml-4 mt-14">
         {" "}
-        <div className="flex justify-center sm:justify-normal">
-          <div className="font-medium lg:text-[1.4rem] text-[0.9rem]">
-            Events
-          </div>
+        <div className="flex justify-center items-center sm:justify-normal">
+          <div className="font-medium text-[1.4rem]">Events</div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12">
           {dayResult.liveEvents.length > 0 ||
@@ -290,7 +310,7 @@ function Filter() {
               ))}
             </>
           ) : (
-            <div>No events found</div>
+            <div className="max-sm:text-center">No events found</div>
           )}
         </div>
       </div>
