@@ -23,7 +23,7 @@ const PreviewCard = ({ eventsData, cartData, children }: PreviewCardProps) => {
         {eventsData?.venueAddress.country}, {eventsData?.venueAddress.zipcode}
       </p>
 
-      <h3 className="mt-10 leading-tight text-xl font-medium w-full">
+      <h3 className="mt-0 md:mt-10 leading-tight text-xl font-medium w-full">
         Order Summary
       </h3>
       <div className="flex w-full flex-col font-medium">

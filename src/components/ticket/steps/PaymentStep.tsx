@@ -137,8 +137,8 @@ export const PaymentStep = ({
       </div>
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-        <div className="w-4/5 md:w-full flex flex-col gap-2">
-          <h3 className="mb-6 text-xl font-bold">Payment</h3>
+        <div className="w-full flex flex-col gap-2">
+          <h3 className="mb-6 text-xl font-bold max-md:ml-1">Payment</h3>
           <div>
             <label
               htmlFor="cardNumber"
@@ -203,6 +203,10 @@ export const PaymentStep = ({
             </label>
           </div>
 
+          <div className="block md:hidden">
+            <PreviewCard cartData={cartData} eventsData={eventsData} />
+          </div>
+
           <div className="flex flex-col mt-10 gap-4">
             {isError && (
               <p className="text-red-400 text-sm font-medium">
@@ -229,8 +233,9 @@ export const PaymentStep = ({
             </button>
           </div>
         </div>
-
-        <PreviewCard cartData={cartData} eventsData={eventsData} />
+        <div className="hidden md:block">
+          <PreviewCard cartData={cartData} eventsData={eventsData} />
+        </div>
       </div>
     </Fragment>
   );

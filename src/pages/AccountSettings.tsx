@@ -46,9 +46,10 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({
         onStateChange={handleStateChange}
         initialState={sidebarState}
         isVisible={isSidebarVisible}
+        toggleSidebar={toggleSidebar}
       />
       {sidebarState === "acc" ? (
-        <AccSettings toggleSidebar={toggleSidebar} isVisible={isSidebarVisible}
+        <AccSettings toggleSidebar={toggleSidebar} Visible={setSidebarVisible}
         />
       ) : sidebarState === "pay" ? (
         <PaymentMethod />

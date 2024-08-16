@@ -269,14 +269,16 @@ export const CheckoutStep = ({
             </p>
           </div>
           <div className="flex flex-col gap-4">
-            <span className="text-xl font-medium">Pay with</span>
-            <PaymentMethodCard
-              title="Credit/Debit Card"
-              selected={paymentMethod === "card"}
-              onSelectedChange={(selected) =>
-                setPaymentMethod(selected ? "card" : null)
-              }
-            />
+            <div className="hidden md:block space-y-2">
+              <span className="text-xl font-medium">Pay with</span>
+              <PaymentMethodCard
+                title="Credit/Debit Card"
+                selected={paymentMethod === "card"}
+                onSelectedChange={(selected) =>
+                  setPaymentMethod(selected ? "card" : null)
+                }
+              />
+            </div>
             {/* <PaymentMethodCard */}
             {/*   title="Paypal" */}
             {/*   logo={PaymentMethodIcons.paypal()} */}
@@ -304,6 +306,18 @@ export const CheckoutStep = ({
           </div>
         </div>
         <PreviewCard cartData={cartData} eventsData={eventsData}>
+          <div className="block md:hidden mt-2 space-y-2 w-full">
+            {" "}
+            <span className="text-xl font-medium">Pay with</span>
+            <PaymentMethodCard
+              title="Credit/Debit Card"
+              selected={paymentMethod === "card"}
+              onSelectedChange={(selected) =>
+                setPaymentMethod(selected ? "card" : null)
+              }
+            />
+          </div>
+
           <button
             disabled={
               !checked ||
@@ -311,7 +325,7 @@ export const CheckoutStep = ({
               firstName.length === 0 ||
               lastName.length === 0
             }
-            className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500"
+            className="mt-4 bg-black w-full md:w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500"
             onClick={onContinueClicked}
           >
             Continue
