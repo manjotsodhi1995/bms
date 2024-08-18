@@ -298,7 +298,7 @@ function Filter() {
         <div className="flex justify-center items-center sm:justify-normal">
           <div className="font-medium text-[1.4rem]">Events</div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12">
+        <div className="flex flex-wrap gap-6 md:gap-6 md:justify-start justify-center">
           {dayResult.liveEvents.length > 0 ||
           dayResult.upcomingEvents.length > 0 ? (
             <>

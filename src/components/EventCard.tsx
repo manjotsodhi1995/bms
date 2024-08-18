@@ -35,7 +35,7 @@ function EventCard(event: Partial<EventType>) {
   };
   return (
     <div
-      className="w-full h-[310px] md:h-full place-self-center rounded-3xl shadow:lg transition-transform duration-300 ease-in-out  bg-white pb-2 border-[#BCBCBC36] border-2 cursor-pointer relative"
+      className="h-[310px] w-[370px] md:w-[350px] 2xl:w-[450px] md:h-full md:max-h-[420px] 2xl:max-h-[500px] place-self-center rounded-3xl shadow:lg transition-transform duration-300 ease-in-out  bg-white pb-2 border-[#BCBCBC36] border-2 cursor-pointer relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ transform: isHovered ? "scale(1.02)" : "scale(1)" }}
@@ -106,10 +106,10 @@ function EventCard(event: Partial<EventType>) {
                 </svg>
                 {event.venueAddress?.city}
               </div>
-              <div className="text-[#A48A00] font-medium text-[0.7rem] md:text-[0.9rem] lg:text-[1.1rem] 2xl:text-[1.4rem] pr-4 hover:line-clamp-none line-clamp-2">
+              <div className="text-[#A48A00] font-medium text-[0.8rem] md:text-[0.9rem] lg:text-[1.1rem] 2xl:text-[1.4rem] pr-4 hover:line-clamp-none line-clamp-2 leading-tight">
                 {event.title}
               </div>
-              <div className="text-[0.4rem] md:text-[0.6rem] 2xl:text-[0.9rem] mt-1">
+              <div className="text-[0.6rem] md:text-[0.8rem] 2xl:text-[1rem]">
                 {event.venueAddress?.name}
               </div>
             </div>

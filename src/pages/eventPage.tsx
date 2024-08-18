@@ -496,25 +496,25 @@ const EventPage = observer(() => {
               Check out more Events
             </div>
             <div className="hover:font-medium hover:underline ">
-              <Link to="">See More</Link>
+              <Link to="/filter">See More</Link>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:hidden gap-2">
+          <div className="flex flex-wrap md:hidden gap-2">
             {event.upcomingEvents.slice(0, 1).map((card, index) => (
               <EventCard key={index} {...card} />
             ))}
           </div>
-          <div className="hidden md:grid grid-cols-2 gap-4 lg:hidden">
+          <div className="hidden md:flex flex-wrap gap-4 lg:hidden">
             {event.upcomingEvents.slice(0, 2).map((card, index) => (
               <EventCard key={index} {...card} />
             ))}
           </div>
-          <div className="hidden lg:grid grid-cols-3 gap-4 2xl:hidden">
+          <div className="hidden lg:flex flex-wrap gap-4 2xl:hidden">
             {event.upcomingEvents.slice(0, 4).map((card, index) => (
               <EventCard key={index} {...card} />
             ))}
           </div>
-          <div className="hidden 2xl:grid grid-cols-4 gap-4">
+          <div className="hidden 2xl:flex flex-wrap gap-4">
             {event.upcomingEvents.slice(0, 4).map((card, index) => (
               <EventCard key={index} {...card} />
             ))}

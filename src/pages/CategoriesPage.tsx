@@ -115,7 +115,7 @@ function CategoriesPage() {
                   ref={index === 0 ? categoryRef : null} // Reference only the first category
                   className={`text-center whitespace-nowrap min-w-[9rem] h-10 py-2 px-4  flex items-center justify-center rounded-full font-medium border-2 bg-[white] text-gray-800 transition-colors duration-200 hover:bg-[#60769e] hover:text-white max-w-[280px] ${
                     category.categoryId == categoryId
-                      ? "bg-[#60769e] text-white "
+                      ? "bg-[#446ebc] text-white "
                       : ""
                   }`}
                 >
@@ -160,7 +160,7 @@ function CategoriesPage() {
             Events
           </div>
         </div>
-        <div className="justify-center w-full grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4">
+        <div className="w-full flex flex-wrap gap-4">
           {data &&
             data.upcomingEvents.map((card: any, index: number) => (
               <EventCard key={index} {...card} />

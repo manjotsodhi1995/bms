@@ -87,8 +87,8 @@ const App = observer(() => {
       <Toaster />
       {/* <div className="relative overflow-hidden"> */}
       <BrowserRouter>
-        <div className="home -z-10 fixed min-h-screen md:flex hidden">
-          <img src={bg} alt="" className="min-h-screen" />
+        <div className="home -z-10 fixed min-h-screen md:flex hidden min-w-screen">
+          <img src={bg} alt="" className="min-h-screen min-w-screen" />
         </div>{" "}
         <div className="home -z-10 fixed min-h-screen md:hidden">
           <img src={mbg} alt="" className="min-h-screen" />

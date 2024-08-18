@@ -24,16 +24,6 @@ function HeroSlides({ title, description, ImageUrl }: HeroSlidesProps) {
         <div className="absolute bg-white rounded-lg text-center ml-4 mt-4 p-1 font-medium text-[0.6rem] md:text-[0.8rem] lg:text-[1rem] 2xl:text-[1.2rem] 2xl:p-2">
           24 <br /> DEC
         </div>
-        {/* <video
-          src={v1}
-          className="w-full md:rounded-3xl rounded-xl h-full object-cover"
-          controls
-          autoPlay
-          onClick={() => {
-            setIsPlaying(!isPlaying);
-          }}
-          onLoad={handleImageLoad}
-        ></video> */}
         <img
           src={ImageUrl}
           className="w-full md:rounded-3xl rounded-xl h-full object-cover"

@@ -87,21 +87,21 @@ const OrganizationProfile = observer(() => {
                 <Link to="">See More</Link>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:hidden gap-2">
+            <div className="flex flex-wrap md:hidden gap-2">
               {organizationData?.upcomingEvents
                 .slice(0, 1)
                 .map((card: any, index: number) => (
                   <EventCard key={index} {...card} />
                 ))}
             </div>
-            <div className="hidden md:grid grid-cols-2 lg:hidden gap-4">
+            <div className="hidden md:flex flex-wrap lg:hidden gap-4">
               {organizationData?.upcomingEvents
                 .slice(0, 2)
                 .map((card: any, index: number) => (
                   <EventCard key={index} {...card} />
                 ))}
             </div>
-            <div className="hidden lg:grid lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+            <div className="hidden lg:flex flex-wrap gap-4">
               {organizationData?.upcomingEvents
                 .slice(0, 4)
                 .map((card: any, index: number) => (
@@ -118,21 +118,21 @@ const OrganizationProfile = observer(() => {
                 <Link to="">See More</Link>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:hidden gap-2">
+            <div className="flex flex-wrap md:hidden gap-2">
               {organizationData?.pastEvents
                 .slice(0, 1)
                 .map((card: any, index: number) => (
                   <EventCard key={index} {...card} />
                 ))}
             </div>
-            <div className="hidden md:grid grid-cols-2 lg:hidden gap-4">
+            <div className="hidden md:flex flex-wrap lg:hidden gap-4">
               {organizationData?.pastEvents
                 .slice(0, 2)
                 .map((card: any, index: number) => (
                   <EventCard key={index} {...card} />
                 ))}
             </div>
-            <div className="hidden lg:grid grid-cols-3 gap-4">
+            <div className="hidden lg:flex flex-wrap gap-4">
               {organizationData?.pastEvents
                 .slice(0, 3)
                 .map((card: any, index: number) => (
