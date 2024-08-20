@@ -44,7 +44,7 @@ const Stories: React.FC<StoryProps> = ({
   handlePrevClick,
   urls,
 }) => {
-  console.log(urls);
+  // console.log(urls);
   const [currentIndex, setCurrentIndex] = useState(activeIndex);
   useEffect(() => {
     setCurrentIndex(activeIndex);

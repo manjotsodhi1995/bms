@@ -33,7 +33,7 @@ function Hero() {
       const response = await axios.get(
         "https://kafsbackend-106f.onrender.com/api/v1/home-page"
       );
-      console.log(response);
+
       return response.data.data as EventType;
     } catch (err) {
       console.log("Failed to fetch data");
@@ -44,7 +44,6 @@ function Hero() {
     queryKey: ["event"],
     queryFn: () => fetchData(),
   });
-  console.log(eventData?.carouselImages.webImages.map((i: any) => i.img));
 
   const [open, setOpen] = useState(false);
   // const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);

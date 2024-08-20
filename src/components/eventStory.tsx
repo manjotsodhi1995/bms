@@ -3,7 +3,7 @@ import { useState } from "react";
 function EventSlides({ title, posterUrl }: any) {
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
-  console.log("isLoading", isLoading);
+  isLoading && "";
   const handleImageLoad = () => {
     setIsLoading(false); // Set loading to false when image loads
   };

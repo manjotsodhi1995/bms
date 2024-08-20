@@ -86,7 +86,7 @@ const Stories: React.FC<StoryProps> = ({
   };
   const handleClose = () => setOpen(false);
 
-  console.log(eventData);
+  // console.log(eventData);
   return (
     <Modal
       open={onOpen}

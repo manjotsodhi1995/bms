@@ -88,7 +88,7 @@ const EventPage = observer(() => {
       firstSwiper.current.slideNext();
     }
   };
-  console.log(isLoading);
+  console.log(eventData);
   const handlePrevClick = () => {
     if (firstSwiper.current) {
       firstSwiper.current.slidePrev();
@@ -351,10 +351,10 @@ const EventPage = observer(() => {
                 {"  "}
                 {eventData && new Date(eventData.eventEnd).getHours()}:
                 {eventData && new Date(eventData.eventEnd).getMinutes()}
-                (GMT+)
+                (GMT+1)
               </div>
             </div>
-            <div className="gap-2 items-center hidden">
+            <div className="gap-2 items-center flex">
               <div className="w-[30px] items-center flex justify-center">
                 <svg
                   width="22"
@@ -369,7 +369,7 @@ const EventPage = observer(() => {
                   />
                 </svg>
               </div>
-              <div>Last Entry at Fri 5th Jul at 9:00 AM (GMT+)</div>
+              <div>Last Entry at {eventData?.lastEntryTime} (GMT+1)</div>
             </div>
           </div>
           <div className="lg:w-[50%]">

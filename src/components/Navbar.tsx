@@ -31,7 +31,7 @@ const Navbar = observer(() => {
     root: { auth },
   } = useStore();
   const [search, setSearch] = useState("");
-  console.log(search);
+  // console.log(search);
 
   useEffect(() => {
     if (search.trim() !== "") {
@@ -413,7 +413,7 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
     []
   );
 
-  console.log(readNotifications);
+  // console.log(readNotifications);
 
   const fetchNotifications = async () => {
     try {

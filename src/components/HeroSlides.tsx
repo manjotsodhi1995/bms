@@ -9,7 +9,7 @@ function HeroSlides({ title, description, ImageUrl }: HeroSlidesProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
   console.log("isLoading", isLoading);
-  console.log(ImageUrl);
+  // console.log(ImageUrl);
   const handleImageLoad = () => {
     setIsLoading(false); // Set loading to false when image loads
   };

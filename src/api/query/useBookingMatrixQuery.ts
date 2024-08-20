@@ -43,7 +43,7 @@ export const useBookingMatrixQuery = (eventId?: string, eventDate?: string) => {
         eventDate: eventDate ? eventDate.split(" ")[0] : null,
       },
     });
-    console.log(response.data.data);
+    // console.log(response.data.data);
     return response.data.data;
   };
 

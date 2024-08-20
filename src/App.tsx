@@ -103,11 +103,6 @@ const App = observer(() => {
         >
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route
-              path="/organization/:orgId"
-              element={<OrganizationProfile />}
-            />
-
             {/* Protected Routes */}
             <Route element={<ProtectedRoutes />}>
               <Route path="/mytickets" element={<MyTickets />} />
@@ -165,7 +160,6 @@ const App = observer(() => {
               </Route>
               {/* Dashboard Routes */}
             </Route>
-
             {/* Public Routes */}
             <Route path="/search" element={<SearchPage />} />
             <Route
@@ -193,7 +187,6 @@ const App = observer(() => {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />
             <Route path="/reset-password" element={<ResetPassword />} />
-
             {/* Organizer Component */}
             <Route path="/organizer" element={<Organizer />} />
             <Route path="/events/:location" element={<EventsInLocation />} />
@@ -202,7 +195,11 @@ const App = observer(() => {
               element={<UpComingEventsInLocation />}
             />
             <Route path="/refer-friends" element={<ReferFriends />} />
-            <Route path="/refer-organizer" element={<ReferOrganizer />} />
+            <Route path="/refer-organizer" element={<ReferOrganizer />} />{" "}
+            <Route
+              path="/organization/:orgId"
+              element={<OrganizationProfile />}
+            />
           </Routes>{" "}
         </Suspense>
       </BrowserRouter>

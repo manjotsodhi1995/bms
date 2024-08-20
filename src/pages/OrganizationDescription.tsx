@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "../utils/middleware";
-import { useStore } from "../hooks/useStore";
 import EventCard from "../components/EventCard";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
@@ -12,31 +11,17 @@ import { useFollowingQuery } from "@/api/query/useFollowingQuery";
 
 const OrganizationProfile = observer(() => {
   const { orgId } = useParams();
-  const navigate = useNavigate();
   const [organizationData, setOrganizationData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const {
-    root: { auth },
-  } = useStore();
+
   const { data: isFollowing, mutation: followMutation } =
     useFollowingQuery(orgId);
-  useEffect(() => {
-    if (!isLoading && !auth.isAuthenticated) {
-      navigate("/");
-    }
-  });
-  const accessToken = auth.accessToken;
 
   useEffect(() => {
     const fetchOrg = async () => {
       try {
-        const response = await axios.get(`${API.organizers.getById}/${orgId}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const response = await axios.get(`${API.organizers.getById}/${orgId}`);
         setOrganizationData(response.data.data);
         console.log(response.data.data);
       } catch (error: any) {
