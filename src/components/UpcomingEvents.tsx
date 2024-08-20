@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../utils/middleware";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const svg = (
   <svg
@@ -88,10 +88,7 @@ const UpcomingEvents = () => {
 export default UpcomingEvents;
 
 const RowComponent = ({ month, day, title, isBooked, isLiked, slug }: any) => {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate(`event/${slug}`);
-  };
+
   return (
     <div>
       <div className="grid grid-cols-5 items-center font-medium px-4 py-1">
