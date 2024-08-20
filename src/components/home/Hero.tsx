@@ -10,14 +10,14 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import type SwiperCore from "swiper";
 import Stories from "../Stories";
 // import { data } from "@/utils/stories"
 import axios from "@/utils/middleware";
 import type { EventType } from "@/stores/event";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import v1 from "../../assets/v1.mp4"/
 
@@ -120,7 +120,6 @@ function Hero() {
   // }, [open, swiperInstance]);
 
   const [links, setLinks] = useState<string[]>([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (eventData) {
@@ -131,15 +130,6 @@ function Hero() {
     }
   }, [eventData]);
 
-  const handleRedirect = useCallback(
-    (index: number) => {
-      const link = links[index];
-      if (link) {
-        navigate(link);
-      }
-    },
-    [links, navigate]
-  );
   return (
     <>
       {/* swiperInstance={swiperInstance} activeIndex={activeIndex}  handleSlideChange={handleSecondSlideChange}*/}
@@ -177,13 +167,13 @@ function Hero() {
               {eventData?.carouselImages.webImages.map(
                 (card: any, index: number) => (
                   <SwiperSlide key={index}>
-                    <div onClick={() => handleRedirect(index)}>
+                    <Link to={links[index] || "#"}>
                       <img
                         src={card.img}
                         className="h-[25vw] w-full object-cover"
                         alt=""
                       />
-                    </div>
+                    </Link>
                   </SwiperSlide>
                 )
               )}
@@ -208,13 +198,15 @@ function Hero() {
               {eventData?.carouselImages.mobileImages.map(
                 (card: any, index: number) => (
                   <SwiperSlide key={index}>
-                    <div onClick={() => handleRedirect(index)}>
-                      <img
-                        src={card.img}
-                        className=" w-full h-[56.25vw] object-cover"
-                        alt=""
-                      />
-                    </div>
+                    <Link to={links[index] || "#"}>
+                      <div>
+                        <img
+                          src={card.img}
+                          className=" w-full h-[56.25vw] object-cover"
+                          alt=""
+                        />
+                      </div>
+                    </Link>
                   </SwiperSlide>
                 )
               )}
