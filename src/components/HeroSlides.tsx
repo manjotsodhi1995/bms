@@ -14,17 +14,17 @@ function HeroSlides({
   videoUrl,
 }: HeroSlidesProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false); // Track if the video is playing
   const videoRef = useRef(null);
 
-  const handleImageLoad = () => {
-    setIsLoading(false);
-  };
+  // const handleImageLoad = () => {
+  //   setIsLoading(false);
+  // };
 
   const handleVideoLoad = () => {
     setIsVideoLoading(false);
+    console.log(ImageUrl);
   };
 
   const handleVideoPlay = () => {
@@ -38,32 +38,32 @@ function HeroSlides({
       onMouseLeave={() => setIsHovered(false)}
       style={{ transform: isHovered ? "scale(1.1)" : "scale(1)" }}
     >
-      {isLoading && isVideoLoading && isVideoPlaying && <div></div>}
+      {isVideoLoading && isVideoPlaying && <div></div>}
       <div className="w-full rounded-3xl relative h-full">
         {!isHovered && (
           <div className="absolute bg-white rounded-lg text-center ml-4 mt-4 p-1 font-medium text-[0.6rem] md:text-[0.8rem] lg:text-[1rem] 2xl:text-[1.2rem] 2xl:p-2">
             24 <br /> DEC
           </div>
         )}
-        {!isHovered && (
+        {/* {!isHovered && (
           <img
             src={ImageUrl}
             className={`w-full md:rounded-3xl rounded-xl h-full object-cover`} // Hide image when video is playing
             onLoad={handleImageLoad}
           />
-        )}
-        {isHovered && (
-          <video
-            ref={videoRef}
-            src={videoUrl}
-            className="w-full md:rounded-3xl rounded-xl h-full object-cover"
-            onLoad={handleVideoLoad}
-            onPlay={handleVideoPlay} // Track when the video starts playing
-            autoPlay
-            muted
-            loop
-          />
-        )}
+        )} */}
+
+        <video
+          ref={videoRef}
+          src={videoUrl}
+          className="w-full md:rounded-3xl rounded-xl h-full object-cover"
+          onLoad={handleVideoLoad}
+          onPlay={handleVideoPlay} // Track when the video starts playing
+          autoPlay
+          muted
+          loop
+        />
+
         {!isHovered && (
           <div className="bg-[rgb(255,255,255,0.2)] backdrop-blur-2xl md:p-4 py-1 absolute bottom-[0rem] z-20 w-full flex flex-col gap-1 md:rounded-b-3xl rounded-b-xl">
             <div className="flex justify-center font-medium text-[0.9rem] md:text-[0.9rem] lg:text-[1rem] 2xl:text-[1.5rem] text-white">
