@@ -1,6 +1,6 @@
 import { cn } from "@/utils";
 import { Plus, Minus } from "lucide-react";
-
+import { useState } from "react";
 interface TicketCounterProps {
   value: number;
   className?: string;
@@ -11,17 +11,19 @@ interface TicketCounterProps {
 const TicketCounter = ({
   className,
   onValueChange,
-  value = 0,
   pending = false,
 }: TicketCounterProps) => {
+  const [value, setValue] = useState(0);
   // const [ticket, setTicket] = useState(value);
   const increaseTicket = () => {
     // setTicket((p) => p + 1);
+    setValue(value + 1);
     onValueChange(value + 1);
   };
   const decreaseTicket = () => {
     // setTicket((p) => (p > 0 ? p - 1 : p));
-    onValueChange(value > 0 ? value - 1 : value);
+    setValue(value > 0 ? value - 1 : value);
+    onValueChange(value - 1);
   };
   return (
     <div className={cn("flex items-center gap-4 mr-6", className)}>
