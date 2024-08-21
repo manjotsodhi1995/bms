@@ -119,13 +119,19 @@ function Hero() {
   // }, [open, swiperInstance]);
 
   const [links, setLinks] = useState<string[]>([]);
+  const [mobileLinks, setMobileLinks] = useState<string[]>([]);
 
   useEffect(() => {
     if (eventData) {
       const mobileLinks = eventData.carouselImages.mobileImages.map(
         (item: any) => item?.link || ""
       );
-      setLinks(mobileLinks);
+      setMobileLinks(mobileLinks);
+
+      const links = eventData.carouselImages.webImages.map(
+        (item: any) => item?.link || ""
+      )
+      setLinks(links);
     }
   }, [eventData]);
 
@@ -197,7 +203,7 @@ function Hero() {
               {eventData?.carouselImages.mobileImages.map(
                 (card: any, index: number) => (
                   <SwiperSlide key={index}>
-                    <Link to={links[index] || "#"}>
+                    <Link to={mobileLinks[index] || "#"}>
                       <div>
                         <img
                           src={card.img}
