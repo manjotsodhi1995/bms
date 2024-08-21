@@ -31,7 +31,7 @@ function Hero() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://kafsbackend-106f.onrender.com/api/v1/home-page"
+        "https://api.kafsco.com/api/v1/home-page"
       );
 
       return response.data.data as EventType;
@@ -220,7 +220,7 @@ function Hero() {
             centeredSlides={true}
             loop={true}
             slidesPerView={"auto"}
-            autoplay={{ delay: 3000 }}
+            autoplay={{ delay: 30000 }}
             coverflowEffect={{
               rotate: 0,
               stretch: 2,
@@ -241,6 +241,7 @@ function Hero() {
               >
                 <HeroSlides
                   key={index}
+                  videoUrl={card.videoUrl}
                   ImageUrl={card.posterUrl}
                   title={card.caption}
                   description={card.description}

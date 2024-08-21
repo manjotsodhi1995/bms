@@ -369,7 +369,14 @@ const EventPage = observer(() => {
                   />
                 </svg>
               </div>
-              <div>Last Entry at {eventData?.lastEntryTime} (GMT+1)</div>
+              <div>
+                Last Entry at{" "}
+                {eventData && formatDate(new Date(eventData.lastEntryTime))} at{" "}
+                {"  "}
+                {eventData && new Date(eventData.lastEntryTime).getHours()}:
+                {eventData && new Date(eventData.lastEntryTime).getMinutes()}
+                (GMT+1)
+              </div>
             </div>
           </div>
           <div className="lg:w-[50%]">

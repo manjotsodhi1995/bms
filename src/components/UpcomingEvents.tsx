@@ -46,10 +46,10 @@ const UpcomingEvents = () => {
   const upcomingEventsData = async () => {
     try {
       const response = await axios.get(
-        `https://kafsbackend-106f.onrender.com/api/v1/events/upcoming-events?city=Dublin`
+        `https://api.kafsco.com/api/v1/events/upcoming-events?city=Dublin`
       );
       console.log(response.data.data);
-      
+
       setUpcomingEvent(response.data.data);
     } catch (error) {
       console.log(error);
@@ -88,7 +88,6 @@ const UpcomingEvents = () => {
 export default UpcomingEvents;
 
 const RowComponent = ({ month, day, title, isBooked, isLiked, slug }: any) => {
-
   return (
     <div>
       <div className="grid grid-cols-5 items-center font-medium px-4 py-1">
@@ -96,8 +95,10 @@ const RowComponent = ({ month, day, title, isBooked, isLiked, slug }: any) => {
           <p className="text-sm text-center">{month}</p>
           <p className="text-2xl text-center font-semibold">{day}</p>
         </div>
-        <div className="text-sm col-span-3 hover:underline hover:cursor-pointer">        <Link to={`/event/${slug}`}>
-        {title}</Link></div>
+        <div className="text-sm col-span-3 hover:underline hover:cursor-pointer">
+          {" "}
+          <Link to={`/event/${slug}`}>{title}</Link>
+        </div>
         <div className="flex gap-2 col-span-1 ml-4 ">
           {isLiked ? heartSvg : ""}
           {isBooked ? svg : ""}

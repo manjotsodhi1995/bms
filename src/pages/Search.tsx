@@ -11,7 +11,7 @@ function SearchPage() {
 
   const fetchEvents = async () => {
     const response = await axios.get(
-      `https://kafsbackend-106f.onrender.com/api/v1/events/fetch?city=Dublin&title=${title}`
+      `https://api.kafsco.com/api/v1/events/fetch?city=Dublin&title=${title}`
     );
     return response.data.data.upcomingEvents;
   };

@@ -13,7 +13,7 @@ function Hero() {
 
   const getData = async () => {
     const response = await axios.get(
-      "https://kafsbackend-106f.onrender.com/api/v1/help-center"
+      "https://api.kafsco.com/api/v1/help-center"
     );
     // console.log(response.data.data[0]._id);
 

@@ -418,7 +418,7 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
   const fetchNotifications = async () => {
     try {
       const response = await axios.get(
-        "https://kafsbackend-106f.onrender.com/api/v1/notifications/fetch"
+        "https://api.kafsco.com/api/v1/notifications/fetch"
       );
       const fetchedNotifications = response.data.data;
 
@@ -442,12 +442,9 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
         const notificationIds = unreadNotifications.map(
           (notification) => notification._id
         );
-        await axios.patch(
-          "https://kafsbackend-106f.onrender.com/api/v1/notifications/read",
-          {
-            notificationIds,
-          }
-        );
+        await axios.patch("https://api.kafsco.com/api/v1/notifications/read", {
+          notificationIds,
+        });
         setUnreadNotifications([]);
       } catch (error) {
         console.error("Error marking notifications as read:", error);

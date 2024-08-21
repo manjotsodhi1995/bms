@@ -10,7 +10,7 @@ import axios from "axios";
 const fetchUpcomingEvents = async () => {
   try {
     const response = await axios.get(
-      `https://kafsbackend-106f.onrender.com/api/v1/events/upcoming-events?city=Dublin`
+      `https://api.kafsco.com/api/v1/events/upcoming-events?city=Dublin`
     );
     const events = response.data.data;
     const today = dayjs();

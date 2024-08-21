@@ -39,7 +39,7 @@ const Forgot = observer(() => {
 
   const sendLink = async (email: string) => {
     const response = await axios.post(
-      "https://kafsbackend-106f.onrender.com/api/v1/users/forgot-password",
+      "https://api.kafsco.com/api/v1/users/forgot-password",
       { email }
     );
     return response.data;

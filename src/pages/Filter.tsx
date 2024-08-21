@@ -47,7 +47,7 @@ function Filter() {
   const fetchCategory = async () => {
     try {
       const res = await axios.get(
-        `https://kafsbackend-106f.onrender.com/api/v1/categories/getallcategories`
+        `https://api.kafsco.com/api/v1/categories/getallcategories`
       );
       setCategories(res.data.data);
     } catch (error) {
@@ -71,7 +71,7 @@ function Filter() {
 
     try {
       const response = await axios.get(
-        `https://kafsbackend-106f.onrender.com/api/v1/events/fetch?city=Dublin${
+        `https://api.kafsco.com/api/v1/events/fetch?city=Dublin${
           dayParam ? `&${dayParam}` : ""
         }${pricingQuery ? `&${pricingQuery}` : ""}${
           categoryQuery ? `&${categoryQuery}` : ""

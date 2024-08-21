@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const createSessionInstance = axios.create({
-  baseURL: "https://kafsbackend-106f.onrender.com/api/v1",
+  baseURL: "https://api.kafsco.com/api/v1",
 });
 
 axios.interceptors.request.use(

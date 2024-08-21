@@ -49,15 +49,11 @@ const ContactUs = observer(() => {
   };
 
   const uploadContactData = async (data: ContactData) => {
-    await axios.post(
-      "https://kafsbackend-106f.onrender.com/api/v1/contactform/submit",
-      data,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    await axios.post("https://api.kafsco.com/api/v1/contactform/submit", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   const mutation = useMutation({
@@ -216,7 +212,8 @@ const ContactUs = observer(() => {
       <div className="pl-[5vw] pt-[5vh] w-full flex flex-col items-center gap-8">
         <div className="font-bold text-4xl">Frequently Asked Questions</div>
         <div className="w-[90%] flex flex-col gap-3 py-8">
-          <ExpandableBox className="bg-white"
+          <ExpandableBox
+            className="bg-white"
             title="I can't find my tickets"
             content={
               <>
@@ -237,12 +234,14 @@ const ContactUs = observer(() => {
               </>
             }
           />
-          <ExpandableBox className="bg-white"
+          <ExpandableBox
+            className="bg-white"
             title="How do I get a refund?"
             content="Events on Kafsco are hosted by third-party organizers who set their own refund policies. Read the refund policy on event page, if refund requests are allowed by the event organizer, you can request one by mentioning your email address and ticket number in the contact form.
 "
           />
-          <ExpandableBox className="bg-white"
+          <ExpandableBox
+            className="bg-white"
             title="Why have I been charged/charged twice, but have no ticket/only one ticket?
 "
             content={
@@ -259,7 +258,8 @@ const ContactUs = observer(() => {
               </>
             }
           />
-          <ExpandableBox className="bg-white"
+          <ExpandableBox
+            className="bg-white"
             title="How do I become a paid promoter for Kafsco?"
             content={
               <>

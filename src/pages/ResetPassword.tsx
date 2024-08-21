@@ -26,7 +26,7 @@ const ResetPassword = observer(() => {
 
   const changePassword = async (password: any) => {
     const response = await axios.post(
-      `https://kafsbackend-106f.onrender.com/api/v1/users/reset-password`,
+      `https://api.kafsco.com/api/v1/users/reset-password`,
       {
         password,
       },

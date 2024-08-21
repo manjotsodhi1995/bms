@@ -41,7 +41,7 @@ export default function FormDialog({ email }: any) {
     if (!validateForm()) return;
     try {
       await axios
-        .put("https://kafsbackend-106f.onrender.com/api/v1/users/update", {
+        .put("https://api.kafsco.com/api/v1/users/update", {
           password: confirmPass,
           email,
         })
