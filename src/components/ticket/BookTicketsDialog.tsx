@@ -20,6 +20,7 @@ import CartProvider from "@/stores/cart";
 import { X } from "lucide-react";
 import { useCartQuery } from "@/api/query/useCartQuery";
 import bgImage from "../../assets/bgImage.png";
+import IFrameLoader from "./steps/IFrameLoader";
 interface BookTicketsDialogProps extends DialogProps {
   eventsData: EventType | null;
 }
@@ -58,6 +59,7 @@ const BookTicketsDialogContent = ({
     setTicketStep("booking");
     setDialogOpen(value);
   };
+  const [iframeData, setIframeData] = useState();
   return (
     <Dialog open={dialogOpen} onOpenChange={closeDialog}>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -68,7 +70,6 @@ const BookTicketsDialogContent = ({
             <X className="size-6" />
             <span className="sr-only">Close</span>
           </DialogClose>
-
           {ticketStep === "booking" && (
             <BookingStep
               onBack={() => setDialogOpen(false)}
@@ -94,7 +95,8 @@ const BookTicketsDialogContent = ({
             <PaymentStep
               onBack={() => setTicketStep("checkout")}
               eventsData={eventsData}
-              onStepChange={() => setTicketStep("payment-success")}
+              onStepChange={() => setTicketStep("iframe")}
+              setIframeData={setIframeData}
             />
           )}
           {ticketStep === "payment-success" && (
@@ -120,6 +122,15 @@ const BookTicketsDialogContent = ({
           )}
           {ticketStep === "share-ticket" && (
             <ShareTicketStep
+              onClose={() => {
+                setDialogOpen(false);
+                setTicketStep("booking");
+              }}
+            />
+          )}
+          {ticketStep === "iframe" && (
+            <IFrameLoader
+              data={iframeData}
               onClose={() => {
                 setDialogOpen(false);
                 setTicketStep("booking");

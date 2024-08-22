@@ -1,5 +1,6 @@
 export const SERVER_BASE_URL = `${
-  import.meta.env.VITE_BACKEND_SERVER_URL || "https://api.kafsco.com"
+  import.meta.env.VITE_BACKEND_SERVER_URL ||
+  "https://kafsbackend-106f.onrender.com"
 }/api/v1` as const;
 
 export const API = {
@@ -60,6 +61,9 @@ export const API = {
   },
   payments: {
     direct: `${SERVER_BASE_URL}/payments/direct`,
+  },
+  payments3ds: {
+    direct: `${SERVER_BASE_URL}/payments/direct3ds`,
   },
   bookingRoutes: {
     getTicket: `${SERVER_BASE_URL}/bookings/get-tickets`,

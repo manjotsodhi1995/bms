@@ -28,7 +28,7 @@ function EventSlides({ title, videoUrl }: HeroSlidesProps) {
           muted
           loop
         />
-        <div className="bg-[rgb(255,255,255,0.2)] backdrop-blur-2xl md:p-2 py-1 absolute bottom-[0rem] z-20 w-full flex flex-col md:rounded-b-3xl rounded-b-xl border b-1">
+        <div className=" backdrop-blur-2xl md:p-2 py-1 absolute bottom-[0rem] z-20 w-full flex flex-col md:rounded-b-3xl rounded-b-xl border b-1">
           <div className="font-medium text-[0.8rem] md:text-[0.7rem] lg:text-[0.9rem] 2xl:text-[1.0rem] text-white line-clamp-1 break-words text-center">
             {title}
           </div>

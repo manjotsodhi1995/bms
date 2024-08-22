@@ -22,16 +22,22 @@ interface PaymentBody {
   basketId: string;
 }
 
-const sendPaymentDetails = async (body: PaymentBody) => {
-  const response = await axios.post(API.payments.direct, body);
-  return response.data;
-};
+// const sendPaymentDetails = async (body: PaymentBody) => {
+//   const response = await axios.post(API.payments.direct, body);
+//   return response.data;
+// };
 
 export const PaymentStep = ({
   eventsData,
   onBack,
   onStepChange,
+  setIframeData,
 }: TicketStepsProps) => {
+  const sendPaymentDetails = async (body: PaymentBody) => {
+    console.log(cartData?.basket);
+    const response = await axios.post(API.payments3ds.direct, body);
+    return response.data;
+  };
   const {
     firstName,
     lastName,
@@ -56,10 +62,15 @@ export const PaymentStep = ({
   const { mutate, isPending, isError } = useMutation({
     mutationFn: sendPaymentDetails,
     onSuccess: (data: any) => {
-      if (data.transaction.bookingStatus === "SUCCESS") {
-        setBookingId(data.transaction.bookingId);
-        onStepChange?.();
-      }
+      setIframeData(data);
+      onStepChange!!();
+      // if (data.transaction.bookingStatus === "SUCCESS") {
+      //   setBookingId(data.transaction.bookingId);
+      //   onStepChange?.();
+      // }
+    },
+    onError: (error) => {
+      console.log(error);
     },
   });
 
@@ -84,7 +95,7 @@ export const PaymentStep = ({
     setError("");
 
     mutate({
-      amount: Number(cartData.basket.netPayableAmount).toFixed(0),
+      amount: cartData.basket.netPayableAmount,
       cardNumber: cardNumber,
       cardExpiryMonth: expiryDate.split("/")[0],
       cardExpiryYear: expiryDate.split("/")[1],

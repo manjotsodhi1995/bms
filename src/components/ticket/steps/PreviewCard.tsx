@@ -8,7 +8,7 @@ interface PreviewCardProps {
 }
 const PreviewCard = ({ eventsData, cartData, children }: PreviewCardProps) => {
   return (
-    <div className="bg-white p-10 pb-2 flex flex-col shadow-lg rounded-lg h-[105%] gap-2 items-center max-h-[105%]">
+    <div className="bg-white p-10 flex flex-col shadow-lg rounded-lg h-[105%] gap-2 items-center max-h-[105%]">
       <img
         src={eventsData?.posterUrl}
         className="w-full h-52 object-cover rounded-lg md:flex hidden"
