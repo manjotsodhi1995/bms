@@ -14,7 +14,7 @@ axios.interceptors.request.use(
     if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     } else {
-      config.headers["is_guest_user"] = true;
+      config.headers["isGuestUser"] = true;
     }
 
     if (!sessionId && !accessToken) {

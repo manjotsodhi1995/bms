@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 
 interface StorySlidesProps {
-  VideoUrl: string;
+  videoUrl: string;
   index: number;
   activeIndex: number;
   currentIndex: number;
 }
-function StorySlide({ VideoUrl, index, currentIndex }: StorySlidesProps) {
+function StorySlide({ videoUrl, index, currentIndex }: StorySlidesProps) {
   const [isLoading, setIsLoading] = useState(true); // Add loading state
   const videoRef = useRef<HTMLVideoElement>(null);
   console.log("isLoading", isLoading);
-  console.log(VideoUrl);
+  console.log(videoUrl);
   const handleImageLoad = () => {
     setIsLoading(false);
   };
@@ -27,13 +27,12 @@ function StorySlide({ VideoUrl, index, currentIndex }: StorySlidesProps) {
   return (
     <div className="md:rounded-3xl rounded-xl transition-transform duration-300 ease-in-out lg:h-[35rem] 2xl:h-[45rem] 2xl:w-[30rem] min-[2000px]:h-[75rem] min-[2000px]:w-[45rem] lg:w-[26rem]  h-[25rem] w-[13rem]">
       <video
-        src={VideoUrl}
+        src={videoUrl}
         ref={videoRef}
         className="video h-full w-full object-cover"
         loop
         autoPlay
-        controls
-        controlsList="nodownload nofullscreen noplaybackrate noremoteplayback"
+        playsInline
         onLoad={handleImageLoad}
         disablePictureInPicture
       ></video>

@@ -1,6 +1,6 @@
-import EventSlides from "@/components/eventStory";
+// import EventSlides from "@/components/eventStory";
 import { fakeEventData } from "@/pages/events/fakedata";
-import { useRef } from "react";
+// import { useRef } from "react";
 import { useParams } from "react-router-dom";
 import {
   Table,
@@ -55,16 +55,16 @@ const OrganizerEventsHistory = () => {
   const { id: _ } = useParams();
   const eventsData = fakeEventData;
 
-  const carouselRef = useRef(null);
+  // const carouselRef = useRef(null);
   return (
     <div className="flex flex-col mt-8 md:mt-16 gap-6">
-      <div className="max-w-xl grid grid-cols-3 md:grid-cols-3 gap-6">
+      {/* <div className="max-w-xl grid grid-cols-3 md:grid-cols-3 gap-6">
         {eventsData.slice(0, 3).map((card, index) => (
-          <div key={index} className="snap-center w-full" ref={carouselRef}>
-            <EventSlides {...card} />
-          </div>
+          // <div key={index} className="snap-center w-full" ref={carouselRef}>
+          //   <EventSlides {...card} />
+          // </div>
         ))}
-      </div>
+      </div> */}
 
       <div className="relative shadow-custom py-12 px-8 rounded-md w-full bg-blue-box">
         <p className="text-lg md:text-2xl font-medium ml-4 mb-4">

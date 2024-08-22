@@ -290,7 +290,7 @@ const EventPage = observer(() => {
                   handleSlideClick(index);
                 }}
               >
-                <EventSlides title={card.caption} posterUrl={card.posterUrl} />
+                <EventSlides title={card.caption} videoUrl={card.videoUrl} />
               </div>
             ))}
           </div>{" "}
@@ -453,7 +453,7 @@ const EventPage = observer(() => {
                   handleSlideClick(index);
                 }}
               >
-                <EventSlides title={card.caption} posterUrl={card.posterUrl} />
+                <EventSlides title={card.caption} videoUrl={card.videoUrl} />
               </div>
             ))}
           </div>{" "}

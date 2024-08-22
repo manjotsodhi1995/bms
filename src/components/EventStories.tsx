@@ -132,7 +132,7 @@ const Stories: React.FC<StoryProps> = ({
             <SwiperSlide>
               <StorySlide
                 key={index}
-                VideoUrl={card.videoUrl}
+                videoUrl={card.videoUrl}
                 activeIndex={activeIndex}
                 index={index}
                 currentIndex={currentIndex}

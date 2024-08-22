@@ -40,11 +40,11 @@ function HeroSlides({
     >
       {isVideoLoading && isVideoPlaying && <div></div>}
       <div className="w-full rounded-3xl relative h-full">
-        {!isHovered && (
+        {/* {!isHovered && (
           <div className="absolute bg-white rounded-lg text-center ml-4 mt-4 p-1 font-medium text-[0.6rem] md:text-[0.8rem] lg:text-[1rem] 2xl:text-[1.2rem] 2xl:p-2">
             24 <br /> DEC
           </div>
-        )}
+        )} */}
         {/* {!isHovered && (
           <img
             src={ImageUrl}
