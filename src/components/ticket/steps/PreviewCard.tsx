@@ -8,7 +8,7 @@ interface PreviewCardProps {
 }
 const PreviewCard = ({ eventsData, cartData, children }: PreviewCardProps) => {
   return (
-    <div className="bg-white p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
+    <div className="bg-white p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center max-h-[100%]">
       <img
         src={eventsData?.posterUrl}
         className="w-full h-52 object-cover rounded-lg md:flex hidden"
@@ -16,14 +16,17 @@ const PreviewCard = ({ eventsData, cartData, children }: PreviewCardProps) => {
       <span className="leading-tight text-xl font-medium md:flex hidden">
         {eventsData?.title}
       </span>
-      <p className="ml-4 md:ml-2 text-sm md:flex hidden">
-        Wednesdays, {formatDate(new Date(eventsData?.eventStart!!))}
-        <br />
-        at {eventsData?.venueAddress.name}, {eventsData?.venueAddress.city},{" "}
-        {eventsData?.venueAddress.country}, {eventsData?.venueAddress.zipcode}
-      </p>
+      <span className="flex justify-start w-full">
+        {" "}
+        <p className="text-sm md:block hidden">
+          {formatDate(new Date(eventsData?.eventStart!!))}
+          <br />
+          at {eventsData?.venueAddress.name}, {eventsData?.venueAddress.city},{" "}
+          {eventsData?.venueAddress.country}, {eventsData?.venueAddress.zipcode}
+        </p>
+      </span>
 
-      <h3 className="mt-0 md:mt-10 leading-tight text-xl font-medium w-full">
+      <h3 className="mt-0 md:mt-4 leading-tight text-xl font-medium w-full">
         Order Summary
       </h3>
       <div className="flex w-full flex-col font-medium">

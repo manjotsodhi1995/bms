@@ -1,6 +1,6 @@
 import { cn } from "@/utils";
 import { Plus, Minus } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 interface TicketCounterProps {
   value: number;
   className?: string;
@@ -14,6 +14,11 @@ const TicketCounter = ({
   pending = false,
 }: TicketCounterProps) => {
   const [value, setValue] = useState(0);
+  const [minus, setMinus] = useState(true);
+  useEffect(() => {
+    if (value == 0) setMinus(true);
+    else if (value > 0) setMinus(false);
+  }, [value]);
   // const [ticket, setTicket] = useState(value);
   const increaseTicket = () => {
     // setTicket((p) => p + 1);
@@ -28,7 +33,7 @@ const TicketCounter = ({
   return (
     <div className={cn("flex items-center gap-4 mr-6", className)}>
       <button
-        disabled={pending}
+        disabled={pending || minus}
         className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center disabled:cursor-not-allowed"
         onClick={decreaseTicket}
       >

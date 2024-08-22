@@ -86,11 +86,15 @@ export const BookingStep = ({
       </div>
       <PreviewCard cartData={cartData} eventsData={eventsData}>
         <button
-          disabled={noOfTickets === 0}
-          className="mt-4 bg-black w-full md:w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500"
+          disabled={noOfTickets === 0 || cartMutation.isPending}
+          className="mt-4 bg-black w-full md:w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500 flex justify-center items-center h-[40px]"
           onClick={onStepChange}
         >
-          Reserve
+          {cartMutation.isPending ? (
+            <Loader2 className="animate-spin size-4" />
+          ) : (
+            <>Reserve</>
+          )}
         </button>
       </PreviewCard>
     </div>
