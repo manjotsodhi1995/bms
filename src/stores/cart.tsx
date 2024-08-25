@@ -30,6 +30,10 @@ interface CartContextType {
   setBookingId: Dispatch<SetStateAction<string>>;
   basketId: string;
   setBasketId: Dispatch<SetStateAction<string>>;
+  zip: any;
+  setZip: any;
+  address: any;
+  setAddress: any;
 }
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -45,7 +49,8 @@ const CartProvider = ({ children }: PropsWithChildren) => {
   const [cvv, setCvv] = useState("");
   const [country, setCountry] = useState("");
   const [basketId, setBasketId] = useState("");
-
+  const [address, setAddress] = useState("");
+  const [zip, setZip] = useState("");
   // TODO: Remove if not needed
   const [bookingId, setBookingId] = useState("");
 
@@ -72,6 +77,10 @@ const CartProvider = ({ children }: PropsWithChildren) => {
     setBookingId,
     basketId,
     setBasketId,
+    address,
+    setAddress,
+    zip,
+    setZip,
   };
 
   return (
