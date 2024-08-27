@@ -18,8 +18,21 @@ import axios from "@/utils/middleware";
 import type { EventType } from "@/stores/event";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-
 // import v1 from "../../assets/v1.mp4"/
+import { Skeleton } from "@mui/material";
+
+function DivSkeleton() {
+  return (
+    <Skeleton
+      variant="rounded"
+      width={"100%"}
+      height={"100%"}
+      sx={{
+        borderRadius: 6,
+      }}
+    />
+  );
+}
 
 interface StoryItem {
   videoUrl: string;
@@ -28,12 +41,14 @@ interface StoryItem {
 
 function Hero() {
   // Define an asynchronous function to fetch data
+  const [loading, setLoading] = useState(false);
   const fetchData = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(
         "https://api.kafsco.com/api/v1/home-page"
       );
-
+      setLoading(false);
       return response.data.data as EventType;
     } catch (err) {
       console.log("Failed to fetch data");
@@ -46,51 +61,12 @@ function Hero() {
   });
 
   const [open, setOpen] = useState(false);
-  // const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);
-
-  // const handleSetChildSwiper = (swiper: SwiperCore | null) => {
-  //   setChildSwiper(swiper);
-  // };
-  // const swiperControl = useCallback((swiper: SwiperCore) => {
-  //   setSwiperInstance(swiper);
-  // }, []);
-
-  // interface SwiperRefs {
-  //   swiperRef1: React.MutableRefObject<typeof Swiper | null>;
-  //   swiperRef2: React.MutableRefObject<typeof Swiper | null>;
-  // }
-  // const swiperRef1 = useRef<typeof Swiper | null>(null);
-  // const swiperRef2 = useRef<typeof Swiper | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  // const [open, setOpen] = useState(false);
-  // const [clicked, setClicked] = useState(true);
-
   const handleSlideClick = (index: number) => {
-    // setTimeout(() => {
-    //   setClicked(false);
-    // }, 15000);
     setActiveIndex(index);
-    // if (firstSwiper.current) {
-    //   firstSwiper.current.slideTo(activeIndex);
-    // }
   };
 
   const firstSwiper = useRef<SwiperCore | null>(null);
-  // const secondSwiper = useRef<SwiperCore | null>(null);
-  // const handleFirstSlideChange = (swiper: SwiperCore) => {
-  //   const { activeIndex } = swiper;
-  //   // Navigate to the corresponding slide in the second swiper
-  //   if (secondSwiper.current && secondSwiper.current.activeIndex !== activeIndex) {
-  //     secondSwiper.current.slideTo(activeIndex);
-  //   }
-  // };
-  // const handleSecondSlideChange = (swiper: SwiperCore) => {
-  //   const { activeIndex } = swiper;
-  //   // Navigate to the corresponding slide in the first swiper
-  //   if (firstSwiper.current && firstSwiper.current.activeIndex !== activeIndex && open==true) {
-  //     firstSwiper.current.slideTo(activeIndex);
-  //   }
-  // };
   const handleNextClick = () => {
     if (firstSwiper.current) {
       firstSwiper.current.slideNext();
@@ -112,12 +88,6 @@ function Hero() {
     }
   }, [open]);
 
-  // useEffect(() => {
-  //   if (swiperInstance) {
-  //     swiperInstance.update(); // Update swiper instance when modal is opened/closed
-  //   }
-  // }, [open, swiperInstance]);
-
   const [links, setLinks] = useState<string[]>([]);
   const [mobileLinks, setMobileLinks] = useState<string[]>([]);
 
@@ -130,14 +100,13 @@ function Hero() {
 
       const links = eventData.carouselImages.webImages.map(
         (item: any) => item?.link || ""
-      )
+      );
       setLinks(links);
     }
   }, [eventData]);
 
   return (
     <>
-      {/* swiperInstance={swiperInstance} activeIndex={activeIndex}  handleSlideChange={handleSecondSlideChange}*/}
       <Stories
         onOpen={open}
         setOpen={setOpen}
@@ -153,69 +122,83 @@ function Hero() {
         <div className="w-full flex items-center">
           <div className="hidden lg:flex w-full">
             {" "}
-            <Swiper
-              spaceBetween={30}
-              centeredSlides={true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              pagination={{
-                clickable: true,
-                type: "bullets", // Ensure dots are displayed as bullets
-              }}
-              navigation={true}
-              modules={[Autoplay, Navigation, Pagination]} // Include Pagination module
-              className="custom-swiper"
-            >
-              {" "}
-              {eventData?.carouselImages.webImages.map(
-                (card: any, index: number) => (
-                  <SwiperSlide key={index}>
-                    <Link to={links[index] || "#"}>
-                      <img
-                        src={card.img}
-                        className="h-[25vw] w-full object-cover"
-                        alt=""
-                      />
-                    </Link>
-                  </SwiperSlide>
-                )
-              )}
-            </Swiper>
-          </div>
-          <div className="lg:hidden flex w-full">
-            <Swiper
-              spaceBetween={30}
-              centeredSlides={true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: true,
-              }}
-              pagination={{
-                clickable: true,
-                type: "bullets", // Ensure dots are displayed as bullets
-              }}
-              navigation={true}
-              modules={[Autoplay, Navigation, Pagination]} // Include Pagination module
-              className="custom-swiper"
-            >
-              {eventData?.carouselImages.mobileImages.map(
-                (card: any, index: number) => (
-                  <SwiperSlide key={index}>
-                    <Link to={mobileLinks[index] || "#"}>
-                      <div>
+            {loading && (
+              <div className="w-[100vw] h-[25vw]">
+                <DivSkeleton />
+              </div>
+            )}
+            {!loading && (
+              <Swiper
+                spaceBetween={30}
+                centeredSlides={true}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                  type: "bullets", // Ensure dots are displayed as bullets
+                }}
+                navigation={true}
+                modules={[Autoplay, Navigation, Pagination]} // Include Pagination module
+                className="custom-swiper"
+              >
+                {" "}
+                {eventData?.carouselImages.webImages.map(
+                  (card: any, index: number) => (
+                    <SwiperSlide key={index}>
+                      <Link to={links[index] || "#"}>
                         <img
                           src={card.img}
-                          className=" w-full h-[56.25vw] object-cover"
+                          className="h-[25vw] w-full object-cover"
                           alt=""
                         />
-                      </div>
-                    </Link>
-                  </SwiperSlide>
-                )
-              )}
-            </Swiper>
+                      </Link>
+                    </SwiperSlide>
+                  )
+                )}
+              </Swiper>
+            )}
+          </div>
+          <div className="lg:hidden flex w-full">
+            {loading && (
+              <div className="w-[100vw] h-[56.25vw]">
+                <DivSkeleton />
+              </div>
+            )}
+            {!loading && (
+              <Swiper
+                spaceBetween={30}
+                centeredSlides={true}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: true,
+                }}
+                pagination={{
+                  clickable: true,
+                  type: "bullets", // Ensure dots are displayed as bullets
+                }}
+                navigation={true}
+                modules={[Autoplay, Navigation, Pagination]} // Include Pagination module
+                className="custom-swiper"
+              >
+                {eventData?.carouselImages.mobileImages.map(
+                  (card: any, index: number) => (
+                    <SwiperSlide key={index}>
+                      <Link to={mobileLinks[index] || "#"}>
+                        <div>
+                          <img
+                            src={card.img}
+                            className=" w-full h-[56.25vw] object-cover"
+                            alt=""
+                          />
+                        </div>
+                      </Link>
+                    </SwiperSlide>
+                  )
+                )}
+              </Swiper>
+            )}
           </div>
         </div>
         <div className="">
@@ -238,22 +221,31 @@ function Hero() {
             className="swiper_container sw1 py-8"
             onSwiper={(swiper) => (firstSwiper.current = swiper)}
           >
-            {eventData?.stories.map((card: any, index: any) => (
-              <SwiperSlide
-                onClick={() => {
-                  setOpen(true);
-                  handleSlideClick(index);
-                }}
-              >
-                <HeroSlides
-                  key={index}
-                  videoUrl={card.videoUrl}
-                  ImageUrl={card.posterUrl}
-                  title={card.caption}
-                  description={card.description}
-                />
-              </SwiperSlide>
-            ))}
+            {loading &&
+              [...Array(10)].map((_, idx) => (
+                <SwiperSlide key={idx}>
+                  <div className="md:rounded-3xl rounded-xl transition-transform duration-300 ease-in-out lg:h-[18rem] lg:w-[15rem] 2xl:w-[18rem] 2xl:h-[21rem] h-[12rem] md:h-[12rem] md:w-[10rem]">
+                    <DivSkeleton />
+                  </div>
+                </SwiperSlide>
+              ))}
+            {!loading &&
+              eventData?.stories.map((card: any, index: any) => (
+                <SwiperSlide
+                  onClick={() => {
+                    setOpen(true);
+                    handleSlideClick(index);
+                  }}
+                >
+                  <HeroSlides
+                    key={index}
+                    videoUrl={card.videoUrl}
+                    ImageUrl={card.posterUrl}
+                    title={card.caption}
+                    description={card.description}
+                  />
+                </SwiperSlide>
+              ))}
           </Swiper>
         </div>
       </div>
