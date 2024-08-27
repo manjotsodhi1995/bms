@@ -67,12 +67,7 @@ const EventPage = observer(() => {
       new Date(eventData.eventEnd).getMinutes();
     return `${start}, ${startTime} - ${end}, ${endTime} (GMT+1)`;
   }, [eventData]);
-
-  const canBookTicket = useMemo(() => {
-    if (!eventData) return true;
-    let closingDate = new Date(eventData.bookingClosingDate).getTime();
-    return !eventData.isSoldOut && Date.now() < closingDate;
-  }, [eventData]);
+  const canBookTicket = true;
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
