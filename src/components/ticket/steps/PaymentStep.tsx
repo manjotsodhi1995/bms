@@ -207,7 +207,7 @@ export const PaymentStep = ({
               </label>
               <input
                 id="cvc"
-                type="number"
+                type="text"
                 placeholder="Postal Code"
                 value={zip}
                 onChange={(e) => setZip(e.target.value)}
