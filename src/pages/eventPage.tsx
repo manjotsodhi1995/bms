@@ -47,9 +47,14 @@ const EventPage = observer(() => {
   });
 
   const organizerId = eventData?.organizer._id;
-  const { data: isFollowing, mutation: followMutation } =
-    useFollowingQuery(organizerId);
-
+  const {
+    root: { auth },
+  } = useStore();
+  const isAuth = auth.isAuthenticated;
+  const { data: isFollowing, mutation: followMutation } = useFollowingQuery(
+    organizerId,
+    isAuth
+  );
   const date = useMemo(() => {
     if (!eventData) return "Sat, Jun 12 - June 13 19:00";
     let start = formatDate(new Date(eventData.eventStart));
@@ -83,7 +88,6 @@ const EventPage = observer(() => {
       firstSwiper.current.slideNext();
     }
   };
-  console.log(eventData);
   const handlePrevClick = () => {
     if (firstSwiper.current) {
       firstSwiper.current.slidePrev();

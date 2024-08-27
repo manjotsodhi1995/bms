@@ -265,8 +265,11 @@ function Trending() {
         {/* </div> */}
         <div className="flex flex-wrap gap-6">
           {loading &&
-            [...Array(5)].map((_) => (
-              <div className="lg:w-[20vw] md:w-[30vw] sm:w-[40vw] w-full h-[400px]">
+            [...Array(5)].map((_, idx) => (
+              <div
+                className="lg:w-[20vw] md:w-[30vw] sm:w-[40vw] w-full h-[400px]"
+                key={idx}
+              >
                 <EventCardSkeleton />
               </div>
             ))}
