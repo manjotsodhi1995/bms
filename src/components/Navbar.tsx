@@ -303,7 +303,7 @@ const Navbar = observer(() => {
           <ul className="DESKTOP-MENU hidden lg:flex font-medium justify-center gap-6 text-center">
             <div className="flex items-center text-center ">
               <Link
-                to="/host"
+                to="https://organizer-dashboard-bms.vercel.app/"
                 className="w-full whitespace-nowrap px-4 py-2 rounded-xl hover:bg-gray-100 bg-white shadow-md"
               >
                 Host an Event
