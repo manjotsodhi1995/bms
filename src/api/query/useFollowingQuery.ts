@@ -1,13 +1,12 @@
 import axios from "@/utils/middleware";
 import { API } from "..";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-export const useFollowingQuery = (organizerId?: string) => {
+export const useFollowingQuery = (organizerId?: string, isAuth?: boolean) => {
   const queryClient = useQueryClient();
 
   const { data: isFollowing } = useQuery({
     queryKey: ["organizer", organizerId, "followingStatus"],
-    queryFn: () => checkFollowingStatus(organizerId),
+    queryFn: () => checkFollowingStatus(organizerId, isAuth),
     enabled: !!organizerId,
   });
 
@@ -16,7 +15,7 @@ export const useFollowingQuery = (organizerId?: string) => {
       if (isFollowing) {
         return unfollowOrganizer(organizerId);
       } else {
-        return followOrganizer(organizerId);
+        return followOrganizer(organizerId, isAuth);
       }
     },
     onSettled: async () => {
@@ -32,7 +31,10 @@ export const useFollowingQuery = (organizerId?: string) => {
   };
 };
 
-const checkFollowingStatus = async (organizerId?: string) => {
+const checkFollowingStatus = async (organizerId?: string, isAuth?: boolean) => {
+  if (!isAuth) {
+    return false;
+  }
   if (!organizerId) return false;
   const response = await axios.get(API.users.getAllFollowedOrganizers);
   const followedOrganizersIds: string[] =
@@ -40,7 +42,8 @@ const checkFollowingStatus = async (organizerId?: string) => {
   return followedOrganizersIds.includes(organizerId);
 };
 
-const followOrganizer = async (organizerId?: string) => {
+const followOrganizer = async (organizerId?: string, isAuth?: boolean) => {
+  if (!isAuth) throw Error("Please Login First");
   if (!organizerId) throw Error("No organizerId provided");
   const response = await axios.post(
     `${API.users.followOrganizer}/${organizerId}`

@@ -13,7 +13,7 @@ export const useLikesQuery = (eventId?: string) => {
 
   const { data: isLiked } = useQuery({
     queryKey: ["event", eventId, "likeStatus"],
-    queryFn: () => checkLikedStatus(eventId),
+    queryFn: () => checkLikedStatus(eventId, auth.isAuthenticated),
     enabled: !!eventId && auth.isAuthenticated,
   });
 
@@ -37,7 +37,8 @@ export const useLikesQuery = (eventId?: string) => {
   };
 };
 
-const checkLikedStatus = async (eventId?: string) => {
+const checkLikedStatus = async (eventId?: string, isAuth?: boolean) => {
+  if (!isAuth) return false;
   if (!eventId) return false;
   const response = await axios.get(API.users.getAllLikedEvents);
   const likedEventsIds: string[] = response.data.data.likedEvents.map(

@@ -264,7 +264,15 @@ function Trending() {
         {/*       .map((card, index) => <EventCard key={index} {...card} />)} */}
         {/* </div> */}
         <div className="flex flex-wrap gap-6">
-          {loading && [...Array(5)].map((_) => <EventCardSkeleton />)}
+          {loading &&
+            [...Array(5)].map((_, idx) => (
+              <div
+                className="lg:w-[20vw] md:w-[30vw] sm:w-[40vw] w-full h-[400px]"
+                key={idx}
+              >
+                <EventCardSkeleton />
+              </div>
+            ))}
           {!loading &&
             data &&
             data.liveEvents

@@ -32,18 +32,12 @@ function Filter() {
     pricing: [],
     category: [],
   });
-
-  console.log(filters.category);
-
   const [dayResult, setDayResult] = useState<DayResult>({
     liveEvents: [],
     upcomingEvents: [],
   });
 
   const [categories, setCategories] = useState<any[]>([]);
-
-  console.log(categories);
-
   const fetchCategory = async () => {
     try {
       const res = await axios.get(
@@ -103,7 +97,7 @@ function Filter() {
   const toggleCalendar = () => setCalendarOpen((p) => !p);
 
   return (
-    <div className="lg:pr-[5%] xl:pr-[7%] pr-[0vw] flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
+    <div className=" flex md:gap-2 2xl:gap-10 flex-col sm:flex-row text-lg">
       <div className="z-10 md:w-[25rem] w-[100vw] flex flex-col mt-[50px] pt-[40px] h-[1005] rounded-r-xl backdrop-blur-2xl max-sm:p-4 sm:ml-1 sm:pl-2 bg-white/10 border-r border-t border-b border-white/20 shadow-lg">
         {" "}
         <div className="border-gray-400 border-b mb-[30px] pl-[30px] ">
