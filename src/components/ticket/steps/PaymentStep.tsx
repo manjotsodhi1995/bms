@@ -52,6 +52,10 @@ export const PaymentStep = ({
     setCvv,
     setBookingId,
     basketId,
+    zip,
+    setZip,
+    address,
+    setAddress,
   } = useCart();
   const [error, setError] = useState("");
   const { cartData } = useCartQuery(
@@ -102,8 +106,8 @@ export const PaymentStep = ({
       cardCVV: cvv,
       customerName: `${firstName} ${lastName}`,
       customerEmail: email,
-      customerAddress: "Flat 6 Primrose Rise 347 Lavender Road Northampton",
-      customerPostCode: "NN17 8YG",
+      customerAddress: address,
+      customerPostCode: zip,
       // customerAddress: country,
       // customerPostCode: country,
       basketId: basketId,
@@ -193,6 +197,34 @@ export const PaymentStep = ({
                 className="w-full p-2 mt-1 border border-gray-300 rounded-md"
               />
             </div>
+          </div>{" "}
+          <div className="flex w-full gap-4">
+            <div>
+              <label htmlFor="expiry" className="text-sm font-medium">
+                Address
+              </label>
+              <input
+                id="expiry"
+                type="text"
+                placeholder=""
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+              />
+            </div>
+            <div>
+              <label htmlFor="cvc" className="text-sm font-medium">
+                Postal Code
+              </label>
+              <input
+                id="cvc"
+                type="text"
+                placeholder="Postal Code"
+                value={zip}
+                onChange={(e) => setZip(e.target.value)}
+                className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+              />
+            </div>
           </div>
           <div className="relative">
             <label htmlFor="country" className="text-sm font-medium">
@@ -213,11 +245,9 @@ export const PaymentStep = ({
               </select>
             </label>
           </div>
-
           <div className="block md:hidden">
             <PreviewCard cartData={cartData} eventsData={eventsData} />
           </div>
-
           <div className="flex flex-col mt-10 gap-4">
             {isError && (
               <p className="text-red-400 text-sm font-medium">

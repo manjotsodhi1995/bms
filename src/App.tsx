@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import bg from "./assets/background2.png";
 import { Loader2 } from "lucide-react";
 import mbg from "./assets/mobileBg.png";
+import ScrollToTop from "./utils/scroll";
 const DashBoard = lazy(() => import("./pages/dashboard/Dashboard"));
 const OrganizationProfile = lazy(
   () => import("./pages/OrganizationDescription")
@@ -86,7 +87,10 @@ const App = observer(() => {
     <div className="relative">
       <Toaster />
       {/* <div className="relative overflow-hidden"> */}
+
       <BrowserRouter>
+        {" "}
+        <ScrollToTop />
         <div className="home -z-10 fixed min-h-screen md:flex hidden min-w-screen">
           <img src={bg} alt="" className="min-h-screen min-w-screen" />
         </div>{" "}
