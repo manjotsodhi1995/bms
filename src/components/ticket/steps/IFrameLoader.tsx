@@ -6,9 +6,7 @@ interface IFrameLoaderProps extends TicketStepsProps {
 }
 
 function IFrameLoader({ data }: IFrameLoaderProps) {
-  console.log(data);
-
-  return <></>;
+  return <>{data}</>;
 }
 
 export default IFrameLoader;
