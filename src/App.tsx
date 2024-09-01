@@ -10,6 +10,7 @@ import bg from "./assets/background2.png";
 import { Loader2 } from "lucide-react";
 import mbg from "./assets/mobileBg.png";
 import ScrollToTop from "./utils/scroll";
+import Payment from "./pages/payment";
 const DashBoard = lazy(() => import("./pages/dashboard/Dashboard"));
 const OrganizationProfile = lazy(
   () => import("./pages/OrganizationDescription")
@@ -109,7 +110,6 @@ const App = observer(() => {
             <Route path="/" element={<Home />} />
             {/* Protected Routes */}
             <Route element={<ProtectedRoutes />}>
-              <Route path="/mytickets" element={<MyTickets />} />
               <Route
                 path="/organizer/register"
                 element={<OrganizerRegister />}
@@ -178,7 +178,8 @@ const App = observer(() => {
             <Route
               path="/payment"
               element={<AccountSettings defaultSettingState="pay" />}
-            />
+            />{" "}
+            <Route path="/mytickets" element={<MyTickets />} />
             <Route path="/filter" element={<Filter />} />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/event/:slug" element={<EventPage />} />
@@ -187,6 +188,7 @@ const App = observer(() => {
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/help" element={<Help />} />
             <Route path="/helpdetails/:id" element={<HelpDetail />} />
+            <Route path="/3ds/payment" element={<Payment />} />
             <Route path="/affiliate" element={<Affiliate />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />

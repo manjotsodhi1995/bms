@@ -29,6 +29,7 @@ function StorySlide({ videoUrl, index, currentIndex }: StorySlidesProps) {
       <video
         src={videoUrl}
         ref={videoRef}
+        webkit-playsinline
         className="video h-full w-full object-cover"
         loop
         autoPlay

@@ -1,18 +1,11 @@
 import { useState, useRef } from "react";
 
 interface HeroSlidesProps {
-  title: string;
-  description: string;
   ImageUrl: string;
   videoUrl: string;
 }
 
-function HeroSlides({
-  title,
-  description,
-  ImageUrl,
-  videoUrl,
-}: HeroSlidesProps) {
+function HeroSlides({ ImageUrl, videoUrl }: HeroSlidesProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false); // Track if the video is playing
@@ -63,17 +56,6 @@ function HeroSlides({
           muted
           loop
         />
-
-        {!isHovered && (
-          <div className="bg-[rgb(255,255,255,0.2)] backdrop-blur-2xl md:p-4 py-1 absolute bottom-[0rem] z-20 w-full flex flex-col gap-1 md:rounded-b-3xl rounded-b-xl">
-            <div className="flex justify-center font-medium text-[0.9rem] md:text-[0.9rem] lg:text-[1rem] 2xl:text-[1.5rem] text-white">
-              {title}
-            </div>
-            <div className="text-white px-2 2xl:px-4 flex justify-center text-center text-[0.6rem] md:text-[0.6rem] 2xl:text-[1rem]">
-              {description}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
