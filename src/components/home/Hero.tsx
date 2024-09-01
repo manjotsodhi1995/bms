@@ -241,8 +241,6 @@ function Hero() {
                     key={index}
                     videoUrl={card.videoUrl}
                     ImageUrl={card.posterUrl}
-                    title={card.caption}
-                    description={card.description}
                   />
                 </SwiperSlide>
               ))}
