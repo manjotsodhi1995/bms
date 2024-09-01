@@ -22,6 +22,8 @@ function EventSlides({ title, videoUrl }: HeroSlidesProps) {
           </div>
         )} */}
         <video
+          webkit-playsinline
+          playsInline
           src={videoUrl}
           className="w-full md:rounded-3xl rounded-xl h-full object-cover"
           autoPlay
