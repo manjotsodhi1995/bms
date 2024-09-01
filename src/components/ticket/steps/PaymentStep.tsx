@@ -50,7 +50,6 @@ export const PaymentStep = ({
     setCountry,
     cvv,
     setCvv,
-    setBookingId,
     basketId,
     zip,
     setZip,
@@ -62,7 +61,6 @@ export const PaymentStep = ({
     eventsData?.eventId,
     eventsData?.eventStart
   );
-
   const { mutate, isPending, isError } = useMutation({
     mutationFn: sendPaymentDetails,
     onSuccess: (data: any) => {

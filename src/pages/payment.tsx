@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { CircleAlert, CircleCheck, Loader } from "lucide-react";
-import { useState } from "react";
+import { CircleAlert, CircleCheck } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 function Payment() {
-  const [payment, setPayment] = useState("failed");
+  const [payment, setPayment] = useState("loading");
+  //   setPayment("success");
+  useEffect(() => {
+    setPayment("success");
+  }, []);
   const navigate = useNavigate();
   return (
     <div>
