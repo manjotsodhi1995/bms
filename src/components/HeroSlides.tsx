@@ -49,6 +49,8 @@ function HeroSlides({ ImageUrl, videoUrl }: HeroSlidesProps) {
         <video
           ref={videoRef}
           src={videoUrl}
+          webkit-playsinline
+          playsInline
           className="w-full md:rounded-3xl rounded-xl h-full object-cover"
           onLoad={handleVideoLoad}
           onPlay={handleVideoPlay} // Track when the video starts playing
