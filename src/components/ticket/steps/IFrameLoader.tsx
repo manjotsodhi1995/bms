@@ -1,6 +1,6 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { TicketStepsProps } from ".";
-
+import axios from "axios";
 interface IFrameLoaderProps extends TicketStepsProps {
   // No additional props needed for this specific implementation
 }
@@ -8,36 +8,44 @@ interface IFrameLoaderProps extends TicketStepsProps {
 function IFrameLoader({ data }: IFrameLoaderProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  useEffect(() => {
-    if (iframeRef.current) {
-      // Sanitize the data received from the backend
-      const sanitizedData = data.replace(/<script[^>]*>.*?<\/script>/g, ""); // Remove potential script tags
+  const [formData, setFormData] = useState({
+    threeDSMethodData: data.value,
+    // Add other form fields if needed
+  });
 
-      // Set the iframe's srcdoc attribute with the sanitized data
-      iframeRef.current.srcdoc = sanitizedData;
+  // const handleChange = (event: any) => {
+  //   setFormData({ ...formData, [event.target.name]: event.target.value });
+  // };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    const encodedData = new URLSearchParams(formData);
+
+    try {
+      const response = await axios.post(data.url, encodedData, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      });
+      // Handle successful response
+      console.log(response.data);
+    } catch (error) {
+      // Handle errors
+      console.error(error);
     }
-  }, [data, iframeRef]); // Update only when data or ref changes
-
+  };
   return (
     // <iframe
     //   ref={iframeRef}
     //   style={{ width: "100%", height: 500, border: "none" }}
     // />
-    <>
-      <form
-        id="3ds-form"
-        action="https://acs.3ds-pit.com/?method"
-        method="POST"
+    <div className="flex flex-col justify-center items-center w-full gap-8 min-h-[80vh]">
+      <p>Click here to Continue your transaction securely</p>
+      <button
+        className="bg-black text-white font-medium px-4 py-2 rounded-lg"
+        onClick={() => handleSubmit}
       >
-        {" "}
-        <input
-          type="hidden"
-          key="threeDSMethodData"
-          value="eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjoiaHR0cHM6Ly9rYWZzYmFja2VuZC0xMDZmLm9ucmVuZGVyLmNvbS9hcGkvdjEvcGF5bWVudHMvZGlyZWN0M2RzP3RocmVlRFNBY3NSZXNwb25zZT1tZXRob2QiLCJ0aHJlZURTU2VydmVyVHJhbnNJRCI6IjRkZDBjMzU2LWIyNjctNDgyYi1iNjY3LTRlMTNjYzQ0ZmIxZCJ9"
-        />{" "}
-        <input type="submit" value="Submit" />{" "}
-      </form>
-    </>
+        Continue
+      </button>
+    </div>
   );
 }
 
