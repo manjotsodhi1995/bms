@@ -188,11 +188,11 @@ const App = observer(() => {
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/help" element={<Help />} />
             <Route path="/helpdetails/:id" element={<HelpDetail />} />
-            <Route path="/3ds/payment" element={<Payment />} />
             <Route path="/affiliate" element={<Affiliate />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />{" "}
+            <Route path="/3ds/payment" element={<Payment />} />
             {/* Organizer Component */}
             <Route path="/organizer" element={<Organizer />} />
             <Route path="/events/:location" element={<EventsInLocation />} />
