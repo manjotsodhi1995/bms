@@ -35,7 +35,7 @@ export const PaymentStep = ({
 }: TicketStepsProps) => {
   const sendPaymentDetails = async (body: PaymentBody) => {
     console.log(cartData?.basket);
-    const response = await axios.post(API.payments3ds.direct, body);
+    const response = await axios.post(API.payments.direct, body);
     return response.data;
   };
   const {
