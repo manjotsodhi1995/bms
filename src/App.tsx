@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { observer } from "mobx-react-lite";
@@ -83,6 +83,7 @@ const App = observer(() => {
       auth.setAuthenticated();
     }
   }, []);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <div className="relative">
@@ -182,7 +183,15 @@ const App = observer(() => {
             <Route path="/mytickets" element={<MyTickets />} />
             <Route path="/filter" element={<Filter />} />
             <Route path="/terms" element={<TermsAndConditions />} />
-            <Route path="/event/:slug" element={<EventPage />} />
+            <Route
+              path="/event/:slug"
+              element={
+                <EventPage
+                  dialogOpen={dialogOpen}
+                  setDialogOpen={setDialogOpen}
+                />
+              }
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/contactus" element={<ContactUs />} />
@@ -192,7 +201,10 @@ const App = observer(() => {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />
             <Route path="/reset-password" element={<ResetPassword />} />{" "}
-            <Route path="/3ds/payment" element={<Payment />} />
+            <Route
+              path="/3ds/payment"
+              element={<Payment setDialogOpen={setDialogOpen} />}
+            />
             {/* Organizer Component */}
             <Route path="/organizer" element={<Organizer />} />
             <Route path="/events/:location" element={<EventsInLocation />} />

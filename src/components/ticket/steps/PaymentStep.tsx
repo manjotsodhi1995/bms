@@ -197,7 +197,7 @@ export const PaymentStep = ({
             </div>
           </div>{" "}
           <div className="flex w-full gap-4">
-            <div>
+            <div className="w-full">
               <label htmlFor="expiry" className="text-sm font-medium">
                 Address
               </label>
@@ -210,19 +210,19 @@ export const PaymentStep = ({
                 className="w-full p-2 mt-1 border border-gray-300 rounded-md"
               />
             </div>
-            <div>
-              <label htmlFor="cvc" className="text-sm font-medium">
-                Postal Code
-              </label>
-              <input
-                id="cvc"
-                type="text"
-                placeholder="Postal Code"
-                value={zip}
-                onChange={(e) => setZip(e.target.value)}
-                className="w-full p-2 mt-1 border border-gray-300 rounded-md"
-              />
-            </div>
+          </div>
+          <div>
+            <label htmlFor="cvc" className="text-sm font-medium">
+              Postal Code
+            </label>
+            <input
+              id="cvc"
+              type="text"
+              placeholder="Postal Code"
+              value={zip}
+              onChange={(e) => setZip(e.target.value)}
+              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+            />
           </div>
           <div className="relative">
             <label htmlFor="country" className="text-sm font-medium">

@@ -24,7 +24,7 @@ import toast from "react-hot-toast";
 import EventStories from "@/components/EventStories";
 import type SwiperCore from "swiper";
 import { formatCurrency } from "@/utils";
-const EventPage = observer(() => {
+const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const fetchEvent = async (slug?: string) => {
     setIsLoading(true);
@@ -429,15 +429,7 @@ const EventPage = observer(() => {
             Refund Policy
           </div>
           <div>No Refunds will be issued</div>
-          {/* <div className="mt-20">
-            <div className="font-medium text-[1.2rem]">
-              Would you like to rep this event?
-            </div>
-            <div>Check out all the benefits and sign up to rep this event!</div>
-            <div className="px-2 py-2 text-[0.8rem] bg-black text-white text-center rounded-lg mt-2 w-[10rem]">
-              REP THIS EVENT
-            </div>
-          </div> */}
+          {/*  */}
         </div>
 
         <div className="h-fit bg-white lg:bg-transparent py-4 fixed bottom-0 z-10 left-0 px-2 lg:sticky lg:top-[10vh] flex flex-col w-full lg:max-w-[30%]">
@@ -478,7 +470,11 @@ const EventPage = observer(() => {
           </div>
           {canBookTicket && eventData && (
             <div className="lg:mt-4 space-y-2 bg-white">
-              <BookTicketsDialog eventsData={eventData}>
+              <BookTicketsDialog
+                eventsData={eventData}
+                dialogOpen={dialogOpen}
+                setDialogOpen={setDialogOpen}
+              >
                 <button className="bg-black w-full text-white font-medium py-2 px-4 rounded">
                   Get Tickets
                 </button>

@@ -23,13 +23,24 @@ import bgImage from "../../assets/bgImage.png";
 import IFrameLoader from "./steps/IFrameLoader";
 interface BookTicketsDialogProps extends DialogProps {
   eventsData: EventType | null;
+  dialogOpen?: any;
+  setDialogOpen?: any;
 }
 
 const BookTicketsDialog = observer(
-  ({ eventsData, children }: BookTicketsDialogProps) => {
+  ({
+    eventsData,
+    children,
+    dialogOpen,
+    setDialogOpen,
+  }: BookTicketsDialogProps) => {
     return (
       <CartProvider>
-        <BookTicketsDialogContent eventsData={eventsData}>
+        <BookTicketsDialogContent
+          eventsData={eventsData}
+          dialogOpen={dialogOpen}
+          setDialogOpen={setDialogOpen}
+        >
           {children}
         </BookTicketsDialogContent>
       </CartProvider>
@@ -42,8 +53,9 @@ interface BookTicketsDialogContentProps extends BookTicketsDialogProps {}
 const BookTicketsDialogContent = ({
   eventsData,
   children,
+  dialogOpen,
+  setDialogOpen,
 }: BookTicketsDialogContentProps) => {
-  const [dialogOpen, setDialogOpen] = useState(false);
   const [ticketStep, setTicketStep] = useState<TicketStep>("booking");
   const { resetCartMutation } = useCartQuery(
     eventsData?.eventId,

@@ -1,11 +1,12 @@
 import { CircleAlert, CircleCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
-function Payment() {
+function Payment({ setDialogOpen }: any) {
   const [payment, setPayment] = useState("loading");
   //   setPayment("success");
   useEffect(() => {
     setPayment("success");
+    setTimeout(setDialogOpen(false), 3000);
   }, []);
   return (
     <div>
