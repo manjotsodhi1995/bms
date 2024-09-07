@@ -10,7 +10,10 @@ export const useLikesQuery = (eventId?: string) => {
   } = useStore();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-
+  return {
+    data: false,
+    mutation: false,
+  };
   const { data: isLiked } = useQuery({
     queryKey: ["event", eventId, "likeStatus"],
     queryFn: () => checkLikedStatus(eventId, auth.isAuthenticated),
