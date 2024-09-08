@@ -84,7 +84,6 @@ const App = observer(() => {
     }
   }, []);
   const [dialogOpen, setDialogOpen] = useState(false);
-
   return (
     <div className="relative">
       <Toaster />
@@ -203,7 +202,9 @@ const App = observer(() => {
             <Route path="/reset-password" element={<ResetPassword />} />{" "}
             <Route
               path="/3ds/payment"
-              element={<Payment setDialogOpen={setDialogOpen} />}
+              element={
+                <Payment setDialogOpen={setDialogOpen} dialog={dialogOpen} />
+              }
             />
             {/* Organizer Component */}
             <Route path="/organizer" element={<Organizer />} />
