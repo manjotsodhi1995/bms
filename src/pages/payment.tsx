@@ -1,8 +1,22 @@
 import { CircleAlert, CircleCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
+import { useLocation } from "react-router-dom";
+
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+
+
+
 function Payment({ setDialogOpen }: any) {
   const [payment, setPayment] = useState("loading");
+
+  const query = useQuery();
+  const paymentStatus = query.get('status');
+
   //   setPayment("success");
   useEffect(() => {
     setPayment("success");
@@ -11,7 +25,7 @@ function Payment({ setDialogOpen }: any) {
   return (
     <div>
       {" "}
-      {payment === "success" && (
+      {paymentStatus === "succesful" && (
         <div className="w-full flex flex-col items-center justify-center gap-10 mt-4">
           <div className="flex flex-col items-center justify-center gap-10">
             <span className="text-2xl font-semibold">Payment successfull!</span>
@@ -36,7 +50,7 @@ function Payment({ setDialogOpen }: any) {
           </div>
         </div>
       )}{" "}
-      {payment === "failed" && (
+      {paymentStatus === "failed" && (
         <div className="w-full flex flex-col items-center justify-center gap-10 mt-4">
           <div className="flex flex-col items-center justify-center gap-10">
             <span className="text-2xl font-semibold">Payment Failed</span>
