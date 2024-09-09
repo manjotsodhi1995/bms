@@ -77,8 +77,6 @@ export const PaymentStep = ({
   });
 
   const onSubmit = () => {
-    setAddress("");
-    setZip("");
     if (clearNumber(cardNumber).length < 16) {
       setError("Enter a card number");
       return;
@@ -198,7 +196,7 @@ export const PaymentStep = ({
               />
             </div>
           </div>{" "}
-          {/* <div className="flex w-full gap-4">
+          <div className="flex w-full gap-4">
             <div className="w-full">
               <label htmlFor="expiry" className="text-sm font-medium">
                 Address
@@ -225,7 +223,7 @@ export const PaymentStep = ({
               onChange={(e) => setZip(e.target.value)}
               className="w-full p-2 mt-1 border border-gray-300 rounded-md"
             />
-          </div> */}
+          </div>
           <div className="relative">
             <label htmlFor="country" className="text-sm font-medium">
               Country
