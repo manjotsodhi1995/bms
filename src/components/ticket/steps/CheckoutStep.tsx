@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import axios from "@/utils/middleware";
 import { API } from "@/api";
 import { useQuery } from "@tanstack/react-query";
-
+import { loadStripe } from "@stripe/stripe-js";
 interface ErrorResponse {
   message: string;
 }
@@ -24,11 +24,7 @@ const fetchProfile = async () => {
   return response.data.data;
 };
 
-export const CheckoutStep = ({
-  eventsData,
-  onBack,
-  onStepChange,
-}: TicketStepsProps) => {
+export const CheckoutStep = ({ eventsData, onBack }: TicketStepsProps) => {
   const {
     firstName,
     setFirstName,
@@ -40,6 +36,7 @@ export const CheckoutStep = ({
     // setConfirmEmail,
     voucherCode,
     setVoucherCode,
+    basketId,
   } = useCart();
 
   const accessToken = localStorage.getItem("accessToken");
@@ -75,13 +72,14 @@ export const CheckoutStep = ({
     eventsData?.eventId,
     eventsData?.eventStart
   );
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     console.log(cartData.basket.discountTotal);
     cartData.basket.discountTotal > 0
       ? setPromoApplied(true)
       : setPromoApplied(false);
   }, []);
-  const onContinueClicked = () => {
+  const onContinueClicked = async () => {
     if (firstName.length === 0) {
       setError("Please enter your first name");
       return;
@@ -96,7 +94,22 @@ export const CheckoutStep = ({
       return;
     }
     setError("");
-    onStepChange!!();
+    setIsLoading(true);
+    const stripe = await loadStripe(
+      "pk_test_51Pzc7eHlU79XeHANna3JNwOxLaGCACTmjSvLFutAHYXraytNLgGQtvfI8spk9TGtVxx2oLfyr8M0Y8SbtXFmEMZ700l5gYDEHu"
+    );
+
+    const body = { basketId };
+    const response: any = await axios.post(
+      "https://kafsbackend-106f.onrender.com/api/v1/payments/checkout",
+      body
+    );
+    console.log(response);
+    const result: any = stripe?.redirectToCheckout({
+      sessionId: response?.data?.id,
+    });
+    if (result?.error) console.log(result.error);
+    setIsLoading(false);
   };
 
   return (
@@ -325,10 +338,14 @@ export const CheckoutStep = ({
               firstName.length === 0 ||
               lastName.length === 0
             }
-            className="mt-4 bg-black w-full md:w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500"
+            className="mt-4 bg-black w-full md:w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500 flex justify-center items-center h-[40px]"
             onClick={onContinueClicked}
           >
-            Continue
+            {isLoading ? (
+              <Loader2 className="animate-spin size-4" />
+            ) : (
+              <>Pay Now</>
+            )}
           </button>
         </PreviewCard>
       </div>
