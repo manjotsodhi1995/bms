@@ -100,10 +100,7 @@ export const CheckoutStep = ({ eventsData, onBack }: TicketStepsProps) => {
     );
 
     const body = { basketId };
-    const response: any = await axios.post(
-      "https://kafsbackend-106f.onrender.com/api/v1/payments/checkout",
-      body
-    );
+    const response: any = await axios.post(API.payments.direct, body);
     console.log(response);
     const result: any = stripe?.redirectToCheckout({
       sessionId: response?.data?.id,
