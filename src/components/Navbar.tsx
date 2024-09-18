@@ -22,7 +22,6 @@ const isExcludedRoute = createRouteMatcher([
   "/helpdetail",
   "/settings",
   "/dashboard(.*)",
-  "/3ds/payment",
 ]);
 
 const Navbar = observer(() => {
