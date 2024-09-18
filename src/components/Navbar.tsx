@@ -21,7 +21,6 @@ const isExcludedRoute = createRouteMatcher([
   "/help",
   "/helpdetail",
   "/settings",
-  "/payment",
   "/dashboard(.*)",
   "/3ds/payment",
 ]);
