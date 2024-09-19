@@ -1,6 +1,6 @@
 export const SERVER_BASE_URL = `${
   import.meta.env.VITE_BACKEND_SERVER_URL ||
-  "https://kafsbackend-106f.onrender.com"
+"https://api.kafsco.com"
 }/api/v1` as const;
 
 export const API = {
