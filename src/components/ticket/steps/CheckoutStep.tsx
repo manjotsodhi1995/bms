@@ -99,7 +99,7 @@ export const CheckoutStep = ({ eventsData, onBack }: TicketStepsProps) => {
       "pk_live_51Pzc7eHlU79XeHANPTYyBdi6WxpUsL6mFHnoKhbvOfcXvabVv3724tALcdPn8YaXVr024oKVv8BV69LRIUSh8TiC00lN3vtJkw"
     );
 
-    const body = { basketId ,guestUserName:firstName+" "+lastName,guestUserEmail};
+    const body = { basketId ,guestUserName:firstName+" "+lastName,guestUserEmail:email};
     const response: any = await axios.post(API.payments.direct, body);
     console.log(response);
     const result: any = stripe?.redirectToCheckout({
