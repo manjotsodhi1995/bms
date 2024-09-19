@@ -96,7 +96,7 @@ export const CheckoutStep = ({ eventsData, onBack }: TicketStepsProps) => {
     setError("");
     setIsLoading(true);
     const stripe = await loadStripe(
-      "pk_test_51Pzc7eHlU79XeHANna3JNwOxLaGCACTmjSvLFutAHYXraytNLgGQtvfI8spk9TGtVxx2oLfyr8M0Y8SbtXFmEMZ700l5gYDEHu"
+      "pk_live_51Pzc7eHlU79XeHANPTYyBdi6WxpUsL6mFHnoKhbvOfcXvabVv3724tALcdPn8YaXVr024oKVv8BV69LRIUSh8TiC00lN3vtJkw"
     );
 
     const body = { basketId };
