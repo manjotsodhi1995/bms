@@ -70,7 +70,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
       "" +
       new Date(eventData.eventEnd).getHours() +
       ":" +
-      new Date(eventData.eventEnd).getMinutes();
+      new Date(eventData.eventEnd).getMinutes().toString().padStart(2, "0");
     return `${start}, ${startTime} - ${end}, ${endTime} (GMT+1)`;
   }, [eventData]);
   const canBookTicket = true;
