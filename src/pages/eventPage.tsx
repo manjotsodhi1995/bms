@@ -24,6 +24,7 @@ import toast from "react-hot-toast";
 import EventStories from "@/components/EventStories";
 import type SwiperCore from "swiper";
 import { formatCurrency } from "@/utils";
+import { Helmet } from "react-helmet";
 const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const fetchEvent = async (slug?: string) => {
@@ -69,7 +70,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
       "" +
       new Date(eventData.eventEnd).getHours() +
       ":" +
-      new Date(eventData.eventEnd).getMinutes();
+      new Date(eventData.eventEnd).getMinutes().toString().padStart(2, "0");
     return `${start}, ${startTime} - ${end}, ${endTime} (GMT+1)`;
   }, [eventData]);
   const canBookTicket = true;
@@ -98,6 +99,21 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
   return (
     <div className="w-full ">
       {/* <Navbar /> */}
+
+      <Helmet>
+        <title>{!isLoading ? eventData?.title : "Loading..."}</title>
+        <meta property="og:title" content={eventData?.title} />
+        <meta property="og:image" content={eventData?.posterUrl} />
+        <meta
+          property="og:description"
+          content={`Check out this event: ${eventData?.title}`}
+        />
+        <meta
+          property="og:url"
+          content={`https://www.kafsco.com/event/${eventData?.slug}`}
+        />
+        <meta property="og:type" content="website" />
+      </Helmet>
 
       <EventStories
         onOpen={open}
