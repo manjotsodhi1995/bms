@@ -113,6 +113,8 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
           content={`https://www.kafsco.com/event/${eventData?.slug}`}
         />
         <meta property="og:type" content="website" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
       </Helmet>
 
       <EventStories
