@@ -10,7 +10,6 @@ import { observer } from "mobx-react-lite";
 import { TicketStep } from "@/stores/ticket";
 import { BookingStep } from "./steps/BookingStep";
 import { CheckoutStep } from "./steps/CheckoutStep";
-import { PaymentStep } from "./steps/PaymentStep";
 import { PaymentSuccessStep } from "./steps/PaymentSuccessStep";
 import { ViewTicketStep } from "./steps/ViewTicketStep";
 import { BuyAnotherTicketsStep } from "./steps/BuyAnotherTicketStep";
@@ -20,7 +19,6 @@ import CartProvider from "@/stores/cart";
 import { X } from "lucide-react";
 import { useCartQuery } from "@/api/query/useCartQuery";
 import bgImage from "../../assets/bgImage.png";
-import IFrameLoader from "./steps/IFrameLoader";
 interface BookTicketsDialogProps extends DialogProps {
   eventsData: EventType | null;
   dialogOpen?: any;
@@ -71,7 +69,6 @@ const BookTicketsDialogContent = ({
     setTicketStep("booking");
     setDialogOpen(value);
   };
-  const [iframeData, setIframeData] = useState();
   return (
     <Dialog open={dialogOpen} onOpenChange={closeDialog}>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -103,14 +100,7 @@ const BookTicketsDialogContent = ({
               onStepChange={() => setTicketStep("payment")}
             />
           )}
-          {ticketStep === "payment" && (
-            <PaymentStep
-              onBack={() => setTicketStep("checkout")}
-              eventsData={eventsData}
-              onStepChange={() => setTicketStep("iframe")}
-              setIframeData={setIframeData}
-            />
-          )}
+
           {ticketStep === "payment-success" && (
             <PaymentSuccessStep
               onBack={() => setTicketStep("payment")}
@@ -134,15 +124,6 @@ const BookTicketsDialogContent = ({
           )}
           {ticketStep === "share-ticket" && (
             <ShareTicketStep
-              onClose={() => {
-                setDialogOpen(false);
-                setTicketStep("booking");
-              }}
-            />
-          )}
-          {ticketStep === "iframe" && (
-            <IFrameLoader
-              data={iframeData}
               onClose={() => {
                 setDialogOpen(false);
                 setTicketStep("booking");

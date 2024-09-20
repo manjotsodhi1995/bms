@@ -14,6 +14,7 @@ const TicketCounter = ({
   value = 0,
   pending = false,
 }: TicketCounterProps) => {
+  console.log(pending);
   const [value1, setValue] = useState(0);
   const [minus, setMinus] = useState(false);
   useEffect(() => {
@@ -37,7 +38,7 @@ const TicketCounter = ({
   return (
     <div className={cn("flex items-center gap-4 mr-6", className)}>
       <button
-        disabled={pending || minus}
+        disabled={minus}
         className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center disabled:cursor-not-allowed"
         onClick={decreaseTicket}
       >
@@ -47,7 +48,6 @@ const TicketCounter = ({
       <span>{value1 == 0 ? value : value1}</span>
 
       <button
-        disabled={pending}
         className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center disabled:cursor-not-allowed"
         onClick={increaseTicket}
       >
