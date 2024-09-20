@@ -1,6 +1,6 @@
 import { CircleAlert, CircleCheck } from "lucide-react";
 import { useLocation } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -9,9 +9,11 @@ function Payment({ setDialogOpen, dialogOpen }: any) {
   const query = useQuery();
   const paymentStatus = query.get("status");
   console.log(dialogOpen + "dialog");
-
+  const navigate = useNavigate();
   setDialogOpen(false);
-
+  setTimeout(() => {
+    navigate("/mytickets");
+  }, 3000);
   return (
     <div className="mt-0 pt-20">
       {" "}
