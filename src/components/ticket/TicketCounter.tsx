@@ -17,6 +17,8 @@ const TicketCounter = ({
   console.log(pending);
   const [value1, setValue] = useState(0);
   const [minus, setMinus] = useState(false);
+  const [pen, setPen] = useState(false);
+
   useEffect(() => {
     setValue(value);
   }, []);
@@ -29,6 +31,10 @@ const TicketCounter = ({
     // setTicket((p) => p + 1);
     setValue(value1 + 1);
     onValueChange(value1 + 1);
+    setPen(true);
+    setTimeout(() => {
+      setPen(false);
+    }, 200);
   };
   const decreaseTicket = () => {
     // setTicket((p) => (p > 0 ? p - 1 : p));
@@ -50,6 +56,7 @@ const TicketCounter = ({
       <button
         className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center disabled:cursor-not-allowed"
         onClick={increaseTicket}
+        disabled={pen}
       >
         <Plus className="size-5  stroke-1" />
       </button>
