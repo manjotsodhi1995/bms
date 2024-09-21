@@ -10,7 +10,7 @@ import { useCart } from "@/stores/cart";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import PreviewCard from "./PreviewCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "@/utils/middleware";
 import { API } from "@/api";
 import { useQuery } from "@tanstack/react-query";
@@ -25,6 +25,7 @@ const fetchProfile = async () => {
 };
 
 export const CheckoutStep = ({ eventsData, onBack }: TicketStepsProps) => {
+  const navigate = useNavigate();
   const {
     firstName,
     setFirstName,
@@ -99,9 +100,18 @@ export const CheckoutStep = ({ eventsData, onBack }: TicketStepsProps) => {
       "pk_live_51Pzc7eHlU79XeHANPTYyBdi6WxpUsL6mFHnoKhbvOfcXvabVv3724tALcdPn8YaXVr024oKVv8BV69LRIUSh8TiC00lN3vtJkw"
     );
 
-    const body = { basketId ,guestUserName:firstName+" "+lastName,guestUserEmail:email};
+    const body = {
+      basketId,
+      guestUserName: firstName + " " + lastName,
+      guestUserEmail: email,
+    };
     const response: any = await axios.post(API.payments.direct, body);
     console.log(response);
+    if (response.data.type === "free" && response.data.status === "success") {
+      navigate(`/payment?status=succesful`);
+      setIsLoading(false);
+      return;
+    }
     const result: any = stripe?.redirectToCheckout({
       sessionId: response?.data?.id,
     });
