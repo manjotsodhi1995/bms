@@ -51,7 +51,7 @@ const TicketCounter = ({
         <Minus className="size-5 stroke-1" />
       </button>
 
-      <span>{value1 == 0 ? value : value1}</span>
+      <span>{value1 == 0 ? 0 : value1}</span>
 
       <button
         className="flex bg-gray-200 hover:bg-[#738BB6] hover:text-white rounded-full size-6 items-center justify-center disabled:cursor-not-allowed"
