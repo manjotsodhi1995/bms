@@ -1,11 +1,21 @@
 import { CircleAlert, CircleCheck } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useStore } from "../hooks/useStore";
+import { useEffect } from "react";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
 function Payment({ setDialogOpen, dialogOpen }: any) {
+  const {
+    root: { auth },
+  } = useStore();
+  useEffect(() => {
+    setTimeout(() => {
+      if (!auth.isAuthenticated) navigate("/");
+    }, 2000);
+  }, []);
   const query = useQuery();
   const paymentStatus = query.get("status");
   console.log(dialogOpen + "dialog");
