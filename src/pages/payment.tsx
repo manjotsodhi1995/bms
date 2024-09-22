@@ -30,7 +30,7 @@ function Payment({ setDialogOpen, dialogOpen }: any) {
 
             <div className="mt-2">
               <p className="underline text-sm mt-2 text-center">
-                {auth.isAuthenticated&&<>Check My Tickets Page to see your tickets.</>}
+                {auth.isAuthenticated && <>Check My Tickets Page to see your tickets.</>}
                 <br /> A ticket confirmation will be sent to your email in a few moments!
               </p>
             </div>
