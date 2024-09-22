@@ -16,11 +16,9 @@ function Payment({ setDialogOpen, dialogOpen }: any) {
   const navigate = useNavigate();
   setDialogOpen(false);
   setTimeout(() => {
-      if (!auth.isAuthenticated) 
-        navigate("/");
-        else
+      if (auth.isAuthenticated) 
         navigate("/mytickets");
-    }, 2000);
+    }, 5000);
   return (
     <div className="mt-0 pt-20">
       {" "}
@@ -32,8 +30,8 @@ function Payment({ setDialogOpen, dialogOpen }: any) {
 
             <div className="mt-2">
               <p className="underline text-sm mt-2 text-center">
-                Check My Tickets Page to see your tickets.
-                <br /> A ticket confirmation has been sent to your email!
+                {auth.isAuthenticated&&<>Check My Tickets Page to see your tickets.</>}
+                <br /> A ticket confirmation will be sent to your email in a few moments!
               </p>
             </div>
 
