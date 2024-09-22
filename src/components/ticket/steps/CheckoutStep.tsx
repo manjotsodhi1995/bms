@@ -108,7 +108,7 @@ export const CheckoutStep = ({ eventsData, onBack }: TicketStepsProps) => {
     const response: any = await axios.post(API.payments.direct, body);
     console.log(response);
     if (response.data.type === "free" && response.data.status === "success") {
-      navigate(`/payment?status=succesful`);
+      navigate(`/3ds/payment?status=succesful`);
       setIsLoading(false);
       return;
     }

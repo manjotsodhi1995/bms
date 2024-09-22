@@ -1,19 +1,24 @@
 import { CircleAlert, CircleCheck } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useStore } from "../hooks/useStore";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
 function Payment({ setDialogOpen, dialogOpen }: any) {
+  const {
+    root: { auth },
+  } = useStore();
   const query = useQuery();
   const paymentStatus = query.get("status");
   console.log(dialogOpen + "dialog");
   const navigate = useNavigate();
   setDialogOpen(false);
   setTimeout(() => {
-    navigate("/mytickets");
-  }, 3000);
+      if (auth.isAuthenticated) 
+        navigate("/mytickets");
+    }, 5000);
   return (
     <div className="mt-0 pt-20">
       {" "}
@@ -25,8 +30,8 @@ function Payment({ setDialogOpen, dialogOpen }: any) {
 
             <div className="mt-2">
               <p className="underline text-sm mt-2 text-center">
-                Check My Tickets Page to see your tickets.
-                <br /> A ticket confirmation has been sent to your email!
+                {auth.isAuthenticated && <>Check My Tickets Page to see your tickets.</>}
+                <br /> A ticket confirmation will be sent to your email in a few moments!
               </p>
             </div>
 
