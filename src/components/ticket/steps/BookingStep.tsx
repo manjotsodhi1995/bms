@@ -66,6 +66,7 @@ export const BookingStep = ({
           data?.matrix?.ticketCategories.map((ticket: any) => (
             <TicketTableOption
               currency={data.currency}
+              isSoldOut={ticket.isSoldOut}
               currentBasket={cartData?.basket?.basket}
               ticket={ticket}
               key={ticket._id}

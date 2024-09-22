@@ -12,6 +12,7 @@ interface TicketTableOptionProps {
   ticket: any;
   onTicketUpdate: (ticket: number) => void;
   pending: boolean;
+  isSoldOut: boolean;
 }
 const TicketTableOption = ({
   currency,
@@ -19,6 +20,7 @@ const TicketTableOption = ({
   onTicketUpdate,
   currentBasket,
   pending,
+  isSoldOut,
 }: TicketTableOptionProps) => {
   const tickets = currentBasket
     ? currentBasket.find(
@@ -42,11 +44,15 @@ const TicketTableOption = ({
               </span>
             </p>
 
-            <TicketCounter
-              value={tickets}
-              onValueChange={onTicketUpdate}
-              pending={pending}
-            />
+            {isSoldOut ? (
+              <div>Sold out</div>
+            ) : (
+              <TicketCounter
+                value={tickets}
+                onValueChange={onTicketUpdate}
+                pending={pending}
+              />
+            )}
           </div>
         </AccordionTrigger>
         {/* <AccordionContent className="ml-2 w-11/12"> */}
