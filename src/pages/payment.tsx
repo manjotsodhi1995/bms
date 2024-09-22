@@ -2,7 +2,6 @@ import { CircleAlert, CircleCheck } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../hooks/useStore";
-import { useEffect } from "react";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
