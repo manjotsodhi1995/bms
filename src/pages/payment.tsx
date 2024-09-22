@@ -11,19 +11,17 @@ function Payment({ setDialogOpen, dialogOpen }: any) {
   const {
     root: { auth },
   } = useStore();
-  useEffect(() => {
-    setTimeout(() => {
-      if (!auth.isAuthenticated) navigate("/");
-    }, 2000);
-  }, []);
   const query = useQuery();
   const paymentStatus = query.get("status");
   console.log(dialogOpen + "dialog");
   const navigate = useNavigate();
   setDialogOpen(false);
   setTimeout(() => {
-    navigate("/mytickets");
-  }, 3000);
+      if (!auth.isAuthenticated) 
+        navigate("/");
+        else
+        navigate("/mytickets");
+    }, 2000);
   return (
     <div className="mt-0 pt-20">
       {" "}
