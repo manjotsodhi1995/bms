@@ -104,16 +104,19 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
         <title>{!isLoading ? eventData?.title : "Loading..."}</title>
 
         {/* Open Graph Meta Tags for Facebook, WhatsApp */}
-        <meta property="og:title" content={eventData?.title} />
+        <meta
+          property="og:title"
+          content={
+            eventData
+              ? eventData.title
+              : "Diwali Bollywood Night | Rooftop Party | Drinks @ €4 | Girls Free"
+          }
+        />
         <meta
           property="og:image"
           content={
             "https://kafscowavedevassets.s3.eu-west-1.amazonaws.com/1726853169958-169.jpg"
           }
-        />
-        <meta
-          property="og:description"
-          content={`Check out this event: ${eventData?.title}`}
         />
         <meta
           property="og:url"
@@ -122,20 +125,6 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
         <meta property="og:type" content="website" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-
-        {/* Twitter Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={eventData?.title} />
-        <meta
-          name="twitter:description"
-          content={`Check out this event: ${eventData?.title}`}
-        />
-        <meta name="twitter:image" content={eventData?.organizer.logoUrl} />
-        <meta name="twitter:site" content="@YourTwitterHandle" />
-        <meta
-          name="twitter:url"
-          content={`https://www.kafsco.com/event/${eventData?.slug}`}
-        />
       </Helmet>
 
       <EventStories
