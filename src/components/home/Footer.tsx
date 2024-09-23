@@ -1,9 +1,4 @@
-import p1 from "../../assets/home/partner/shopify.png";
-import gp from "../../assets/home/gp.png";
-import as from "../../assets/home/as.png";
-import fb from "../../assets/socials/ic_baseline-facebook.png";
-import ig from "../../assets/socials/mdi_instagram.png";
-import tw from "../../assets/socials/mdi_twitter.png";
+
 function Footer() {
   return (
     <div className="flex flex-col items-center">
@@ -64,15 +59,7 @@ function Footer() {
                 Follow us on social media for exclusive updates and special
                 offers!
               </div>
-              <div className="flex gap-4 mt-8 justify-center md:justify-start">
-                <img src={ig} alt="" />
-              </div>
-            </div>
-
-            <div className="md:pt-12 flex gap-4 md:justify-start text-[0.9rem] md:text-[1rem] 2xl:text-[1.2rem] md:flex-row flex-col items-center align-middle justify-center w-full">
-              <img src={gp} alt="" />
-              <img src={as} alt="" />
-            </div>
+            </div>            
           </div>
         </div>
       </div>
