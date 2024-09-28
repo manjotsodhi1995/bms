@@ -100,10 +100,6 @@ export const CheckoutStep = ({ eventsData, onBack }: TicketStepsProps) => {
       return;
     }
 
-    if (!email.endsWith("@gmail.com")) {
-      setError("Please enter a valid email address");
-      return;
-    }
     setError("");
     setIsLoading(true);
     const stripe = await loadStripe(
