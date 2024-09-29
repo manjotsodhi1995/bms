@@ -491,7 +491,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
           <div className="mt-4 hidden lg:flex justify-between gap-10">
             <div className="flex flex-col text-center items-center">
               <div className="font-medium text-[1.2rem]">
-                {eventData?.duration ? `${eventData.duration}` : "4h"}
+                {eventData?.duration ? `${eventData.duration}` : "--"}
               </div>
               <div className="text-gray-700 text-[0.9rem]">Duration</div>
             </div>
