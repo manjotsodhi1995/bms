@@ -35,7 +35,7 @@ function EventCard(event: Partial<EventType>) {
   };
   return (
     <div
-      className="max-h-[330px] shadow-md w-[370px] lg:w-[360px] 2xl:w-[470px] md:max-h-[420px] 2xl:max-h-[500px] place-self-center rounded-3xl shadow:lg transition-transform duration-300 ease-in-out  bg-white pb-2 border-[#BCBCBC36] border-2 cursor-pointer relative"
+      className="max-h-[330px] shadow-md w-[370px] lg:w-[340px] 2xl:w-[420px] md:max-h-[420px] 2xl:max-h-[500px] place-self-center rounded-3xl shadow:lg transition-transform duration-300 ease-in-out  bg-white pb-2 border-[#BCBCBC36] border-2 cursor-pointer relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ transform: isHovered ? "scale(1.02)" : "scale(1)" }}
