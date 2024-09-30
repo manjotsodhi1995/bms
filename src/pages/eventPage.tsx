@@ -139,7 +139,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
           <>
             <img
               src={eventData?.posterUrl}
-              className="w-full lg:h-[33vw] h-full"
+              className="w-full object-cover lg:h-[33vw] h-full"
               alt=""
             />
             <div className="flex gap-4 absolute bottom-4 right-4">
