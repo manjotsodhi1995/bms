@@ -6,7 +6,9 @@
   border: 1px solid #000 !important; /* Add a 1px solid gray border */
   border-radius: 8px; /* Add rounded corners */
 }
-
+.blur-effect {
+  filter: blur(64px); /* Adjust the blur radius as needed */
+}
 input,
 textarea {
   border: 1px solid #000; /* Add a 1px solid gray border */
