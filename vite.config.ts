@@ -9,4 +9,20 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // build: {
+  //   ssr: "./server.js",
+  //   outDir: "dist-ssr",
+  // },
+  // server: {
+  //   port: 5173,
+  //   proxy: {
+  //     "/api": {
+  //       target: "http://localhost:3000",
+  //       changeOrigin: true,
+  //     },
+  //   },
+  // },
+  optimizeDeps: {
+    include: ["react", "react-dom", "axios", "express", "dotenv"],
+  },
 });

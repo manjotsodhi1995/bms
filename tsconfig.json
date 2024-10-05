@@ -23,12 +23,10 @@
     /* For Shadcn */
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*",
-      ],
+      "@/*": ["./src/*"],
       "@mui/*": ["node_modules/@mui/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "server.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
