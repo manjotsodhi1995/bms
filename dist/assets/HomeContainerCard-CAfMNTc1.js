@@ -1,0 +1,1 @@
+import{j as e}from"./index-BhtxJkHA.js";import{c as x}from"./index-BMBbtaCK.js";function n({children:o,className:r}){return e.jsx("div",{className:x("h-[400px] rounded-lg px-6 py-4 flex flex-col gap-1 bg-blue-box shadow-xl",r),children:o})}export{n as H};
