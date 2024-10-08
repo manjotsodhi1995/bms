@@ -1,1 +1,0 @@
-import{c as o}from"./index-BhtxJkHA.js";const{Axios:e,AxiosError:a,CanceledError:s,isCancel:t,CancelToken:i,VERSION:n,all:c,Cancel:l,isAxiosError:x,spread:A,toFormData:C,AxiosHeaders:d,HttpStatusCode:m,formToJSON:p,getAdapter:E,mergeConfig:f}=o;export{a as A};

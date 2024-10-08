@@ -1,1 +1,0 @@
-import{ax as i}from"./index-BhtxJkHA.js";function c(...n){return n.reduce((o,t)=>t==null?o:function(...e){o.apply(this,e),t.apply(this,e)},()=>{})}function a(n){return i(n).defaultView||window}export{c,a as o};
