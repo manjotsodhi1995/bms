@@ -134,14 +134,21 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
         handleNextClick={handleNextClick} // Pass handleNextClick to SecondSwiper
         handlePrevClick={handlePrevClick}
       />
-      <div className="relative h-[50vw] lg:h-full flex justify-center bg-gray-200">
+      <div className="relative h-[50vw] lg:h-full flex justify-center ">
         {!isLoading && (
           <>
             <img
               src={eventData?.posterUrl}
-              className="w-full lg:h-[33vw] h-full"
+              className="w-full object-cover lg:h-[33vw] h-full absolute -z-10 blur-effect"
               alt=""
             />
+            <div>
+              <img
+                src={eventData?.posterUrl}
+                className="w-full object-cover lg:h-[33vw] h-full"
+                alt=""
+              />
+            </div>
             <div className="flex gap-4 absolute bottom-4 right-4">
               <button
                 disabled={likesMutation.isPending}
