@@ -53,6 +53,7 @@ axios.interceptors.response.use(
 
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
+      localStorage.removeItem("accessToken");
 
       // try {
       //   // const refreshToken = localStorage.getItem("refreshToken");
