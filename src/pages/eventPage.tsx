@@ -104,27 +104,6 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
         <title>{!isLoading ? eventData?.title : "Loading..."}</title>
 
         {/* Open Graph Meta Tags for Facebook, WhatsApp */}
-        <meta
-          property="og:title"
-          content={
-            eventData
-              ? eventData.title
-              : "Diwali Bollywood Night | Rooftop Party | Drinks @ €4 | Girls Free"
-          }
-        />
-        <meta
-          property="og:image"
-          content={
-            "https://kafscowavedevassets.s3.eu-west-1.amazonaws.com/1726853169958-169.jpg"
-          }
-        />
-        <meta
-          property="og:url"
-          content={`https://www.kafsco.com/event/${eventData?.slug}`}
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
       </Helmet>
 
       <EventStories
