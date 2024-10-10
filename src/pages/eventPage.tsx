@@ -124,7 +124,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
             <div>
               <img
                 src={eventData?.posterUrl}
-                className="w-full lg:h-[33vw] h-full"
+                className="lg:h-[33vw] h-full"
                 alt=""
               />
             </div>
