@@ -275,9 +275,7 @@ function Trending() {
             ))}
           {!loading &&
             data &&
-            data.liveEvents
-              .slice(0, 5)
-              .map((card, index) => <EventCard key={index} {...card} />)}
+            data.liveEvents.map((card, index) => <EventCard key={index} {...card} />)}
           {!loading &&
             data &&
             data.upcomingEvents.map((card, index) => (
