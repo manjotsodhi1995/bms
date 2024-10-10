@@ -121,7 +121,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
               className="w-full object-cover lg:h-[33vw] h-full absolute -z-10 blur-effect"
               alt=""
             />
-            <div>
+            <div className="flex items-center justify-center">
               <img
                 src={eventData?.posterUrl}
                 className="lg:h-[33vw] h-full"
