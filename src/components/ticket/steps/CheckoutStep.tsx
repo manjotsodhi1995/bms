@@ -1,36 +1,156 @@
 import { Fragment } from "react/jsx-runtime";
 import { TicketStepsProps } from ".";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Loader2 } from "lucide-react";
 import PaymentMethodCard, {
-  PaymentMethodIcons,
   PaymentMethods,
 } from "@/components/ticket/PaymentMethodCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useCartQuery } from "@/api/query/useCartQuery";
+import { useCart } from "@/stores/cart";
+import toast from "react-hot-toast";
+import { AxiosError } from "axios";
+import PreviewCard from "./PreviewCard";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "@/utils/middleware";
+import { API } from "@/api";
+import { useQuery } from "@tanstack/react-query";
+import { loadStripe } from "@stripe/stripe-js";
+interface ErrorResponse {
+  message: string;
+}
 
-export const CheckoutStep = ({
-  eventsData: _,
-  onBack,
-  onStepChange,
-}: TicketStepsProps) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmEmail, setConfirmEmail] = useState("");
-  const [voucherCode, setVoucherCode] = useState("");
+const fetchProfile = async () => {
+  const response = await axios.get(API.users.profile);
+  return response.data.data;
+};
+
+export const CheckoutStep = ({ eventsData, onBack }: TicketStepsProps) => {
+  const navigate = useNavigate();
+  const {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email,
+    setEmail,
+    // confirmEmail,
+    // setConfirmEmail,
+    voucherCode,
+    setVoucherCode,
+    basketId,
+  } = useCart();
+
+  const accessToken = localStorage.getItem("accessToken");
+  const { data, isSuccess } = useQuery({
+    queryKey: ["profile"],
+    queryFn: fetchProfile,
+    enabled: !!accessToken,
+  });
+
+  useEffect(() => {
+    if (!data) return;
+    setFirstName(data?.fname);
+    setLastName(data?.lname);
+    setEmail(data?.email);
+  }, [data, isSuccess]);
+
+  useEffect(() => {
+    if (!accessToken) {
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+    }
+  }, []);
+
+  const [checked, setChecked] = useState(true);
+  const [error, setError] = useState("");
+  const [promoApplied, setPromoApplied] = useState(false);
+
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethods | null>(
-    null
+    "card"
   );
+  const { cartData, promoCodeMutation, removePromoCodeMutation } = useCartQuery(
+    eventsData?.eventId,
+    eventsData?.eventStart
+  );
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    console.log(cartData.basket.discountTotal);
+    cartData.basket.discountTotal > 0
+      ? setPromoApplied(true)
+      : setPromoApplied(false);
+  }, []);
+  const onContinueClicked = async () => {
+    if (firstName.length === 0) {
+      setError("Please enter your first name");
+      return;
+    }
+    if (lastName.length === 0) {
+      setError("Please enter your last name");
+      return;
+    }
+
+    if (email.length === 0) {
+      setError("Please enter your email");
+      return;
+    }
+
+    if (!email.includes("@")) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    setError("");
+    setIsLoading(true);
+    const stripe = await loadStripe(
+      "pk_live_51Pzc7eHlU79XeHANPTYyBdi6WxpUsL6mFHnoKhbvOfcXvabVv3724tALcdPn8YaXVr024oKVv8BV69LRIUSh8TiC00lN3vtJkw"
+    );
+
+    const body = {
+      basketId,
+      guestUserName: firstName + " " + lastName,
+      guestUserEmail: email,
+    };
+    const response: any = await axios.post(API.payments.direct, body);
+    console.log(response);
+    if (response.data.type === "free" && response.data.status === "success") {
+      navigate(`/3ds/payment?status=succesful`);
+      setIsLoading(false);
+      return;
+    }
+    const result: any = stripe?.redirectToCheckout({
+      sessionId: response?.data?.id,
+    });
+    if (result?.error) console.log(result.error);
+    setIsLoading(false);
+  };
+
   return (
     <Fragment>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 absolute left-4 top-4">
         <button onClick={onBack}>
           <ChevronLeft className="size-6" />
         </button>
-        <h2 className="text-2xl font-thin">Checkout</h2>
+        <h2 className="text-lg font-thin">Back</h2>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-        <div className="w-4/5 flex flex-col gap-2">
+      <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+        {" "}
+        <div className="w-full flex flex-col gap-2">
+          <h2 className="text-2xl font-bold mt-4 w-full">Checkout</h2>
+          {!accessToken && (
+            <p className="text-xs">
+              Already a user ?{" "}
+              <span>
+                <Link to={"/login"} className="text-[#8C3E87] font-medium">
+                  Login
+                </Link>
+              </span>
+            </p>
+          )}
+          {error.length > 0 && (
+            <p className="text-red-400 text-sm font-medium">{error}</p>
+          )}
           <div className="flex w-full gap-4">
             <div>
               <label htmlFor="first-name" className="text-sm font-medium">
@@ -69,32 +189,152 @@ export const CheckoutStep = ({
               className="w-full p-2 mt-1 border border-gray-300 rounded-md"
             />
           </div>
-          <div>
-            <label htmlFor="confirm-email" className="text-sm font-medium">
-              Confirm Email
-            </label>
-            <input
-              id="confirm-email"
-              type="text"
-              value={confirmEmail}
-              onChange={(e) => setConfirmEmail(e.target.value)}
-              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
-            />
-          </div>
-          <div>
-            <label htmlFor="voucher-code" className="text-sm font-medium">
-              Add voucher code
-            </label>
+          {/* <div> */}
+          {/*   <label htmlFor="confirm-email" className="text-sm font-medium"> */}
+          {/*     Confirm Email */}
+          {/*   </label> */}
+          {/*   <input */}
+          {/*     id="confirm-email" */}
+          {/*     type="text" */}
+          {/*     value={confirmEmail} */}
+          {/*     onChange={(e) => setConfirmEmail(e.target.value)} */}
+          {/*     className="w-full p-2 mt-1 border border-gray-300 rounded-md" */}
+          {/*   /> */}
+          {/* </div> */}
+          <label htmlFor="voucher-code" className="-mb-2 text-sm font-medium">
+            Add voucher code
+          </label>
+          <div className="flex gap-2 items-center">
             <input
               id="confirm-email"
               type="text"
               value={voucherCode}
               onChange={(e) => setVoucherCode(e.target.value)}
+              disabled={promoApplied}
               className="w-full p-2 mt-1 border border-gray-300 rounded-md"
             />
+            {!promoApplied && (
+              <button
+                className="flex items-center gap-2 bg-black w-fit px-[0.5rem] py-[0.5rem] text-white font-medium rounded-md "
+                onClick={() => {
+                  toast
+                    .promise(promoCodeMutation.mutateAsync(), {
+                      loading: "Applying Promo Code",
+                      success: "Promo code applied successfully",
+                      error: (error) => {
+                        const axiosError = error as AxiosError<ErrorResponse>;
+                        const errorMessage =
+                          axiosError.response?.data?.message ||
+                          "An error occurred";
+                        return errorMessage;
+                      },
+                    })
+                    .then(() => {
+                      setPromoApplied(true);
+                    });
+                }}
+              >
+                Apply
+                {promoCodeMutation.isPending && (
+                  <Loader2 className="size-4 animate-spin" />
+                )}
+              </button>
+            )}
+
+            {promoApplied && (
+              <button
+                className="flex items-center gap-2 bg-black w-fit px-[0.5rem] py-[0.5rem] text-white font-medium rounded-md"
+                onClick={() => {
+                  toast
+                    .promise(removePromoCodeMutation.mutateAsync(), {
+                      loading: "Removing Promo Code",
+                      success: "Promo code removed successfully",
+                      error: (error) => {
+                        const axiosError = error as AxiosError<ErrorResponse>;
+                        const errorMessage =
+                          axiosError.response?.data?.message ||
+                          "An error occurred";
+                        return errorMessage;
+                      },
+                    })
+                    .then(() => {
+                      setPromoApplied(false);
+                      setVoucherCode("");
+                    });
+                }}
+              >
+                Remove
+                {removePromoCodeMutation.isPending && (
+                  <Loader2 className="size-4 animate-spin" />
+                )}
+              </button>
+            )}
+          </div>
+          <div className="flex flex-col w-full gap-2 mt-3 mb-2">
+            <p className="flex gap-4 items-center text-sm">
+              <input
+                className="size-4 accent-black"
+                type="checkbox"
+                id="send-emails"
+              />
+              <label htmlFor="send-emails" className="text-[0.8rem]">
+                Send me emails about the best events happening nearby or online.
+              </label>
+            </p>
+            <p className="flex gap-4 items-center text-sm">
+              <input
+                className="size-4 accent-black"
+                type="checkbox"
+                id="terms-condition"
+                defaultChecked
+                onChange={(e) => setChecked(e.target.checked)}
+              />
+              <label htmlFor="terms-condition" className="text-[0.8rem]">
+                I agree to the T&C and Privacy policy
+              </label>
+            </p>
           </div>
           <div className="flex flex-col gap-4">
-            <span className="text-lg font-medium">Pay with</span>
+            <div className="hidden md:block space-y-2">
+              <span className="text-xl font-medium">Pay with</span>
+              <PaymentMethodCard
+                title="Credit/Debit Card"
+                selected={paymentMethod === "card"}
+                onSelectedChange={(selected) =>
+                  setPaymentMethod(selected ? "card" : null)
+                }
+              />
+            </div>
+            {/* <PaymentMethodCard */}
+            {/*   title="Paypal" */}
+            {/*   logo={PaymentMethodIcons.paypal()} */}
+            {/*   selected={paymentMethod === "paypal"} */}
+            {/*   onSelectedChange={(selected) => */}
+            {/*     setPaymentMethod(selected ? "paypal" : null) */}
+            {/*   } */}
+            {/* /> */}
+            {/* <PaymentMethodCard */}
+            {/*   title="Google Pay" */}
+            {/*   logo={PaymentMethodIcons.google()} */}
+            {/*   selected={paymentMethod === "googlepay"} */}
+            {/*   onSelectedChange={(selected) => */}
+            {/*     setPaymentMethod(selected ? "googlepay" : null) */}
+            {/*   } */}
+            {/* /> */}
+            {/* <PaymentMethodCard */}
+            {/*   title="Apple Pay" */}
+            {/*   logo={PaymentMethodIcons.apple()} */}
+            {/*   selected={paymentMethod === "applepay"} */}
+            {/*   onSelectedChange={(selected) => */}
+            {/*     setPaymentMethod(selected ? "applepay" : null) */}
+            {/*   } */}
+            {/* /> */}
+          </div>
+        </div>
+        <PreviewCard cartData={cartData} eventsData={eventsData}>
+          <div className="block md:hidden mt-2 space-y-2 w-full">
+            {" "}
+            <span className="text-xl font-medium">Pay with</span>
             <PaymentMethodCard
               title="Credit/Debit Card"
               selected={paymentMethod === "card"}
@@ -102,78 +342,25 @@ export const CheckoutStep = ({
                 setPaymentMethod(selected ? "card" : null)
               }
             />
-            <PaymentMethodCard
-              title="Paypal"
-              logo={PaymentMethodIcons.paypal()}
-              selected={paymentMethod === "paypal"}
-              onSelectedChange={(selected) =>
-                setPaymentMethod(selected ? "paypal" : null)
-              }
-            />
-            <PaymentMethodCard
-              title="Google Pay"
-              logo={PaymentMethodIcons.google()}
-              selected={paymentMethod === "googlepay"}
-              onSelectedChange={(selected) =>
-                setPaymentMethod(selected ? "googlepay" : null)
-              }
-            />
-            <PaymentMethodCard
-              title="Apple Pay"
-              logo={PaymentMethodIcons.apple()}
-              selected={paymentMethod === "applepay"}
-              onSelectedChange={(selected) =>
-                setPaymentMethod(selected ? "applepay" : null)
-              }
-            />
-          </div>
-        </div>
-
-        <div className="bg-white mt-10 p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
-          <img
-            src="https://s3-alpha-sig.figma.com/img/1cd7/f4dc/9ab46b29cc668c7f4e50b65efdb52bd2?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=o0crmQPt9uL0ZTxKjXhzyemymy5kxqqNva1yOimUDBO2gfDMEnBGmnk81r~fTApreOI3MqUPoPAgCe3FIT1LopcJOG8EF3VDoB2rtWE8Cq-F4y4Hd0qZEKJZVOMCsGpwNuBtbTBA9V4EIKdj32ruPM1fJW1hypUMy9cx9FMjbbb2l9Ebts6OQEOVDkXU~-pc9Ky0Iba-YJIVGqvu~rCmIRrd9JqTZ~VYIHi2NSgWy2MhCoYUHBPAlAgtn9cbJ3KksGUe7Is-rag9vV3TGBG0Pktd40zUSjs~FGGc3OW9vR33gp0J4-T6VVGytBCJBOvTMyjEE~yqU5RT9tYbh96thw__"
-            className="w-full h-52 object-fill rounded-lg"
-          />
-          <span className="leading-tight text-xl font-medium">
-            Fall Guy - Movie Screening
-          </span>
-          <p className="ml-4 md:ml-2 text-sm">
-            Wednesdays, 11 June
-            <br />
-            at Cinema Star, Great Eastern Street, London, UK.
-          </p>
-
-          <h3 className="mt-10 leading-tight text-xl font-medium w-full">
-            Order Summary
-          </h3>
-          <p className="flex w-full items-center justify-between font-medium">
-            <span>Table - 1(2)</span>
-            <span>$60.00</span>
-          </p>
-          <hr className="w-full border-t border-1 border-neutral-300" />
-          <div className="flex flex-col w-full px-4">
-            <p className="flex items-center justify-between text-gray-600 text-sm">
-              <span>Subtotal</span>
-              <span>$60.00</span>
-            </p>
-            <p className="flex items-center justify-between text-gray-600 text-sm">
-              <span>Fees</span>
-              <span>$10.00</span>
-            </p>
-
-            <p className="flex items-center justify-between mt-4 text-black font-medium">
-              <span>Total</span>
-              <span>$70.00</span>
-            </p>
           </div>
 
           <button
-            className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md"
-            onClick={onStepChange}
+            disabled={
+              !checked ||
+              email.length === 0 ||
+              firstName.length === 0 ||
+              lastName.length === 0
+            }
+            className="mt-4 bg-black w-full md:w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500 flex justify-center items-center h-[40px]"
+            onClick={onContinueClicked}
           >
-            Continue
+            {isLoading ? (
+              <Loader2 className="animate-spin size-4" />
+            ) : (
+              <>Pay Now</>
+            )}
           </button>
-        </div>
+        </PreviewCard>
       </div>
     </Fragment>
   );

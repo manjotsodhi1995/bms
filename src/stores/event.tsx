@@ -21,6 +21,7 @@ export type EventType = {
   organizer: {
     _id: string;
     name: string;
+    logoUrl: string;
   };
   eventCategories: [
     {
@@ -75,22 +76,28 @@ export class Event {
     });
     this.root = root;
   }
-  async fetchEvents(_lat: string, _long: string) {
+  async fetchEvents(location: string = "Dublin") {
     try {
+      if (location.includes(",")) {
+        location = location.split(",")[0];
+      }
+      if (location.length === 0) {
+        location = "Dublin";
+      }
       const response = await axios.get(
-        `${API.events.fetchAllEvents}?city=Dublin`
+        `${API.events.fetchAllEvents}?city=${location}`
       );
       this.liveEvents = response.data.data.liveEvents;
       this.upcomingEvents = response.data.data.upcomingEvents;
       this.trendingCategories = response.data.data.trendingCategories;
       this.currentCity = response.data.data.currentCity;
       this.nearestCity = response.data.data.nearestEventCity;
-      return response.data.data as FetchEventsResponse
+      return response.data.data as FetchEventsResponse;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error("API Error:", error.response?.data || error.message);
+        throw new Error(error.response?.data || error.message);
       } else {
-        console.error("Unexpected Error:", error);
+        throw new Error(`Unexpected Error: ${error}`);
       }
     }
   }

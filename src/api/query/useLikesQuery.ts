@@ -1,18 +1,26 @@
 import axios from "@/utils/middleware";
 import { API } from "..";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useStore } from "@/hooks/useStore";
+import { useNavigate } from "react-router-dom";
 
 export const useLikesQuery = (eventId?: string) => {
+  const {
+    root: { auth },
+  } = useStore();
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate();
   const { data: isLiked } = useQuery({
     queryKey: ["event", eventId, "likeStatus"],
-    queryFn: () => checkLikedStatus(eventId),
-    enabled: !!eventId,
+    queryFn: () => checkLikedStatus(eventId, auth.isAuthenticated),
+    enabled: !!eventId && auth.isAuthenticated,
   });
 
   const likesMutation = useMutation({
     mutationFn: () => {
+      if (!auth.isAuthenticated) {
+        navigate("/login");
+      }
       return isLiked ? unlikeEvent(eventId) : likeEvent(eventId);
     },
     onSettled: async () => {
@@ -28,7 +36,8 @@ export const useLikesQuery = (eventId?: string) => {
   };
 };
 
-const checkLikedStatus = async (eventId?: string) => {
+const checkLikedStatus = async (eventId?: string, isAuth?: boolean) => {
+  if (!isAuth) return false;
   if (!eventId) return false;
   const response = await axios.get(API.users.getAllLikedEvents);
   const likedEventsIds: string[] = response.data.data.likedEvents.map(

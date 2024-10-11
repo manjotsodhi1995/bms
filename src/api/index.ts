@@ -1,6 +1,6 @@
 export const SERVER_BASE_URL = `${
   import.meta.env.VITE_BACKEND_SERVER_URL ||
-  "https://kafsbackend-106f.onrender.com"
+"https://api.kafsco.com"
 }/api/v1` as const;
 
 export const API = {
@@ -19,8 +19,8 @@ export const API = {
     getAllFollowedOrganizers: `${SERVER_BASE_URL}/users/followed-organizers`,
 
     profile: `${SERVER_BASE_URL}/users/profile`,
+    update: `${SERVER_BASE_URL}/users/update`,
     // changePassword: `${SERVER_BASE_URL}/users/change-password`,
-    // update: `${SERVER_BASE_URL}/users/update`,
     // verify: `${SERVER_BASE_URL}/users/authorize`,
     // forgotPassword: `${SERVER_BASE_URL}/users/forgot-password`,
     // resetPassword: `${SERVER_BASE_URL}/users/reset-password`,
@@ -44,15 +44,35 @@ export const API = {
     // update: `${SERVER_BASE_URL}/organizers/update`,
     // delete: `${SERVER_BASE_URL}/organizers/delete`,
   },
-  cart: {
-    // fetchBookingMatrix: `${SERVER_BASE_URL}/bookingmatrix/fetch`,
-    // fetchUserBasket: `${SERVER_BASE_URL}/baskets/fetch`,
-    // updateBasket: `${SERVER_BASE_URL}/baskets/update`,
-    // resetBasket: `${SERVER_BASE_URL}/baskets/reset`,
+  basket: {
+    fetch: `${SERVER_BASE_URL}/baskets/fetch`,
+    update: `${SERVER_BASE_URL}/baskets/update`,
+    reset: `${SERVER_BASE_URL}/baskets/reset`,
+  },
+  bookingmatrix: {
+    create: `${SERVER_BASE_URL}/bookingmatrix/create`,
+    update: `${SERVER_BASE_URL}/bookingmatrix/update`,
+    fetch: `${SERVER_BASE_URL}/bookingmatrix/fetch`,
   },
   categories: {
     getAllCategories: `${SERVER_BASE_URL}/categories/getallcategories`,
 
     // trending: `${SERVER_BASE_URL}/categories/trending`,
+  },
+  payments: {
+    direct: `${SERVER_BASE_URL}/payments/checkout`,
+  },
+  payments3ds: {
+    direct: `${SERVER_BASE_URL}/payments/direct3ds`,
+  },
+  bookingRoutes: {
+    getTicket: `${SERVER_BASE_URL}/bookings/get-tickets`,
+  },
+  content: {
+    upload: `${SERVER_BASE_URL}/contents/upload`,
+  },
+  promo: {
+    apply: `${SERVER_BASE_URL}/promo-code/apply`,
+    remove: `${SERVER_BASE_URL}/promo-code/remove`,
   },
 } as const;

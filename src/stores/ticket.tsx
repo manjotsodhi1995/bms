@@ -3,13 +3,14 @@ import { Root, iRoot } from "./root";
 
 export type TicketStep =
   | "booking"
-  | "cart"
+  // | "cart"
   | "checkout"
   | "payment"
   | "payment-success"
   | "view-ticket"
   | "buy-another-tickets"
-  | "share-ticket";
+  | "share-ticket"
+  | "iframe";
 
 export class TicketStore {
   root: iRoot;

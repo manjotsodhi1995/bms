@@ -3,7 +3,7 @@ import DTable from "./DTable";
 
 function CurrentlyEvent() {
   return (
-    <HomeContainerCard className="mb-10 h-[45vh] col-span-2 w-full">
+    <HomeContainerCard className="mb-10 h-[40vh] col-span-2 w-full">
       <div className="flex w-full gap-1 items-center">
         <svg
           width="32"

@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
-import img from "../assets/Auth/register.png";
+import img from "../assets/Auth/register.jpg";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
+import { MuiTelInput } from "mui-tel-input";
+import { AxiosError } from "axios";
+import toast from "react-hot-toast";
+import Footer from "@/components/Footer";
 const Register = observer(() => {
   const [firstName, setFirstName] = useState(""); // State for first name input
   const [lastName, setLastName] = useState(""); // State for last name input
-  const [gender, setGender] = useState("male"); // State for gender
+  const [gender, setGender] = useState(""); // State for gender
   const [phone, setPhone] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [actualPhone, setActualPhone] = useState<string | null>("");
+  const [country, setCountry] = useState<string | null>("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -48,14 +53,46 @@ const Register = observer(() => {
     event.preventDefault();
     try {
       setLoading(true);
-      await auth.register(email, password, firstName, lastName, gender, phone);
+      if (password.length < 6) {
+        toast.error("Password must be more than 6 letters");
+        return;
+      }
+      if (firstName.length === 0) {
+        toast.error("First name is required");
+        return;
+      }
+      if (lastName.length === 0) {
+        toast.error("Last name is required");
+        return;
+      }
+      if (email.length === 0) {
+        toast.error("Email name is required");
+        return;
+      }
+
+      await auth.register(
+        email,
+        password,
+        firstName,
+        lastName,
+        gender,
+        actualPhone,
+        country
+      );
       navigate("/");
     } catch (error: any) {
-      if (error.response && error.response.status === 400) {
-        setError("Invalid email or password. Please try again.");
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 409) {
+          toast.error("User already exists. Please login.");
+        } else {
+          const err = error.response?.data?.message?.details
+            .map((d: any) => d.message)
+            .join(",");
+
+          toast.error(err);
+        }
       } else {
-        setError("An error occurred during login. Please try again later.");
-        console.error("Login error:", error);
+        toast.error("Please try again later.");
       }
     } finally {
       setLoading(false);
@@ -66,20 +103,25 @@ const Register = observer(() => {
   }, []);
   return (
     <>
-      <div className="md:flex">
-        <div className="md:w-[46vw] md:block hidden">
-          <img src={img} className="h-screen w-full" alt="" />
+      <div className="flex h-screen ">
+        <div className="md:w-1/2 md:block hidden">
+          <img src={img} className="h-full w-full object-cover" alt="" />
         </div>
-        <div className="h-screen">
-          <div className="py-[7vh] 2xl:py-[12vh] px-[10vw] h-full md:w-[54vw]">
+        <div className="h-screen w-full md:w-1/2 flex justify-center items-center">
+          <div className="md:px-[10vw]">
             <form
               onSubmit={handleSubmit}
-              className="h-full p-4 flex flex-col justify-around"
+              className="h-full p-4 w-full space-y-3"
             >
-              <div className="flex flex-col gap-2">
-                <h1 className="text-3xl font-bold text-center items-center">
-                  Sign Up
-                </h1>
+              <div className="flex flex-col items-center">
+                <Link to={"/"}>
+                  <img
+                    src="/logo-nobg.png"
+                    alt="logo"
+                    className="max-h-[10vh] max-w-[40vw]"
+                  />
+                </Link>
+                <h1 className="text-3xl font-bold text-center">User Sign Up</h1>
               </div>
 
               <div className="w-full">
@@ -87,8 +129,9 @@ const Register = observer(() => {
                   type="text"
                   name="firstName"
                   id="firstName"
+                  required={true}
                   value={firstName}
-                  placeholder="First name"
+                  placeholder="First name *"
                   className="w-full"
                   onChange={handleInputChange}
                 />
@@ -98,7 +141,8 @@ const Register = observer(() => {
                   type="text"
                   name="lastName"
                   id="lastName"
-                  placeholder="Last name"
+                  required={true}
+                  placeholder="Last name *"
                   value={lastName}
                   className="w-full"
                   onChange={handleInputChange}
@@ -111,6 +155,7 @@ const Register = observer(() => {
                     type="radio"
                     name="gender"
                     value="male"
+                    required={true}
                     checked={gender === "male"}
                     onChange={handleInputChange}
                   />
@@ -121,6 +166,7 @@ const Register = observer(() => {
                     type="radio"
                     name="gender"
                     value="female"
+                    required={true}
                     checked={gender === "female"}
                     onChange={handleInputChange}
                   />
@@ -129,14 +175,20 @@ const Register = observer(() => {
               </div>
 
               <div className="">
-                <input
-                  type="tel" // Use type="tel" for better phone number input
+                <MuiTelInput
+                  value={phone}
+                  required={true}
+                  onChange={(v, info) => {
+                    setPhone(v);
+                    setActualPhone(info.nationalNumber);
+                    setCountry(`+${info.countryCallingCode}`);
+                  }}
                   name="phone"
                   id="phone"
-                  value={phone}
-                  placeholder="Phone"
-                  className="w-full"
-                  onChange={handleInputChange}
+                  placeholder="Phone*"
+                  defaultCountry="US"
+                  variant="outlined"
+                  className="w-full bg-white"
                 />
               </div>
 
@@ -144,8 +196,9 @@ const Register = observer(() => {
                 <input
                   type="email"
                   name="email"
+                  required={true}
                   value={email}
-                  placeholder="Email Address"
+                  placeholder="Email Address *"
                   id="email"
                   className="w-full"
                   onChange={handleInputChange}
@@ -156,7 +209,8 @@ const Register = observer(() => {
                 <input
                   type="password"
                   value={password}
-                  placeholder="Password"
+                  required={true}
+                  placeholder="Password *"
                   name="password"
                   id="password"
                   className="w-full"
@@ -178,11 +232,20 @@ const Register = observer(() => {
                 <div className="h-[2px] bg-black"></div>
                 <p className="text-center text-sm">
                   By registering, you agree to KAFSCO's{" "}
-                  <a href="/terms">T&Cs</a> and{" "}
-                  <a href="/privacy">Privacy Policy.</a>
+                  <a
+                    target="blank"
+                    href="/terms"
+                    className="text-blue-600 font-bold"
+                  >
+                    T&Cs
+                  </a>{" "}
+                  and{" "}
+                  <a href="/privacy" className="text-blue-600 font-bold">
+                    Privacy Policy.
+                  </a>
                 </p>
-                <div>
-                  <div className="text-red-500">{error}</div>
+                <div className="flex justify-center items-center font-semibold gap-x-2">
+                  {/* <div className="text-red-500">{error}</div> */}
                   Already a member ?{" "}
                   <Link to="/login" className="text-[#8C3E87]">
                     Login
@@ -193,6 +256,7 @@ const Register = observer(() => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 });

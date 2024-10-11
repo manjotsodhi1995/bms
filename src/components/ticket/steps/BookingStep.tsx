@@ -1,70 +1,103 @@
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Loader2 } from "lucide-react";
 import TicketTableOption from "../TicketTableOption";
 import { TicketStepsProps } from ".";
+import { useBookingMatrixQuery } from "@/api/query/useBookingMatrixQuery";
+import { useCartQuery } from "@/api/query/useCartQuery";
+import { useMemo } from "react";
+import { AxiosError } from "axios";
+import PreviewCard from "./PreviewCard";
 
 export const BookingStep = ({
-  eventsData: _,
+  eventsData,
   onBack,
   onStepChange,
-}: TicketStepsProps) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-    <div>
-      <span className="flex items-center gap-2">
-        <button onClick={onBack}>
-          <ChevronLeft className="size-6" />
-        </button>
-        <h2 className="text-2xl font-thin">Tickets</h2>
-      </span>
-      <TicketTableOption title="Round 1" />
-      <TicketTableOption title="Round 2" />
-      {/* <TicketTableOption title="Table 3" /> */}
-      {/* <TicketTableOption title="Table 4" /> */}
-    </div>
+}: TicketStepsProps) => {
+  const {
+    bookingMatrix: { data, isLoading, isError },
+  } = useBookingMatrixQuery(eventsData!!.eventId, eventsData!!.eventStart);
+  const { cartData, cartMutation } = useCartQuery(
+    eventsData?.eventId,
+    eventsData?.eventStart
+  );
+  const noOfTickets = useMemo(() => {
+    if (!cartData) return 0;
+    const tickets = cartData.basket.basket
+      ? cartData.basket.basket.reduce(
+          (acc: number, d: any) => acc + d.noOfPersons,
+          0
+        )
+      : 0;
+    return tickets;
+  }, [cartData]);
 
-    <div className="bg-white p-10 flex flex-col shadow-lg rounded-lg h-fit gap-2 items-center">
-      <img
-        src="https://s3-alpha-sig.figma.com/img/1cd7/f4dc/9ab46b29cc668c7f4e50b65efdb52bd2?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=o0crmQPt9uL0ZTxKjXhzyemymy5kxqqNva1yOimUDBO2gfDMEnBGmnk81r~fTApreOI3MqUPoPAgCe3FIT1LopcJOG8EF3VDoB2rtWE8Cq-F4y4Hd0qZEKJZVOMCsGpwNuBtbTBA9V4EIKdj32ruPM1fJW1hypUMy9cx9FMjbbb2l9Ebts6OQEOVDkXU~-pc9Ky0Iba-YJIVGqvu~rCmIRrd9JqTZ~VYIHi2NSgWy2MhCoYUHBPAlAgtn9cbJ3KksGUe7Is-rag9vV3TGBG0Pktd40zUSjs~FGGc3OW9vR33gp0J4-T6VVGytBCJBOvTMyjEE~yqU5RT9tYbh96thw__"
-        className="w-full h-52 object-fill rounded-lg"
-      />
-      <span className="leading-tight text-xl font-medium">
-        Fall Guy - Movie Screening
-      </span>
-      <p className="ml-4 md:ml-2 text-sm">
-        Wednesdays, 11 June
-        <br />
-        at Cinema Star, Great Eastern Street, London, UK.
-      </p>
+  const error = useMemo(() => {
+    if (cartMutation.error instanceof AxiosError) {
+      return (
+        cartMutation.error?.response?.data.message ||
+        "An error occurred. Please try again"
+      );
+    } else {
+      return "An error occurred. Please try again";
+    }
+  }, [cartMutation.isError]);
 
-      <h3 className="mt-10 leading-tight text-xl font-medium w-full">
-        Order Summary
-      </h3>
-      <p className="flex w-full items-center justify-between font-medium">
-        <span>Table - 1(2)</span>
-        <span>$60.00</span>
-      </p>
-      <hr className="w-full border-t border-1 border-neutral-300" />
-      <div className="flex flex-col w-full px-4">
-        <p className="flex items-center justify-between text-gray-600 text-sm">
-          <span>Subtotal</span>
-          <span>$60.00</span>
-        </p>
-        <p className="flex items-center justify-between text-gray-600 text-sm">
-          <span>Fees</span>
-          <span>$10.00</span>
-        </p>
-
-        <p className="flex items-center justify-between mt-4 text-black font-medium">
-          <span>Total</span>
-          <span>$70.00</span>
-        </p>
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+      <div>
+        <span className="flex items-center gap-2 absolute left-4 top-4">
+          <button onClick={onBack}>
+            <ChevronLeft className="size-6" />
+          </button>
+          <h2 className="text-lg font-thin">Back</h2>
+        </span>
+        <h2 className="text-2xl font-bold mt-6 w-full">Tickets</h2>
+        {isLoading && (
+          <p className="flex gap-2 items-center text-gray-600">
+            Loading
+            <Loader2 className="animate-spin size-4" />
+          </p>
+        )}
+        {cartMutation.isError && (
+          <span className="ml-2 text-sm text-red-500">{error}</span>
+        )}
+        {!isLoading &&
+          data &&
+          data?.matrix?.ticketCategories &&
+          data?.matrix?.ticketCategories.map((ticket: any) => (
+            <TicketTableOption
+              currency={data.currency}
+              isSoldOut={ticket.isSoldOut}
+              currentBasket={cartData?.basket?.basket}
+              ticket={ticket}
+              key={ticket._id}
+              pending={cartMutation.isPending}
+              onTicketUpdate={(v) => {
+                cartMutation.mutate({
+                  eventDate: eventsData?.eventStart.split(" ")[0],
+                  basket: {
+                    noOfPersons: v,
+                    categoryName: ticket.categoryName,
+                    categoryType: ticket.categoryType,
+                  },
+                });
+              }}
+            />
+          ))}
+        {isError && <p>There are no tickets available</p>}
       </div>
-
-      <button
-        className="mt-4 bg-black w-5/6 text-white font-medium py-2 rounded-md"
-        onClick={onStepChange}
-      >
-        Reserve
-      </button>
+      <PreviewCard cartData={cartData} eventsData={eventsData}>
+        <button
+          disabled={noOfTickets === 0 || cartMutation.isPending}
+          className="mt-4 bg-black w-full md:w-5/6 text-white font-medium py-2 rounded-md disabled:cursor-not-allowed disabled:bg-gray-500 flex justify-center items-center h-[40px]"
+          onClick={onStepChange}
+        >
+          {cartMutation.isPending ? (
+            <Loader2 className="animate-spin size-4" />
+          ) : (
+            <>Reserve</>
+          )}
+        </button>
+      </PreviewCard>
     </div>
-  </div>
-);
+  );
+};

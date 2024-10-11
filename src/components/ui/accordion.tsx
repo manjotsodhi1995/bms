@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/utils";
 
@@ -30,7 +29,7 @@ const AccordionTrigger = React.forwardRef<
       className="transition-all [&[data-state=open]>svg]:rotate-180"
       {...props}
     >
-      <ChevronDown className="size-7 stroke-1 shrink-0 transition-transform duration-200" />
+      {/* <ChevronDown className="size-7 stroke-1 shrink-0 transition-transform duration-200" /> */}
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));

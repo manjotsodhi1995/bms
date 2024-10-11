@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-
-import load from "./assets/Ghost.gif";
+import { Toaster } from "react-hot-toast";
 import { useStore } from "./hooks/useStore";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Navbar from "./components/Navbar";
-import Bg from "./components/Bg";
-
+import bg from "./assets/background2.png";
+import { Loader2 } from "lucide-react";
+import mbg from "./assets/mobileBg.png";
+import ScrollToTop from "./utils/scroll";
+import Payment from "./pages/payment";
 const DashBoard = lazy(() => import("./pages/dashboard/Dashboard"));
 const OrganizationProfile = lazy(
   () => import("./pages/OrganizationDescription")
@@ -18,10 +20,9 @@ const MyTickets = lazy(() => import("./pages/MyTickets"));
 const TermsAndConditions = lazy(() => import("./pages/termsAndConditions"));
 const Privacy = lazy(() => import("./pages/privacy"));
 const Forgot = lazy(() => import("./pages/Forgot"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const Filter = lazy(() => import("./pages/Filter"));
 import AccountSettings from "./pages/AccountSettings";
-import ReferFriends from "./pages/ReferFriends";
-import ReferOrganizer from "./pages/ReferOrganizer";
 import Welcome from "./pages/Welcome";
 const EventPage = lazy(() => import("./pages/eventPage"));
 const SearchPage = lazy(() => import("./pages/Search"));
@@ -67,7 +68,9 @@ const ReppedInPastDetails = lazy(
 );
 const FollowingPage = lazy(() => import("./pages/dashboard/following"));
 const Organizer = lazy(() => import("./pages/Organizer"));
-
+const ReferFriends = lazy(() => import("./pages/ReferFriends"));
+const ReferOrganizer = lazy(() => import("./pages/ReferOrganizer"));
+const CategoriesPage = lazy(() => import("./pages/CategoriesPage"));
 const App = observer(() => {
   const {
     root: { auth },
@@ -81,35 +84,33 @@ const App = observer(() => {
       auth.setAuthenticated();
     }
   }, []);
-
+  const [dialogOpen, setDialogOpen] = useState(false);
   return (
     <div className="relative">
+      <Toaster />
       {/* <div className="relative overflow-hidden"> */}
-      <BrowserRouter>
-        <div className="home absolute -z-50">
-          <Bg />
-        </div>
-        <div className="home min-h-full min-w-[100vw] -z-10 absolute"></div>
-        <div className="home min-h-full min-w-[100vw] -z-10 absolute"></div>
-        <div className="home min-h-full min-w-[100vw] -z-10 absolute"></div>
 
+      <BrowserRouter>
+        {" "}
+        <ScrollToTop />
+        <div className="home -z-10 fixed min-h-screen md:flex hidden min-w-screen">
+          <img src={bg} alt="" className="min-h-screen min-w-screen" />
+        </div>{" "}
+        <div className="home -z-10 fixed min-h-screen md:hidden">
+          <img src={mbg} alt="" className="min-h-screen" />
+        </div>
         {<Navbar />}
         <Suspense
           fallback={
             <div className="min-h-screen w-screen flex justify-center items-center">
-              <img src={load} alt="" className="w-[10vw] h-[10vw]" />
+              <Loader2 size={40} />
             </div>
-          }>
+          }
+        >
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route
-              path="/organization/:orgId"
-              element={<OrganizationProfile />}
-            />
-
             {/* Protected Routes */}
             <Route element={<ProtectedRoutes />}>
-              <Route path="/mytickets" element={<MyTickets />} />
               <Route
                 path="/organizer/register"
                 element={<OrganizerRegister />}
@@ -164,9 +165,12 @@ const App = observer(() => {
               </Route>
               {/* Dashboard Routes */}
             </Route>
-
             {/* Public Routes */}
             <Route path="/search" element={<SearchPage />} />
+            <Route
+              path="/categories/:categoryId"
+              element={<CategoriesPage />}
+            />
             <Route path="/dashboard" element={<DashBoard />} />
             <Route
               path="/settings"
@@ -175,19 +179,34 @@ const App = observer(() => {
             <Route
               path="/payment"
               element={<AccountSettings defaultSettingState="pay" />}
-            />
+            />{" "}
+            <Route path="/mytickets" element={<MyTickets />} />
             <Route path="/filter" element={<Filter />} />
             <Route path="/terms" element={<TermsAndConditions />} />
-            <Route path="/event/:slug" element={<EventPage />} />
+            <Route
+              path="/event/:slug"
+              element={
+                <EventPage
+                  dialogOpen={dialogOpen}
+                  setDialogOpen={setDialogOpen}
+                />
+              }
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/help" element={<Help />} />
-            <Route path="/helpdetails" element={<HelpDetail />} />
+            <Route path="/helpdetails/:id" element={<HelpDetail />} />
             <Route path="/affiliate" element={<Affiliate />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/forgot" element={<Forgot />} />
-
+            <Route path="/reset-password" element={<ResetPassword />} />{" "}
+            <Route
+              path="/3ds/payment"
+              element={
+                <Payment setDialogOpen={setDialogOpen} dialog={dialogOpen} />
+              }
+            />
             {/* Organizer Component */}
             <Route path="/organizer" element={<Organizer />} />
             <Route path="/org-welcome" element={<Welcome />} />
@@ -196,9 +215,12 @@ const App = observer(() => {
               path="/upcoming-events/:location"
               element={<UpComingEventsInLocation />}
             />
-
             <Route path="/refer-friends" element={<ReferFriends />} />
-            <Route path="/refer-organizer" element={<ReferOrganizer />} />
+            <Route path="/refer-organizer" element={<ReferOrganizer />} />{" "}
+            <Route
+              path="/organization/:orgId"
+              element={<OrganizationProfile />}
+            />
           </Routes>{" "}
         </Suspense>
       </BrowserRouter>

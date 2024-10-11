@@ -1,25 +1,26 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { Ref, useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../hooks/useStore";
 import { useNavigate } from "react-router-dom";
-import pfp from "../assets/test/pfp.png";
 import bell from "../assets/test/bell.png";
 import { createRouteMatcher } from "@/utils/routeMatcher";
 import axios from "@/utils/middleware";
 import { API } from "@/api";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@mui/material";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import Tooltip from "@mui/material/Tooltip";
+import { Calender } from "../components/Calender";
 
 const isExcludedRoute = createRouteMatcher([
   "/login",
   "/register",
   "/forgot",
+  "/reset-password",
   "/help",
   "/helpdetail",
-  "/contactus",
   "/settings",
-  "/payment",
   "/dashboard(.*)",
 ]);
 
@@ -29,14 +30,26 @@ const Navbar = observer(() => {
     root: { auth },
   } = useStore();
   const [search, setSearch] = useState("");
-  const handleSubmit = (event: any) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      navigate(`/search?query=${search}`);
+  // console.log(search);
+
+  useEffect(() => {
+    if (search.trim() !== "") {
+      navigate(`/search?city=Dublin&title=${search}`);
     }
-  };
+  }, [search]);
+
+  // (event: any) => {
+  //   if (event.key === "Enter") {
+  //     event.preventDefault();
+  //     navigate(`/search?city=Dublin&title=${search}`);
+  //     setSearch("");
+  //   }
+  // };
   const isAuthenticated = auth.isAuthenticated;
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(sidebarRef, () => setIsNavOpen(false));
+
   const [isFocused, setIsFocused] = useState(false);
   const [isDropOpen, setIsDropOpen] = useState(false);
   const handleFocus = () => {
@@ -46,13 +59,22 @@ const Navbar = observer(() => {
   const location = useLocation();
   const showNavbar = !isExcludedRoute(location);
   const [notificationOpen, setNotificationOpen] = useState(false);
+  const notificationRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(notificationRef, () => setNotificationOpen(false));
+
   const [profileOpen, setProfileOpen] = useState(false);
+  const accountRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(accountRef, () => setProfileOpen(false));
+
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const calendarRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(calendarRef, () => setCalendarOpen(false));
 
   return (
     showNavbar && (
       <>
-        <div className="h-[14vh]" />
-        <div className="fixed top-0 bg-white/60 backdrop-blur-lg lg:px-[5%] xl:px-[7%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left py-[2vh] 2xl:text-[1.5rem] w-screen z-20 gap-8">
+        <div className="h-[10vh]" />
+        <div className="fixed top-0 bg-white/20 backdrop-blur-lg lg:px-[5%] xl:px-[7%] px-[8vw] flex flex-col md:flex-row items-left justify-between align-left 2xl:text-[1.5rem] w-screen z-20 gap-8">
           <nav className="flex gap-8">
             <div
               className="HAMBURGER-ICON space-y-2 flex flex-col justify-center cursor-pointer"
@@ -69,6 +91,7 @@ const Navbar = observer(() => {
                   ? "showMenuNav transition-all duration-100"
                   : "hideMenuNav"
               }
+              ref={sidebarRef}
             >
               <div
                 className="CROSS-ICON absolute top-0 right-0 px-8 py-8 w-full justify-between flex"
@@ -90,15 +113,15 @@ const Navbar = observer(() => {
               </div>
               <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-left justify-start min-h-[250px] font-medium  transition-all duration-300">
                 <a href="/" className="top-0 left-0 absolute py-8 px-[10%]"></a>
-                <div className="px-[10%] mt-[35%] text-[20px] text-black ">
+                <div className="px-[10%] mt-[35%] 2xl:mt-[15vh] text-[20px] text-black ">
                   {!isAuthenticated && (
-                    <li className="underline">
+                    <li className="underline px-4 py-2 hover:bg-gray-100">
                       <Link to="/login">Sign up/Log in</Link>
                     </li>
                   )}
                   {isAuthenticated && (
                     <div>
-                      <li className="">
+                      <li className="mt-4 px-4 py-2 hover:bg-gray-100">
                         <Link
                           to="/mytickets"
                           className="flex justify-between"
@@ -107,7 +130,7 @@ const Navbar = observer(() => {
                           <div>My Tickets</div>
                         </Link>
                       </li>
-                      <li className="my-6">
+                      {/* <li className="my-6">
                         <Link
                           to="/"
                           className="flex justify-between"
@@ -115,8 +138,8 @@ const Navbar = observer(() => {
                         >
                           <div>Following</div>
                         </Link>
-                      </li>
-                      <li className="my-6">
+                      </li> */}
+                      {/* <li className="my-6">
                         <Link
                           to="/dashboard"
                           className="flex justify-between"
@@ -124,10 +147,10 @@ const Navbar = observer(() => {
                         >
                           <div>My Rep Portal</div>
                         </Link>
-                      </li>
-                      <li className="my-6">
+                      </li> */}
+                      <li className="my-6 px-4 py-2 hover:bg-gray-100">
                         <Link
-                          to="/"
+                          to="https://organizer-dashboard-bms.vercel.app/"
                           className="flex justify-between"
                           onClick={() => setIsNavOpen((prev) => !prev)}
                         >
@@ -137,13 +160,11 @@ const Navbar = observer(() => {
                     </div>
                   )}
 
-                  <li className="my-6">
-                    <div className="flex justify-between items-center">
+                  <li className="my-6 px-4 py-2 hover:bg-gray-100">
+                    <div className="flex justify-between items-center ">
                       <button
-                        className={`flex justify-between w-full transition-all duration-300 ${
-                          isNavOpen
-                            ? "bg-white"
-                            : "bg-gray-200 hover:bg-gray-300"
+                        className={`flex justify-between w-full transition-all duration-300
+
                         }`}
                         onClick={() => setIsDropOpen((prev) => !prev)}
                       >
@@ -193,27 +214,28 @@ const Navbar = observer(() => {
                     </div>
                   </li>
 
-                  <li className=" my-6">
+                  <li className=" my-6 px-4 py-2 hover:bg-gray-100">
                     <Link
                       to="/terms"
-                      className="flex justify-between"
+                      className="flex justify-between "
                       onClick={() => setIsNavOpen((prev) => !prev)}
                     >
                       <div>Terms & Conditions</div>
-                    </Link>
-                    <li className="my-6">
-                      <Link
-                        to="/privacy"
-                        className="flex justify-between"
-                        onClick={() => setIsNavOpen((prev) => !prev)}
-                      >
-                        <div>Privacy Policy</div>
-                      </Link>
-                    </li>
+                    </Link>{" "}
                   </li>
+                  <li className="my-6 px-4 py-2 hover:bg-gray-100">
+                    <Link
+                      to="/privacy"
+                      className="flex justify-between"
+                      onClick={() => setIsNavOpen((prev) => !prev)}
+                    >
+                      <div>Privacy Policy</div>
+                    </Link>
+                  </li>
+
                   {isAuthenticated && (
                     <button
-                      className="block w-full text-left hover:bg-gray-100"
+                      className="block w-full text-left hover:bg-gray-100 px-4 py-2 "
                       onClick={() => {
                         auth.logout();
                       }}
@@ -233,16 +255,16 @@ const Navbar = observer(() => {
               />
             </Link>
             {isAuthenticated && (
-              <div className="flex justify-center items-center ml-10 md:hidden">
-                <div>
-                  <ProfileDropdown
-                    open={profileOpen}
-                    onOpenChange={(v) => {
-                      if (notificationOpen) setNotificationOpen(false);
-                      setProfileOpen(v);
-                    }}
-                  />
-                </div>
+              <div className="flex justify-center items-center ml-10 md:hidden ">
+                <ProfileDropdown
+                  ref={accountRef}
+                  open={profileOpen}
+                  onOpenChange={(v) => {
+                    if (notificationOpen) setNotificationOpen(false);
+                    if (calendarOpen) setCalendarOpen(false);
+                    setProfileOpen(v);
+                  }}
+                />
               </div>
             )}
           </nav>
@@ -252,7 +274,7 @@ const Navbar = observer(() => {
               type="text"
               className="w-full px-4 py-3 pl-[20px] text-gray-700 bg-[#FBFBFF] shadow-lg bg-opacity-50 border-1 border-white outline-none rounded-3xl"
               onFocus={handleFocus}
-              onKeyDown={handleSubmit}
+              // onKeyDown={handleSubmit}
               onChange={(e) => setSearch(e.target.value)}
               value={search}
             />
@@ -280,7 +302,7 @@ const Navbar = observer(() => {
           <ul className="DESKTOP-MENU hidden lg:flex font-medium justify-center gap-6 text-center">
             <div className="flex items-center text-center ">
               <Link
-                to="/host"
+                to="https://organizer-dashboard-bms.vercel.app/"
                 className="w-full whitespace-nowrap px-4 py-2 rounded-xl hover:bg-gray-100 bg-white shadow-md"
               >
                 Host an Event
@@ -297,43 +319,36 @@ const Navbar = observer(() => {
               </div>
             )}
             {isAuthenticated && (
-              <div className="flex items-center text-center">
-                <Link
-                  to="/events"
-                  className="w-full flex justify-between items-center gap-2 whitespace-nowrap px-4 py-2 rounded-xl hover:bg-gray-100 bg-white shadow-md"
-                >
-                  <svg
-                    width="16"
-                    height="17"
-                    viewBox="0 0 16 17"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M14.25 1.5H12.375V0.875C12.375 0.70924 12.3092 0.550268 12.1919 0.433058C12.0747 0.315848 11.9158 0.25 11.75 0.25C11.5842 0.25 11.4253 0.315848 11.3081 0.433058C11.1908 0.550268 11.125 0.70924 11.125 0.875V1.5H4.875V0.875C4.875 0.70924 4.80915 0.550268 4.69194 0.433058C4.57473 0.315848 4.41576 0.25 4.25 0.25C4.08424 0.25 3.92527 0.315848 3.80806 0.433058C3.69085 0.550268 3.625 0.70924 3.625 0.875V1.5H1.75C1.41848 1.5 1.10054 1.6317 0.866116 1.86612C0.631696 2.10054 0.5 2.41848 0.5 2.75V15.25C0.5 15.5815 0.631696 15.8995 0.866116 16.1339C1.10054 16.3683 1.41848 16.5 1.75 16.5H14.25C14.5815 16.5 14.8995 16.3683 15.1339 16.1339C15.3683 15.8995 15.5 15.5815 15.5 15.25V2.75C15.5 2.41848 15.3683 2.10054 15.1339 1.86612C14.8995 1.6317 14.5815 1.5 14.25 1.5ZM3.625 2.75V3.375C3.625 3.54076 3.69085 3.69973 3.80806 3.81694C3.92527 3.93415 4.08424 4 4.25 4C4.41576 4 4.57473 3.93415 4.69194 3.81694C4.80915 3.69973 4.875 3.54076 4.875 3.375V2.75H11.125V3.375C11.125 3.54076 11.1908 3.69973 11.3081 3.81694C11.4253 3.93415 11.5842 4 11.75 4C11.9158 4 12.0747 3.93415 12.1919 3.81694C12.3092 3.69973 12.375 3.54076 12.375 3.375V2.75H14.25V5.25H1.75V2.75H3.625ZM14.25 15.25H1.75V6.5H14.25V15.25Z"
-                      fill="black"
-                    />
-                  </svg>
-                  <div className="flex items-center">My Calendar</div>
-                </Link>
+              <div className="flex items-center text-center" ref={calendarRef}>
+                <MyCalendarDropdown
+                  open={calendarOpen}
+                  onOpenChange={(v) => {
+                    if (notificationOpen) setNotificationOpen(false);
+                    if (profileOpen) setProfileOpen(false);
+                    setCalendarOpen(v);
+                  }}
+                />
               </div>
             )}
             {isAuthenticated && (
               <div className="flex justify-center gap-8 items-center min-w-[6vw]">
-                <div className="cursor-pointer">
+                <div className="cursor-pointer" ref={notificationRef}>
                   <NotificationsDropdown
                     open={notificationOpen}
                     onOpenChange={(v) => {
                       setNotificationOpen(v);
                       if (profileOpen) setProfileOpen((_) => false);
+                      if (calendarOpen) setCalendarOpen((_) => false);
                     }}
                   />
                 </div>
                 <div>
                   <ProfileDropdown
+                    ref={accountRef}
                     open={profileOpen}
                     onOpenChange={(v) => {
                       if (notificationOpen) setNotificationOpen(false);
+                      if (calendarOpen) setCalendarOpen(false);
                       setProfileOpen(v);
                     }}
                   />
@@ -349,7 +364,7 @@ const Navbar = observer(() => {
       .showMenuNav {
         display: block;
         position: absolute;
-        width: 28rem;
+        width: 24rem;
         height: 100vh;
         top: 0;
         left: 0;
@@ -377,65 +392,144 @@ const Navbar = observer(() => {
 interface NavbarDropdownProps {
   open: boolean;
   onOpenChange: (v: boolean) => void;
+  ref?: Ref<HTMLDivElement>;
 }
+
+type Notification = {
+  _id: string;
+  title: string;
+  description: string;
+  icon: string;
+  isRead: boolean;
+};
 
 function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
   const [activeTab, setActiveTab] = useState("Unread");
+  const [unreadNotifications, setUnreadNotifications] = useState<
+    Notification[]
+  >([]);
+  const [readNotifications, setReadNotifications] = useState<Notification[]>(
+    []
+  );
 
-  const toggleDropdown = () => onOpenChange(!open);
-  const notifications = [
-    {
-      title: "Payment Successful",
-      message: "You have successfully made a payment at Bpraak Concert",
-    },
-    {
-      title: "Order Canceled",
-      message: "You have successfully made a payment at Bpraak Concert", // You'll likely want to change this message
-    },
-    {
-      title: "New Features available",
-      message: "You have successfully made a payment at Bpraak Concert", // You'll likely want to change this message
-    },
-  ];
+  // console.log(readNotifications);
+
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.kafsco.com/api/v1/notifications/fetch"
+      );
+      const fetchedNotifications = response.data.data;
+
+      const unread = fetchedNotifications.filter(
+        (notification: any) => !notification.isRead
+      );
+      const read = fetchedNotifications.filter(
+        (notification: any) => notification.isRead
+      );
+
+      setUnreadNotifications(unread);
+      setReadNotifications(read);
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+    }
+  };
+
+  const markNotificationsAsRead = async () => {
+    if (unreadNotifications.length > 0) {
+      try {
+        const notificationIds = unreadNotifications.map(
+          (notification) => notification._id
+        );
+        await axios.patch("https://api.kafsco.com/api/v1/notifications/read", {
+          notificationIds,
+        });
+        setUnreadNotifications([]);
+      } catch (error) {
+        console.error("Error marking notifications as read:", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    markNotificationsAsRead();
+  }, [onOpenChange]);
+
+  const toggleDropdown = () => {
+    if (open) {
+      markNotificationsAsRead();
+    } else {
+      fetchNotifications();
+    }
+    onOpenChange(!open);
+  };
+
+  const filteredNotifications =
+    activeTab === "Unread" ? unreadNotifications : readNotifications;
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center">
       <button onClick={toggleDropdown}>
-        <img src={bell} alt="Notifications" />
+        <Tooltip title="NOTIFICATIONS" arrow>
+          <img src={bell} alt="Notifications" />
+        </Tooltip>
       </button>
       {open && (
-        <div className="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg z-20">
-          <div className="py-2">Notifications</div>
-          <div className="border-b p-2 flex">
+        <div className="absolute right-0 mt-4 w-80 bg-white rounded-3xl shadow-lg z-20 top-8">
+          <div className="py-4 bg-gray-100 text-xl">Notifications</div>
+          <div className="border-b px-2 flex gap-x-6 bg-gray-100">
             <button
               onClick={() => setActiveTab("Unread")}
-              className={`px-4 py-2 rounded-t-md focus:outline-none ${
-                activeTab === "Unread" ? "bg-gray-200" : ""
+              className={`px-4 py-2 rounded-t-md focus:outline-none text-sm ${
+                activeTab === "Unread" ? "border-b-4 border-black rounded" : ""
               }`}
             >
               Unread
             </button>
             <button
               onClick={() => setActiveTab("All")}
-              className={`px-4 py-2 rounded-t-md focus:outline-none ${
-                activeTab === "All" ? "bg-gray-200" : ""
+              className={`px-4 py-2 rounded-t-md focus:outline-none text-sm ${
+                activeTab === "All" ? "border-b-4 border-black rounded" : ""
               }`}
             >
               All
             </button>
           </div>
 
-          <div className="p-2">
-            {notifications.map((notification, index) => (
-              <div key={index} className="flex items-start space-x-2 mb-3">
-                <div className="text-left">
-                  <h6 className="font-semibold">{notification.title}</h6>
-                  <p className="text-sm text-gray-600">
-                    {notification.message}
-                  </p>
+          <div className="py-2 h-[40vh] overflow-y-auto">
+            {filteredNotifications.length > 0 ? (
+              filteredNotifications.map((notification, index) => (
+                <div key={index} className="flex items-start space-x-2 mb-5">
+                  <div className="text-left flex">
+                    <div className="flex items-start p-1 ml-4">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="size-6"
+                      >
+                        <path d="M5.85 3.5a.75.75 0 0 0-1.117-1 9.719 9.719 0 0 0-2.348 4.876.75.75 0 0 0 1.479.248A8.219 8.219 0 0 1 5.85 3.5ZM19.267 2.5a.75.75 0 1 0-1.118 1 8.22 8.22 0 0 1 1.987 4.124.75.75 0 0 0 1.48-.248A9.72 9.72 0 0 0 19.266 2.5Z" />
+                        <path
+                          fill-rule="evenodd"
+                          d="M12 2.25A6.75 6.75 0 0 0 5.25 9v.75a8.217 8.217 0 0 1-2.119 5.52.75.75 0 0 0 .298 1.206c1.544.57 3.16.99 4.831 1.243a3.75 3.75 0 1 0 7.48 0 24.583 24.583 0 0 0 4.83-1.244.75.75 0 0 0 .298-1.205 8.217 8.217 0 0 1-2.118-5.52V9A6.75 6.75 0 0 0 12 2.25ZM9.75 18c0-.034 0-.067.002-.1a25.05 25.05 0 0 0 4.496 0l.002.1a2.25 2.25 0 1 1-4.5 0Z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <div className="pl-2">
+                      <h6 className="font-semibold text-lg">
+                        {notification.title}
+                      </h6>
+                      <p className="text-xs text-gray-600 mr-4">
+                        {notification.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p className="mt-28">No Unread Notifications</p>
+            )}
           </div>
         </div>
       )}
@@ -448,62 +542,94 @@ const fetchProfile = async () => {
   return response.data.data;
 };
 
-function ProfileDropdown({ open, onOpenChange }: NavbarDropdownProps) {
+function ProfileDropdown({ open, onOpenChange, ref }: NavbarDropdownProps) {
   const {
     root: { auth },
   } = useStore();
 
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["profile"],
     queryFn: fetchProfile,
   });
   const toggleDropdown = () => onOpenChange(!open);
 
   return (
-    !isLoading && (
-      <div className="relative">
-        <button onClick={toggleDropdown}>
-          <img
-            src={data.displayPic || pfp}
-            alt="Profile"
-            className="rounded-full w-8 h-8"
-          />
-        </button>
-        {open && (
-          <div className="absolute flex flex-col items-center -right-24 mt-2 w-96 bg-white rounded-md shadow-lg z-20">
-            {/* Your profile/settings content here */}
+    <div className="relative flex items-center">
+      <button onClick={toggleDropdown}>
+        <Tooltip title="PROFILE" arrow>
+          <Avatar src={data?.displayPic} sx={{ height: 32, width: 32 }} />
+        </Tooltip>
+      </button>
+      {open && (
+        <div
+          ref={ref}
+          className="absolute flex flex-col items-center -right-12 top-8 mt-2 w-80 bg-white rounded-md shadow-lg z-20"
+        >
+          {/* Your profile/settings content here */}
 
-            <Avatar
-              src={data.displayPic || pfp}
-              sx={{ width: 82, height: 82 }}
-            />
+          <Avatar src={data?.displayPic} sx={{ width: 82, height: 82 }} />
+          {data && data.fname && data.lname && (
             <span className="py-2 mb-6">
               {data.fname} {data.lname}
             </span>
-            <a
-              href="/payment"
-              className="block w-full px-4 py-2 hover:bg-gray-100"
-            >
-              Payment Method
-            </a>
-            <a
-              href="/settings"
-              className="block w-full px-4 py-2 hover:bg-gray-100"
-            >
-              Account Settings
-            </a>
-            <button
-              className="block px-4 w-full py-2 text-center hover:bg-gray-100"
-              onClick={() => {
-                auth.logout();
-              }}
-            >
-              Logout
-            </button>
-          </div>
-        )}
-      </div>
-    )
+          )}
+          {/* <a
+            href="/payment"
+            className="block w-full px-4 py-2 hover:bg-gray-100"
+          >
+            Payment Method
+          </a> */}
+          <a
+            href="/settings"
+            className="block w-full text-center py-2 hover:bg-gray-100"
+          >
+            Account Settings
+          </a>
+          <button
+            className="block px-4 w-full py-2 text-center hover:bg-gray-100"
+            onClick={() => {
+              auth.logout();
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
+
+function MyCalendarDropdown({ open, onOpenChange }: NavbarDropdownProps) {
+  const toggleDropdown = () => onOpenChange(!open);
+
+  return (
+    <div className="relative">
+      <button
+        onClick={toggleDropdown}
+        className="w-full flex justify-between items-center gap-2 whitespace-nowrap px-4 py-2 rounded-xl hover:bg-gray-100 bg-white shadow-md"
+      >
+        <svg
+          width="16"
+          height="17"
+          viewBox="0 0 16 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M14.25 1.5H12.375V0.875C12.375 0.70924 12.3092 0.550268 12.1919 0.433058C12.0747 0.315848 11.9158 0.25 11.75 0.25C11.5842 0.25 11.4253 0.315848 11.3081 0.433058C11.1908 0.550268 11.125 0.70924 11.125 0.875V1.5H4.875V0.875C4.875 0.70924 4.80915 0.550268 4.69194 0.433058C4.57473 0.315848 4.41576 0.25 4.25 0.25C4.08424 0.25 3.92527 0.315848 3.80806 0.433058C3.69085 0.550268 3.625 0.70924 3.625 0.875V1.5H1.75C1.41848 1.5 1.10054 1.6317 0.866116 1.86612C0.631696 2.10054 0.5 2.41848 0.5 2.75V15.25C0.5 15.5815 0.631696 15.8995 0.866116 16.1339C1.10054 16.3683 1.41848 16.5 1.75 16.5H14.25C14.5815 16.5 14.8995 16.3683 15.1339 16.1339C15.3683 15.8995 15.5 15.5815 15.5 15.25V2.75C15.5 2.41848 15.3683 2.10054 15.1339 1.86612C14.8995 1.6317 14.5815 1.5 14.25 1.5ZM3.625 2.75V3.375C3.625 3.54076 3.69085 3.69973 3.80806 3.81694C3.92527 3.93415 4.08424 4 4.25 4C4.41576 4 4.57473 3.93415 4.69194 3.81694C4.80915 3.69973 4.875 3.54076 4.875 3.375V2.75H11.125V3.375C11.125 3.54076 11.1908 3.69973 11.3081 3.81694C11.4253 3.93415 11.5842 4 11.75 4C11.9158 4 12.0747 3.93415 12.1919 3.81694C12.3092 3.69973 12.375 3.54076 12.375 3.375V2.75H14.25V5.25H1.75V2.75H3.625ZM14.25 15.25H1.75V6.5H14.25V15.25Z"
+            fill="black"
+          />
+        </svg>
+        <div className="flex items-center">My Calendar</div>
+      </button>
+
+      {open && (
+        <div className="absolute flex flex-col items-center -right-24 mt-2 bg-white rounded-xl shadow-lg z-20">
+          <Calender />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default Navbar;

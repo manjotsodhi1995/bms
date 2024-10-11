@@ -1,111 +1,245 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import EventCard from "../EventCard";
-// import axios from "../../utils/middleware";
+import axios from "../../utils/middleware";
 import { useStore } from "../../hooks/useStore";
 import EventCardSkeleton from "../EventCardSkeleton";
-// import { API } from "@/api";
+import { API } from "@/api";
 import { useQuery } from "@tanstack/react-query";
+import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+import { Loader2, MapPin } from "lucide-react";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import Tooltip from "@mui/material/Tooltip";
 
-// interface Category {
-//   categoryId: string;
-//   categoryName: string;
-// }
+interface Category {
+  categoryId: string;
+  categoryName: string;
+}
 
-// const fetchCategories = async () => {
-//   const response = await axios.get(API.categories.getAllCategories);
-//   return response.data.data as Category[];
-// };
+const fetchCategories = async () => {
+  const response = await axios.get(API.categories.getAllCategories);
+  return response.data.data as Category[];
+};
 
 function Trending() {
   const {
     root: { event },
   } = useStore();
-  const fetchEvents = async () => {
-    await event.fetchEvents("28.4262481", "77.0581663");
-    console.log(event);
+  const fetchEvents = async (location: string) => {
+    return await event.fetchEvents(location);
   };
 
-  // const { data: categories } = useQuery({
-  //   queryKey: ["categoriesQuery"],
-  //   queryFn: fetchCategories,
-  // });
-  // Dont care about data as it will be added to event directly
-  const { data: _, isLoading: loading } = useQuery({
-    queryKey: ["homepage", "fetchAllEvents"],
-    queryFn: fetchEvents,
+  const { data: categories } = useQuery({
+    queryKey: ["categoriesQuery"],
+    queryFn: fetchCategories,
+  });
+  const [temp, setTemp] = useState(true);
+  const [selectedLocation, setSelectedLocation] = useState("Dublin, Ireland");
+  const [completionsOpen, setCompletionsOpen] = useState(false);
+  const locationRef = useRef<HTMLDivElement>(null);
+  const { data, isLoading: loading } = useQuery({
+    queryKey: ["homepage", selectedLocation, "fetchAllEvents"],
+    queryFn: () => fetchEvents(selectedLocation),
   });
 
-  const [selectedLocation, setSelectedLocation] = useState("Dublin");
-  const handleLocationChange = (event: any) => {
-    setSelectedLocation(event.target.value);
+  const {
+    placesService,
+    placePredictions,
+    getPlacePredictions,
+    isPlacePredictionsLoading,
+  } = usePlacesService({
+    apiKey: "AIzaSyCEJYl0JjVBnPxlOZgvNkJ69PyLOSVzAmY",
+  });
+
+  useEffect(() => {
+    if (placePredictions.length)
+      placesService?.getDetails(
+        {
+          placeId: placePredictions[0].place_id,
+        },
+        () => setCompletionsOpen(true)
+      );
+  }, [placePredictions]);
+  const clear = () => {
+    if (temp) {
+      setSelectedLocation("");
+      setTemp(false);
+    }
+  };
+  useOnClickOutside(locationRef, () => setCompletionsOpen(false));
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const categoryRef = useRef<HTMLAnchorElement | null>(null);
+  const [categoryWidth, setCategoryWidth] = useState(0);
+  const [isAtStart, setIsAtStart] = useState(true);
+  const [isAtEnd, setIsAtEnd] = useState(false);
+
+  // Effect to calculate the category width
+  useEffect(() => {
+    if (categoryRef.current) {
+      setCategoryWidth(categoryRef.current.offsetWidth + 16); // Add gap between items
+    }
+  }, [categories]);
+
+  // Effect to check scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollContainerRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } =
+          scrollContainerRef.current;
+        setIsAtStart(scrollLeft === 0);
+        setIsAtEnd(scrollLeft + clientWidth >= scrollWidth);
+      }
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+      handleScroll(); // Initial check
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [categories]);
+
+  // Function to scroll left
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -categoryWidth,
+        behavior: "smooth",
+      });
+    }
   };
 
+  // Function to scroll right
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: categoryWidth,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
-    <div className="lg:px-[8%] px-[8vw] mt-[7vh] flex flex-col gap-8">
-      <div className="flex items-center mb-4">
-        <div className="lg:text-[1.2rem] text-[0.7rem] font-medium">
-          Discover events in
-        </div>
-        <select
-          value={selectedLocation}
-          onChange={handleLocationChange}
-          className="ml-4 py-1 px-4 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem]  font-medium text-blue-700"
+    <div className="lg:px-[8%] px-[8vw] mt-[2vh] flex flex-col gap-8">
+      <div className="relative w-full">
+        {/* Left Scroll Button */}
+        <button
+          onClick={scrollLeft}
+          disabled={isAtStart}
+          className={`absolute -left-7 top-0 bottom-0 z-10 bg-white shadow-md h-full px-2 opacity-75 hover:opacity-100 ${
+            isAtStart ? "hidden" : ""
+          }`}
+          style={{ zIndex: 1 }}
         >
-          <option value="Bengaluru">{selectedLocation}</option>
-          {/* {locationOptions.map(() => (
-            // <option key={option.value} value={option.value}>
-            //   {option.label}
-            // </option>
-          ))} */}
-        </select>
-      </div>
+          &lt;
+        </button>
+        <div
+          ref={scrollContainerRef}
+          className="flex w-full gap-4 overflow-x-auto hide-scrollbar"
+          style={{ scrollBehavior: "smooth" }}
+        >
+          {categories &&
+            categories.map((category, index) => (
+              <a
+                key={category.categoryId}
+                href={`/categories/${category.categoryId}`}
+                ref={index === 0 ? categoryRef : null} // Reference only the first category
+                className="text-center flex justify-center items-center whitespace-nowrap min-w-[9rem] h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEB] text-gray-800 transition-colors duration-200 hover:bg-[#60769D] hover:text-white max-w-[280px]"
+              >
+                {category.categoryName}
+              </a>
+            ))}
+        </div>
 
-      {/* <div className="flex flex-col gap-3"> */}
-      {/*   <h2 className="text-lg font-medium mb-2 lg:text-[1.4rem] text-[0.9rem]"> */}
-      {/*     <span className="inline-block transform -rotate-90 mr-2">▼</span>{" "} */}
-      {/*     Trending Categories */}
-      {/*   </h2> */}
-      {/**/}
-      {/*   <div className="flex w-full gap-4 overflow-x-auto"> */}
-      {/*     {categories && */}
-      {/*       categories.slice(0, 7).map((category: Category) => ( */}
-      {/*         <a */}
-      {/*           key={category.categoryId} */}
-      {/*           href={`/search?query=${encodeURIComponent( */}
-      {/*             category.categoryName */}
-      {/*           )}`} */}
-      {/*           className="text-center whitespace-nowrap w-full h-10 py-2 px-4 rounded-full font-medium border-2 bg-[#EBEBEBB2] text-gray-800 transition-colors duration-200" */}
-      {/*         > */}
-      {/*           {category.categoryName} */}
-      {/*         </a> */}
-      {/*       ))} */}
-      {/*   </div> */}
-      {/* </div> */}
+        {/* Right Scroll Button */}
+        <button
+          onClick={scrollRight}
+          className={`absolute -right-7 top-0 bottom-0 z-10 bg-white shadow-md h-full px-2 opacity-75 hover:opacity-100 ${
+            isAtEnd ? "hidden" : ""
+          }`}
+          style={{ zIndex: 1 }}
+        >
+          &gt;
+        </button>
+      </div>
 
       <div className="flex flex-col gap-4">
         <div className="flex justify-between mt-4">
           <div className="font-medium lg:text-[1.4rem] text-[0.9rem] flex gap-2 items-center">
-            <Link to="/filter">
-              {" "}
-              <svg
-                width="27"
-                height="25"
-                viewBox="0 0 27 25"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M25.9243 1.99774C25.7752 1.65325 25.5281 1.36018 25.2138 1.155C24.8994 0.949814 24.5317 0.841568 24.1563 0.84372H2.84384C2.46885 0.844459 2.10213 0.954001 1.78817 1.15906C1.47422 1.36411 1.22651 1.65587 1.0751 1.99894C0.9237 2.342 0.875102 2.72163 0.935208 3.09177C0.995315 3.46191 1.16154 3.80666 1.41372 4.08419L1.42341 4.09509L9.62509 12.8526V22.1562C9.62501 22.5069 9.72009 22.851 9.90021 23.1519C10.0803 23.4527 10.3387 23.6991 10.6478 23.8646C10.9569 24.0302 11.3052 24.1088 11.6555 24.0919C12.0057 24.0751 12.3448 23.9636 12.6367 23.7692L16.5117 21.185C16.7773 21.0081 16.9951 20.7683 17.1458 20.4869C17.2964 20.2055 17.3752 19.8913 17.3751 19.5721V12.8526L25.578 4.09509L25.5877 4.08419C25.8425 3.80793 26.0103 3.46272 26.0702 3.09167C26.1301 2.72061 26.0793 2.34014 25.9243 1.99774ZM15.7016 11.8124C15.534 11.9901 15.4397 12.2245 15.4376 12.4687V19.5721L11.5626 22.1562V12.4687C11.5627 12.2227 11.4692 11.9859 11.301 11.8063L2.84384 2.78122H24.1563L15.7016 11.8124Z"
-                  fill="black"
-                />
-              </svg>
-            </Link>
-            Events in {selectedLocation}
+            <Tooltip title="FILTER" placement="top" arrow>
+              <Link to="/filter">
+                {" "}
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="size-5 hover:text-blue-800"
+                >
+                  <path
+                    d="M14.6663 3.8335H7.16634M9.66634 12.1668H2.16634M9.66634 12.1668C9.66634 13.5475 10.7856 14.6668 12.1663 14.6668C13.5471 14.6668 14.6663 13.5475 14.6663 12.1668C14.6663 10.7861 13.5471 9.66683 12.1663 9.66683C10.7856 9.66683 9.66634 10.7861 9.66634 12.1668ZM6.33301 3.8335C6.33301 5.21421 5.21372 6.3335 3.83301 6.3335C2.4523 6.3335 1.33301 5.21421 1.33301 3.8335C1.33301 2.45278 2.4523 1.3335 3.83301 1.3335C5.21372 1.3335 6.33301 2.45278 6.33301 3.8335Z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </Link>
+            </Tooltip>
+            Events in{" "}
+            <label htmlFor="location" className="relative w-60">
+              <MapPin className="absolute top-1 lg:top-2 left-1 md:left-2 min-w-6 w-6 h-6 text-gray-600 group-hover:fill-red-300 group-hover:text-red-500" />
+              <input
+                id="location"
+                className="bg-white w-44 !px-8 md:px-10 bg-transparent border border-gray-800 rounded-md shadow-sm focus:outline-none lg:text-[1rem] text-[0.7rem] font-medium text-blue-700 lg:w-[18vw] 2xl:w-[14vw] pl-4"
+                value={selectedLocation}
+                placeholder="Search for a city"
+                onClick={clear}
+                onChange={(e) => {
+                  getPlacePredictions({ input: e.target.value });
+                  setSelectedLocation(e.target.value);
+                }}
+              />
+              {completionsOpen && (
+                <div
+                  ref={locationRef}
+                  className="absolute w-72 bg-white z-10 flex flex-col top-10 left-0 border-2 rounded text-sm"
+                >
+                  {isPlacePredictionsLoading && (
+                    <p className="w-full flex justify-center">
+                      <Loader2 className="size-4 text-gray-600 animate-spin" />
+                    </p>
+                  )}
+                  <div className="flex flex-col w-full">
+                    {placePredictions.map((item) => (
+                      <p
+                        key={item.place_id}
+                        className="px-4 py-2 w-full hover:bg-gray-100 text-[0.9rem]"
+                      >
+                        <span
+                          className="line-clamp-1"
+                          onClick={() => {
+                            setSelectedLocation(item.description);
+                            setCompletionsOpen(false);
+                          }}
+                        >
+                          {item.description}
+                        </span>
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </label>
           </div>
-          <div className="hover:font-medium hover:underline">
+          {/* <div className="hover:font-medium hover:underline">
             <Link to={`/events/${selectedLocation}`}>See More</Link>
-          </div>
+          </div> */}
         </div>
         {/* <div className="grid grid-cols-2 justify-between md:hidden gap-2"> */}
         {/*   {loading && [...Array(2)].map((_) => <EventCardSkeleton />)} */}
@@ -129,14 +263,22 @@ function Trending() {
         {/*       .slice(0, 3) */}
         {/*       .map((card, index) => <EventCard key={index} {...card} />)} */}
         {/* </div> */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-between gap-2">
-          {loading && [...Array(5)].map((_) => <EventCardSkeleton />)}
+        <div className="flex flex-wrap gap-6">
+          {loading &&
+            [...Array(5)].map((_, idx) => (
+              <div
+                className="lg:w-[20vw] md:w-[30vw] sm:w-[40vw] w-full h-[400px]"
+                key={idx}
+              >
+                <EventCardSkeleton />
+              </div>
+            ))}
           {!loading &&
-            event.liveEvents
-              .slice(0, 5)
-              .map((card, index) => <EventCard key={index} {...card} />)}
+            data &&
+            data.liveEvents.map((card, index) => <EventCard key={index} {...card} />)}
           {!loading &&
-            event.upcomingEvents.map((card, index) => (
+            data &&
+            data.upcomingEvents.map((card, index) => (
               <EventCard key={index} {...card} />
             ))}
         </div>

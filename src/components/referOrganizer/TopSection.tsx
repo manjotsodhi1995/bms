@@ -33,7 +33,7 @@ const TopSection = () => {
             How it works
           </h2>
           <div className="space-y-5">
-            <div className="flex space-x-6 card bg-gray-200 p-5 md:p-12">
+            <div className="flex space-x-6 card bg-gray-200 rounded-xl p-5 md:p-12">
               <div className="text-2xl md:text-4xl font-medium text-black">
                 01
               </div>
@@ -48,7 +48,7 @@ const TopSection = () => {
                 </p>
               </div>
             </div>
-            <div className="flex space-x-6 card bg-gray-200 p-5 md:p-12">
+            <div className="flex space-x-6 card bg-gray-200 rounded-xl p-5 md:p-12">
               <div className="text-2xl md:text-4xl font-medium text-black">
                 02
               </div>
@@ -61,7 +61,7 @@ const TopSection = () => {
                 </p>
               </div>
             </div>
-            <div className="flex space-x-6 card bg-gray-200 p-5 md:p-12">
+            <div className="flex space-x-6 card bg-gray-200 rounded-xl p-5 md:p-12">
               <div className="text-2xl md:text-4xl font-medium text-black">
                 03
               </div>
@@ -76,7 +76,7 @@ const TopSection = () => {
                 </p>
               </div>
             </div>
-            <div className="flex space-x-6 card bg-gray-200 p-5 md:p-12">
+            <div className="flex space-x-6 card bg-gray-200 rounded-xl p-5 md:p-12">
               <div className="text-2xl md:text-4xl font-medium text-black">
                 04
               </div>

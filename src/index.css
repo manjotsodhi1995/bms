@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.MuiTelInput-TextField {
+  border: 1px solid #000 !important; /* Add a 1px solid gray border */
+  border-radius: 8px; /* Add rounded corners */
+}
+.blur-effect {
+  filter: blur(64px); /* Adjust the blur radius as needed */
+}
 input,
 textarea {
   border: 1px solid #000; /* Add a 1px solid gray border */
@@ -36,12 +43,30 @@ textarea::placeholder {
   max-width: 100vw;
   position: relative;
 }
-
 .sw1 .swiper-slide {
   width: 10vw;
   position: relative;
 }
+.sw2 .swiper_container {
+  padding: 2rem 0;
+  max-width: 100vw;
+  position: relative;
+}
+.sw2 .swiper-slide {
+  width: 10vw;
+  position: relative;
+}
 
+@media (max-width: 1920px) {
+  .sw1 .swiper-slide {
+    width: 15vw !important;
+    position: relative;
+  }
+}
+.sw1 .swiper-slide {
+  width: 10vw;
+  position: relative;
+}
 @media (max-width: 500px) {
   .sw1 .swiper-slide {
     width: 37vw !important;
@@ -49,10 +74,16 @@ textarea::placeholder {
   .sw1 .swiper-slide img {
     width: 30rem !important;
   }
+  .sw2 .swiper-slide img {
+    width: 30rem !important;
+  }
+  /* .sw2 .swiper-slide {
+    padding-left: 1.25rem !important;
+  } */
 }
 
 .sw1 .swiper-slide img {
-  width: 35rem;
+  width: 35em;
   object-fit: cover;
 }
 
@@ -60,7 +91,10 @@ textarea::placeholder {
 .sw1 .swiper-slide-shadow-right {
   display: none;
 }
-
+.sw2 .swiper-slide-shadow-left,
+.sw2 .swiper-slide-shadow-right {
+  display: none;
+}
 .swiper-pagination {
   position: relative;
   width: 15rem !important;
@@ -110,7 +144,7 @@ textarea::placeholder {
   height: 100%;
 }
 .home {
-  /* background: rgba( 255, 255, 255, 0.09 ); */
+  background: #f8f8f8;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 10px;
@@ -154,27 +188,84 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.bg-color {
-  color: rgba(150, 75, 125, 1);
+.hide-scrollbar {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
 }
-.card {
-  width: Fixed (624px) px;
-  height: Fixed (192px) px;
-  padding: 40px 53px 40px 53px;
-  border-radius: 30px;
-  opacity: 0px;
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
-.swiper-slide {
-  transition: transform 0.5s ease-in-out;
+.custom-swiper .swiper-pagination {
+  bottom: 10px; /* Position the dots 10px from the bottom of the carousel */
+  text-align: center; /* Center the dots horizontally */
+  width: 100vw !important; /* Full width for centering */
+  z-index: 100; /* Ensure pagination is above other elements */
+  position: absolute;
+  margin-bottom: 30px; /* Absolute positioning inside the swiper container */
 }
-.swiper-slide-active {
-  transform: translateY(-30px) scale(1.1);
-  z-index: 1;
+
+.custom-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent white bullets */
+  opacity: 0.8; /* Initial opacity */
+  transition: opacity 0.3s; /* Smooth transition for opacity changes */
 }
-.testimonial-container::-webkit-scrollbar {
+
+.custom-swiper .swiper-pagination-bullet-active {
+  background: rgba(255, 255, 255, 1); /* Fully opaque white for active bullet */
+  opacity: 1;
+}
+video::-webkit-media-controls-enclosure {
+  overflow: hidden;
+}
+
+video::-webkit-media-controls-panel {
+  width: calc(100% - 50px); /* Adjust this value as needed */
+}
+
+video::-webkit-media-controls-download-button {
   display: none;
 }
-.testimonial-container {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+
+video::-webkit-media-controls-fullscreen-button {
+  margin-right: 10px; /* Adjust the margin for the fullscreen button */
+}
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.video {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.controls {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.control-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0 5px;
+}
+
+.progress-bar,
+.volume-control {
+  flex-grow: 1;
+  margin: 0 10px;
 }
