@@ -22,6 +22,7 @@ const Filter = lazy(() => import("./pages/Filter"));
 import AccountSettings from "./pages/AccountSettings";
 import ReferFriends from "./pages/ReferFriends";
 import ReferOrganizer from "./pages/ReferOrganizer";
+import Welcome from "./pages/Welcome";
 const EventPage = lazy(() => import("./pages/eventPage"));
 const SearchPage = lazy(() => import("./pages/Search"));
 const Home = lazy(() => import("./pages/Home"));
@@ -189,6 +190,7 @@ const App = observer(() => {
 
             {/* Organizer Component */}
             <Route path="/organizer" element={<Organizer />} />
+            <Route path="/org-welcome" element={<Welcome />} />
             <Route path="/events/:location" element={<EventsInLocation />} />
             <Route
               path="/upcoming-events/:location"

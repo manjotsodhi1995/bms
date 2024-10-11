@@ -164,3 +164,17 @@ body {
   border-radius: 30px;
   opacity: 0px;
 }
+.swiper-slide {
+  transition: transform 0.5s ease-in-out;
+}
+.swiper-slide-active {
+  transform: translateY(-30px) scale(1.1);
+  z-index: 1;
+}
+.testimonial-container::-webkit-scrollbar {
+  display: none;
+}
+.testimonial-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
