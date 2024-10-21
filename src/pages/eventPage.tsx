@@ -65,7 +65,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
       "" +
       new Date(eventData.eventStart).getHours() +
       ":" +
-      new Date(eventData.eventStart).getMinutes();
+      new Date(eventData.eventStart).getMinutes().toString().padStart(2, "0");
     const endTime =
       "" +
       new Date(eventData.eventEnd).getHours() +
