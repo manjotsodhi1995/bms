@@ -70,7 +70,7 @@ const BookTicketsDialogContent = ({
     setDialogOpen(value);
   };
   return (
-    <Dialog open={dialogOpen} onOpenChange={closeDialog}>
+    <Dialog open={dialogOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="overflow-y-auto p-1 max-w-screen-lg max-h-[calc(100dvh)] ">
         <img src={bgImage} className="fixed -z-10" alt="" />
