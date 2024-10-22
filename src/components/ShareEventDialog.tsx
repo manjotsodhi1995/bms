@@ -55,6 +55,7 @@ export const ShareEventDialog = ({
             src={imageUrl}
             alt="event image"
             className="w-full h-[14rem] object-cover rounded-3xl"
+            loading="lazy"
           />
         </div>
         <div className="flex flex-col items-center gap-8  bg-white rounded-xl w-full p-8">

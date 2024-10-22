@@ -108,7 +108,7 @@ const ContactUs = observer(() => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-4"
               >
-                <img src={msg} alt="Email Logo" />
+                <img src={msg} alt="Email Logo" loading="lazy" />
               </a>
               kafscoteam@gmail.com
             </div>
@@ -119,7 +119,7 @@ const ContactUs = observer(() => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-4"
               >
-                <img src={lc} alt="Location Icon" />
+                <img src={lc} alt="Location Icon" loading="lazy" />
               </a>
               123 Summerhill, Mountjoy, Dublin, Ireland
             </div>

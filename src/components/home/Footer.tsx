@@ -1,4 +1,3 @@
-
 function Footer() {
   return (
     <div className="flex flex-col items-center">
@@ -17,6 +16,7 @@ function Footer() {
             src="/logo-nobg.png"
             alt="logo"
             className="max-h-[10vh] max-w-[40vw]"
+            loading="lazy"
           />
         </div>
       </div>
@@ -59,7 +59,7 @@ function Footer() {
                 Follow us on social media for exclusive updates and special
                 offers!
               </div>
-            </div>            
+            </div>
           </div>
         </div>
       </div>

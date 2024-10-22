@@ -30,6 +30,7 @@ const DashboardNavBar = observer(() => {
             src="/logo-nobg.png"
             alt="logo"
             className="max-h-[10vh] max-w-[40vw]"
+            loading="lazy"
           />
         </Link>
       </div>
@@ -95,7 +96,7 @@ function NotificationsDropdown() {
         className="flex items-center justify-center size-12 bg-gray-200 rounded-full"
         onClick={toggleDropdown}
       >
-        <img src={bell} alt="Notifications" />
+        <img src={bell} alt="Notifications" loading="lazy" />
       </button>
       {isOpen && (
         <div className="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg z-20">
@@ -149,7 +150,7 @@ function ProfileDropdown() {
         onClick={toggleDropdown}
         className="flex items-center justify-center size-12"
       >
-        <img src={pfp} alt="Profile" />
+        <img src={pfp} alt="Profile" loading="lazy" />
       </button>
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-20">

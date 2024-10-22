@@ -78,7 +78,12 @@ const Login = observer(() => {
     <>
       <div className="md:flex h-screen w-full justify-between max-sm:p-4 min-w-screen">
         <div className="md:block hidden w-[70vw] md:w-full">
-          <img src={img} className="h-screen w-full object-cover" alt="" />
+          <img
+            src={img}
+            className="h-screen w-full object-cover"
+            alt=""
+            loading="lazy"
+          />
         </div>
         <div className="h-full flex justify-center w-full">
           <form
@@ -91,6 +96,7 @@ const Login = observer(() => {
                   src="/logo-nobg.png"
                   alt="logo"
                   className="max-h-[10vh] max-w-[40vw]"
+                  loading="lazy"
                 />
               </Link>
               <h1 className="text-3xl font-bold">User Login</h1>

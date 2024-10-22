@@ -6,7 +6,8 @@ const TopSection = () => {
     <>
       <section
         className="flex justify-center items-center h-screen bg-cover bg-no-repeat bg-center pb-14"
-        style={{ backgroundImage: `url(${bg})` }}>
+        style={{ backgroundImage: `url(${bg})` }}
+      >
         <div className="text-center max-w-6xl md:pb-20">
           <h1 className="title text-4xl md:text-5xl font-medium text-white mb-4">
             Create Memorable Events
@@ -30,6 +31,7 @@ const TopSection = () => {
               src={tic}
               alt="ticketing"
               className="md:w-96 md:h-3/4 h-96 rounded-3xl mb-8 md:mb-0"
+              loading="lazy"
             />
             <div className="md:ml-20 text-center md:text-left text-gray-600">
               <p className="font-medium mb-4 text-2xl text-black">

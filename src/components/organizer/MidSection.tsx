@@ -15,6 +15,7 @@ const MidSection = () => {
               src={ticket}
               alt="ticketing"
               className="w-2/3 h-2/3 rounded-3xl mb-8 md:mb-0"
+              loading="lazy"
             />
             <div className="md:ml-20 text-center md:text-left text-gray-600">
               <p className="mb-8 ">
@@ -77,6 +78,7 @@ const MidSection = () => {
               src={pt}
               alt="ticketing"
               className="w-2/3 h-2/3 rounded-3xl mb-8 md:mb-0"
+              loading="lazy"
             />
           </section>
         </div>
@@ -91,6 +93,7 @@ const MidSection = () => {
               src={em}
               alt="ticketing"
               className="w-2/3 h-2/3 rounded-3xl mb-8 md:mb-0"
+              loading="lazy"
             />
             <div className="md:ml-20 text-center md:text-left text-gray-500">
               <p className="font-medium mb-2 text-2xl text-black">

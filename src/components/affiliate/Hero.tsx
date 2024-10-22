@@ -1,12 +1,12 @@
-import HeroImg from "../../assets/affiliate/Group 201.png"
-import img from "../../assets/affiliate/Rectangle 5961.png"
+import HeroImg from "../../assets/affiliate/Group 201.png";
+import img from "../../assets/affiliate/Rectangle 5961.png";
 import ExpandableBox from "../Expandable";
 function Hero() {
   return (
     <div className="lg:px-[15%] xl:px-[15%] px-[10vw] md:py-[7vh] pb-16 flex flex-col gap-16">
       <div className="flex justify-around gap-8 md:flex-row flex-col">
         <div className="md:w-[40%] items-center md:flex hidden">
-          <img src={HeroImg} alt="" />
+          <img src={HeroImg} alt="" loading="lazy" />
         </div>
         <div className="md:w-[50%] flex flex-col gap-10">
           <div className="lg:text-[2rem] 2xl:text-[2.8rem]  font-semibold leading-tight">
@@ -42,7 +42,7 @@ function Hero() {
         </div>
         <div className="flex justify-around gap-4 md:flex-row flex-col">
           <div className="md:w-[50%] items-center md:flex hidden">
-            <img src={img} alt="" />
+            <img src={img} alt="" loading="lazy" />
           </div>
           <div className="md:w-[40%] flex flex-col gap-5">
             <div className="flex flex-col gap-3">
@@ -110,4 +110,4 @@ function Hero() {
   );
 }
 
-export default Hero
+export default Hero;

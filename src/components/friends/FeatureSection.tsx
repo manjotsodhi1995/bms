@@ -55,13 +55,15 @@ const Features: React.FC = () => {
             <div
               key={index}
               style={{ border: "1px solid rgba(229, 244, 242, 1)" }}
-              className="bg-white p-6 py-10 rounded-3xl shadow-lg flex flex-col justify-between">
+              className="bg-white p-6 py-10 rounded-3xl shadow-lg flex flex-col justify-between"
+            >
               <div>
                 <div className="flex items-center justify-center mb-6">
                   <img
                     src={feature.icon}
                     alt={feature.title}
                     className="h-20 w-20"
+                    loading="lazy"
                   />{" "}
                 </div>
                 <div className="flex flex-col items-center justify-center mb-4">
@@ -77,14 +79,16 @@ const Features: React.FC = () => {
                 <a
                   href="#"
                   className=" text-xl font-medium flex items-center justify-center"
-                  style={{ color: "rgba(96, 118, 157, 1)" }}>
+                  style={{ color: "rgba(96, 118, 157, 1)" }}
+                >
                   Learn More
                   <svg
                     className="w-4 h-4 ml-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"

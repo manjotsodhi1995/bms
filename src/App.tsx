@@ -93,10 +93,15 @@ const App = observer(() => {
         {" "}
         <ScrollToTop />
         <div className="home -z-10 fixed min-h-screen md:flex hidden min-w-screen">
-          <img src={bg} alt="" className="min-h-screen min-w-screen" />
+          <img
+            src={bg}
+            alt=""
+            className="min-h-screen min-w-screen"
+            loading="lazy"
+          />
         </div>{" "}
         <div className="home -z-10 fixed min-h-screen md:hidden">
-          <img src={mbg} alt="" className="min-h-screen" />
+          <img src={mbg} alt="" className="min-h-screen" loading="lazy" />
         </div>
         {<Navbar />}
         <Suspense

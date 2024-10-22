@@ -33,6 +33,7 @@ const EventDetailPage = () => {
           <img
             src={data.posterUrl}
             className="w-full aspect-video rounded-b-xl object-fit"
+            loading="lazy"
           />
 
           <div className="flex flex-col gap-4">

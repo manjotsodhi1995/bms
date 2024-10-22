@@ -7,7 +7,8 @@ const TopSection = () => {
     <>
       <section
         className="flex justify-center items-center h-screen bg-cover bg-no-repeat bg-center pb-3 mb-28"
-        style={{ backgroundImage: `url(${bg})` }}>
+        style={{ backgroundImage: `url(${bg})` }}
+      >
         <div className="text-center max-w-6xl px-4 md:px-0">
           <h1 className="text-2xl md:text-5xl font-medium text-white">
             Unlock Earnings with Event Representation!
@@ -37,13 +38,15 @@ const TopSection = () => {
               textDecoration: "none",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
               transition: "background-color 0.3s",
-            }}>
+            }}
+          >
             Get Started
             <svg
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              style={{ marginLeft: "8px", width: "20px", height: "20px" }}>
+              style={{ marginLeft: "8px", width: "20px", height: "20px" }}
+            >
               <path
                 d="M9 5l7 7-7 7"
                 strokeLinecap="round"
@@ -60,6 +63,7 @@ const TopSection = () => {
             src={tic}
             alt="How it works"
             className="rounded-2xl shadow-md w-full"
+            loading="lazy"
           />
         </div>
         <div className="w-full md:w-1/2 flex flex-col justify-center">

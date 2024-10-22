@@ -1,5 +1,5 @@
 import gp from "../assets/home/gp.png";
-import as from "../assets/home/as.png"
+import as from "../assets/home/as.png";
 import fb from "../assets/socials/ic_baseline-facebook.png";
 import ig from "../assets/socials/mdi_instagram.png";
 import tw from "../assets/socials/mdi_twitter.png";
@@ -45,15 +45,15 @@ function Footer() {
               offers!
             </div>
             <div className="flex gap-4 mt-8 justify-center md:justify-start">
-              <img src={fb} alt="" />
-              <img src={ig} alt="" />
-              <img src={tw} alt="" />
+              <img src={fb} alt="" loading="lazy" />
+              <img src={ig} alt="" loading="lazy" />
+              <img src={tw} alt="" loading="lazy" />
             </div>
           </div>
 
           <div className="md:pt-12 flex gap-4 md:justify-start text-[0.9rem] md:text-[1rem] 2xl:text-[1.2rem] md:flex-row flex-col items-center align-middle justify-center w-full">
-            <img src={gp} alt="" />
-            <img src={as} alt="" />
+            <img src={gp} alt="" loading="lazy" />
+            <img src={as} alt="" loading="lazy" />
           </div>
         </div>
       </div>

@@ -33,7 +33,7 @@ function Hero() {
         {data.map((d) => (
           <Link to={`/helpdetails/${d._id}`} key={d._id}>
             <div className="text-center flex flex-col items-center p-2 gap-6 py-8 rounded-3xl bg-white hover:shadow-xl border-2 transform transition-all duration-300  lg:w-[25vw] ">
-              <img src={d.logo} alt="" />
+              <img src={d.logo} alt="" loading="lazy" />
               <div className="text-[1.5rem] font-medium">{d.title}</div>
               <div>{d.description}</div>
               <div className="flex justify-between font-medium">

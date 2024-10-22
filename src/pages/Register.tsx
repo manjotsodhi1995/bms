@@ -105,7 +105,12 @@ const Register = observer(() => {
     <>
       <div className="flex h-screen ">
         <div className="md:w-1/2 md:block hidden">
-          <img src={img} className="h-full w-full object-cover" alt="" />
+          <img
+            src={img}
+            className="h-full w-full object-cover"
+            alt=""
+            loading="lazy"
+          />
         </div>
         <div className="h-screen w-full md:w-1/2 flex justify-center items-center">
           <div className="md:px-[10vw]">
@@ -119,6 +124,7 @@ const Register = observer(() => {
                     src="/logo-nobg.png"
                     alt="logo"
                     className="max-h-[10vh] max-w-[40vw]"
+                    loading="lazy"
                   />
                 </Link>
                 <h1 className="text-3xl font-bold text-center">User Sign Up</h1>
