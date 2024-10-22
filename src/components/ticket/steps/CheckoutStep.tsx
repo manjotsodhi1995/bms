@@ -298,7 +298,7 @@ export const CheckoutStep = ({ eventsData, onBack }: TicketStepsProps) => {
             <div className="hidden md:block space-y-2">
               <span className="text-xl font-medium">Pay with</span>
               <PaymentMethodCard
-                title="Credit/Debit Card"
+                title="Card / Paypal / Apple Pay"
                 selected={paymentMethod === "card"}
                 onSelectedChange={(selected) =>
                   setPaymentMethod(selected ? "card" : null)
