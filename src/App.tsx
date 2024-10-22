@@ -22,7 +22,8 @@ const Privacy = lazy(() => import("./pages/privacy"));
 const Forgot = lazy(() => import("./pages/Forgot"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const Filter = lazy(() => import("./pages/Filter"));
-const AccountSettings = lazy(() => import("./pages/AccountSettings"));
+import AccountSettings from "./pages/AccountSettings";
+import Welcome from "./pages/Welcome";
 const EventPage = lazy(() => import("./pages/eventPage"));
 const SearchPage = lazy(() => import("./pages/Search"));
 const Home = lazy(() => import("./pages/Home"));
@@ -213,6 +214,7 @@ const App = observer(() => {
             />
             {/* Organizer Component */}
             <Route path="/organizer" element={<Organizer />} />
+            <Route path="/org-welcome" element={<Welcome />} />
             <Route path="/events/:location" element={<EventsInLocation />} />
             <Route
               path="/upcoming-events/:location"

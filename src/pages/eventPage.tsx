@@ -65,7 +65,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
       "" +
       new Date(eventData.eventStart).getHours() +
       ":" +
-      new Date(eventData.eventStart).getMinutes();
+      new Date(eventData.eventStart).getMinutes().toString().padStart(2, "0");
     const endTime =
       "" +
       new Date(eventData.eventEnd).getHours() +
@@ -104,27 +104,6 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
         <title>{!isLoading ? eventData?.title : "Loading..."}</title>
 
         {/* Open Graph Meta Tags for Facebook, WhatsApp */}
-        <meta
-          property="og:title"
-          content={
-            eventData
-              ? eventData.title
-              : "Diwali Bollywood Night | Rooftop Party | Drinks @ €4 | Girls Free"
-          }
-        />
-        <meta
-          property="og:image"
-          content={
-            "https://kafscowavedevassets.s3.eu-west-1.amazonaws.com/1726853169958-169.jpg"
-          }
-        />
-        <meta
-          property="og:url"
-          content={`https://www.kafsco.com/event/${eventData?.slug}`}
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
       </Helmet>
 
       <EventStories
@@ -143,10 +122,10 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
               alt=""
               loading="lazy"
             />
-            <div>
+            <div className="flex items-center justify-center">
               <img
                 src={eventData?.posterUrl}
-                className="w-full object-cover lg:h-[33vw] h-full"
+                className="lg:h-[33vw] h-full"
                 alt=""
                 loading="lazy"
               />
