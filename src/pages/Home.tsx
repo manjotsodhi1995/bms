@@ -10,7 +10,7 @@ function Home() {
     <div className="relative w-full overflow-x-hidden min-h-screen">
       {/* <Navbar /> */}
       <div className="home -z-10 fixed min-h-screen md:flex hidden top-0">
-        <img src={bg} alt="" className="min-h-screen" />
+        <img src={bg} alt="" className="min-h-screen" loading="lazy" />
       </div>
       <Hero />
       <Trending />

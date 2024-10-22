@@ -101,6 +101,7 @@ const Navbar = observer(() => {
                   src="/logo-nobg.png"
                   alt="logo"
                   className="max-h-[10vh] max-w-[40vw]"
+                  loading="lazy"
                 />
                 <div
                   className="HAMBURGER-ICON space-y-2 flex flex-col justify-center cursor-pointer "
@@ -252,6 +253,7 @@ const Navbar = observer(() => {
                 src="/logo-nobg.png"
                 alt="logo"
                 className="max-h-[10vh] max-w-[40vw]"
+                loading="lazy"
               />
             </Link>
             {isAuthenticated && (
@@ -471,7 +473,7 @@ function NotificationsDropdown({ open, onOpenChange }: NavbarDropdownProps) {
     <div className="relative flex items-center">
       <button onClick={toggleDropdown}>
         <Tooltip title="NOTIFICATIONS" arrow>
-          <img src={bell} alt="Notifications" />
+          <img src={bell} alt="Notifications" loading="lazy" />
         </Tooltip>
       </button>
       {open && (

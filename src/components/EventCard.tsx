@@ -47,6 +47,7 @@ function EventCard(event: Partial<EventType>) {
             <img
               src={event.posterUrl}
               alt=""
+              loading="lazy"
               className="w-full rounded-2xl h-[14rem] md:h-[18rem] object-cover -z-10"
             />
             <Tooltip title="SHARE" placement="top" arrow>

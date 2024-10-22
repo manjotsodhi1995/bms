@@ -48,7 +48,8 @@ const ContactSection: React.FC = () => {
             />
             <label
               htmlFor="agree"
-              className="ml-2 block text-xs md:text-sm text-gray-900">
+              className="ml-2 block text-xs md:text-sm text-gray-900"
+            >
               I agree to{" "}
               <a href="#" className="text-black font-semibold">
                 Privacy Policy
@@ -62,13 +63,14 @@ const ContactSection: React.FC = () => {
           <button
             type="submit"
             style={{ backgroundColor: "rgba(150, 75, 125, 1)" }}
-            className="w-full text-white p-3 rounded-3xl hover:bg-color transition duration-300">
+            className="w-full text-white p-3 rounded-3xl hover:bg-color transition duration-300"
+          >
             Contact with us now
           </button>
         </form>
       </div>
       <div className="hidden lg:flex items-center justify-center lg:w-1/2 p-8">
-        <img src={con} alt="Contact" />
+        <img src={con} alt="Contact" loading="lazy" />
       </div>
     </div>
   );

@@ -45,7 +45,7 @@ function Hero() {
       <div className="p-8">
         <div className="flex flex-col gap-4">
           <div>
-            <img src={data?.logo} alt="" className="" />
+            <img src={data?.logo} alt="" className="" loading="lazy"/>
           </div>
           <div>
             <div className="text-[1.5rem] font-medium">{data?.title}</div>

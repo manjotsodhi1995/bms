@@ -45,6 +45,7 @@ const OrganizationProfile = observer(() => {
                   src={`${organizationData.logoUrl}`}
                   className="w-[200px] h-[200px] rounded-full"
                   alt=""
+                  loading="lazy"
                 />
               </div>
               <div className="font-bold text-[1.5rem] md:text-[2rem]">

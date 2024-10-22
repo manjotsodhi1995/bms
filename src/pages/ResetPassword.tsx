@@ -108,6 +108,7 @@ const ResetPassword = observer(() => {
                 src="/logo-nobg.png"
                 alt="logo"
                 className="max-h-[10vh] max-w-[40vw]"
+                loading="lazy"
               />
               <h1 className="text-3xl font-bold">Reset Password</h1>
             </div>
@@ -163,7 +164,12 @@ const ResetPassword = observer(() => {
         </div>
       </div>
       <div className="md:block hidden w-[70vw] md:w-full">
-        <img src={img} className="h-screen w-full object-cover" alt="" />
+        <img
+          src={img}
+          className="h-screen w-full object-cover"
+          alt=""
+          loading="lazy"
+        />
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ const PreviewCard = ({ eventsData, cartData, children }: PreviewCardProps) => {
       <img
         src={eventsData?.posterUrl}
         className="w-full h-52 object-cover rounded-lg md:flex hidden"
+        loading="lazy"
       />
       <span className="leading-tight text-xl font-medium md:flex hidden">
         {eventsData?.title}

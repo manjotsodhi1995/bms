@@ -113,6 +113,7 @@ const Navbar = observer(() => {
               src="/logo.png"
               alt="logo"
               className="max-h-[10vh] max-w-[40vw]"
+              loading="lazy"
             />
           </Link>
         </nav>
@@ -161,10 +162,10 @@ const Navbar = observer(() => {
           {isAuthenticated && (
             <div className="flex justify-center gap-8 items-center min-w-[6vw]">
               <div className="cursor-pointer py-2 px-2 bg-white rounded-xl">
-                <img src={bell} alt="" />
+                <img src={bell} alt="" loading="lazy" />
               </div>
               <div>
-                <img src={pfp} alt="" />
+                <img src={pfp} alt="" loading="lazy" />
               </div>
             </div>
           )}

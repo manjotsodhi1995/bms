@@ -10,6 +10,7 @@ function VideoSection() {
             src="https://www.youtube.com/embed/dQw4w9WgXcQ"
             title="Step by Step Instructions"
             allowFullScreen
+            loading="lazy"
             className="w-full h-full"></iframe>
         </div>
       </div>

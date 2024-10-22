@@ -152,6 +152,7 @@ function Hero() {
                           src={card.img}
                           className="h-[25vw] w-full object-cover"
                           alt=""
+                          loading="lazy"
                         />
                       </Link>
                     </SwiperSlide>
@@ -191,6 +192,7 @@ function Hero() {
                             src={card.img}
                             className=" w-full h-[56.25vw] object-cover"
                             alt=""
+                            loading="lazy"
                           />
                         </div>
                       </Link>

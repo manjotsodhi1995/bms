@@ -59,6 +59,7 @@ function TicketCard(props: TicketCardProps) {
               src={props?.event.posterUrl}
               alt="Event Logo"
               className="object-cover w-full h-full rounded-2xl"
+              loading="lazy"
             />
           ) : (
             <div className="bg-gray-200 w-full h-full rounded-2xl" />
@@ -79,10 +80,12 @@ function TicketCard(props: TicketCardProps) {
             {props?.venueAddress.zipcode}
           </p>
 
-          <p className="font-medium">{formatCurrency(
-                props?.totalAmount,
-                props?.currency ? props.currency : "EUR"
-              )}</p>
+          <p className="font-medium">
+            {formatCurrency(
+              props?.totalAmount,
+              props?.currency ? props.currency : "EUR"
+            )}
+          </p>
         </div>
       </div>
       <DialogContent className="overflow-y-auto p-1 max-w-screen-lg max-h-[calc(100dvh)]">

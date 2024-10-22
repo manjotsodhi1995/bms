@@ -26,6 +26,7 @@ const ReppedInPastDetails = () => {
             <img
               src="https://s3-alpha-sig.figma.com/img/1cd7/f4dc/9ab46b29cc668c7f4e50b65efdb52bd2?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b3G3VQBBMsUKRGyMAsYgNPxkQSxlxUn2Ed8ZPXXECJm19wizFnhVjMQ2cyjeVUubwKZB8cKtL-8NGsZup8AFZOyIc5C-eVNwA5We4IOkDVwZHdi0qoRRCpOfwSO6A-pSmwtMy4ds92B1KsZiUuafeTcmnY5qeqYI5C5g3YZYurpDkYfTepAq25sQi9MO7EDtRqKPecy4OGoW5j3KNcp7Fsq6SLv95LjAlWZefmRQSQe1d8VmMtE0P7Mqr7GMi0YGqethkfIajjureZ4gJDRFElnD93w~uEpmASq7nFC1MHlwiy33AB41c2hmO0tkrz2uw-QnUKawD1qz-GVOm4sqDw__"
               className="w-full h-[40vh] object-cover rounded-xl"
+              loading="lazy"
             />
           </div>
           <div className="flex flex-col gap-4 md:gap-6 justify-center 2xl:text-xl">
@@ -126,7 +127,6 @@ const ReppedInPastDetails = () => {
         </div>
       </HomeContainerCard>
 
-
       <HomeContainerCard className="flex w-full flex-col h-full justify-between p-4 md:p-14">
         <div className="flex w-full items-center justify-between">
           <p className="text-[#60769D] font-medium text-2xl">Final Round</p>
@@ -150,7 +150,6 @@ const ReppedInPastDetails = () => {
           <span>$654.00</span>
         </div>
       </HomeContainerCard>
-
 
       <HomeContainerCard className="flex w-full flex-col h-full justify-between p-4 md:p-14">
         <div className="flex w-full items-center justify-between">

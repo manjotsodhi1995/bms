@@ -9,8 +9,9 @@ function Profile() {
           src={"affiliation section 2-05.jpg"}
           alt=""
           className="w-full hidden md:flex"
+          loading="lazy"
         />{" "}
-        <img src={img} alt="" className="w-full md:hidden" />
+        <img src={img} alt="" className="w-full md:hidden" loading="lazy" />
         <div className="absolute md:bottom-[1vw] lg:bottom-[2vw] 2xl:bottom-[4vw] md:left-1/4 transform -translate-x-1/2 mb-10 bottom-2 left-1/2">
           <button
             onClick={() => navigate("/organizer")}

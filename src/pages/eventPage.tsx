@@ -120,12 +120,14 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
               src={eventData?.posterUrl}
               className="w-full object-cover lg:h-[33vw] h-full absolute -z-10 blur-effect"
               alt=""
+              loading="lazy"
             />
             <div className="flex items-center justify-center">
               <img
                 src={eventData?.posterUrl}
                 className="lg:h-[33vw] h-full"
                 alt=""
+                loading="lazy"
               />
             </div>
             <div className="flex gap-4 absolute bottom-4 right-4">
@@ -151,7 +153,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
                 {likesMutation.isPending ? (
                   <Loader2 className="animate-spin" />
                 ) : (
-                  <img src={Like} alt="" />
+                  <img src={Like} alt="" loading="lazy" />
                 )}
               </button>
               <div>
@@ -161,7 +163,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
                     link={`/event/${eventData.slug}`}
                   >
                     <div className="bg-white rounded-full w-[50px] h-[50px] items-center flex justify-center bg-opacity-40 cursor-pointer hover:bg-blue-300">
-                      <img src={Share} alt="" />
+                      <img src={Share} alt="" loading="lazy" />
                     </div>
                   </ShareEventDialog>
                 )}
@@ -410,6 +412,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
               src={`https://maps.google.com/maps?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}&hl=en;z=14&amp&output=embed`}
               width="100%"
               height="290"
+              loading="lazy"
             />
             <Link
               to={`https://maps.google.com/?q=${eventData?.venueLocation.coordinates[0]},${eventData?.venueLocation.coordinates[1]}`}

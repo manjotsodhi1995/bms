@@ -52,15 +52,15 @@ function Footer() {
                   offers!
                 </div>
                 <div className="flex gap-4 mt-8 justify-center md:justify-start">
-                  <img src={fb} alt="Facebook" />
-                  <img src={ig} alt="Instagram" />
-                  <img src={tw} alt="Twitter" />
+                  <img src={fb} alt="Facebook" loading="lazy" />
+                  <img src={ig} alt="Instagram" loading="lazy" />
+                  <img src={tw} alt="Twitter" loading="lazy" />
                 </div>
               </div>
 
               <div className="md:py-9 flex flex-col gap-4 md:justify-start text-[0.9rem] md:text-[1rem] 2xl:text-[1.2rem] md:flex-row items-center align-middle justify-center w-full">
-                <img src={gp} alt="Google Play" />
-                <img src={as} alt="App Store" />
+                <img src={gp} alt="Google Play" loading="lazy" />
+                <img src={as} alt="App Store" loading="lazy" />
               </div>
             </div>
           </div>
