@@ -26,15 +26,12 @@ import type SwiperCore from "swiper";
 import { formatCurrency } from "@/utils";
 import { Helmet } from "react-helmet";
 const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
-  const [isLoading, setIsLoading] = useState(false);
   const fetchEvent = async (slug?: string) => {
-    setIsLoading(true);
     const response = await axios.get(`${API.events.getByUrl}/${slug}`, {
       headers: {
         is_guest_user: "yes",
       },
     });
-    setIsLoading(false);
     return response.data.data as EventType;
   };
   const {
@@ -42,7 +39,7 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
   } = useStore();
   const carouselRef = useRef(null);
   const { slug } = useParams();
-  const { data: eventData } = useQuery({
+  const { data: eventData, isLoading } = useQuery({
     queryKey: ["event", slug],
     queryFn: () => fetchEvent(slug),
   });
@@ -185,8 +182,8 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
         {isLoading && (
           <Skeleton
             variant="rounded"
-            width={"100%"}
-            height={"100%"}
+            width={1000}
+            height={400}
             sx={{
               borderRadius: 6,
             }}
@@ -203,10 +200,14 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
                 <Skeleton variant="rounded" width={100} height={30} />
               )}
             </div>
-            <div className="leading-tight text-[1.7rem] lg:text-[2.5rem]">
-              {" "}
-              {eventData?.title}
-            </div>
+            {isLoading ? (
+              <Skeleton variant="rounded" height={60} />
+            ) : (
+              <div className="leading-tight text-[1.7rem] lg:text-[2.5rem]">
+                {" "}
+                {eventData?.title}
+              </div>
+            )}
           </div>
           <div className="flex items-center gap-4">
             <div>
@@ -223,16 +224,21 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
                 />
               </svg>
             </div>
-            <div>
-              <div className="font-medium text-[1.1rem] lg:text-[1.3rem]">
-                {eventData?.venueAddress.name}
+            {isLoading ? (
+              <Skeleton variant="rounded" width={600} height={60} />
+            ) : (
+              <div>
+                <div className="font-medium text-[1.1rem] lg:text-[1.3rem]">
+                  {eventData?.venueAddress.name}
+                </div>
+                <div className="text-gray-700 font-medium">
+                  {" "}
+                  {eventData?.venueAddress.city},
+                  {eventData?.venueAddress.country},
+                  {eventData?.venueAddress.zipcode}
+                </div>
               </div>
-              <div className="text-gray-700 font-medium">
-                {" "}
-                {eventData?.venueAddress.city},{eventData?.venueAddress.country}
-                ,{eventData?.venueAddress.zipcode}
-              </div>
-            </div>
+            )}
           </div>
           <div className="flex items-center gap-4 font-medium">
             <div>
@@ -249,7 +255,11 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
                 />
               </svg>
             </div>
-            <div className="text-gray-900 font-medium text-sm">{date}</div>
+            {isLoading ? (
+              <Skeleton variant="rounded" width={600} height={30} />
+            ) : (
+              <div className="text-gray-900 font-medium text-sm">{date}</div>
+            )}
           </div>
           <div className="flex items-center gap-4">
             <div>
@@ -266,13 +276,17 @@ const EventPage = observer(({ dialogOpen, setDialogOpen }: any) => {
                 />
               </svg>
             </div>
-            <div className="text-gray-900 pl-[3px] font-medium text-sm">
-              Starts at just{" "}
-              {formatCurrency(
-                eventData?.lowestTicketPrice,
-                eventData?.currency ? eventData.currency : "EUR"
-              )}
-            </div>
+            {isLoading ? (
+              <Skeleton variant="rounded" width={600} height={30} />
+            ) : (
+              <div className="text-gray-900 pl-[3px] font-medium text-sm">
+                Starts at just{" "}
+                {formatCurrency(
+                  eventData?.lowestTicketPrice,
+                  eventData?.currency ? eventData.currency : "EUR"
+                )}
+              </div>
+            )}
           </div>
           <div className="mt-4 flex lg:hidden justify-between gap-10">
             <div className="flex flex-col text-center items-center">
