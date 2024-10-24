@@ -6,7 +6,8 @@ const TopSection = () => {
     <>
       <section
         className="flex justify-center items-center h-screen bg-cover bg-no-repeat bg-center pb-3 mb-28"
-        style={{ backgroundImage: `url(${bg})` }}>
+        style={{ backgroundImage: `url(${bg})` }}
+      >
         <div className="text-center max-w-6xl px-4 md:px-0">
           <h1 className="text-2xl md:text-5xl font-medium text-white">
             Transform Connections into Cash with Kafsco!
@@ -26,6 +27,7 @@ const TopSection = () => {
             src={tic}
             alt="How it works"
             className="rounded-2xl shadow-md w-full"
+            loading="lazy"
           />
         </div>
         <div className="w-full md:w-1/2 flex flex-col justify-center">
