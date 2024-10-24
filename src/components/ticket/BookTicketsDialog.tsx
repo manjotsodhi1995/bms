@@ -69,6 +69,7 @@ const BookTicketsDialogContent = ({
     setTicketStep("booking");
     setDialogOpen(value);
   };
+  console.log(closeDialog);
   return (
     <Dialog open={dialogOpen} onOpenChange={closeDialog}>
       <DialogTrigger asChild>{children}</DialogTrigger>
