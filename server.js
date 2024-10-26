@@ -43,8 +43,8 @@ function generateMetaInfo({ path, slug = "", eventDetail = {} }) {
 
     case `/event/${slug}`:
       return {
-        seoTitle: `${eventDetail?.title} - Pre-Owned Two Wheeler at DriveX`,
-        seoDescription: `${eventDetail?.description} - Pre-Owned Two Wheeler at DriveX`,
+        seoTitle: `${eventDetail?.title}`,
+        seoDescription: `${eventDetail?.description}`,
         seoImage: `${eventDetail?.posterUrl}`,
       };
 
