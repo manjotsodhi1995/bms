@@ -42,7 +42,7 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
   };
 
   const removePromoCode = async () => {
-    const response = await axios.post(`${API.promo.remove}/${eventId}`, {
+    const response = await axios.post(`${API.promo.remove}/${basketId}`, {
       promoId: voucherCode,
     });
     // console.log(response.data)
