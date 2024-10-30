@@ -15,7 +15,7 @@ interface UpdateCart {
 export const useCartQuery = (eventId?: string, eventDate?: string) => {
   const queryClient = useQueryClient();
   const { setBasketId, voucherCode, basketId } = useCart();
-
+  console.log(basketId);
   const updateCart = async (body: Partial<UpdateCart>) => {
     if (!eventId) return false;
     const response = await axios.post(`${API.basket.update}/${eventId}`, body);
@@ -35,14 +35,14 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
   };
 
   const applyPromoCode = async () => {
-    const response = await axios.post(`${API.promo.apply}/${basketId}`, {
+    const response = await axios.post(`${API.promo.apply}/${eventId}`, {
       promoId: voucherCode,
     });
     return response.data.data;
   };
 
   const removePromoCode = async () => {
-    const response = await axios.post(`${API.promo.remove}/${basketId}`, {
+    const response = await axios.post(`${API.promo.remove}/${eventId}`, {
       promoId: voucherCode,
     });
     // console.log(response.data)
