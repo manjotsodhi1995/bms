@@ -35,7 +35,7 @@ export const useCartQuery = (eventId?: string, eventDate?: string) => {
   };
 
   const applyPromoCode = async () => {
-    const response = await axios.post(`${API.promo.apply}/${eventId}`, {
+    const response = await axios.post(`${API.promo.apply}/${basketId}`, {
       promoId: voucherCode,
     });
     return response.data.data;
