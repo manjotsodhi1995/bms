@@ -74,12 +74,12 @@ export const CheckoutStep = ({ eventsData, onBack }: TicketStepsProps) => {
     eventsData?.eventStart
   );
   const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
+  {/* useEffect(() => {
     console.log(cartData.basket.discountTotal);
     cartData.basket.discountTotal > 0
       ? setPromoApplied(true)
       : setPromoApplied(false);
-  }, []);
+  }, []); */}
   const onContinueClicked = async () => {
     if (firstName.length === 0) {
       setError("Please enter your first name");
