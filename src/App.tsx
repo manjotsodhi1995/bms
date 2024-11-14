@@ -110,8 +110,7 @@ const App = observer(() => {
             <div className="min-h-screen w-screen flex justify-center items-center">
               <Loader2 size={40} />
             </div>
-          }
-        >
+          }>
           <Routes>
             <Route path="/" element={<Home />} />
             {/* Protected Routes */}
