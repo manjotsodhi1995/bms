@@ -1,5 +1,5 @@
 import React from "react";
-import bgImage from "../../assets/welcome/formbg.svg";
+import bgImage from "../../assets/welcome/formbg.png";
 import flag from "../../assets/welcome/flag.svg";
 import icon from "../../assets/welcome/icon.svg";
 
@@ -24,7 +24,7 @@ const FormSection: React.FC = () => {
 
         {/* Heading */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center mb-4">
-          Interested in using FIXR?
+          Interested in using Kafsco?
         </h2>
         <p className="text-center text-sm sm:text-base text-gray-600 mb-6 md:mb-8">
           Fill in the form to ask a question or book a demo.

@@ -5,10 +5,17 @@ import ellipse from "../../assets/welcome/ellipse.svg";
 import bgImage from "../../assets/welcome/pricing.svg";
 import icon from "../../assets/welcome/icon2.svg";
 import { FaTimes, FaCheck } from "react-icons/fa";
+import bg from "../../assets/welcome/event.png";
 const MidSection: React.FC = () => {
   return (
     <>
-      <div className="flex items-center justify-center relative">
+      <div
+        className="flex items-center justify-center relative"
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}>
         <div className="absolute top-0 left-0 ml-[20px] hidden lg:block">
           <img src={icon} alt="icon" />
         </div>
@@ -63,7 +70,7 @@ const MidSection: React.FC = () => {
             <div className="sm:ml-6 lg:ml-20 text-left">
               <img src={ellipse} />
               <p className="font-medium text-xl my-4">Rep Portal</p>
-              <p className="sm:text-[10px] text-[14px] font-normal mb-10">
+              <p className="sm:text-[10px] lg:text-[14px] font-normal mb-10">
                  Partner with representatives who can promote your events to
                 their networks. Tap into new audiences and boost ticket sales by
                 leveraging the influence of trusted affiliates.
@@ -73,7 +80,7 @@ const MidSection: React.FC = () => {
               <p className="font-medium text-xl my-4">
                 Social Media Integration
               </p>
-              <p className="sm:text-[10px] text-[14px] font-normal">
+              <p className="sm:text-[10px] lg:text-[14px] font-normal">
                 Maximize your event’s visibility. Share event updates, stories,
                 and highlights directly to your social media channels.
               </p>
@@ -192,6 +199,10 @@ const MidSection: React.FC = () => {
               <div className="mt-6 sm:mt-8 flex items-center justify-center">
                 <button
                   className="text-white px-8 sm:px-12 md:px-16 py-2 sm:py-3 rounded-full text-sm sm:text-lg font-medium"
+                  onClick={() =>
+                    (window.location.href =
+                      "https://organizer-dashboard-bms.vercel.app/login")
+                  }
                   style={{
                     background:
                       "linear-gradient(90deg, #60769D 0%, #964B7D 100%)",

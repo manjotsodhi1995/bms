@@ -91,15 +91,13 @@ const SlideSection: React.FC = () => {
           background:
             "linear-gradient(180deg, #FFFFFF 0%, rgba(216, 227, 255, 0.2) 100%)",
         }}>
-        <h2 className="text-5xl md:text-6xl font-semibold text-center mb-14">
-          Features
-        </h2>
+        <h2 className="text-5xl font-semibold text-center mb-14">Features</h2>
         <Swiper
           effect={"coverflow"}
           // slidesPerView={3}
-          spaceBetween={30}
+          spaceBetween={50}
           centeredSlides={true}
-          loop={true} // Enable loop
+          // loop={true} // Enable loop
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
@@ -112,26 +110,22 @@ const SlideSection: React.FC = () => {
             slideShadows: false,
           }}
           grabCursor={true} // For better user interaction
-          className="swiper-container"
+          className="swiper-container px-4 md:px-8 lg:px-12"
           modules={[Autoplay, EffectCoverflow]}
           breakpoints={{
-            667: {
-              slidesPerView: 1,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
+            640: { slidesPerView: 1, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 30 },
+            1024: { slidesPerView: 2.8, spaceBetween: 40 },
+            1280: { slidesPerView: 3, spaceBetween: 40 },
           }}>
           {features.map((feature, index) => (
-            <SwiperSlide key={index} className="swiper-slide">
+            <SwiperSlide key={index} className="swiper-slide w-[90%]">
               <div
                 style={{
+                  maxWidth: "500px",
                   border: "1px solid rgba(229, 244, 242, 1)",
                 }}
-                className=" p-6 py-10 mx-6 lg:mx-0 xl:mx-6 h-[600px] md:h-[650px] rounded-3xl shadow-lg flex flex-col justify-between">
+                className="p-6 py-10 mx-4 lg:mx-1 xl:mx-4 h-[500px] md:h-[600px] rounded-3xl shadow-lg flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-center mb-6">
                     <img
